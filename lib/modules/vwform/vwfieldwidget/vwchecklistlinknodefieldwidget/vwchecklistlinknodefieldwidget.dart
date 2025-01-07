@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient2base/modules/vwappinstanceparam/vwappinstanceparam.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
 import 'package:vwform/modules/vwchecklistlinknode/vwchecklistlinknode.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwform.dart';
@@ -18,13 +18,16 @@ class VwCheckListLinkNodeFieldWidget extends StatelessWidget {
       this.onValueChanged,
       required this.appInstanceParam,
       this.parentRef,
-      required this.getFieldvalueCurrentResponseFunction})
+      required this.getFieldvalueCurrentResponseFunction,
+      required this.baseUrl
+      })
       : super(key: key);
 
   final VwFieldValue field;
   final bool readOnly;
   final VwFormField formField;
   final VwFieldWidgetChanged? onValueChanged;
+  final String baseUrl;
 
   final VwAppInstanceParam appInstanceParam;
   final VwLinkNode? parentRef;
@@ -61,6 +64,7 @@ class VwCheckListLinkNodeFieldWidget extends StatelessWidget {
       Container(
           height: 240,
           child: VwCheckListLinkNode(
+            baseUrl: this.baseUrl,
             formField: this.formField,
             appInstanceParam: appInstanceParam,
               getFieldvalueCurrentResponseFunction:

@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:matrixclient/modules/base/vwappinstanceparam/vwappinstanceparam.dart';
 import 'dart:convert';
-import 'package:matrixclient/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
-import 'package:matrixclient/modules/base/vwlinknode/vwlinknode.dart';
-import 'package:matrixclient/modules/base/vwnode/vwcontentcontext/vwcontentcontext.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient/modules/util/nodeutil.dart';
-import 'package:matrixclient/modules/vwform/vwfieldwidget/vwfieldwidget.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwfielduiparam/vwfielduiparam.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformdefinition.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformvalidationresponse/vwformfieldvalidationresponse/vwformfieldvalidationresponse.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformvalidationresponse/vwformvalidationresponse.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformvalidationresponse/vwformvalidationresponseutil.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwsectionformdefinition/vwsectionformdefinition.dart';
-import 'package:matrixclient/modules/vwformpage/vwoldformpage.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
 import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwcontentcontext/vwcontentcontext.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
+import 'package:vwform/modules/vwform/vwfieldwidget/vwfieldwidget.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwfielduiparam/vwfielduiparam.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwformdefinition.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformvalidationresponse/vwformfieldvalidationresponse/vwformfieldvalidationresponse.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformvalidationresponse/vwformvalidationresponse.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformvalidationresponse/vwformvalidationresponseutil.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwsectionformdefinition/vwsectionformdefinition.dart';
 
 typedef VwFormValueChanged = void Function(
     VwFieldValue, VwFieldValue, VwRowData, bool);
@@ -58,8 +51,10 @@ class VwForm extends StatefulWidget {
       this.sectionIndex,
       this.formValidationResponse,
       this.backGroundColor = Colors.grey,
+      required this.baseUrl,
       this.fieldBoxDecoration = const BoxDecoration(
         color: Colors.white,
+
       )});
   final VwAppInstanceParam appInstanceParam;
   final VwFormDefinition formDefinition;
@@ -74,6 +69,7 @@ class VwForm extends StatefulWidget {
   final int? sectionIndex;
 
   final BoxDecoration fieldBoxDecoration;
+  final String baseUrl;
 
   @override
   VwFormState createState() => VwFormState();
@@ -194,12 +190,7 @@ class VwFormState extends State<VwForm> {
                 currentInitFormResponseFieldValue.valueFieldValueList == null) {
               currentInitFormResponseFieldValue.valueFieldValueList =
                   includedInFormDefinitionFieldValue?.valueFieldValueList;
-            } else if (currentInitFormResponseFieldValue.valueTypeId ==
-                    VwFieldValue.vatValueFormDefinition &&
-                currentInitFormResponseFieldValue.valueFormDefinition == null) {
-              currentInitFormResponseFieldValue.valueFormDefinition =
-                  includedInFormDefinitionFieldValue?.valueFormDefinition;
-            } else if (includedInFormDefinitionFieldValue != null) {
+            }  else if (includedInFormDefinitionFieldValue != null) {
               if (currentInitFormResponseFieldValue.valueTypeId ==
                       VwFieldValue.vatValueLinkNode &&
                   currentInitFormResponseFieldValue.valueLinkNode == null) {
@@ -392,6 +383,7 @@ class VwFormState extends State<VwForm> {
                   padding: EdgeInsets.fromLTRB(12, 0, 8, 10),
                   margin: EdgeInsets.fromLTRB(0, 7, 0, 7),
                   child: VwFieldWidget(
+                    baseUrl: this.widget.baseUrl,
                     key: Key(newCurrentFormField.fieldDefinition.fieldName),
                     parentRef: this.initFormResponse.collectionName == null
                         ? null

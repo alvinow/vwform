@@ -3,9 +3,10 @@ import 'package:flutter/services.dart';
 
 import 'dart:convert';
 
-import 'package:matrixclient/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
-import 'package:matrixclient/modules/vwform/vwfieldwidget/vwfieldwidget.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
+import 'package:vwform/modules/vwform/vwfieldwidget/vwfieldwidget.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
+
 
 class VwTextWidget extends StatelessWidget {
   const VwTextWidget(

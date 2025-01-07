@@ -1,4 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:matrixclient2base/modules/base/vwupnoderowdatasearchparameter/vwupnoderowdatasearchparameter.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwfieldlocalfieldref/vwfieldlocalfieldref.dart';
+import 'package:vwform/modules/vwmongodbfilterparameter/vwmongodbfilterparameter.dart';
 part 'vwdatasourcedefinition.g.dart';
 
 @JsonSerializable()
@@ -21,7 +24,7 @@ class VwDataSourceDefinition {
   final dynamic sortObject;
   final List<String>? collectionNameList;
   final String syncMode;
-  final VwMongoDbFilterParameter? nodeFilter;
+  final VwMongoDbFilterParameter ? nodeFilter;
   final List<VwFieldLocalFieldRef>? fieldLocalFieldRefList;
   final String folderNodeMode;
   final VwUpNodeRowDataSearchParameter? folderUpNodeRowDataSearchParameter;

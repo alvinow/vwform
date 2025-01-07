@@ -1,5 +1,5 @@
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwlocalfieldref/vwlocalfieldref.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwlocalfieldref/vwlocalfieldref.dart';
 part 'vwfieldlocalfieldref.g.dart';
 
 @JsonSerializable()

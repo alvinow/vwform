@@ -7,11 +7,11 @@ import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.
 import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
 import 'package:nodelistview/modules/homepage/vwhomepage.dart';
-import 'package:nodelistview/modules/pagecoordinator/bloc/pagecoordinator_bloc.dart';
 import 'package:nodelistview/modules/reginfopage/reginfopage.dart';
 import 'package:uuid/uuid.dart';
 import 'package:vwform/modules/loginpage/loginpage.dart';
 import 'package:vwform/modules/mediaviewerpage/mediaviewerpage.dart';
+import 'package:vwform/modules/pagecoordinator/bloc/pagecoordinator_bloc.dart';
 import 'package:vwform/modules/publiclandingpage/publiclandingpage.dart';
 import 'package:vwform/modules/splashscreens/mainsplash1/mainsplash1.dart';
 import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
@@ -19,10 +19,11 @@ import 'package:vwform/modules/vwwidget/vwloadingpage/vwloadingpage.dart';
 import 'package:vwutil/modules/util/vwdateutil.dart';
 
 class PageCoordinator extends StatelessWidget {
-  PageCoordinator({super.key, this.goRouterState, this.url});
+  PageCoordinator({super.key, this.goRouterState, this.url, required this.baseUrl});
 
-  String? url;
+  final String? url;
   GoRouterState? goRouterState;
+  final String baseUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +34,18 @@ class PageCoordinator extends StatelessWidget {
                 goRouterState: goRouterState,
                 url: url,
                 timestamp: DateTime.now())))
-    ], child: _BodyPageCoordinator());
+    ], child: BodyPageCoordinator(baseUrl: this.baseUrl,));
   }
 }
 
-class _BodyPageCoordinator extends StatelessWidget {
+class BodyPageCoordinator extends StatelessWidget {
+
+  BodyPageCoordinator({
+    required this.baseUrl
+});
+
+  final String baseUrl;
+
   void viewArticleBackFunction(
       VwAppInstanceParam appInstanceParam, BuildContext buildContext) {
     appInstanceParam.appBloc
@@ -109,6 +117,7 @@ class _BodyPageCoordinator extends StatelessWidget {
 
       if (state is LoginPagecoordinatorState) {
         return LoginPage(
+          baseUrl: this.baseUrl,
           key: UniqueKey(),
           appInstanceParam: VwAppInstanceParam(appBloc: bloc),
           paramLoginPage: state.loginParam,

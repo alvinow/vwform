@@ -4,9 +4,9 @@ import 'package:image_fade/image_fade.dart';
 import 'package:matrixclient2base/appconfig.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
-import 'package:nodelistview/modules/pagecoordinator/bloc/pagecoordinator_bloc.dart';
 import 'package:uuid/uuid.dart';
 import 'package:vwform/modules/formdefinitionlib/formdefinitionlib.dart';
+import 'package:vwform/modules/pagecoordinator/bloc/pagecoordinator_bloc.dart';
 import 'package:vwform/modules/rowdefinitionlib/rowdefinitionlib.dart';
 import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
 import 'package:vwform/modules/vwform/vwform.dart';
@@ -17,11 +17,13 @@ import 'package:vwutil/modules/util/vwdateutil.dart';
 class LoginPage extends StatefulWidget {
   LoginPage(
       {super.key,
+        required this.baseUrl,
       required this.appInstanceParam,
       required this.paramLoginPage});
 
   final VwRowData paramLoginPage;
   final VwAppInstanceParam appInstanceParam;
+  final String baseUrl;
 
   LoginPageState createState() => LoginPageState();
 }
@@ -198,6 +200,7 @@ class LoginPageState extends State<LoginPage> {
         );
 
     Widget loginForm = VwForm(
+      baseUrl: this.widget.baseUrl,
         key: this.formPageKey,
         appInstanceParam: widget.appInstanceParam,
         boxDecoration: boxDecoration1,

@@ -7,8 +7,8 @@ import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
 import 'package:matrixclient2base/modules/base/vwloginresponse/vwloginresponse.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnodecontent/vwnodecontent.dart';
+import 'package:nodelistview/modules/nodelistview/nodelistview.dart';
 import 'package:uuid/uuid.dart';
-import 'package:vwform/modules/nodelistview.dart';
 import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
 import 'package:vwform/modules/vwchecklistlinknode/vwchecklistlinknoderowviewer/vwchecklistlinknoderowviewer.dart';
 import 'package:vwform/modules/vwdatasourcedefinition/vwdatasourcedefinition.dart';
@@ -44,7 +44,9 @@ class VwCheckListNode extends StatefulWidget {
         this.syncLinkNodeListToParentFunction,
         this.isReadOnly = false,
         required this.getFieldvalueCurrentResponseFunction,
-        this.getCurrentFormDefinitionFunction});
+        this.getCurrentFormDefinitionFunction,
+        required this.baseUrl
+      });
 
   final VwLinkNode? parentRef;
   final VwAppInstanceParam appInstanceParam;
@@ -59,6 +61,7 @@ class VwCheckListNode extends StatefulWidget {
   final bool isReadOnly;
   final GetCurrentFormResponseFunction getFieldvalueCurrentResponseFunction;
   final GetCurrentFormDefinitionFunction? getCurrentFormDefinitionFunction;
+  final String baseUrl;
 
   VwCheckListNodeState createState() => VwCheckListNodeState();
 }
@@ -743,6 +746,7 @@ class VwCheckListNodeState extends State<VwCheckListNode> {
     Widget returnValue = Container();
     try {
       returnValue = NodeListView(
+        baseUrl: widget.baseUrl,
         excludedRow: this.createExcludedNodeList(),
         appInstanceParam: widget.appInstanceParam,
         topRowWidget: this.createTopRowWidget(),
@@ -786,6 +790,7 @@ class VwCheckListNodeState extends State<VwCheckListNode> {
   @override
   Widget build(BuildContext context) {
     Widget body = NodeListView(
+      baseUrl: widget.baseUrl,
         enableAppBar: false,
         showReloadButton: false,
         rowUpperPadding: 0,

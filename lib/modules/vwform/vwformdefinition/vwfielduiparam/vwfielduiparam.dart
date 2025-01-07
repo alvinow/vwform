@@ -1,12 +1,11 @@
-import 'package:matrixclient/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
-import 'package:matrixclient/modules/base/vwlinknode/vwlinknode.dart';
-import 'package:matrixclient/modules/base/vwqueryresult/vwqueryresult.dart';
-
-import 'package:matrixclient/modules/vwcollectionlistviewdefinition/vwcollectionlistviewdefinition.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwfieldfiletagdefinition/vwfieldfiletagdefinition.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformdefinition.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwlocalfieldref/vwlocalfieldref.dart';
+import 'package:matrixclient2base/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
+import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
+import 'package:matrixclient2base/modules/base/vwqueryresult/vwqueryresult.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:vwform/modules/vwcollectionlistviewdefinition/vwcollectionlistviewdefinition.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwfieldfiletagdefinition/vwfieldfiletagdefinition.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformdefinition.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwlocalfieldref/vwlocalfieldref.dart';
 part 'vwfielduiparam.g.dart';
 
 @JsonSerializable()

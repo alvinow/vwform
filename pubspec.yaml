@@ -50,6 +50,10 @@ dependencies:
   encrypt:
   http:
   image_fade: ^0.6.2
+  file_picker:
+  flutter_spinbox:
+  calendar_date_picker2:
+  omni_datetime_picker:
   nodelistview:
     git:
       url: https://github.com/alvinow/nodelistview.git

@@ -1,17 +1,15 @@
-import 'package:matrixclient/modules/base/vwbasemodel/vwbasemodel.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwdataformattimestamp/vwdataformattimestamp.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
-import 'package:matrixclient/modules/base/vwlinknode/vwlinknode.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnodecontent/vwnodecontent.dart';
-import 'package:matrixclient/modules/vwcardparameter/vwcardparameter.dart';
-import 'package:matrixclient/modules/vwdatasourcedefinition/vwdatasourcedefinition.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwrowcollectiondatasource/vwrowcollectiondatasource.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwsectionformdefinition/vwsectionformdefinition.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwstyleformparam/vwstyleformparam.dart';
+import 'package:matrixclient2base/modules/base/vwbasemodel/vwbasemodel.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwdataformattimestamp/vwdataformattimestamp.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
+import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnodecontent/vwnodecontent.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:matrixclient2base/modules/base/vwbasemodel/vwbasemodel.dart';
+import 'package:vwform/modules/vwcardparameter/vwcardparameter.dart';
 import 'package:vwform/modules/vwdatasourcedefinition/vwdatasourcedefinition.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwrowcollectiondatasource/vwrowcollectiondatasource.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwsectionformdefinition/vwsectionformdefinition.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwstyleformparam/vwstyleformparam.dart';
 part 'vwformdefinition.g.dart';
 
@@ -35,7 +33,7 @@ class VwFormDefinition extends VwBaseModel {
       this.formResponseSyncCrudMode = VwBaseModel.cmCreateOrUpdate,
       required this.formResponseSyncCollectionName,
       this.initialFormResponse,
-      this.cardParameter = const VwCardParamete(),
+      this.cardParameter = const VwCardParameter(),
       this.isReadOnly = true,
       this.enableDeleteRecord=false,
         this.loadDetailFromServer=false,

@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'package:matrixclient2base/modules/base/nodeexplorerdefinition/fieldexplorerdefinition.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
 import 'package:vwform/modules/vwcardparameter/vwjsonfieldnamecardparameter.dart';
 import 'package:vwutil/modules/util/displayformatutil.dart';
+import 'package:vwutil/modules/util/nodeutil.dart';
 import 'package:vwutil/modules/util/vwdateutil.dart';
 
 class VwCardParameterUtil {
@@ -19,12 +21,12 @@ class VwCardParameterUtil {
 
   static String? getStringFormFieldValue(
       {required VwFieldValue fieldValue,
-      VwFieldDisplayFormat? fieldDisplayFormat}) {
+      VwFieldDisplayFormat? fieldDisplayFormat,required String locale}) {
     String? returnValue;
     try {
       if (fieldDisplayFormat != null) {
         returnValue = DisplayFormatUtil.renderDisplayFormat(
-            fieldDisplayFormat!, fieldValue);
+            fieldDisplayFormat!, fieldValue,locale);
       } else {
         if (fieldValue.valueTypeId == VwFieldValue.vatString &&
             fieldValue.valueString != null) {
@@ -51,7 +53,7 @@ class VwCardParameterUtil {
   }
 
   static VwFieldValue? renderJsonFieldNameByStringJsonFieldName(
-      {required VwNode sourceNode, required String jsonFieldName}) {
+      {required VwNode sourceNode, required String jsonFieldName, required String locale}) {
     /*
     {
     functionName:"concat",
@@ -67,7 +69,7 @@ class VwCardParameterUtil {
           VwJsonFieldNameCardParameter.fromJson(jsonDecode(jsonFieldName));
 
       returnValue = VwCardParameterUtil.renderJsonFieldName(
-          sourceNode: sourceNode, parameter: parameter);
+          sourceNode: sourceNode, parameter: parameter,locale: locale);
     } catch (error) {}
 
     return returnValue;
@@ -75,7 +77,7 @@ class VwCardParameterUtil {
 
   static VwFieldValue? renderJsonFieldName(
       {required VwNode sourceNode,
-      required VwJsonFieldNameCardParameter parameter}) {
+      required VwJsonFieldNameCardParameter parameter, required String locale}) {
     /*
     {
     functionName:"concat",
@@ -98,12 +100,13 @@ class VwCardParameterUtil {
 
               VwFieldValue? currentResult =
               VwCardParameterUtil.renderJsonFieldName(
-                  sourceNode: sourceNode, parameter: currentParameter);
+                  sourceNode: sourceNode, parameter: currentParameter,locale: locale);
 
               String? currentValueString =
               VwCardParameterUtil.getStringFormFieldValue(
                   fieldValue: currentResult!,
                   fieldDisplayFormat: currentParameter.fieldDisplayFormat
+                  ,locale: locale
               );
 
 
@@ -140,7 +143,7 @@ class VwCardParameterUtil {
 
             if (la + 1 <
                 parameter.nodeExplorerDefinition!.fieldExplorerList.length) {
-              VwNode? candidateSourceNode = NodeUtil.getNode(
+              VwNode? candidateSourceNode = NodeUtil .getNode(
                   linkNode: currentExploredResult!.valueLinkNode!);
               if (candidateSourceNode != null) {
                 currentLevelNode = candidateSourceNode;

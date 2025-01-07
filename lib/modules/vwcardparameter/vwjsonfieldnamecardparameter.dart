@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:matrixclient/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
-import 'package:matrixclient/modules/nodeexplorerdefinition/nodeexplorerdefinition.dart';
+import 'package:matrixclient2base/modules/base/nodeexplorerdefinition/nodeexplorerdefinition.dart';
+import 'package:matrixclient2base/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
 part 'vwjsonfieldnamecardparameter.g.dart';
 
 @JsonSerializable()
