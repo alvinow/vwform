@@ -46,6 +46,9 @@ dependencies:
   permission_handler:
   dropdown_button2:
   group_button: ^5.3.4
+  archive:
+  encrypt:
+  http:
   vwutil:
     git:
       url: https://github.com/alvinow/vwutil.git
