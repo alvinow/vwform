@@ -1,8 +1,7 @@
 import 'dart:convert';
-import 'package:matrixclient/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:matrixclient/modules/edokumen2022/remoteapi/remote_api.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
+import 'package:vwform/modules/remoteapi/remote_api.dart';
 part 'vwgraphqlquery.g.dart';
 
 @JsonSerializable()
