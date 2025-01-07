@@ -2,6 +2,7 @@
 
 
 import 'package:matrixclient2base/modules/base/vwloginresponse/vwloginresponse.dart';
+import 'package:nodelistview/modules/pagecoordinator/bloc/pagecoordinator_bloc.dart';
 
 class VwAppInstanceParam{
   VwAppInstanceParam({

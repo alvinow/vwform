@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:matrixclient/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
-import 'package:matrixclient/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient/modules/nodeexplorerdefinition/fieldexplorerdefinition.dart';
-import 'package:matrixclient/modules/util/displayformatutil.dart';
-import 'package:matrixclient/modules/util/nodeutil.dart';
-import 'package:matrixclient/modules/util/vwdateutil.dart';
-import 'package:matrixclient/modules/vwcardparameter/vwjsonfieldnamecardparameter.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
+import 'package:matrixclient2base/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:vwform/modules/vwcardparameter/vwjsonfieldnamecardparameter.dart';
+import 'package:vwutil/modules/util/displayformatutil.dart';
+import 'package:vwutil/modules/util/vwdateutil.dart';
 
 class VwCardParameterUtil {
   static VwJsonFieldNameCardParameter? getJsonFieldNameCardParameterFromString(

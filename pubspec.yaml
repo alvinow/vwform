@@ -49,6 +49,11 @@ dependencies:
   archive:
   encrypt:
   http:
+  image_fade: ^0.6.2
+  nodelistview:
+    git:
+      url: https://github.com/alvinow/nodelistview.git
+      ref: main
   vwutil:
     git:
       url: https://github.com/alvinow/vwutil.git
