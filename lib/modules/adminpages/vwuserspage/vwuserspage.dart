@@ -1,26 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:matrixclient/appconfig.dart';
+import 'package:matrixclient/modules/adminpages/vwuserspage/vwuserrowviewer.dart';
+import 'package:matrixclient/modules/util/vwdateutil.dart';
+import 'package:matrixclient/modules/vwnodestoreonhive/vwnodestoreonhive.dart';
+import 'package:matrixclient/modules/vwwidget/nodelistview/nodelistview.dart';
+import 'package:matrixclient2base/modules/base/vwappinstanceparam/vwappinstanceparam.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
-import 'package:matrixclient2base/modules/base/vwloginresponse/vwloginresponse.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
 import 'package:uuid/uuid.dart';
-import 'package:vwform/modules/adminpages/vwuserspage/vwuserrowviewer.dart';
-import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
-import 'package:vwform/modules/vwform/vwform.dart';
-import 'package:vwutil/modules/util/vwdateutil.dart';
 
-class VwUserNotificationPage extends StatelessWidget {
-  VwUserNotificationPage(
+class VwUsersPage extends StatelessWidget {
+  VwUsersPage(
       {required this.appInstanceParam,
-        this.refreshDataOnParentFunction,
-        required this.baseUrl
+        required this.parentBloc,
+        this.refreshDataOnParentFunction
       });
 
   final VwAppInstanceParam appInstanceParam;
-  final String baseUrl;
-
+  final Bloc parentBloc;
   final RefreshDataOnParentFunction? refreshDataOnParentFunction;
 
 
@@ -34,7 +34,7 @@ class VwUserNotificationPage extends StatelessWidget {
         RefreshDataOnParentFunction? refreshDataOnParentFunction,
         CommandToParentFunction? commandToParentFunction
       }) {
-    return VwUserRowViewer (appInstanceParam: appInstanceParam,
+    return VwUserRowViewer(appInstanceParam: this.appInstanceParam,
         rowNode: renderedNode, highlightedText: highlightedText,refreshDataOnParentFunction: this.refreshDataOnParentFunction);
   }
 
@@ -58,23 +58,22 @@ class VwUserNotificationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final VwRowData apiCallParam = VwRowData(timestamp: VwDateUtil .nowTimestamp(),recordId: Uuid().v4(),fields: <VwFieldValue>[
-      VwFieldValue(fieldName: "nodeId",valueString: "b2a4dc48-3310-4dda-b2d6-6d1803f556ad"),
+
+    final VwRowData apiCallParam = VwRowData(timestamp: VwDateUtil.nowTimestamp(),creatorUserId: AppConfig.invalidUserId, recordId: Uuid().v4(),fields: <VwFieldValue>[
+      VwFieldValue(fieldName: "nodeId",valueString: "e827de48-8404-4dbe-9cc5-7d5b2ca7ffb1"),
       VwFieldValue(fieldName: "depth",valueNumber: 1),
-      VwFieldValue(fieldName: "depth1FilterObject",valueTypeId: VwFieldValue.vatObject,value: {"contentClassName":"VwUserNotification"})
+      VwFieldValue(fieldName: "depth1FilterObject",valueTypeId: VwFieldValue.vatObject,value: {"content.contentContext.contentClassName":"VwUser"})
     ]);
 
     return NodeListView(
-      baseUrl:this.baseUrl,
-      appInstanceParam: appInstanceParam,
+appInstanceParam: this.appInstanceParam,
 
         apiCallId: "getNodes",
-        zeroDataCaption: "(No notification)",
-        mainLogoTextCaption: "Notification",
-        mainLogoMode: NodeListView.mlmText,
-        showBackArrow: true,
+
         nodeRowViewerFunction: nodeRowViewer,
         apiCallParam: apiCallParam,
+
+
         );
   }
 }

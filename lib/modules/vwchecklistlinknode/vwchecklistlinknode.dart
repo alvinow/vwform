@@ -43,7 +43,7 @@ class VwCheckListLinkNode extends StatefulWidget {
       this.isReadOnly = false,
       required this.getFieldvalueCurrentResponseFunction,
       this.getCurrentFormDefinitionFunction,
-      required this.baseUrl
+
       });
 
   final VwLinkNode? parentRef;
@@ -59,7 +59,7 @@ class VwCheckListLinkNode extends StatefulWidget {
   final bool isReadOnly;
   final GetCurrentFormResponseFunction getFieldvalueCurrentResponseFunction;
   final GetCurrentFormDefinitionFunction? getCurrentFormDefinitionFunction;
-  final String baseUrl;
+
 
   VwCheckListLinkNodeState createState() => VwCheckListLinkNodeState();
 }
@@ -616,11 +616,10 @@ class VwCheckListLinkNodeState extends State<VwCheckListLinkNode> {
     return VwRowData(recordId: Uuid().v4());
   }
 
-  Widget createSelectNodeListView(BuildContext context,String baseUrl) {
+  Widget createSelectNodeListView(BuildContext context) {
     Widget returnValue = Container();
     try {
       returnValue = NodeListView (
-        baseUrl: baseUrl,
         excludedRow: this.createExcludedNodeList(),
         appInstanceParam: widget.appInstanceParam,
         topRowWidget: this.createTopRowWidget(),

@@ -1,6 +1,7 @@
 import 'package:matrixclient2base/modules/base/store/vwsyncresult/vwsyncresult.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformvalidationresponse/vwformvalidationresponse.dart';
 part 'vwnodeupsyncresult.g.dart';
 
 @JsonSerializable()

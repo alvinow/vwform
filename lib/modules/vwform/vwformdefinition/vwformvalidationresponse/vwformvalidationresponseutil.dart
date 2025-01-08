@@ -1,5 +1,6 @@
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformvalidationresponse/vwformfieldvalidationresponse/vwformfieldvalidationresponse.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformvalidationresponse/vwformvalidationresponse.dart';
+
+import 'package:vwform/modules/vwform/vwformdefinition/vwformvalidationresponse/vwformfieldvalidationresponse/vwformfieldvalidationresponse.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformvalidationresponse/vwformvalidationresponse.dart';
 
 class VwFormValidationResponseUtil{
   static VwFormFieldValidationResponse? getFormFieldValidationResponseByFieldName({required VwFormValidationResponse formValidationResponse,  required String fieldName}){

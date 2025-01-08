@@ -1,7 +1,6 @@
-import 'package:matrixclient/modules/base/vwapicall/vwapicallresponse/vwapicallresponse.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnodeupsyncresult/vwnodeupsyncresult.dart';
+import 'package:matrixclient2base/modules/base/vwapicall/vwapicallresponse/vwapicallresponse.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:matrixclient/modules/vwgraphqlclient/modules/vwpgraphqlserverresponse/vwgraphqlserverresponse.dart';
+import 'package:vwform/modules/vwnodeupsyncresult/vwnodeupsyncresult.dart';
 
 part 'vwnodeupsyncresultpackage.g.dart';
 

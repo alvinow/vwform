@@ -1,5 +1,5 @@
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
 part 'vwsectionformdefinition.g.dart';
 
 @JsonSerializable()

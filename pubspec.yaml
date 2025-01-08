@@ -51,9 +51,16 @@ dependencies:
   http:
   image_fade: ^0.6.2
   file_picker:
+  url_launcher:
+  expansion_tile_card:
   flutter_spinbox:
   calendar_date_picker2:
   omni_datetime_picker:
+  retrofit:
+  vwnodestoreonhive:
+    git:
+      url: https://github.com/alvinow/vwnodestoreonhive.git
+      ref: main
   nodelistview:
     git:
       url: https://github.com/alvinow/nodelistview.git

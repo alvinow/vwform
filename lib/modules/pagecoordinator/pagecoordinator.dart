@@ -19,32 +19,41 @@ import 'package:vwform/modules/vwwidget/vwloadingpage/vwloadingpage.dart';
 import 'package:vwutil/modules/util/vwdateutil.dart';
 
 class PageCoordinator extends StatelessWidget {
-  PageCoordinator({super.key, this.goRouterState, this.url, required this.baseUrl});
+  PageCoordinator(
+      {super.key,
+      this.goRouterState,
+      this.url,
+      required this.baseUrl,
+      required this.locale});
 
   final String? url;
   GoRouterState? goRouterState;
   final String baseUrl;
+  final String locale;
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(providers: [
-      BlocProvider(
-          create: (_) => PagecoordinatorBloc()
-            ..add(BootstrapPagecoordinatorEvent(
-                goRouterState: goRouterState,
-                url: url,
-                timestamp: DateTime.now())))
-    ], child: BodyPageCoordinator(baseUrl: this.baseUrl,));
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(
+              create: (_) => PagecoordinatorBloc()
+                ..add(BootstrapPagecoordinatorEvent(
+                    goRouterState: goRouterState,
+                    url: url,
+                    timestamp: DateTime.now())))
+        ],
+        child: BodyPageCoordinator(
+          locale: this.baseUrl,
+          baseUrl: this.baseUrl,
+        ));
   }
 }
 
 class BodyPageCoordinator extends StatelessWidget {
-
-  BodyPageCoordinator({
-    required this.baseUrl
-});
+  const BodyPageCoordinator({required this.baseUrl, required this.locale});
 
   final String baseUrl;
+  final String locale;
 
   void viewArticleBackFunction(
       VwAppInstanceParam appInstanceParam, BuildContext buildContext) {
@@ -57,8 +66,6 @@ class BodyPageCoordinator extends StatelessWidget {
     return BlocBuilder<PagecoordinatorBloc, PagecoordinatorState>(
         builder: (context, state) {
       PagecoordinatorBloc bloc = context.read<PagecoordinatorBloc>();
-
-
 
       if (state is LoadingPagecoordinatorState) {
         String? caption = "Loading...";
@@ -75,7 +82,10 @@ class BodyPageCoordinator extends StatelessWidget {
         Key key = Key("HomePagecoordinatorState");
 
         VwAppInstanceParam appInstanceParam = VwAppInstanceParam(
-            appBloc: bloc, loginResponse: state.loginResponse);
+            baseUrl: this.baseUrl,
+            locale: this.locale,
+            appBloc: bloc,
+            loginResponse: state.loginResponse);
 
         return VwHomePage(key: key, appInstanceParam: appInstanceParam);
       }
@@ -88,7 +98,10 @@ class BodyPageCoordinator extends StatelessWidget {
             mediaLinkNode: VwLinkNode(
                 nodeId: state.articleId, nodeType: VwNode.ntnRowData),
             appInstanceParam: VwAppInstanceParam(
-                appBloc: bloc, loginResponse: state.loginResponse));
+                baseUrl: this.baseUrl,
+                locale: this.locale,
+                appBloc: bloc,
+                loginResponse: state.loginResponse));
       }
 
       if (state is InitsplashscreenPagecoordinatorState) {
@@ -107,10 +120,13 @@ class BodyPageCoordinator extends StatelessWidget {
       if (state is RegInfoPagePagecoordinatorState) {
         return RegInfoPage(state: state);
       } else if (state is PublicLandingPagePagecoordinatorState) {
-        if(true) {
+        if (true) {
           return VwPublicLandingPage(
               appInstanceParam: VwAppInstanceParam(
-                  appBloc: bloc, loginResponse: state.loginResponse),
+                  baseUrl: this.baseUrl,
+                  locale: this.locale,
+                  appBloc: bloc,
+                  loginResponse: state.loginResponse),
               rootFolderNodeId: APIVirtualNode.exploreNodeFeed);
         }
       }
@@ -119,7 +135,11 @@ class BodyPageCoordinator extends StatelessWidget {
         return LoginPage(
           baseUrl: this.baseUrl,
           key: UniqueKey(),
-          appInstanceParam: VwAppInstanceParam(appBloc: bloc),
+          appInstanceParam: VwAppInstanceParam(
+            appBloc: bloc,
+            baseUrl: this.baseUrl,
+            locale: this.locale,
+          ),
           paramLoginPage: state.loginParam,
         );
       }
@@ -143,6 +163,8 @@ class BodyPageCoordinator extends StatelessWidget {
               formResponse: state.formResponse,
               formDefinition: state.formDefinition,
               appInstanceParam: VwAppInstanceParam(
+                baseUrl: this.baseUrl,
+                locale: this.locale,
                 loginResponse: state.loginResponse,
                 appBloc: bloc,
               ));

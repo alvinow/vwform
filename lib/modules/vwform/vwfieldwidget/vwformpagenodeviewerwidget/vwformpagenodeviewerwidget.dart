@@ -21,6 +21,7 @@ class VwFormPageNodeViewerWidget extends StatefulWidget {
     required this.formField,
     this.onValueChanged,
     required this.getFieldvalueCurrentResponseFunction,
+    required this.baseUrl
   });
   final VwAppInstanceParam appInstanceParam;
   final VwFieldValue field;
@@ -28,6 +29,7 @@ class VwFormPageNodeViewerWidget extends StatefulWidget {
   final VwFormField formField;
   final VwFieldWidgetChanged? onValueChanged;
   final GetCurrentFormResponseFunction getFieldvalueCurrentResponseFunction;
+  final String baseUrl;
 
   VwFormPageNodeViewerWidgetState createState() =>
       VwFormPageNodeViewerWidgetState();
@@ -169,6 +171,7 @@ class VwFormPageNodeViewerWidgetState
         .isReadOnly||this.widget.readOnly;
 
         Widget currentFormPage = VwFormPage(
+            baseUrl: this.widget.baseUrl,
             key: widget.key,
             isShowSaveButton: false,
             enablePopContextAfterSucessfullySaved: false,

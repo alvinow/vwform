@@ -6,9 +6,12 @@ class VwAppInstanceParam{
   VwAppInstanceParam({
     this.loginResponse,
     required this.appBloc,
+    required this.baseUrl,
+    required this.locale
 
 });
   final VwLoginResponse? loginResponse;
   final PagecoordinatorBloc appBloc;
-
+  final String baseUrl;
+  final String locale;
 }

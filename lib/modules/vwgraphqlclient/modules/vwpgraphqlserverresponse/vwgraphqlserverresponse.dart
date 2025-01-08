@@ -1,6 +1,7 @@
 import 'package:http/http.dart' as _http;
-import 'package:matrixclient/modules/base/vwapicall/vwapicallresponse/vwapicallresponse.dart';
-import 'package:matrixclient/modules/vwgraphqlclient/modules/vwgraphqlquery/vwgraphqlquery.dart';
+import 'package:matrixclient2base/modules/base/vwapicall/vwapicallresponse/vwapicallresponse.dart';
+import 'package:vwform/modules/vwgraphqlclient/modules/vwgraphqlquery/vwgraphqlquery.dart';
+
 
 class VwGraphQlServerResponse {
   VwGraphQlServerResponse(
@@ -9,7 +10,7 @@ class VwGraphQlServerResponse {
       this.graphQlQueryResponse});
   Map<String, dynamic>? graphQlQueryResponse;
   _http.Response? httpResponse;
-  VwApiCallResponse? apiCallResponse;
+  VwApiCallResponse ? apiCallResponse;
   VwGraphQlQuery graphQlQuery;
 
 

@@ -180,7 +180,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
       else if(this.widget.formField.fieldUiParam.uiTypeId == VwFieldUiParam.uitFormPageNodeViewer)
         {
           returnValue =  VwFormPageNodeViewerWidget(
-
+              baseUrl: this.widget.baseUrl,
               readOnly: widget.readOnly,
               key: this.fieldKey,
               getFieldvalueCurrentResponseFunction: this.widget
@@ -296,7 +296,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
           VwFieldUiParam.uitFormPageByLocalFieldSource &&
           (this.widget.field.valueTypeId == VwFieldValue.vatValueFormResponse || this.widget.field.valueTypeId == VwFieldValue.vatValueFormResponseCommentOnly )) {
         returnValue = VwFormFieldWidget(
-
+            baseUrl: this.widget.baseUrl,
             readOnly: widget.readOnly,
             key: this.fieldKey,
             getFieldvalueCurrentResponseFunction: this.widget

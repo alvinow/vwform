@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:http/http.dart' as _http;
-import 'package:matrixclient/appconfig.dart';
-import 'package:matrixclient/modules/base/vwapicall/vwapicallresponse/vwapicallresponse.dart';
-import 'package:matrixclient/modules/edokumen2022/remoteapi/remote_api.dart';
-import 'package:matrixclient/modules/util/vwmultipartrequest/vwmultipartrequest.dart';
-import 'package:matrixclient/modules/vwgraphqlclient/modules/vwgraphqlquery/vwgraphqlquery.dart';
-import 'package:matrixclient/modules/vwgraphqlclient/modules/vwpgraphqlserverresponse/vwgraphqlserverresponse.dart';
+import 'package:matrixclient2base/appconfig.dart';
+import 'package:matrixclient2base/modules/base/vwapicall/vwapicallresponse/vwapicallresponse.dart';
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:vwform/modules/remoteapi/remote_api.dart';
+import 'package:vwform/modules/vwgraphqlclient/modules/vwgraphqlquery/vwgraphqlquery.dart';
+import 'package:vwform/modules/vwgraphqlclient/modules/vwpgraphqlserverresponse/vwgraphqlserverresponse.dart';
+import 'package:vwutil/modules/util/vwmultipartrequest/vwmultipartrequest.dart';
 
 class VwGraphQlClient {
   static Future<VwGraphQlServerResponse> httpPostGraphQl(

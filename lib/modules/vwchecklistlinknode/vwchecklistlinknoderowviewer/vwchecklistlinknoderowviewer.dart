@@ -1,16 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'dart:convert';
-
-import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient2base/modules/base/vwnode/vwnodecontent/vwnodecontent.dart';
 import 'package:matrixclient2base/modules/base/vwusergroup/vwusergroup.dart';
 import 'package:matrixclient2base/appconfig.dart';
-import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
 import 'package:vwform/modules/noderowviewer/noderowviewer.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwformdefinition.dart';
 import 'package:vwform/modules/vwformpage/vwdefaultformpage.dart';
 import 'package:vwform/modules/vwwidget/vwcardparameternodeviewermaterial/vwcardparameternodeviewermaterial.dart';
@@ -20,26 +16,24 @@ import 'package:vwutil/modules/util/nodeutil.dart';
 import 'package:vwutil/modules/util/vwdateutil.dart';
 
 class VwCheckListLinkNodeRowViewer extends NodeRowViewer {
-  VwCheckListLinkNodeRowViewer(
-      {
-        super.key,
-        super.topRowWidget,
-        required super.rowNode,
-      required super.appInstanceParam,
-      super.highlightedText,
-      super.refreshDataOnParentFunction,
-      super.collectionListViewDefinition,
-      super.updateSelectedState,
-      super.selectedList,
-        super.selectedIcon,
-        super.unselectedIcon,
-        this.unselectedConfirmation=false,
-        this.isReadOnly=false,
+  VwCheckListLinkNodeRowViewer({
+    super.key,
+    super.topRowWidget,
+    required super.rowNode,
+    required super.appInstanceParam,
+    super.highlightedText,
+    super.refreshDataOnParentFunction,
+    super.collectionListViewDefinition,
+    super.updateSelectedState,
+    super.selectedList,
+    super.selectedIcon,
+    super.unselectedIcon,
+    this.unselectedConfirmation = false,
+    this.isReadOnly = false,
 
-      });
-final bool unselectedConfirmation;
-final bool isReadOnly;
-
+  });
+  final bool unselectedConfirmation;
+  final bool isReadOnly;
 
   Widget openEditModeFormPage(
       {required BuildContext context,
@@ -94,13 +88,13 @@ final bool isReadOnly;
         VwRowData.fromJson(json.decode(formResponseString));
 
     return VwFormPage(
-      isShowSaveButton:false ,
+        baseUrl: this.baseUrl,
+        isShowSaveButton: false,
         isMultipageSections: true,
         formDefinitionFolderNodeId: AppConfig.formDefinitionFolderNodeId,
         appInstanceParam: appInstanceParam,
         formDefinition: formDefinition,
         formResponse: shadowFormResponse,
-
         refreshDataOnParentFunction: this.refreshDataOnParentFunction);
   }
 
@@ -114,119 +108,98 @@ final bool isReadOnly;
         nodeContents: formResponse.attachments!);
 */
 
-
-    VwFormDefinition? formDefinition =this.collectionListViewDefinition==null? null:  CollectionListViewUtil.getFormDefinition(this.collectionListViewDefinition!);
+    VwFormDefinition? formDefinition = this.collectionListViewDefinition == null
+        ? null
+        : CollectionListViewUtil.getFormDefinition(
+            this.collectionListViewDefinition!);
     Widget? formPage = formDefinition == null
         ? null
         : this.openEditModeFormPage(
-        context: context,
-        formDefinition: formDefinition,
-        formResponse: formResponse);
+            context: context,
+            formDefinition: formDefinition,
+            formResponse: formResponse);
 
     if (formPage != null) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => formPage),
       );
+    } else {
+      print("VwCollectionListViewRoeViewer.onTap: There is no FormDefinition");
     }
-    else
-      {
-        print("VwCollectionListViewRoeViewer.onTap: There is no FormDefinition");
-      }
-
   }
-
-
 
   @override
   Widget build(BuildContext context) {
+    if (this.rowNode.nodeType == VwNode.ntnTopNodeInsert) {
+      if (this.topRowWidget == null) {
+        return Container();
+      } else {
+        return this.topRowWidget!;
+      }
+    }
 
-    if(this.rowNode.nodeType==VwNode.ntnTopNodeInsert)
-      {
-        if(this.topRowWidget==null)
-          {
-            return Container();
+    if (this.rowNode.nodeType == VwNode.ntnLinkBaseModelCollection &&
+        this.rowNode.content.linkbasemodel!.rendered!.className ==
+            "VwUserGroup") {
+      try {
+        VwUserGroup userGroup = VwUserGroup.fromJson(
+            this.rowNode.content.linkbasemodel!.rendered!.data!);
+
+        print("Functional Role Id=" + userGroup.functionalRoleId.toString());
+      } catch (error) {}
+    }
+
+    Widget returnValue = Container();
+    try {
+      VwRowData? formResponse =
+          NodeUtil.getRowDataFromNodeContentRecordCollection(this.rowNode);
+      InkWell cardTapper = InkWell(
+        onTap: () {
+          if (formResponse != null) {
+            _onRowTap(context, formResponse);
+          } else {
+            print(
+                "VwCollectionListViewRoeViewer.onTap: There is no FormResponse");
           }
-        else{
-          return this.topRowWidget!;
+        },
+      );
+
+      bool isSelected = false;
+
+      for (int la = 0;
+          this.selectedList != null && la < this.selectedList!.length;
+          la++) {
+        if (this.selectedList!.elementAt(la).nodeId == this.rowNode.recordId) {
+          isSelected = true;
         }
       }
 
-        if(this.rowNode.nodeType==VwNode.ntnLinkBaseModelCollection
-
-           && this.rowNode.content.linkbasemodel!.rendered!.className=="VwUserGroup") {
-          try {
-            VwUserGroup userGroup = VwUserGroup.fromJson(
-                this.rowNode.content.linkbasemodel!.rendered!.data!);
-
-            print("Functional Role Id=" +
-                userGroup.functionalRoleId.toString());
-          }
-          catch (error) {
-
-          }
-        }
-
-        Widget returnValue=Container();
-        try {
-          VwRowData? formResponse = NodeUtil.getRowDataFromNodeContentRecordCollection(this.rowNode);
-          InkWell cardTapper=InkWell(onTap: (){
-            if(formResponse!=null)
-            {
-              _onRowTap(context,formResponse);
+      Widget deleteWidget = VwCheckBox(
+          unselectConfirmation: this.unselectedConfirmation,
+          selectedIcon: this.selectedIcon,
+          unselectedIcon: this.unselectedIcon,
+          onTap: (selected) {
+            if (this.isReadOnly == false && this.updateSelectedState != null) {
+              this.updateSelectedState!(selected, this.rowNode);
             }
-            else
-            {
-              print("VwCollectionListViewRoeViewer.onTap: There is no FormResponse");
-            }
-          },);
+          },
+          initialState: isSelected,
+          key: super.key);
 
-          bool isSelected=false;
-
-          for(int la=0;this.selectedList!=null && la<this.selectedList!.length;la++)
-            {
-              if(this.selectedList!.elementAt(la).nodeId==this.rowNode.recordId)
-                {
-                  isSelected=true;
-                }
-            }
-
-          Widget deleteWidget=VwCheckBox(
-            unselectConfirmation: this.unselectedConfirmation,
-              selectedIcon: this.selectedIcon,
-              unselectedIcon: this.unselectedIcon,
-              onTap: (selected){
-
-              if(this.isReadOnly==false && this.updateSelectedState!=null)
-                {
-                  this.updateSelectedState!(selected,this.rowNode);
-
-                }
-
-
-
-
-          },  initialState: isSelected,key:super.key);
-
-
-          returnValue= VwCardParameterNodeViewerMaterial(
-            appInstanceParam: this.appInstanceParam,
-            cardTapper: cardTapper,
-            trailingWidget:this.isReadOnly==true? null: deleteWidget,
-            key: Key(this.rowNode.recordId),
-            cardParameter: this.collectionListViewDefinition!.cardParameter,
-            rowNode: this.rowNode,
-          );
-
-
-
-        }
-        catch(error)
-    {
-        print("Error Catched on VwCollectionListViewRowViewer: "+error.toString());
-        returnValue=Text("Error on Node: "+rowNode.recordId);
+      returnValue = VwCardParameterNodeViewerMaterial(
+        appInstanceParam: this.appInstanceParam,
+        cardTapper: cardTapper,
+        trailingWidget: this.isReadOnly == true ? null : deleteWidget,
+        key: Key(this.rowNode.recordId),
+        cardParameter: this.collectionListViewDefinition!.cardParameter,
+        rowNode: this.rowNode,
+      );
+    } catch (error) {
+      print("Error Catched on VwCollectionListViewRowViewer: " +
+          error.toString());
+      returnValue = Text("Error on Node: " + rowNode.recordId);
     }
-
 
     return returnValue;
   }

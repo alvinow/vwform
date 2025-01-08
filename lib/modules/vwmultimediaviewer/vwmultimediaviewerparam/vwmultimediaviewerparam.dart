@@ -1,7 +1,7 @@
 
-import 'package:matrixclient/modules/base/vwlinknode/vwlinknode.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwfieldfiletagdefinition/vwfieldfiletagdefinition.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
+import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwfieldfiletagdefinition/vwfieldfiletagdefinition.dart';
+
 class VwMultimediaViewerParam{
   VwMultimediaViewerParam({
     this.fieldFileTagDefinition,

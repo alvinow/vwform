@@ -1,6 +1,7 @@
 import 'package:matrixclient2base/modules/base/vwclassencodedjson/vwclassencodedjson.dart';
 import 'package:matrixclient2base/modules/base/vwlinkbasemodel/vwlinkbasemodel.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformdefinition.dart';
 part 'vwlinkformdefinition.g.dart';
 
 @JsonSerializable()

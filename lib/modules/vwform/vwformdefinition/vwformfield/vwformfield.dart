@@ -1,10 +1,9 @@
-import 'package:matrixclient/modules/base/vwdataformat/vwfieldconstraint/vwfieldconstraint.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwfielddefinition/vwfielddefinition.dart';
-import 'package:matrixclient/modules/base/vwqueryresult/vwqueryresult.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwfieldaccess/vwfieldaccess.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwfielduiparam/vwfielduiparam.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformfield/vwfilefieldsettings/vwfilefieldsettings.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwfieldconstraint/vwfieldconstraint.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwfielddefinition/vwfielddefinition.dart';
+import 'package:matrixclient2base/modules/base/vwqueryresult/vwqueryresult.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwfieldaccess/vwfieldaccess.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwfielduiparam/vwfielduiparam.dart';
 part 'vwformfield.g.dart';
 
 @JsonSerializable()

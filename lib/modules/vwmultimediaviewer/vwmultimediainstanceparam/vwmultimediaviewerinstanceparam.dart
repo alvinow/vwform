@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
-import 'package:matrixclient/modules/base/vwencodedfile/vwencodedfile.dart';
-import 'package:matrixclient/modules/base/vwfilestorage/vwfilestorage.dart';
-import 'package:matrixclient/modules/base/vwloginresponse/vwloginresponse.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
+import 'package:matrixclient2base/modules/base/vwencodedfile/vwencodedfile.dart';
+import 'package:matrixclient2base/modules/base/vwfilestorage/vwfilestorage.dart';
+
 
 class VwMultimediaViewerInstanceParam{
   VwMultimediaViewerInstanceParam({

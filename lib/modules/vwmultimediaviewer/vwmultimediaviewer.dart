@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient/modules/base/vwappinstanceparam/vwappinstanceparam.dart';
-import 'package:matrixclient/modules/base/vwfilestorage/vwfilestorage.dart';
-import 'package:matrixclient/modules/base/vwlinknode/vwlinknode.dart';
-import 'package:matrixclient/modules/vwfileviewer/vwfileviewer.dart';
-import 'package:matrixclient/modules/vwmultimediaviewer/vwmultimediainstanceparam/vwmultimediaviewerinstanceparam.dart';
-import 'package:matrixclient/modules/vwmultimediaviewer/vwmultimediaviewerparam/vwmultimediaviewerparam.dart';
-import 'package:matrixclient/modules/vwwidget/vwpageslider/vwpageslider.dart';
-import 'package:matrixclient/modules/vwwidget/vwpageswiper/vwpageswiper.dart';
+import 'package:matrixclient2base/modules/base/vwfilestorage/vwfilestorage.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
+import 'package:vwform/modules/vwfileviewer/vwfileviewer.dart';
+import 'package:vwform/modules/vwmultimediaviewer/vwmultimediainstanceparam/vwmultimediaviewerinstanceparam.dart';
+import 'package:vwform/modules/vwmultimediaviewer/vwmultimediaviewerparam/vwmultimediaviewerparam.dart';
+import 'package:vwform/modules/vwwidget/vwpageswiper/vwpageswiper.dart';
 
 class VwMultimediaViewer extends StatefulWidget{
   VwMultimediaViewer({

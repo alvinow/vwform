@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient/modules/base/vwappinstanceparam/vwappinstanceparam.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient/modules/vwmessenger/vwusermessagemessenger.dart';
-import 'package:matrixclient/modules/vwwidget/nodelistview/nodelistview.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
+import 'package:vwform/modules/vwform/vwform.dart';
+import 'package:vwform/modules/vwmessenger/vwusermessagemessenger.dart';
+
 
 class VwMessageRecipientRowViewer extends StatefulWidget {
   VwMessageRecipientRowViewer({
@@ -15,6 +16,7 @@ class VwMessageRecipientRowViewer extends StatefulWidget {
     this.commandToParentFunction,
     this.localeId = "id_ID",
     this.customCardtapper,
+    required this.baseUrl
   });
 
   final VwAppInstanceParam appInstanceParam;
@@ -25,6 +27,7 @@ class VwMessageRecipientRowViewer extends StatefulWidget {
   final CommandToParentFunction? commandToParentFunction;
   final String localeId;
   final InkWell? customCardtapper;
+  final String baseUrl;
 
   VwMessageRecipientRowViewerState createState() =>
       VwMessageRecipientRowViewerState();
@@ -49,6 +52,8 @@ class VwMessageRecipientRowViewerState
         context,
         MaterialPageRoute(
           builder: (context) => VwUserMessageMessenger(
+
+            baseurl: this.widget.baseUrl,
               senderRecord: this.widget.rowNode,
               appInstanceParam: this.widget.appInstanceParam),
         ));
