@@ -13,9 +13,9 @@ import 'package:vwutil/modules/util/vwdateutil.dart';
 
 class VwHeadMessageMessenger extends StatefulWidget{
 
-  VwHeadMessageMessenger({required this.baseUrl, required this.appInstanceParam});
+  VwHeadMessageMessenger({ required this.appInstanceParam});
   final VwAppInstanceParam appInstanceParam;
-  final String baseUrl;
+
 
   VwmessengerState createState() => VwmessengerState();
 }

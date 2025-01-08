@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:matrixclient/modules/vwwidget/noderowviewer/noderowviewer.dart';
+import 'package:vwform/modules/noderowviewer/noderowviewer.dart';
 
 class VwUserMemberOfGroupRowViewer extends NodeRowViewer {
   VwUserMemberOfGroupRowViewer(
