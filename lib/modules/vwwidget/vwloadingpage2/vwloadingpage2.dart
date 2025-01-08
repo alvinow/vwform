@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient/modules/vwwidget/vwcircularprogressindicator/vwcircularprogressindicator.dart';
+import 'package:vwform/modules/vwwidget/vwcircularprogressindicator/vwcircularprogressindicator.dart';
 
 class VwLoadingPage2 extends StatelessWidget{
 

@@ -1087,7 +1087,7 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
 
   Widget getFormWidget() {
     Widget body = VwForm(
-        baseUrl: this.widget.baseUrl,
+
         key: this.fieldKey,
         fieldBoxDecoration: BoxDecoration(
             color: Colors.white, border: Border.all(color: widget.borderColor)),

@@ -200,7 +200,6 @@ class LoginPageState extends State<LoginPage> {
         );
 
     Widget loginForm = VwForm(
-      baseUrl: this.widget.baseUrl,
         key: this.formPageKey,
         appInstanceParam: widget.appInstanceParam,
         boxDecoration: boxDecoration1,

@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient/appconfig.dart';
-import 'package:matrixclient/modules/base/vwappinstanceparam/vwappinstanceparam.dart';
-import 'package:matrixclient/modules/base/vwlinknode/vwlinknode.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient/modules/edokumen2022/pages/mediaviewerpage/mediaviewerpage.dart';
-import 'package:matrixclient/modules/vwwidget/materialtransparentroute/materialtransparentroute.dart';
+import 'package:matrixclient2base/appconfig.dart';
+import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
 import 'package:visibility_detector/visibility_detector.dart';
+import 'package:vwform/modules/mediaviewerpage/mediaviewerpage.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
+import 'package:vwform/modules/vwwidget/materialtransparentroute/materialtransparentroute.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class YoutubeAppDemo extends StatefulWidget {

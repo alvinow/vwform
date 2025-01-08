@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
-import 'package:matrixclient/modules/util/vwfluttermaputil.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
+import 'package:vwutil/modules/util/vwfluttermaputil.dart';
+
 
 class VwShowLocationWidget extends StatefulWidget {
   VwShowLocationWidget({required this.location});

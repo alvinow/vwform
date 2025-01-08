@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:matrixclient/appconfig.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient/modules/util/doubleutil.dart';
-import 'package:matrixclient/modules/util/nodeutil.dart';
-import 'package:matrixclient/modules/util/vwrowdatautil.dart';
-import 'package:matrixclient/modules/vwform/vwform.dart';
-import 'package:matrixclient/modules/vwwidget/noderowviewer/noderowviewer.dart';
+import 'package:matrixclient2base/appconfig.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:vwform/modules/noderowviewer/noderowviewer.dart';
 
 class ChartNodeViewer extends NodeRowViewer{
 

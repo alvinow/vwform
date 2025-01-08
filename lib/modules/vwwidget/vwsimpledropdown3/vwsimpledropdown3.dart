@@ -1,8 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
-import 'package:matrixclient/modules/base/vwqueryresult/vwqueryresult.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
+import 'package:matrixclient2base/modules/base/vwqueryresult/vwqueryresult.dart';
 
 
 typedef VwSimpleDropdown3Callback = void Function({required int selectedIndex, String? keyValue, String? displayValue, VwRowData? rowData });

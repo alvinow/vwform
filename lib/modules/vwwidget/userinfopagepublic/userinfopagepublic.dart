@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient/modules/base/vwappinstanceparam/vwappinstanceparam.dart';
-import 'package:matrixclient/modules/edokumen2022/pagecoordinator/bloc/pagecoordinator_bloc.dart';
-import 'package:matrixclient/modules/util/profilepictureutil.dart';
+import 'package:vwform/modules/pagecoordinator/bloc/pagecoordinator_bloc.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
+import 'package:vwutil/modules/util/profilepictureutil.dart';
 
 class UserInfoPagePublic extends StatefulWidget {
   UserInfoPagePublic({required this.appInstanceParam});
@@ -17,7 +17,7 @@ class _UserInfoPagePublic extends State<UserInfoPagePublic> {
     Widget returnValue = Container();
     try {
       returnValue =
-          ProfilePictureUtil.getUserProfilePictureFromAppInstanceParam(
+          ProfilePictureUtil.getUserProfilePictureOfLoggedInUser(
               appInstanceParam:this.widget.appInstanceParam,size: 160);
     } catch (error) {}
     return returnValue;

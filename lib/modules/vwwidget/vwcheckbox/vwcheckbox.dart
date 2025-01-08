@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
-import 'package:matrixclient/modules/vwwidget/materialtransparentroute/materialtransparentroute.dart';
-import 'package:matrixclient/modules/vwwidget/vwconfirmdialog/vwconfirmdialog.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
+import 'package:vwform/modules/vwwidget/materialtransparentroute/materialtransparentroute.dart';
+import 'package:vwform/modules/vwwidget/vwconfirmdialog/vwconfirmdialog.dart';
 
 typedef VwCheckBoxOnTap = void Function(bool selected);
 class VwCheckBox extends StatefulWidget{

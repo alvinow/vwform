@@ -1,7 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient/modules/vwwidget/vwsimpledropdown/vwsimpledropdown.dart';
+import 'package:vwform/modules/vwwidget/vwsimpledropdown/vwsimpledropdown.dart';
 
 class VwSimpleDropdown2 extends StatefulWidget {
   const VwSimpleDropdown2(

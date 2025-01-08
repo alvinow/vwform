@@ -2,9 +2,9 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient/modules/base/vwappinstanceparam/vwappinstanceparam.dart';
-import 'package:matrixclient/modules/vwwidget/vwcarouselwithindicator/example/libdemo1.dart';
 import 'package:uuid/uuid.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
+import 'package:vwform/modules/vwwidget/vwcarouselwithindicator/example/libdemo1.dart';
 
 class VwCarouselWithIndicator extends StatefulWidget {
   VwCarouselWithIndicator({

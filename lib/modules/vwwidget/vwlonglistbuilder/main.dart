@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
-import 'package:matrixclient/modules/base/vwqueryresult/vwqueryresult.dart';
-import 'package:matrixclient/modules/vwremotefunctioncall/vwremotefunctioncall.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
+import 'package:matrixclient2base/modules/base/vwqueryresult/vwqueryresult.dart';
+import 'package:matrixclient2base/modules/base/vwremotefunctioncall/vwremotefunctioncall.dart';
 
 import 'package:uuid/uuid.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:matrixclient/modules/base/vwappinstanceparam/vwappinstanceparam.dart';
-import 'package:matrixclient/modules/vwwidget/chartnodelistview/chartnodelistview.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
+import 'package:vwform/modules/vwwidget/chartnodelistview/chartnodelistview.dart';
 
 class VwDashboardOperatorTicketPage extends StatelessWidget{
   VwDashboardOperatorTicketPage({

@@ -1,20 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
-import 'package:matrixclient/appconfig.dart';
-import 'package:matrixclient/modules/base/vwappinstanceparam/vwappinstanceparam.dart';
-import 'package:matrixclient/modules/base/vwloginresponse/vwloginresponse.dart';
+import 'package:matrixclient2base/appconfig.dart';
 
 import 'dart:convert';
 
-import 'package:matrixclient/modules/edokumen2022/pagecoordinator/bloc/pagecoordinator_bloc.dart';
-import 'package:matrixclient/modules/vwwidget/materialtransparentroute/materialtransparentroute.dart';
-import 'package:matrixclient/modules/vwwidget/vwqrcodepage/vwqrcodepage.dart';
+import 'package:vwform/modules/pagecoordinator/bloc/pagecoordinator_bloc.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
+import 'package:vwform/modules/vwwidget/materialtransparentroute/materialtransparentroute.dart';
+import 'package:vwform/modules/vwwidget/vwqrcodepage/vwqrcodepage.dart';
+
 
 class UserInfoPage extends StatefulWidget {
   UserInfoPage({required this.appInstanceParam});

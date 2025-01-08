@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
 
 class ChildBranch {
 

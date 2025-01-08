@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:matrixclient2base/appconfig.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
 import 'package:matrixclient2base/modules/base/vwloginresponse/vwloginresponse.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:nodelistview/modules/nodelistview/nodelistview.dart';
 import 'package:uuid/uuid.dart';
 import 'package:vwform/modules/adminpages/vwuserspage/vwuserrowviewer.dart';
 import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
 import 'package:vwform/modules/vwform/vwform.dart';
+import 'package:vwnodestoreonhive/vwnodestoreonhive/vwnodestoreonhive.dart';
 import 'package:vwutil/modules/util/vwdateutil.dart';
 
 class VwUserNotificationPage extends StatelessWidget {
@@ -45,7 +48,7 @@ class VwUserNotificationPage extends StatelessWidget {
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text('Uploading Data...')));
 
-        await VwNodeStoreOnHive(boxName: AppConfig.unsyncedRecordFieldname)
+        await VwNodeStoreOnHive(boxName: AppConfig .unsyncedRecordFieldname)
             .syncToServer(loginSessionId: this.appInstanceParam.loginResponse!.loginSessionId!);
       },
     );
@@ -64,7 +67,7 @@ class VwUserNotificationPage extends StatelessWidget {
     ]);
 
     return NodeListView(
-      baseUrl:this.baseUrl,
+
       appInstanceParam: appInstanceParam,
 
         apiCallId: "getNodes",

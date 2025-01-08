@@ -1,17 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
-import 'package:matrixclient/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnodecontent/vwnodecontentutil.dart';
-import 'package:matrixclient/modules/nodeexplorerdefinition/fieldexplorerdefinition.dart';
-import 'package:matrixclient/modules/nodeexplorerdefinition/nodeexplorerdefinition.dart';
-import 'package:matrixclient/modules/util/nodeutil.dart';
-import 'package:matrixclient/modules/vwcardparameter/vwcardparameterutil.dart';
-import 'package:matrixclient/modules/vwcardparameter/vwjsonfieldnamecardparameter.dart';
-import 'package:matrixclient/modules/vwmessenger/vwusermessagemessenger.dart';
-import 'package:matrixclient/modules/vwwidget/noderowviewer/noderowviewer.dart';
-import 'package:matrixclient/modules/vwwidget/rowviewermaterial/vwcardparametermaterial/vwcardparametermaterial.dart';
+import 'package:matrixclient2base/modules/base/nodeexplorerdefinition/fieldexplorerdefinition.dart';
+import 'package:matrixclient2base/modules/base/nodeexplorerdefinition/nodeexplorerdefinition.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
+import 'package:matrixclient2base/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnodecontent/vwnodecontentutil.dart';
+import 'package:vwform/modules/noderowviewer/noderowviewer.dart';
+import 'package:vwform/modules/vwcardparameter/vwcardparameterutil.dart';
+import 'package:vwform/modules/vwcardparameter/vwjsonfieldnamecardparameter.dart';
+import 'package:vwform/modules/vwmessenger/vwusermessagemessenger.dart';
 
 class VwHeadMessageMessengerRowViewer extends NodeRowViewer
 {
@@ -50,6 +48,7 @@ class VwHeadMessageMessengerRowViewer extends NodeRowViewer
 
     VwFieldValue? titleFieldValue =
     VwCardParameterUtil.renderJsonFieldName(
+      locale: this.appInstanceParam.locale,
         sourceNode: this.rowNode, parameter: senderCardParameter);
 
    VwNode? returnValue;
@@ -83,6 +82,7 @@ class VwHeadMessageMessengerRowViewer extends NodeRowViewer
 
     VwFieldValue? titleFieldValue =
     VwCardParameterUtil.renderJsonFieldName(
+        locale: this.appInstanceParam.locale,
         sourceNode: this.rowNode, parameter: senderCardParameter);
 
     String? titleText;
@@ -92,6 +92,7 @@ class VwHeadMessageMessengerRowViewer extends NodeRowViewer
           senderCardParameter?.fieldDisplayFormat;
 
       titleText = VwCardParameterUtil.getStringFormFieldValue(
+          locale: this.appInstanceParam.locale,
           fieldValue: titleFieldValue,
           fieldDisplayFormat: fieldDisplayFormat);
     }
@@ -116,6 +117,7 @@ class VwHeadMessageMessengerRowViewer extends NodeRowViewer
 
     VwFieldValue? titleFieldValue =
     VwCardParameterUtil.renderJsonFieldName(
+        locale: this.appInstanceParam.locale,
         sourceNode: this.rowNode, parameter: senderCardParameter);
 
     String? titleText;
@@ -125,6 +127,7 @@ class VwHeadMessageMessengerRowViewer extends NodeRowViewer
           senderCardParameter?.fieldDisplayFormat;
 
       titleText = VwCardParameterUtil.getStringFormFieldValue(
+          locale: this.appInstanceParam.locale,
           fieldValue: titleFieldValue,
           fieldDisplayFormat: fieldDisplayFormat);
     }

@@ -19,7 +19,6 @@ class VwNodeListViewFieldWidget extends StatelessWidget {
     this.parentRef,
     required this.getFieldvalueCurrentResponseFunction,
     required this.getCurrentFormDefinitionFunction,
-    required this.baseUrl
   })
       : super(key: key);
 
@@ -31,7 +30,7 @@ class VwNodeListViewFieldWidget extends StatelessWidget {
   final VwLinkNode? parentRef;
   final GetCurrentFormResponseFunction getFieldvalueCurrentResponseFunction;
   final GetCurrentFormDefinitionFunction getCurrentFormDefinitionFunction;
-  final String baseUrl;
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +45,7 @@ class VwNodeListViewFieldWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children:[
           captionWidget,
-          Container(height:240,child: VwCheckListLinkNode (baseUrl: this.baseUrl , formField: this.formField,  getFieldvalueCurrentResponseFunction: this.getFieldvalueCurrentResponseFunction,isReadOnly: true,  fieldValue: this.field, syncLinkNodeListToParentFunction:this.implementRefreshDataOnParentFunction , parentRef: this.parentRef, appInstanceParam: this.appInstanceParam,  fieldUiParam: this.formField.fieldUiParam))]);
+          Container(height:240,child: VwCheckListLinkNode ( formField: this.formField,  getFieldvalueCurrentResponseFunction: this.getFieldvalueCurrentResponseFunction,isReadOnly: true,  fieldValue: this.field, syncLinkNodeListToParentFunction:this.implementRefreshDataOnParentFunction , parentRef: this.parentRef, appInstanceParam: this.appInstanceParam,  fieldUiParam: this.formField.fieldUiParam))]);
 
   }
 

@@ -12,12 +12,12 @@ import 'package:vwutil/modules/util/vwdateutil.dart';
 
 class VwSelectRecipientWidget extends StatefulWidget{
 
-  VwSelectRecipientWidget({required this.appInstanceParam,
-  required this.baseUrl
+  const VwSelectRecipientWidget({required this.appInstanceParam,
+
   });
 
   final VwAppInstanceParam appInstanceParam;
-  final String baseUrl;
+
 
   VwSelectRecipientWidgetState createState()=> VwSelectRecipientWidgetState();
 }
@@ -50,7 +50,6 @@ class VwSelectRecipientWidgetState extends State<VwSelectRecipientWidget>{
     }
 
     return VwMessageRecipientRowViewer( rowNode: renderedNode,
-      baseUrl: this.widget.baseUrl,
       appInstanceParam: this.widget.appInstanceParam,
       //rowViewerBoxContraints: this.widget.rowViewerBoxContraints,
       highlightedText: highlightedText,
@@ -92,7 +91,7 @@ class VwSelectRecipientWidgetState extends State<VwSelectRecipientWidget>{
   @override
   Widget build(BuildContext context) {
     return NodeListView(
-      baseUrl: this.widget.baseUrl,
+
       appInstanceParam: this.widget.appInstanceParam,
       apiCallId: "getNodes",
       mainLogoTextCaption: "Select user",

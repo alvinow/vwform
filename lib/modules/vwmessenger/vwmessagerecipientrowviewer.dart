@@ -16,7 +16,7 @@ class VwMessageRecipientRowViewer extends StatefulWidget {
     this.commandToParentFunction,
     this.localeId = "id_ID",
     this.customCardtapper,
-    required this.baseUrl
+
   });
 
   final VwAppInstanceParam appInstanceParam;
@@ -27,7 +27,7 @@ class VwMessageRecipientRowViewer extends StatefulWidget {
   final CommandToParentFunction? commandToParentFunction;
   final String localeId;
   final InkWell? customCardtapper;
-  final String baseUrl;
+
 
   VwMessageRecipientRowViewerState createState() =>
       VwMessageRecipientRowViewerState();
@@ -53,7 +53,7 @@ class VwMessageRecipientRowViewerState
         MaterialPageRoute(
           builder: (context) => VwUserMessageMessenger(
 
-            baseurl: this.widget.baseUrl,
+
               senderRecord: this.widget.rowNode,
               appInstanceParam: this.widget.appInstanceParam),
         ));

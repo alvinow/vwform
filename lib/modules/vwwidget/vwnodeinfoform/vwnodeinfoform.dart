@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
-import 'package:matrixclient/modules/util/vwdateutil.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
+import 'package:vwutil/modules/util/vwdateutil.dart';
+
 
 class VwNodeInfoForm extends StatefulWidget{
 

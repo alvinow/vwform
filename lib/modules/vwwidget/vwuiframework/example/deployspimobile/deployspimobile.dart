@@ -1,8 +1,9 @@
-import 'package:matrixclient/appconfig.dart';
-import 'package:matrixclient/modules/vwwidget/vwuiframework/vwuideploy/vwuideployparam.dart';
-import 'package:matrixclient/modules/vwwidget/vwuiframework/vwuipage/vwuipageparam.dart';
-import 'package:matrixclient/modules/vwwidget/vwuiframework/vwuipagebodycomponent/vwuipagebodycomponentlistnodeparam.dart';
-import 'package:matrixclient/modules/vwwidget/vwuiframework/vwuipagebodycomponent/vwuipagebodycomponentparam.dart';
+
+import 'package:matrixclient2base/appconfig.dart';
+import 'package:vwform/modules/vwwidget/vwuiframework/vwuideploy/vwuideployparam.dart';
+import 'package:vwform/modules/vwwidget/vwuiframework/vwuipage/vwuipageparam.dart';
+import 'package:vwform/modules/vwwidget/vwuiframework/vwuipagebodycomponent/vwuipagebodycomponentlistnodeparam.dart';
+import 'package:vwform/modules/vwwidget/vwuiframework/vwuipagebodycomponent/vwuipagebodycomponentparam.dart';
 
 class DeploySpiMobile{
 

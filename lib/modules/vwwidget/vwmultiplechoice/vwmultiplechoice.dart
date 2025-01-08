@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:matrixclient/modules/vwwidget/vwmultiplechoice/vwmultiplechoicebutton/vwmultiplechoicebutton.dart';
+import 'package:vwform/modules/vwwidget/vwmultiplechoice/vwmultiplechoicebutton/vwmultiplechoicebutton.dart';
 
 
 class VwMultipleChoice extends StatefulWidget {

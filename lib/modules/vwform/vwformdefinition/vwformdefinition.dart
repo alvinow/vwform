@@ -5,7 +5,6 @@ import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnodecontent/vwnodecontent.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:matrixclient2base/modules/base/vwbasemodel/vwbasemodel.dart';
 import 'package:vwform/modules/vwcardparameter/vwcardparameter.dart';
 import 'package:vwform/modules/vwdatasourcedefinition/vwdatasourcedefinition.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwrowcollectiondatasource/vwrowcollectiondatasource.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
 
 class VwUiNodeRowViewer extends StatelessWidget {
   VwUiNodeRowViewer({

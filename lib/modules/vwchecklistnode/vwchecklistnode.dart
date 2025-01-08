@@ -154,7 +154,6 @@ class VwCheckListNodeState extends State<VwCheckListNode> {
 
         if (currentNode != null) {
           Widget currentLinkNodeWidget = VwCheckListLinkNodeRowViewer(
-            baseUrl: this.widget.baseUrl,
             key: Key(currentNode.recordId),
             rowNode: currentNode,
             //selectedList: this.widget.fieldValue.valueLinkNodeList,
@@ -194,7 +193,6 @@ class VwCheckListNodeState extends State<VwCheckListNode> {
     }*/
 
     return VwCheckListLinkNodeRowViewer(
-      baseUrl: this.widget.baseUrl,
       topRowWidget: topRowWidget,
       isReadOnly: this.widget.isReadOnly,
       key: Key(renderedNode.recordId),
@@ -220,7 +218,6 @@ class VwCheckListNodeState extends State<VwCheckListNode> {
     this.refreshDataOnParentFunction = refreshDataOnParentFunction;
 
     return VwCheckListLinkNodeRowViewer(
-      baseUrl: this.widget.baseUrl,
       isReadOnly: this.widget.isReadOnly,
       unselectedConfirmation: true,
       selectedIcon: Icon(Icons.delete, color: Colors.grey),
@@ -281,7 +278,6 @@ class VwCheckListNodeState extends State<VwCheckListNode> {
       currentFormDefinition.dataSource = VwDataSourceDefinition.smServer;
 
       returnValue = VwFormPage(
-        baseUrl: this.widget.baseUrl,
           appInstanceParam: widget.appInstanceParam,
           syncNodeToParentFunction: syncNodeToParentFunction,
           refreshDataOnParentFunction: refreshDataOnParentFunction,
@@ -750,7 +746,6 @@ class VwCheckListNodeState extends State<VwCheckListNode> {
     Widget returnValue = Container();
     try {
       returnValue = NodeListView(
-        baseUrl: widget.baseUrl,
         excludedRow: this.createExcludedNodeList(),
         appInstanceParam: widget.appInstanceParam,
         topRowWidget: this.createTopRowWidget(),
@@ -794,7 +789,6 @@ class VwCheckListNodeState extends State<VwCheckListNode> {
   @override
   Widget build(BuildContext context) {
     Widget body = NodeListView(
-      baseUrl: widget.baseUrl,
         enableAppBar: false,
         showReloadButton: false,
         rowUpperPadding: 0,

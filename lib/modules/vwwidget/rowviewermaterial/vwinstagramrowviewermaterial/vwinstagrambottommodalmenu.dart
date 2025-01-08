@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:matrixclient/appconfig.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
+import 'package:matrixclient2base/appconfig.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+
 
 class VwInstagramBottomModalMenu extends StatefulWidget {
   VwInstagramBottomModalMenu(

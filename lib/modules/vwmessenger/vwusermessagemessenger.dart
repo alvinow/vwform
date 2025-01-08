@@ -15,11 +15,10 @@ class VwUserMessageMessenger extends StatefulWidget {
   VwUserMessageMessenger({
     required this.appInstanceParam,
     required this.senderRecord,
-    required this.baseurl
+
   });
   VwAppInstanceParam appInstanceParam;
   VwNode senderRecord;
-  final String baseurl;
 
   VwUserMessageMessengerState createState() => VwUserMessageMessengerState();
 }
@@ -175,7 +174,6 @@ class VwUserMessageMessengerState extends State<VwUserMessageMessenger> {
   @override
   Widget build(BuildContext context) {
     return NodeListView(
-      baseUrl:  this.widget.baseurl,
         isListReverse: true,
         footer: this.messageBoxPluginWidget,
         footerWidgetParameter: VwRowData(recordId: Uuid().v4(), fields: [

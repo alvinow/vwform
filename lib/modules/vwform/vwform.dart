@@ -51,7 +51,7 @@ class VwForm extends StatefulWidget {
       this.sectionIndex,
       this.formValidationResponse,
       this.backGroundColor = Colors.grey,
-      required this.baseUrl,
+
       this.fieldBoxDecoration = const BoxDecoration(
         color: Colors.white,
 
@@ -69,7 +69,6 @@ class VwForm extends StatefulWidget {
   final int? sectionIndex;
 
   final BoxDecoration fieldBoxDecoration;
-  final String baseUrl;
 
   @override
   VwFormState createState() => VwFormState();
@@ -383,7 +382,6 @@ class VwFormState extends State<VwForm> {
                   padding: EdgeInsets.fromLTRB(12, 0, 8, 10),
                   margin: EdgeInsets.fromLTRB(0, 7, 0, 7),
                   child: VwFieldWidget(
-                    baseUrl: this.widget.baseUrl,
                     key: Key(newCurrentFormField.fieldDefinition.fieldName),
                     parentRef: this.initFormResponse.collectionName == null
                         ? null

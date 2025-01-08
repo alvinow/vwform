@@ -51,12 +51,37 @@ dependencies:
   http:
   image_fade: ^0.6.2
   file_picker:
+  mobile_scanner:
+  youtube_player_iframe:
+  oktoast:
+  sidebarx: ^0.17.1
+  rflutter_alert: ^2.0.7
   url_launcher:
+  modal_bottom_sheet: ^3.0.0
   expansion_tile_card:
   flutter_spinbox:
   calendar_date_picker2:
   omni_datetime_picker:
   retrofit:
+  line_icons:
+  loading_animation_widget:
+  loading_indicator:
+  material_dialogs:
+
+  flutter_cache_manager:
+  syncfusion_flutter_pdfviewer:
+  flutter_svg:
+  zoom_pinch_overlay:
+  syncfusion_flutter_charts:
+  audio_session:
+  carousel_slider:
+  just_audio:
+  get:
+  visibility_detector:
+  dropdown_search:
+  geolocator:
+  card_swiper:
+  cupertino_modal_sheet:
   vwnodestoreonhive:
     git:
       url: https://github.com/alvinow/vwnodestoreonhive.git

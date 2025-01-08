@@ -294,7 +294,7 @@ class VwCheckListLinkNodeState extends State<VwCheckListLinkNode> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => createSelectNodeListView(context,widget.baseUrl)),
+                builder: (context) => createSelectNodeListView(context)),
           );
         });
   }
@@ -663,7 +663,6 @@ class VwCheckListLinkNodeState extends State<VwCheckListLinkNode> {
   @override
   Widget build(BuildContext context) {
     Widget body = NodeListView(
-      baseUrl: widget.baseUrl,
       enableAppBar: false,
       showReloadButton: false,
         rowUpperPadding: 0,

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:matrixclient/modules/vwwidget/vwuiframework/vwuipage/vwuipageparam.dart';
+import 'package:vwform/modules/vwwidget/vwuiframework/vwuipage/vwuipageparam.dart';
 
 class VwUiPage extends StatelessWidget{
   VwUiPage({

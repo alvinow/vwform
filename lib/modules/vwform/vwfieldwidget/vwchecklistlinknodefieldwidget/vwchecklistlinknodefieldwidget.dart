@@ -19,7 +19,7 @@ class VwCheckListLinkNodeFieldWidget extends StatelessWidget {
       required this.appInstanceParam,
       this.parentRef,
       required this.getFieldvalueCurrentResponseFunction,
-      required this.baseUrl
+
       })
       : super(key: key);
 
@@ -27,7 +27,7 @@ class VwCheckListLinkNodeFieldWidget extends StatelessWidget {
   final bool readOnly;
   final VwFormField formField;
   final VwFieldWidgetChanged? onValueChanged;
-  final String baseUrl;
+
 
   final VwAppInstanceParam appInstanceParam;
   final VwLinkNode? parentRef;
@@ -64,7 +64,6 @@ class VwCheckListLinkNodeFieldWidget extends StatelessWidget {
       Container(
           height: 240,
           child: VwCheckListLinkNode(
-            baseUrl: this.baseUrl,
             formField: this.formField,
             appInstanceParam: appInstanceParam,
               getFieldvalueCurrentResponseFunction:

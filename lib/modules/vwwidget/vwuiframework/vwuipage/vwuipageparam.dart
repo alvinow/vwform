@@ -1,5 +1,6 @@
-import 'package:matrixclient/modules/vwwidget/vwuiframework/vwuipagebodycomponent/vwuipagebodycomponentparam.dart';
-import 'package:matrixclient/modules/vwwidget/vwuiframework/vwuipagelink/vwuipagelink.dart';
+
+import 'package:vwform/modules/vwwidget/vwuiframework/vwuipagebodycomponent/vwuipagebodycomponentparam.dart';
+import 'package:vwform/modules/vwwidget/vwuiframework/vwuipagelink/vwuipagelink.dart';
 
 class VwUiPageParam{
   VwUiPageParam({

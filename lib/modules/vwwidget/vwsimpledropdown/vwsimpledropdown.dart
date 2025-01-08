@@ -40,10 +40,10 @@ class _VwSimpleDropdownState extends State<VwSimpleDropdown> {
 
       ),
 
-      items: this.widget.choices,
+      items:  (filter, infiniteScrollProps)=> this.widget.choices,
       //showClearButton: true,
-      dropdownDecoratorProps: DropDownDecoratorProps (
-        dropdownSearchDecoration: InputDecoration(
+      decoratorProps: DropDownDecoratorProps (
+        decoration: InputDecoration(
 
           labelText: this.widget.caption,
           hintText: this.widget.caption,

@@ -88,7 +88,6 @@ class VwCheckListLinkNodeRowViewer extends NodeRowViewer {
         VwRowData.fromJson(json.decode(formResponseString));
 
     return VwFormPage(
-        baseUrl: this.baseUrl,
         isShowSaveButton: false,
         isMultipageSections: true,
         formDefinitionFolderNodeId: AppConfig.formDefinitionFolderNodeId,

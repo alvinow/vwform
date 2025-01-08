@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:matrixclient/modules/base/vwappinstanceparam/vwappinstanceparam.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
+
 
 typedef BottomSheetOnTapFunction = void Function(
      Key key,  BuildContext context,  VwNode currentNode, VwAppInstanceParam appInstanceParam);

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:matrixclient/appconfig.dart';
-import 'package:matrixclient/modules/vwwidget/vwexpanderwidget/vwexpanderwidget.dart';
+import 'package:vwform/modules/vwwidget/vwexpanderwidget/vwexpanderwidget.dart';
+
 
 class VwMobileHeaderWidget extends StatefulWidget{
 

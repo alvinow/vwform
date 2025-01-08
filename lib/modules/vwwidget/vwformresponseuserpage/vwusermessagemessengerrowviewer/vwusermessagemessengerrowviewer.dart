@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient/modules/util/nodeutil.dart';
-import 'package:matrixclient/modules/vwwidget/noderowviewer/noderowviewer.dart';
-import 'package:matrixclient/modules/vwwidget/vwformresponseuserpage/vwusermessagemessengerrowviewer/messagemessengerviewer.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:vwform/modules/noderowviewer/noderowviewer.dart';
+import 'package:vwform/modules/vwwidget/vwformresponseuserpage/vwusermessagemessengerrowviewer/messagemessengerviewer.dart';
 
 class VwUserMessageMessengerRowViewer extends NodeRowViewer {
   VwUserMessageMessengerRowViewer({

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matrixclient/modules/base/vwappinstanceparam/vwappinstanceparam.dart';
-import 'package:matrixclient/modules/edokumen2022/pagecoordinator/bloc/pagecoordinator_bloc.dart';
+import 'package:vwform/modules/pagecoordinator/bloc/pagecoordinator_bloc.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
+
 
 class FatalErrorPage extends StatelessWidget{
   FatalErrorPage({

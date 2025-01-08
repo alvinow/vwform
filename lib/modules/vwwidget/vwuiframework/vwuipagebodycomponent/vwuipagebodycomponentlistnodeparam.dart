@@ -1,5 +1,4 @@
-import 'package:matrixclient/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformdefinition.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
 
 class VwUiPageBodyComponentListNodeParam{
   VwUiPageBodyComponentListNodeParam({

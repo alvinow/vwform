@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient/modules/vwwidget/vwcircularprogressindicator/vwcircularprogressindicator.dart';
-import 'package:matrixclient/modules/vwwidget/vwprogressdialog/vwformcommand.dart';
+import 'package:vwform/modules/vwwidget/vwcircularprogressindicator/vwcircularprogressindicator.dart';
+import 'package:vwform/modules/vwwidget/vwprogressdialog/vwformcommand.dart';
 
 class VwProgressDialogBox extends StatefulWidget{
   VwProgressDialogBox({

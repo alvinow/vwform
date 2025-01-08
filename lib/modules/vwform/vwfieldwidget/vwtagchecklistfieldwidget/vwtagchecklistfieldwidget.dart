@@ -29,7 +29,7 @@ class VwTagCheckListFieldWidget extends StatefulWidget {
       this.onValueChanged,
       required this.getCurrentFormResponseFunction,
       required this.formDefinition,
-      required this.baseUrl
+
       });
 
   final VwAppInstanceParam appInstanceParam;
@@ -39,7 +39,6 @@ class VwTagCheckListFieldWidget extends StatefulWidget {
   final VwFieldWidgetChanged? onValueChanged;
   final GetCurrentFormResponseFunction getCurrentFormResponseFunction;
   final VwFormDefinition formDefinition;
-  final String baseUrl;
 
   static const userTagResponseFieldName = "userTagResponse";
 
@@ -290,7 +289,6 @@ class VwTagCheckListFieldWidgetState extends State<VwTagCheckListFieldWidget> {
 
           
             child: NodeListView(
-              baseUrl: widget.baseUrl,
               enableScaffold: false,
               titleColumns: listViewTitleColumnList,
               nodeFetchMode: NodeListView.nfmParent,

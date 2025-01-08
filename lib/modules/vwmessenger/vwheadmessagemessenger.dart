@@ -130,7 +130,7 @@ class VwmessengerState extends State<VwHeadMessageMessenger>{
 
             MaterialPageRoute(
                 builder: (context) => VwSelectRecipientWidget(
-                    baseUrl: this.widget.baseUrl,
+
                     appInstanceParam: this.widget.appInstanceParam),
           ));
 
@@ -142,6 +142,6 @@ class VwmessengerState extends State<VwHeadMessageMessenger>{
 
   @override
   Widget build(BuildContext context) {
-    return NodeListView(baseUrl: this.widget.baseUrl,  key: this.stateKey, getFloatingActionButton: this._getCreateRecordFloatingActionButton, mainLogoMode: NodeListView.mlmText, mainLogoTextCaption: "Messenger", showBackArrow: true, appInstanceParam: widget.appInstanceParam, apiCallParam: getHeadMessengerApiCallParam(), nodeRowViewerFunction: nodeRowViewer);
+    return NodeListView(  key: this.stateKey, getFloatingActionButton: this._getCreateRecordFloatingActionButton, mainLogoMode: NodeListView.mlmText, mainLogoTextCaption: "Messenger", showBackArrow: true, appInstanceParam: widget.appInstanceParam, apiCallParam: getHeadMessengerApiCallParam(), nodeRowViewerFunction: nodeRowViewer);
   }
 }

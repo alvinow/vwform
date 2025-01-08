@@ -6,13 +6,13 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:matrixclient/appconfig.dart';
-import 'package:matrixclient/modules/base/vwfilestorage/modules/vwfileencryption/vwfileencryption.dart';
-import 'package:matrixclient/modules/base/vwfilestorage/vwfilestorage.dart';
-import 'package:matrixclient/modules/util/cryptoutil.dart';
+import 'package:matrixclient2base/appconfig.dart';
+import 'package:matrixclient2base/modules/base/vwfilestorage/modules/vwfileencryption/vwfileencryption.dart';
+import 'package:matrixclient2base/modules/base/vwfilestorage/vwfilestorage.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart' as syspaths;
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:vwutil/modules/util/cryptoutil.dart';
 part 'fileviewer_state.dart';
 part 'fileviewer_event.dart';
 

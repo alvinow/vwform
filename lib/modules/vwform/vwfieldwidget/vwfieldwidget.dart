@@ -39,7 +39,7 @@ class VwFieldWidget extends StatefulWidget {
       required this.getCurrentFormResponseFunction,
       required this.getCurrentFormDefinitionFunction,
         this.enableAlwaysSetStateOnValueChanged=true,
-      required this.baseUrl
+
       });
 
 
@@ -54,7 +54,7 @@ class VwFieldWidget extends StatefulWidget {
   final VwLinkNode? parentRef;
   final GetCurrentFormResponseFunction getCurrentFormResponseFunction;
   final GetCurrentFormDefinitionFunction getCurrentFormDefinitionFunction;
-  final String baseUrl;
+
 
   _VwFieldWidgetState createState() => _VwFieldWidgetState();
 
@@ -180,7 +180,6 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
       else if(this.widget.formField.fieldUiParam.uiTypeId == VwFieldUiParam.uitFormPageNodeViewer)
         {
           returnValue =  VwFormPageNodeViewerWidget(
-              baseUrl: this.widget.baseUrl,
               readOnly: widget.readOnly,
               key: this.fieldKey,
               getFieldvalueCurrentResponseFunction: this.widget
@@ -194,7 +193,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
       else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitTagChecklist) {
         returnValue = VwTagCheckListFieldWidget(
-          baseUrl: widget.baseUrl,
+
           readOnly: this.widget.readOnly,
           key:Key(this.widget.formField.fieldDefinition.fieldName),
           formDefinition: this.widget.getCurrentFormDefinitionFunction(),
@@ -253,7 +252,6 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
         if (this.widget.formField.fieldUiParam.collectionListViewDefinition !=
             null) {
           returnValue = VwNodeListViewFieldWidget(
-            baseUrl: this.widget.baseUrl,
             getCurrentFormDefinitionFunction: this.widget.getCurrentFormDefinitionFunction,
               getFieldvalueCurrentResponseFunction: this.widget
                   .getCurrentFormResponseFunction,
@@ -269,7 +267,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
         if (this.widget.formField.fieldUiParam.collectionListViewDefinition !=
             null) {
           returnValue = VwCheckListLinkNodeFieldWidget(
-            baseUrl: this.widget.baseUrl,
+
               getFieldvalueCurrentResponseFunction: this.widget
                   .getCurrentFormResponseFunction,
               field: widget.field,
@@ -283,7 +281,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
         if (this.widget.formField.fieldUiParam.collectionListViewDefinition !=
             null) {
           returnValue = VwCheckListLinkNodeFieldWidget(
-            baseUrl: this.widget.baseUrl,
+
               getFieldvalueCurrentResponseFunction: this.widget
                   .getCurrentFormResponseFunction,
               field: widget.field,
@@ -296,7 +294,6 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
           VwFieldUiParam.uitFormPageByLocalFieldSource &&
           (this.widget.field.valueTypeId == VwFieldValue.vatValueFormResponse || this.widget.field.valueTypeId == VwFieldValue.vatValueFormResponseCommentOnly )) {
         returnValue = VwFormFieldWidget(
-            baseUrl: this.widget.baseUrl,
             readOnly: widget.readOnly,
             key: this.fieldKey,
             getFieldvalueCurrentResponseFunction: this.widget

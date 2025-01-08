@@ -2,25 +2,24 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient/modules/base/vwappinstanceparam/vwappinstanceparam.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwfieldfilestorage/vwfieldfilestorage.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
-import 'package:matrixclient/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
-import 'package:matrixclient/modules/base/vwlinknode/vwlinknode.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnodecontent/vwnodecontentutil.dart';
-import 'package:matrixclient/modules/base/vwuser/vwuser.dart';
-import 'package:matrixclient/modules/edokumen2022/remoteapi/remote_api.dart';
-import 'package:matrixclient/modules/util/displayformatutil.dart';
-
-import 'package:matrixclient/modules/util/nodeutil.dart';
-import 'package:matrixclient/modules/util/vwdateutil.dart';
-import 'package:matrixclient/modules/vwcardparameter/vwcardparameter.dart';
-import 'package:matrixclient/modules/vwcardparameter/vwcardparameterutil.dart';
-import 'package:matrixclient/modules/vwcardparameter/vwjsonfieldnamecardparameter.dart';
-import 'package:matrixclient/modules/vwwidget/nodelistview/nodelistview.dart';
-import 'package:matrixclient/modules/vwwidget/rowviewermaterial/vwcardparametermaterial/vwcardparametermaterial.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwfieldfilestorage/vwfieldfilestorage.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
+import 'package:matrixclient2base/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
+import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnodecontent/vwnodecontentutil.dart';
+import 'package:matrixclient2base/modules/base/vwuser/vwuser.dart';
+import 'package:vwform/modules/remoteapi/remote_api.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
+import 'package:vwform/modules/vwcardparameter/vwcardparameter.dart';
+import 'package:vwform/modules/vwcardparameter/vwcardparameterutil.dart';
+import 'package:vwform/modules/vwcardparameter/vwjsonfieldnamecardparameter.dart';
+import 'package:vwform/modules/vwform/vwform.dart';
+import 'package:vwform/modules/vwwidget/rowviewermaterial/vwcardparametermaterial/vwcardparametermaterial.dart';
+import 'package:vwutil/modules/util/displayformatutil.dart';
+import 'package:vwutil/modules/util/nodeutil.dart';
+import 'package:vwutil/modules/util/vwdateutil.dart';
 
 class VwCardParameterNodeViewerMaterial extends StatelessWidget {
   VwCardParameterNodeViewerMaterial(
@@ -78,6 +77,7 @@ class VwCardParameterNodeViewerMaterial extends StatelessWidget {
       if (cardParameter.fieldNameMode == VwCardParameter.fnmJson) {
         VwFieldValue? titleFieldValue =
             VwCardParameterUtil.renderJsonFieldNameByStringJsonFieldName(
+              locale: this.appInstanceParam.locale,
                 sourceNode: this.rowNode,
                 jsonFieldName: cardParameter.titleFieldName);
 
@@ -90,6 +90,7 @@ class VwCardParameterNodeViewerMaterial extends StatelessWidget {
               jsonFieldNameCardParameter?.fieldDisplayFormat;
 
           titleText = VwCardParameterUtil.getStringFormFieldValue(
+              locale: this.appInstanceParam.locale,
               fieldValue: titleFieldValue,
               fieldDisplayFormat: fieldDisplayFormat);
         }
@@ -97,6 +98,7 @@ class VwCardParameterNodeViewerMaterial extends StatelessWidget {
         if (cardParameter.subTitleFieldName != null) {
           VwFieldValue? subtitleFieldValue =
               VwCardParameterUtil.renderJsonFieldNameByStringJsonFieldName(
+                  locale: this.appInstanceParam.locale,
                   sourceNode: this.rowNode,
                   jsonFieldName: cardParameter.subTitleFieldName!);
 
@@ -107,6 +109,7 @@ class VwCardParameterNodeViewerMaterial extends StatelessWidget {
             VwFieldDisplayFormat? fieldDisplayFormat =
                 jsonFieldNameCardParameter?.fieldDisplayFormat;
             subtitleText = VwCardParameterUtil.getStringFormFieldValue(
+                locale: this.appInstanceParam.locale,
                 fieldValue: subtitleFieldValue,
                 fieldDisplayFormat: fieldDisplayFormat);
           }
@@ -115,6 +118,7 @@ class VwCardParameterNodeViewerMaterial extends StatelessWidget {
         if (cardParameter.descriptionFieldName != null) {
           VwFieldValue? descriptionFieldValue =
               VwCardParameterUtil.renderJsonFieldNameByStringJsonFieldName(
+                  locale: this.appInstanceParam.locale,
                   sourceNode: this.rowNode,
                   jsonFieldName: cardParameter.descriptionFieldName!);
 
@@ -125,6 +129,7 @@ class VwCardParameterNodeViewerMaterial extends StatelessWidget {
             VwFieldDisplayFormat? fieldDisplayFormat =
                 jsonFieldNameCardParameter?.fieldDisplayFormat;
             descriptionText = VwCardParameterUtil.getStringFormFieldValue(
+                locale: this.appInstanceParam.locale,
                 fieldValue: descriptionFieldValue,
                 fieldDisplayFormat: fieldDisplayFormat);
           }
@@ -133,6 +138,7 @@ class VwCardParameterNodeViewerMaterial extends StatelessWidget {
         if (cardParameter.dateFieldName != null) {
           VwFieldValue? dateFieldValue =
               VwCardParameterUtil.renderJsonFieldNameByStringJsonFieldName(
+                  locale: this.appInstanceParam.locale,
                   sourceNode: this.rowNode,
                   jsonFieldName: cardParameter.dateFieldName!);
 
@@ -143,12 +149,14 @@ class VwCardParameterNodeViewerMaterial extends StatelessWidget {
             VwFieldDisplayFormat? fieldDisplayFormat =
                 jsonFieldNameCardParameter?.fieldDisplayFormat;
             recordUpdated = VwCardParameterUtil.getStringFormFieldValue(
+                locale: this.appInstanceParam.locale,
                 fieldValue: dateFieldValue,
                 fieldDisplayFormat: fieldDisplayFormat);
           }
         }
       } else {
         titleText = NodeUtil.getValueFromContentRecordCollection(
+            locale: this.appInstanceParam.locale,
             node: rowNode,
             fieldName: cardParameter.titleFieldName,
             fieldDisplayFormat: cardParameter.titleDisplayFormat);
@@ -163,6 +171,7 @@ class VwCardParameterNodeViewerMaterial extends StatelessWidget {
         }
 
         descriptionText = NodeUtil.getValueFromContentRecordCollection(
+            locale: this.appInstanceParam.locale,
             node: rowNode,
             fieldName: cardParameter.descriptionFieldName.toString(),
             fieldDisplayFormat: cardParameter.descriptionDisplayFormat);
@@ -177,6 +186,7 @@ class VwCardParameterNodeViewerMaterial extends StatelessWidget {
         }
 
         subtitleText = NodeUtil.getValueFromContentRecordCollection(
+            locale: this.appInstanceParam.locale,
             node: rowNode,
             fieldName: cardParameter.subTitleFieldName.toString(),
             fieldDisplayFormat: cardParameter.subtitleDisplayFormat);
@@ -191,6 +201,7 @@ class VwCardParameterNodeViewerMaterial extends StatelessWidget {
 
         if (cardParameter.dateFieldName != null) {
           recordUpdated = NodeUtil.getValueFromContentRecordCollection(
+              locale: this.appInstanceParam.locale,
               node: rowNode,
               fieldName: cardParameter.dateFieldName.toString(),
               fieldDisplayFormat: cardParameter.dateDisplayFormat);
@@ -222,9 +233,11 @@ class VwCardParameterNodeViewerMaterial extends StatelessWidget {
       } catch (error) {}
 
       String? captionText = NodeUtil.getValueFromContentRecordCollection(
+          locale: this.appInstanceParam.locale,
           node: rowNode, fieldName: cardParameter.captionFieldName.toString());
 
       String? urllink = NodeUtil.getValueFromContentRecordCollection(
+          locale: this.appInstanceParam.locale,
           node: rowNode, fieldName: "urllink");
 
       VwFieldValue subtitleFieldValue = VwFieldValue(
@@ -242,17 +255,18 @@ class VwCardParameterNodeViewerMaterial extends StatelessWidget {
 
       if (cardParameter.titleDisplayFormat != null) {
         titleText = DisplayFormatUtil.renderDisplayFormat(
-            cardParameter.titleDisplayFormat!, titleFieldValue);
+
+            cardParameter.titleDisplayFormat!, titleFieldValue,this.appInstanceParam.locale);
       }
 
       if (cardParameter.subtitleDisplayFormat != null) {
         subtitleText = DisplayFormatUtil.renderDisplayFormat(
-            cardParameter.subtitleDisplayFormat!, subtitleFieldValue);
+            cardParameter.subtitleDisplayFormat!, subtitleFieldValue,this.appInstanceParam.locale);
       }
 
       if (cardParameter.descriptionDisplayFormat != null) {
         descriptionText = DisplayFormatUtil.renderDisplayFormat(
-            cardParameter.descriptionDisplayFormat!, descriptionFieldValue);
+            cardParameter.descriptionDisplayFormat!, descriptionFieldValue,this.appInstanceParam.locale);
       }
 
       if (this.cardParameter.titlePrefix != null) {
