@@ -15,11 +15,10 @@ class VwUserNotificationPage extends StatelessWidget {
   VwUserNotificationPage(
       {required this.appInstanceParam,
         this.refreshDataOnParentFunction,
-        required this.baseUrl
+
       });
 
   final VwAppInstanceParam appInstanceParam;
-  final String baseUrl;
 
   final RefreshDataOnParentFunction? refreshDataOnParentFunction;
 
