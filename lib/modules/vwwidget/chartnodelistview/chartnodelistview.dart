@@ -20,7 +20,7 @@ class ChartNodeListView extends StatefulWidget{
      this.currentNode
 });
 
-
+  static const String btrSearchNodeComment="btrSearchNodeComment";
 
   final VwAppInstanceParam appInstanceParam;
   final bool isRootFolder;
