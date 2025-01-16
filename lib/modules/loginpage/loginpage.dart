@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_fade/image_fade.dart';
-import 'package:matrixclient2base/appconfig.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
 import 'package:uuid/uuid.dart';
@@ -49,8 +48,8 @@ class LoginPageState extends State<LoginPage> {
     currentVwRow = this.widget.paramLoginPage;
   }
 
-  static String getApplicationName(){
-    String returnValue=AppConfig.appTitle;
+  static String getApplicationName({required String appTitle}){
+    String returnValue=appTitle;
 
     try {
 
@@ -76,7 +75,7 @@ class LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    String appName = LoginPageState.getApplicationName();
+    String appName = LoginPageState.getApplicationName(appTitle:  this.widget.appInstanceParam.baseAppConfig.generalConfig.appTitle);
     Widget titleCaption = Container(
         margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Row(
@@ -108,13 +107,13 @@ class LoginPageState extends State<LoginPage> {
             // here `bytes` is a Uint8List containing the bytes for the in-memory image
             //scale: 1,
             image: AssetImage(
-              AppConfig.mainLogoPath,
+              this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
             ),
           )),
     );
 
     Widget versionWidget = Text(
-      'Ver. ' + AppConfig.appVersion,
+      'Ver. ' + this.widget.appInstanceParam.baseAppConfig.generalConfig.appVersion,
       style: TextStyle(color: Colors.blueGrey, fontSize: 12),
     );
 

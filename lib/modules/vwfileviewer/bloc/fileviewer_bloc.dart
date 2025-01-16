@@ -12,6 +12,7 @@ import 'package:matrixclient2base/modules/base/vwfilestorage/vwfilestorage.dart'
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart' as syspaths;
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
 import 'package:vwutil/modules/util/cryptoutil.dart';
 part 'fileviewer_state.dart';
 part 'fileviewer_event.dart';
@@ -19,9 +20,10 @@ part 'fileviewer_event.dart';
 class FileviewerBloc extends Bloc<FileviewerEvent, FileviewerState> {
   VwFileStorage fileStorage;
   Key key;
+  final VwAppInstanceParam appInstanceParam;
 
 
-  FileviewerBloc({required this.key, required this.fileStorage})
+  FileviewerBloc({required this.appInstanceParam, required this.key, required this.fileStorage})
       : super(BootupFileviewerState()) {
     on<BootstrapFileviewerEvent>(this._onBootstrapFileviewerEvent);
     on<LoadFileviewerEvent>(this._onLoadFileviewerEvent);
@@ -37,8 +39,8 @@ class FileviewerBloc extends Bloc<FileviewerEvent, FileviewerState> {
       if (this.fileStorage.url != null) {
         returnValue = this.fileStorage.url;
       } else {
-        returnValue = AppConfig.baseUrl +
-            AppConfig.filesUrlPath +
+        returnValue = this.appInstanceParam.baseAppConfig.generalConfig.baseUrl +
+            this.appInstanceParam.baseAppConfig.generalConfig.filesUrlPath +
             "/" +
             this.fileStorage.recordId;
       }

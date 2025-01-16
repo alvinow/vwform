@@ -98,14 +98,14 @@ class VwCardParameterMaterial extends StatelessWidget {
     return returnValue;
   }
 
-  static Widget applyTitleFieldDisplayFormat({required String caption,required   VwFieldDisplayFormat? fieldDisplayFormat}){
+  static Widget applyTitleFieldDisplayFormat({required String locale, required String caption,required   VwFieldDisplayFormat? fieldDisplayFormat}){
     Widget returnValue=Container();
     try
     {
       if(caption!="") {
         VwFieldDisplayFormat currentDisplayFormat = fieldDisplayFormat != null
             ? fieldDisplayFormat
-            : VwFieldDisplayFormat();
+            : VwFieldDisplayFormat(locale: locale);
 
         String prefixCaption=currentDisplayFormat.prefixCaption==null?"":currentDisplayFormat.prefixCaption!;
         String sufixCaption=currentDisplayFormat.sufixCaption==null?"":currentDisplayFormat.sufixCaption!;
@@ -212,7 +212,7 @@ class VwCardParameterMaterial extends StatelessWidget {
 
 
 
-      Widget titleWidget =VwCardParameterMaterial.applyTitleFieldDisplayFormat(caption: lTitleText, fieldDisplayFormat: this.cardParameter.titleDisplayFormat);
+      Widget titleWidget =VwCardParameterMaterial.applyTitleFieldDisplayFormat(locale: this.appInstanceParam.baseAppConfig.generalConfig.locale, caption: lTitleText, fieldDisplayFormat: this.cardParameter.titleDisplayFormat);
 
       bool hideSubtitle = cardParameter.isShowSubtitle == false  ||
           (
@@ -224,11 +224,11 @@ class VwCardParameterMaterial extends StatelessWidget {
 
 
 
-      Widget subtitleWidget  = hideSubtitle==false? VwCardParameterMaterial.applyTitleFieldDisplayFormat(caption: this.subTitle.toString().trim(), fieldDisplayFormat: this.cardParameter.subtitleDisplayFormat):Container();
+      Widget subtitleWidget  = hideSubtitle==false? VwCardParameterMaterial.applyTitleFieldDisplayFormat(locale:this.appInstanceParam.baseAppConfig.generalConfig.locale, caption: this.subTitle.toString().trim(), fieldDisplayFormat: this.cardParameter.subtitleDisplayFormat):Container();
 
 
 
-      Widget timeUpdatedWidget = cardParameter.isShowDate==false? Container():VwCardParameterMaterial.applyTitleFieldDisplayFormat(caption: this.dateTime.toString(), fieldDisplayFormat: this.cardParameter.dateDisplayFormat );
+      Widget timeUpdatedWidget = cardParameter.isShowDate==false? Container():VwCardParameterMaterial.applyTitleFieldDisplayFormat(locale:this.appInstanceParam.baseAppConfig.generalConfig.locale,caption: this.dateTime.toString(), fieldDisplayFormat: this.cardParameter.dateDisplayFormat );
 
 
 
@@ -245,7 +245,7 @@ class VwCardParameterMaterial extends StatelessWidget {
               cardParameter.descriptionDisplayFormat!.hideOnNull == true);
 
 
-      Widget descriptionWidget  = hideDescription==false? VwCardParameterMaterial.applyTitleFieldDisplayFormat (caption: this.description.toString().trim(), fieldDisplayFormat: this.cardParameter.descriptionDisplayFormat):Container();
+      Widget descriptionWidget  = hideDescription==false? VwCardParameterMaterial.applyTitleFieldDisplayFormat (locale:this.appInstanceParam.baseAppConfig.generalConfig.locale, caption: this.description.toString().trim(), fieldDisplayFormat: this.cardParameter.descriptionDisplayFormat):Container();
 
       //Widget descriptionWidget  = Container();
 

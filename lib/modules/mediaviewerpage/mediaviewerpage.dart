@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient2base/appconfig.dart';
 import 'package:matrixclient2base/modules/base/vwapicall/apivirtualnode/apivirtualnode.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
@@ -90,6 +89,7 @@ class MediaViewerPageState extends State<MediaViewerPage> {
           .getFieldByName("medialinktitle")!
           .valueString!;
       returnValue = YoutubeAppDemo(
+        appInstanceParam: this.widget.appInstanceParam,
           autoplay: widget.autoplay, key: currentMediaKey, videoIds: [videoId]);
       if (videoPointer != null) {
         try {
@@ -99,6 +99,7 @@ class MediaViewerPageState extends State<MediaViewerPage> {
               videoPointer.getFieldByName("endseconds")!.valueNumber!;
 
           returnValue = YoutubeAppDemo(
+              appInstanceParam: this.widget.appInstanceParam,
               key: currentMediaKey,
               startSeconds: startSeconds,
               endSeconds: endSeconds,
@@ -135,6 +136,7 @@ class MediaViewerPageState extends State<MediaViewerPage> {
     );*/
 
     return VwFormResponseUserPage(
+      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
       commandToParentFunction: this.implementCommandToParentFunction,
       parentArticleNode: NodeUtil.getNode(linkNode: widget.mediaLinkNode),
       boxTopRowWidgetMode: NodeListView.btrDisabled,
@@ -167,7 +169,7 @@ class MediaViewerPageState extends State<MediaViewerPage> {
   }
 
   String getLoginSessionId() {
-    String returnValue = AppConfig.loginSessionGuestUserId;
+    String returnValue = this.widget.appInstanceParam.baseAppConfig.generalConfig.loginSessionGuestUserId;
     try {
       returnValue = widget.appInstanceParam.loginResponse!.loginSessionId!;
     } catch (error) {}
@@ -193,6 +195,8 @@ class MediaViewerPageState extends State<MediaViewerPage> {
 
         VwNodeRequestResponse nodeRequestResponse =
             await RemoteApi.nodeRequestApiCall(
+              baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+               graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
                 apiCallId: "getNodes",
                 apiCallParam: apiCallParam,
                 loginSessionId: this.getLoginSessionId());
@@ -312,10 +316,10 @@ class MediaViewerPageState extends State<MediaViewerPage> {
                 ? PreferredSize(
                     preferredSize: Size.fromHeight(50.0),
                     child: AppBar(
-                      backgroundColor: AppConfig.primaryColor,
+                      backgroundColor: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor,
                       title: Text(
                         title,
-                        style: TextStyle(color: AppConfig.textColor),
+                        style: TextStyle(color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.textColor),
                       ),
                       leading: InkWell(
                         onTap: () {
@@ -330,7 +334,7 @@ class MediaViewerPageState extends State<MediaViewerPage> {
                         child: Icon(
                           Icons.arrow_back,
                           size: 20,
-                          color: AppConfig.textColor,
+                          color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.textColor,
                         ),
                       ),
                     ))
@@ -367,10 +371,10 @@ class MediaViewerPageState extends State<MediaViewerPage> {
                 ? PreferredSize(
                     preferredSize: Size.fromHeight(35.0),
                     child: AppBar(
-                      backgroundColor: AppConfig.primaryColor,
+                      backgroundColor: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor,
                       title: Text(
                         title,
-                        style: TextStyle(color: AppConfig.textColor),
+                        style: TextStyle(color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.textColor),
                       ),
                       leading: InkWell(
                         onTap: () {
@@ -385,7 +389,7 @@ class MediaViewerPageState extends State<MediaViewerPage> {
                         child: Icon(
                           Icons.arrow_back,
                           size: 20,
-                          color: AppConfig.textColor,
+                          color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.textColor,
                         ),
                       ),
                     ))

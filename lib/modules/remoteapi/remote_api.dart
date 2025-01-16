@@ -50,13 +50,18 @@ class RemoteApi {
   }
 
   static Future<VwNodeRequestResponse> getListSpmNodeWithChildNode(
-      {required VwRowData apiCallParam, required String loginSessionId}) async {
+      {
+        required String baseUrl,
+        required String graphqlServerAddress,
+        required VwRowData apiCallParam, required String loginSessionId}) async {
     VwNodeRequestResponse returnValue = VwNodeRequestResponse();
     try {
       List<VwNode> renderedNodeList = [];
 
       VwNodeRequestResponse nodeRequestResponse =
           await RemoteApi.nodeRequestApiCall(
+            baseUrl: baseUrl,
+            graphqlServerAddress: graphqlServerAddress,
               apiCallId: 'getSpmFeed',
               apiCallParam: apiCallParam,
               loginSessionId: loginSessionId);
@@ -216,7 +221,9 @@ class RemoteApi {
   }
 
   static Future<VwApiCallResponse?> requestApiCall(
-      {required String apiCallId, required VwRowData apiCallParam, required String loginSessionId}
+      {
+        required String baseUrl,
+        required String graphqlServerAddress,  required String apiCallId, required VwRowData apiCallParam, required String loginSessionId}
       ) async{
     VwApiCallResponse? returnValue;
     try
@@ -229,8 +236,9 @@ class RemoteApi {
 
           VwGraphQlServerResponse graphQlServerResponse =
           await VwGraphQlClient.httpPostGraphQl(
+            baseUrl: baseUrl,
               timeoutSecond: 20,
-              url: AppConfig.serverAddress,
+              url: graphqlServerAddress,
               graphQlQuery: graphQlQuery);
 
           if(graphQlServerResponse.apiCallResponse!=null &&
@@ -252,7 +260,7 @@ class RemoteApi {
   }
 
   static Future<VwNodeUpsyncResultPackage> nodeUpsyncRequestApiCall(
-      {required VwRowData apiCallParam, required String loginSessionId,required String apiCallId}) async {
+      {required String baseUrl, required String graphqlServerAddress, required VwRowData apiCallParam, required String loginSessionId,required String apiCallId}) async {
     VwNodeUpsyncResultPackage returnValue =
         VwNodeUpsyncResultPackage(nodeUpsyncResultList: []);
 
@@ -271,8 +279,9 @@ class RemoteApi {
 
       VwGraphQlServerResponse graphQlServerResponse =
           await VwGraphQlClient.httpPostGraphQl(
+            baseUrl: baseUrl,
               timeoutSecond: 240,
-              url: AppConfig.serverAddress,
+              url: graphqlServerAddress,
               graphQlQuery: graphQlQuery);
 
 
@@ -330,7 +339,10 @@ class RemoteApi {
 
 
   static Future<VwNodeRequestResponse> nodeRequestApiCall(
-      {required String apiCallId,
+      {
+        required String baseUrl,
+        required String apiCallId,
+        required String graphqlServerAddress,
       required VwRowData apiCallParam,
       required String loginSessionId}) async {
     VwNodeRequestResponse returnValue = VwNodeRequestResponse();
@@ -341,7 +353,7 @@ class RemoteApi {
           loginSessionId: loginSessionId,
           parameter: apiCallParam);
 
-      VwGraphQlServerResponse graphQlServerResponse =await VwGraphQlClient.httpPostGraphQl(timeoutSecond: 60,url: AppConfig.serverAddress,graphQlQuery: graphQlQuery);
+      VwGraphQlServerResponse graphQlServerResponse =await VwGraphQlClient.httpPostGraphQl(baseUrl: baseUrl, timeoutSecond: 60,url: graphqlServerAddress,graphQlQuery: graphQlQuery);
 
       if (graphQlServerResponse.httpResponse != null) {
         returnValue.httpResponse = graphQlServerResponse.httpResponse;

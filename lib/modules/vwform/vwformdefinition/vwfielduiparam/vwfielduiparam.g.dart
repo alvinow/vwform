@@ -52,7 +52,7 @@ VwFieldUiParam _$VwFieldUiParamFromJson(Map<String, dynamic> json) =>
       refTagListFieldFileStorageFieldName:
           json['refTagListFieldFileStorageFieldName'] as String?,
       fieldDisplayFormat: json['fieldDisplayFormat'] == null
-          ? const VwFieldDisplayFormat()
+          ? const VwFieldDisplayFormat(locale: "ID_id")
           : VwFieldDisplayFormat.fromJson(
               json['fieldDisplayFormat'] as Map<String, dynamic>),
       isCalculatedField: json['isCalculatedField'] as bool?,

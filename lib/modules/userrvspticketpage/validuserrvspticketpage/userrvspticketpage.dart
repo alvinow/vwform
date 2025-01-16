@@ -1,10 +1,8 @@
 import 'dart:convert';
-
 import 'dart:typed_data';
 import 'dart:ui';
 import 'dart:io' as FileIo;
 import 'package:flutter/services.dart' show rootBundle;
-
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +10,6 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:matrixclient2base/appconfig.dart';
-
-
-
 import 'package:matrixclient2base/modules/base/vwbasemodel/vwbasemodel.dart';
 import 'package:matrixclient2base/modules/base/vwclassencodedjson/vwclassencodedjson.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
@@ -125,7 +120,7 @@ class UserRvspTicketPageState extends State<UserRvspTicketPage> {
 
         title = nameContactticket.toString();
 
-        data = AppConfig.baseUrl +
+        data = this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl +
             "/?ticketCode=" +
             ticketcodeFieldValue!.valueString!;
       } catch (error) {}
@@ -215,6 +210,8 @@ class UserRvspTicketPageState extends State<UserRvspTicketPage> {
 
         VwNodeUpsyncResultPackage nodeUpsyncResultPackage =
             await RemoteApi.nodeUpsyncRequestApiCall(
+              baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+              graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
                 apiCallId: "syncNodeContent",
                 apiCallParam: apiCallParam,
                 loginSessionId: this.widget.ticketCode);
@@ -424,15 +421,17 @@ class UserRvspTicketPageState extends State<UserRvspTicketPage> {
         ));
   }
 
-  static String? getUrl({required VwFileStorage fileStorage}) {
+  static String? getUrl({
+    required BaseAppConfig baseAppConfig,
+    required VwFileStorage fileStorage}) {
     String? returnValue;
 
     if (fileStorage.availableOnServer == true) {
       if (fileStorage.url != null) {
         returnValue = fileStorage.url;
       } else {
-        returnValue = AppConfig.baseUrl +
-            AppConfig.filesUrlPath +
+        returnValue = baseAppConfig.generalConfig.baseUrl +
+            baseAppConfig.generalConfig.filesUrlPath +
             "/" +
             fileStorage.recordId;
       }
@@ -464,7 +463,9 @@ class UserRvspTicketPageState extends State<UserRvspTicketPage> {
           .elementAt(0);
 
       String? url =
-          UserRvspTicketPageState.getUrl(fileStorage: baseTicketFileStorage);
+          UserRvspTicketPageState.getUrl(
+              baseAppConfig: this.widget.appInstanceParam.baseAppConfig,
+              fileStorage: baseTicketFileStorage);
 
       FileIo.File file = await DefaultCacheManager().getSingleFile(url!);
       String fileBase64 = await file.readAsString();
@@ -639,24 +640,7 @@ class UserRvspTicketPageState extends State<UserRvspTicketPage> {
   Widget getEventNameWidget() {
     return Container();
 
-    Widget line1 = Text("Pisah Sambut:",
-        textAlign: TextAlign.center, style: TextStyle(fontSize: 20));
-    Widget line2 = Text(
-      "MALAM REFLEKSI",
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-    );
-    Widget line3 = Text(
-      "KEPEMIMPINAN JABAR JUARA",
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-    );
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [line1, line2, line3],
-    );
   }
 
   @override
@@ -729,13 +713,13 @@ class UserRvspTicketPageState extends State<UserRvspTicketPage> {
                   ],
                     title: Row(children: [
 
-                  AppConfig.centerLogoMode == NodeListView.mlmLogo
+                  this.widget.appInstanceParam.baseAppConfig.generalConfig.centerLogoMode == NodeListView.mlmLogo
                       ? Image.asset(
-                          AppConfig.mainLogoPath,
+                    this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
                           scale: 15,
                         )
                       : Container(),
-                  AppConfig.centerLogoMode == NodeListView.mlmText
+                      this.widget.appInstanceParam.baseAppConfig.generalConfig.centerLogoMode == NodeListView.mlmText
                       ?InkWell(
                       onTap: () async{
                         final Uri url = Uri.parse('https://alumniitb.org');
@@ -743,7 +727,7 @@ class UserRvspTicketPageState extends State<UserRvspTicketPage> {
                         await launchUrl(url);
                       },
                       child: Text(
-                    AppConfig.appTitle,
+                        this.widget.appInstanceParam.baseAppConfig.generalConfig.appTitle,
                     style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
                   ))
                       : Container(),
@@ -839,7 +823,7 @@ class UserRvspTicketPageState extends State<UserRvspTicketPage> {
                 appBar: AppBar(
                     title: Row(children: [
                   Image.asset(
-                    AppConfig.mainLogoPath,
+                    this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
                     scale: 15,
                   ),
                   Text(
@@ -875,7 +859,7 @@ class UserRvspTicketPageState extends State<UserRvspTicketPage> {
           appBar: AppBar(
               title: Row(children: [
             Image.asset(
-              AppConfig.mainLogoPath,
+              this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
               scale: 15,
             ),
             Text(

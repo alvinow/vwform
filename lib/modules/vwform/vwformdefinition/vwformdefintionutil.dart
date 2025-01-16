@@ -12,10 +12,12 @@ import 'package:vwform/modules/vwform/vwformdefinition/vwsectionformdefinition/v
 class VwFormDefinitionUtil{
 
   static VwFormDefinition? extractFirstOccurenceFormDefinition(
-      {required List<VwNodeContent> nodeContents}) {
+      {
+        required String tagLinkBaseModelFormDefinition,
+        required List<VwNodeContent> nodeContents}) {
     for (int la = 0; la < nodeContents.length; la++) {
       VwNodeContent currentNodeContent = nodeContents.elementAt(la);
-      if (currentNodeContent.tag == AppConfig.tagLinkBaseModelFormDefinition &&
+      if (currentNodeContent.tag == tagLinkBaseModelFormDefinition &&
           currentNodeContent.linkbasemodel != null &&
           currentNodeContent.linkbasemodel!.rendered != null) {
         try {

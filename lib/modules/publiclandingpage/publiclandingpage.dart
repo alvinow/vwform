@@ -56,14 +56,14 @@ class VwPublicLandingPageState extends State<VwPublicLandingPage>{
     return     VwFormResponseUserPage(
 
       //footer: this.widget.showFooter==false?null: PublicLandingPageFooter(),
-      mainHeaderTitleTextColor: AppConfig.textColor,
-      mainHeaderBackgroundColor: AppConfig.primaryColor,
+      mainHeaderTitleTextColor: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.textColor,
+      mainHeaderBackgroundColor: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor,
 
       topRowWidget: this.getTopRowWidget(),
       enableCreateRecord: false,
-      mainLogoTextCaption: AppConfig.appTitle,
+      mainLogoTextCaption: this.widget.appInstanceParam.baseAppConfig.generalConfig.appTitle,
       mainLogoMode: NodeListView.mlmText,
-      mainLogoImageAsset: AppConfig.rootLogoPath,
+      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.rootLogoPath,
 
       folderNodeId: APIVirtualNode.exploreNodeFeed,
       key: this.formUserResponseKey,

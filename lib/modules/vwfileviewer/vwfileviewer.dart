@@ -102,7 +102,9 @@ class VwFileViewerState extends State<VwFileViewer> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(key:this.widget.key,providers: [
       BlocProvider(
-          create: (_) => FileviewerBloc (key:this.widget.key! , fileStorage: this.widget.fileStorage)
+          create: (_) => FileviewerBloc (
+              appInstanceParam: this.widget.appInstanceParam,
+              key:this.widget.key! , fileStorage: this.widget.fileStorage)
             ..add(BootstrapFileviewerEvent(timestamp: DateTime.now())))
     ], child: _bodyFileViewer(context));
   }
@@ -441,7 +443,7 @@ class VwFileViewerState extends State<VwFileViewer> {
       else if(state is DisplayContentInYoutubeVideoIdFileviewerState){
 
 
-        return YoutubeAppDemo( videoIds: state.videoIds);
+        return YoutubeAppDemo(appInstanceParam: this.widget.appInstanceParam, videoIds: state.videoIds);
       }
       else if (state is DisplayContentInFileFileviewerState) {
         final String? extension = p

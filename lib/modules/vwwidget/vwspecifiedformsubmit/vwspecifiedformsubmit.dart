@@ -102,6 +102,7 @@ class VwSpecifiedFormSubmitState extends State<VwSpecifiedFormSubmit>{
     );*/
 
    Widget listViewPage=VwFormResponseUserPage(
+     mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
      currentNode: widget.containerFolderNode,
      folderNodeId: widget.containerFolderNodeId,
        isRootFolder: true,

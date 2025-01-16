@@ -56,14 +56,16 @@ class HorizontalArticleFeedState extends State<HorizontalArticleFeed> {
 
   Widget getFeedFolderNode() {
     return VwFormResponseUserPage(
+      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
+
       rowViewerBoxContraints: BoxConstraints(maxWidth: 350,maxHeight: 250),
       scrollDirection: Axis.horizontal,
       extendedApiCallParam: this.apiCallFilterByStandardArticleMaincategory(),
       showLoginButton: false,
       showSearchIcon: false,
       zeroDataCaption: "(Belum ada artikel)",
-      mainHeaderTitleTextColor: AppConfig.textColor,
-      mainHeaderBackgroundColor: AppConfig.primaryColor,
+      mainHeaderTitleTextColor: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.textColor,
+      mainHeaderBackgroundColor: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor,
       enableCreateRecord: false,
       folderNodeId: APIVirtualNode.exploreNodeFeed,
       key: this.widget.key,

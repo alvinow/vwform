@@ -157,6 +157,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
     }
 
     Widget returnValue = VwTextFieldWidget(
+      appInstanceParam: this.widget.appInstanceParam,
         key: Key(this.widget.formField.fieldDefinition.fieldName),
         field: this.widget.field,
         readOnly: this.widget.readOnly,

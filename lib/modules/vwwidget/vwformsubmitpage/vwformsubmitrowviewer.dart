@@ -66,7 +66,7 @@ class VwFormSubmitRowViewer extends NodeRowViewer {
                   builder: (context) => VwFormPage(
                         appInstanceParam: this.appInstanceParam,
                         formDefinitionFolderNodeId:
-                            AppConfig.formDefinitionFolderNodeId,
+                        this.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId,
                         isMultipageSections: true,
                         formDefinition: formDefinition,
                         formResponse: formResponse,
@@ -197,7 +197,7 @@ class VwFormSubmitRowViewer extends NodeRowViewer {
               MaterialPageRoute(
                   builder: (context) => VwFormPage(
                         formDefinitionFolderNodeId:
-                            AppConfig.formDefinitionFolderNodeId,
+                        this.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId,
                         appInstanceParam: this.appInstanceParam,
                         isMultipageSections: true,
                         formDefinition: formParam,

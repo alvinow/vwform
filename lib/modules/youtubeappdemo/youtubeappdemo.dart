@@ -17,14 +17,14 @@ class YoutubeAppDemo extends StatefulWidget {
         this.endSeconds = 0,
         this.startSeconds = 0,
         this.playUsingMediaViewer = false,
-        this.appInstanceParam,
+        required this.appInstanceParam,
         this.articleNode});
   final List<String> videoIds;
   final bool autoplay;
   final double startSeconds;
   final double endSeconds;
   final bool playUsingMediaViewer;
-  final VwAppInstanceParam? appInstanceParam;
+  final VwAppInstanceParam appInstanceParam;
   final VwNode? articleNode;
   @override
   _YoutubeAppDemoState createState() => _YoutubeAppDemoState();
@@ -145,7 +145,7 @@ class _YoutubeAppDemoState extends State<YoutubeAppDemo> {
     } else {
       //ImageNetwork (fitAndroidIos: BoxFit.cover,fullScreen: true,  fitWeb: BoxFitWeb.fill, image:"https://img.youtube.com/vi/"+this.widget.videoIds.elementAt(0)+"/0.jpg",width: 1920,height: 1080,)
 
-      String networkImage = AppConfig.baseUrl +
+      String networkImage = this.widget.appInstanceParam!.baseAppConfig.generalConfig.baseUrl +
           r"/youtubeimage?vi=" +
           this.widget.videoIds.elementAt(0);
       return InkWell(

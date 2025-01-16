@@ -189,10 +189,10 @@ class VwInstagramRowViewerMaterialState
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.resolveWith(
                                       (states) =>
-                                  AppConfig.primaryColor),
+                                      this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor),
                               side: MaterialStateProperty.resolveWith(
                                       (states) => BorderSide(
-                                      color: AppConfig.textColor)),
+                                      color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.textColor)),
 
                             ),
                             onPressed: () {
@@ -205,37 +205,37 @@ class VwInstagramRowViewerMaterialState
                             },
                             icon: Icon(
                               Icons.person,
-                              color: AppConfig.textColor,
+                              color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.textColor,
                             ),
                             label: Text(
                               "Login",
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
-                                  color: AppConfig.textColor),
+                                  color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.textColor),
                             )),
                         TextButton.icon(
                             style: ButtonStyle(
                               side: MaterialStateProperty.resolveWith(
                                       (states) => BorderSide(
-                                      color: AppConfig.primaryColor)),
+                                      color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor)),
                               textStyle: MaterialStateProperty.resolveWith(
                                       (states) =>
-                                      TextStyle(color: AppConfig.primaryColor)),
+                                      TextStyle(color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor)),
                             ),
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
                             icon: Icon(
                               Icons.navigate_next,
-                              color: AppConfig.primaryColor,
+                              color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor,
                             ),
                             label: Text(
                               "Lanjut",
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
-                                  color: AppConfig.primaryColor),
+                                  color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor),
                             )),
 
 
@@ -479,7 +479,7 @@ class VwInstagramRowViewerMaterialState
 
               IconButton(onPressed: ()async{
 
-                String url=AppConfig.baseUrl+r"?articleId="+ widget.rowNode!.recordId;
+                String url=this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl+r"?articleId="+ widget.rowNode!.recordId;
 
                 await Clipboard.setData(ClipboardData(
                     text: url ));
@@ -867,7 +867,7 @@ class VwInstagramRowViewerMaterialState
               .userInfo!
               .user
               .mainRoleUserGroupId ==
-          AppConfig.adminticketMainRoleUserGroupId) {
+          this.widget.appInstanceParam.baseAppConfig.generalConfig.adminticketMainRoleUserGroupId) {
         returnValue = true;
       }
     } catch (error) {}
@@ -905,6 +905,7 @@ class VwInstagramRowViewerMaterialState
                 await showModalBottomSheet(
                   context: context,
                   builder: (context) => VwInstagramBottomModalMenu(
+                    appInstanceParam: this.widget.appInstanceParam,
                     key: UniqueKey(),
                       enableEdit: enableEdit,
                       editArticleCardTapper: this.widget.cardTapper),
@@ -1019,7 +1020,9 @@ class VwInstagramRowViewerMaterialState
                   return SizedBox(
                       height: frameHeight,
                       width: screenSize.width,
-                      child: YoutubeAppDemo(videoIds: [
+                      child: YoutubeAppDemo(
+                          appInstanceParam: this.widget.appInstanceParam,
+                          videoIds: [
                         this.widget.medialinktitle!,
                         this.widget.medialinktitle!
                       ]));
@@ -1081,7 +1084,9 @@ class VwInstagramRowViewerMaterialState
                   return SizedBox(
                       height: height,
                       width: width,
-                      child: YoutubeAppDemo(autoplay: false, videoIds: [
+                      child: YoutubeAppDemo(
+                          appInstanceParam: this.widget.appInstanceParam,
+                          autoplay: false, videoIds: [
                         this.widget.medialinktitle!,
                         this.widget.medialinktitle!
                       ]));
@@ -1224,12 +1229,12 @@ class VwInstagramRowViewerMaterialState
                 children: [
                   this.getTopWidget(),
                   Container(
-                    color: AppConfig.primaryColor,
+                    color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor,
                     margin: EdgeInsets.fromLTRB(10, 30, 20, 10),
                     padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                     child: Text(this.widget.title.toString(),
                         style: TextStyle(
-                            color: AppConfig.textColor,
+                            color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.textColor,
                             fontWeight: FontWeight.w500,
                             fontSize: 14)),
                   ),
@@ -1272,12 +1277,12 @@ class VwInstagramRowViewerMaterialState
                 children: [
                   this.getTopWidget(),
                   Container(
-                    color: AppConfig.primaryColor,
+                    color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor,
                     margin: EdgeInsets.fromLTRB(10, 30, 20, 10),
                     padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                     child: Text(this.widget.title.toString(),
                         style: TextStyle(
-                            color: AppConfig.textColor,
+                            color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.textColor,
                             fontWeight: FontWeight.w500,
                             fontSize: 14)),
                   ),

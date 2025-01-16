@@ -29,7 +29,9 @@ class VwFormResponseViewer extends StatefulWidget {
   final VwFormDefinition formParam;
   String? initFormResponseId;
 
-  static VwQueryResult createQueryResultFromNodeList(List<VwNode> nodes) {
+  static VwQueryResult createQueryResultFromNodeList({required  List<VwNode> nodes,
+    required String tagLinkBaseModelFormDefinition
+  }) {
     VwQueryResult returnValue = VwQueryResult(rows: <VwRowData>[]);
 
     for (int la = 0; la < nodes.length; la++) {
@@ -44,7 +46,7 @@ class VwFormResponseViewer extends StatefulWidget {
           if (formResponse.attachments != null) {
             VwNodeContent? formDefinitionNodeContent =
                 VwNodeContentUtil.getAttachmentByTag(
-                    tag: AppConfig.tagLinkBaseModelFormDefinition,
+                    tag: tagLinkBaseModelFormDefinition,
                     attachments: formResponse.attachments!);
 
             if (formDefinitionNodeContent != null &&
@@ -131,7 +133,9 @@ class _VwFormResponseViewer extends State<VwFormResponseViewer> {
     choices = VwQueryResult(rows: []);
     if (this.widget.formResponsesNode.renderedNodeList != null) {
       choices = VwFormResponseViewer.createQueryResultFromNodeList(
-          this.widget.formResponsesNode.renderedNodeList!);
+          nodes:  this.widget.formResponsesNode.renderedNodeList!,
+          tagLinkBaseModelFormDefinition: this.widget.appInstanceParam.baseAppConfig.generalConfig.tagLinkBaseModelFormDefinition
+      );
     }
     selectedComboBoxIndex = -1;
   }
@@ -162,7 +166,7 @@ class _VwFormResponseViewer extends State<VwFormResponseViewer> {
             selectedNode.content.linkRowCollection!.rendered!;
 
         VwNodeContent? nodeContent = VwNodeContentUtil.getAttachmentByTag(
-            tag: AppConfig.tagLinkBaseModelFormDefinition,
+            tag: this.widget.appInstanceParam.baseAppConfig.generalConfig.tagLinkBaseModelFormDefinition,
             attachments: formResponse.attachments!);
 
         if (nodeContent != null) {
@@ -199,7 +203,7 @@ class _VwFormResponseViewer extends State<VwFormResponseViewer> {
           ? VwFormPage(
         appInstanceParam:  this.widget.appInstanceParam,
               isShowAppBar: false,
-              formDefinitionFolderNodeId: AppConfig.formDefinitionFolderNodeId,
+              formDefinitionFolderNodeId: this.widget.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId,
 
               formResponse: this.selectedFormResponse!,
               formDefinition: this.selectedFormDefinition!,
@@ -227,7 +231,7 @@ class _VwFormResponseViewer extends State<VwFormResponseViewer> {
               child: VwFormPage(
                   isShowAppBar: false,
                   formDefinitionFolderNodeId:
-                      AppConfig.formDefinitionFolderNodeId,
+                  this.widget.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId,
                   appInstanceParam: this.widget.appInstanceParam,
                   formResponse: this.selectedFormResponse!,
                   formDefinition: this.selectedFormDefinition!,

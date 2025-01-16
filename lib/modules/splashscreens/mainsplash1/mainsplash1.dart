@@ -53,12 +53,7 @@ late Image mainImage;
 
   @override
   Widget build(BuildContext context) {
-    String versionNumber =
-        widget.initsplashscreenParam .getFieldByName('appVersionNumber') != null
-            ?widget.initsplashscreenParam
-                .getFieldByName('appVersionNumber')!
-                .getValueAsString()
-            : AppConfig.appVersion;
+
 
 
     return FutureBuilder<Image>(

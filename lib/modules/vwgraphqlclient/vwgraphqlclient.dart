@@ -13,6 +13,7 @@ import 'package:vwutil/modules/util/vwmultipartrequest/vwmultipartrequest.dart';
 class VwGraphQlClient {
   static Future<VwGraphQlServerResponse> httpPostGraphQl(
       {required String url,
+        required String baseUrl,
       required VwGraphQlQuery graphQlQuery,
       int timeoutSecond = 20}) async {
     String currentUuid = Uuid().v4();
@@ -24,7 +25,7 @@ class VwGraphQlClient {
         "Content-Type": "application/json",
       };
 
-      String multipartUrl = AppConfig.baseUrl + "/syncNodeContent";
+      String multipartUrl = baseUrl + "/syncNodeContent";
 
       http.StreamedResponse? streamedResponse;
       //http.Response? apiHttpResponse;

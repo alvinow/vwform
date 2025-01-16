@@ -276,6 +276,8 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
         ]);
 
         VwNodeRequestResponse returnValue = await RemoteApi.nodeRequestApiCall(
+          baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+          graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
             apiCallId: "getNodes",
             apiCallParam: apiCallParam,
             loginSessionId:
@@ -369,6 +371,8 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
         ]);
 
         VwNodeRequestResponse returnValue = await RemoteApi.nodeRequestApiCall(
+          baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+            graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
             apiCallId: "getNodes",
             apiCallParam: apiCallParam,
             loginSessionId:
@@ -406,6 +410,8 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
       ]);
 
       VwNodeRequestResponse returnValue = await RemoteApi.nodeRequestApiCall(
+          baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+          graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
           apiCallId: "getNodes",
           apiCallParam: apiCallParam,
           loginSessionId: this.getLoginSessionId());
@@ -698,6 +704,8 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
           fields: [fieldValueValidateForm]);
 
       VwApiCallResponse ? apiCallResponse = await RemoteApi.requestApiCall(
+          baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+        graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
           apiCallId: "validateFormResponse",
           apiCallParam: apiCallParam,
           loginSessionId:
@@ -1114,6 +1122,7 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
         bool isSyncSuccessfull = false;
 
         SyncTokenBlock? syncTokenBlock = await VwNodeStoreOnHive.getToken(
+            graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
             loginSessionId:
             widget.appInstanceParam.loginResponse!.loginSessionId!,
             count: widget.formResponse.syncFormResponseList!.length,
@@ -1188,6 +1197,8 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
 
             VwNodeUpsyncResultPackage nodeUpsyncResultPackage =
             await RemoteApi.nodeUpsyncRequestApiCall(
+                baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+                graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
                 apiCallId: "syncNodeContent",
                 apiCallParam: apiCallParam,
                 loginSessionId: this
@@ -1255,7 +1266,7 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
   }
 
   String getCreatorUserId() {
-    String returnValue = AppConfig.guestUserId;
+    String returnValue = this.widget.appInstanceParam.baseAppConfig.generalConfig.guestUserId;
     try {
       returnValue =
           this.widget.appInstanceParam.loginResponse!.userInfo!.user.recordId;
@@ -1265,7 +1276,7 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
 
 
   String getLoginSessionId() {
-    String returnValue = AppConfig.loginSessionGuestUserId;
+    String returnValue = this.widget.appInstanceParam.baseAppConfig.generalConfig.loginSessionGuestUserId;
     try {
       returnValue = widget.appInstanceParam.loginResponse!.loginSessionId!;
     } catch (error) {}
@@ -1342,6 +1353,7 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
         } else if (this.currentFormDefinition.dataSource ==
             VwDataSourceDefinition.smServer) {
           SyncTokenBlock? syncTokenBlock = await VwNodeStoreOnHive.getToken(
+              graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
               loginSessionId: this.getLoginSessionId(),
               count: 1,
               apiCallId: "getToken");
@@ -1352,7 +1364,7 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
             }
 
             if (widget.formResponse.creatorUserId == null) {
-              widget.formResponse.creatorUserId = AppConfig.guestUserId;
+              widget.formResponse.creatorUserId = this.widget.appInstanceParam.baseAppConfig.generalConfig.guestUserId;
             }
             List<VwFileStorage> uploadFileStorageList = [];
 
@@ -1415,6 +1427,8 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
 
             VwNodeUpsyncResultPackage nodeUpsyncResultPackage =
             await RemoteApi.nodeUpsyncRequestApiCall(
+                baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+              graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
                 apiCallId: "syncNodeContent",
                 apiCallParam: apiCallParam,
                 loginSessionId: this.getLoginSessionId());
@@ -1566,7 +1580,7 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
         margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
         child: InkWell(
           onTap: () async {
-            String urlLink = AppConfig.baseUrl +
+            String urlLink = this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl +
                 "/rowdataexcel?recordId=" +
                 widget.formResponse.recordId;
 
@@ -1683,9 +1697,9 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
             null &&
         (widget.appInstanceParam.loginResponse!.userInfo!.user!.mainRoleUserGroupId!
              ==
-            AppConfig.appAdminUserMainRole || widget.appInstanceParam.loginResponse!.userInfo!.user!.mainRoleUserGroupId!
+            this.widget.appInstanceParam.baseAppConfig.generalConfig.appAdminUserMainRole || widget.appInstanceParam.loginResponse!.userInfo!.user!.mainRoleUserGroupId!
             ==
-            AppConfig.rootMainRole)    ) ||
+            this.widget.appInstanceParam.baseAppConfig.generalConfig.rootMainRole)    ) ||
         (widget.showDeleteIcon == true &&
             this.currentFormDefinition.enableDeleteRecord == true &&
             this.currentFormDefinition.isReadOnly == false)) {

@@ -48,7 +48,13 @@ class VwUserNotificationPage extends StatelessWidget {
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text('Uploading Data...')));
 
-        await VwNodeStoreOnHive(boxName: AppConfig .unsyncedRecordFieldname)
+        await VwNodeStoreOnHive(
+          unsyncedRecordFieldname: this.appInstanceParam.baseAppConfig.generalConfig.unsyncedRecordFieldname,
+          loggedInUser:this.appInstanceParam.baseAppConfig.generalConfig.loggedInUser ,
+          graphqlServerAddress: this.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+            appTitle: this.appInstanceParam.baseAppConfig.generalConfig.appTitle,
+            appversion: this.appInstanceParam.baseAppConfig.generalConfig.appVersion,
+            boxName: this.appInstanceParam.baseAppConfig.generalConfig.unsyncedRecordFieldname)
             .syncToServer(loginSessionId: this.appInstanceParam.loginResponse!.loginSessionId!);
       },
     );

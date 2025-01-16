@@ -10,6 +10,7 @@ class DeploySpiMobile{
   VwUiDeployParam getDeployParam(){
     VwUiDeployParam returnValue;
 
+    /*
     VwUiPageBodyComponentParam userNotificationPageBodyComponent=  VwUiPageBodyComponentParam(
         caption: "User Notification",
         listNode: VwUiPageBodyComponentListNodeParam( folderNodeId: AppConfig.spmFolderNodeId,listSearchFieldName: ["nospp","kdsatker"])
@@ -33,12 +34,12 @@ class DeploySpiMobile{
     VwUiPageParam bootPageparam= VwUiPageParam(recordId: "boot", tabPages: [tabSPMPageBodyComponent,formParamPageBodyComponent]);
 
     VwUiPageParam userNotificationPageparam= VwUiPageParam(recordId: "boot", tabPages: [userNotificationPageBodyComponent]);
-
+*/
 
     returnValue = VwUiDeployParam(uiPages: [
 
     ]);
-    
+
     return returnValue;
   }
 }

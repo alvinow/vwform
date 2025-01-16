@@ -2,16 +2,13 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:matrixclient2base/appconfig.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
-import 'dart:math' as math;
-import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-//import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:uuid/uuid.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwform.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwfielduiparam/vwfielduiparam.dart';
@@ -29,11 +26,13 @@ class VwTextFieldWidget extends StatefulWidget {
       this.readOnly = false,
       required this.formField,
       this.onValueChanged,
+        required this.appInstanceParam,
       required this.getCurrentFormResponseFunction})
       : super(key: key);
 
   final VwFieldValue field;
   final bool readOnly;
+  final VwAppInstanceParam appInstanceParam;
   final VwFormField formField;
   final VwFieldWidgetChanged? onValueChanged;
   final GetCurrentFormResponseFunction getCurrentFormResponseFunction;
@@ -90,7 +89,7 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
   }
 
   static Widget ticketCodeViewer(
-      {required VwRowData ticketshowevent, required BuildContext context}) {
+      {required String baseUrl, required VwRowData ticketshowevent, required BuildContext context}) {
     String? nameContactticket;
     //String? circleContactTicket;
     //String? addressline1;
@@ -111,7 +110,7 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
 
       //addressline2=NodeUtil.getFieldValueFromLinkNodeRowData(fieldName: "addressline2", linkNode: contactticketFieldValue!.valueLinkNode!)!.valueString;
 
-      String data = Uri.encodeFull(AppConfig.baseUrl +
+      String data = Uri.encodeFull(baseUrl +
           "/?ticketCode=" +
           ticketcodeFieldValue!.valueString! +
           '&nama=' +
@@ -146,7 +145,7 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
       username =
           userNode!.content.classEncodedJson!.data!["username"].toString();
     } catch (error) {}
-    String data = AppConfig.baseUrl +
+    String data = this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl +
         "/?otpCode=" +
         this.textEditingController.value.text! +
         "&authMode=otp";
@@ -154,7 +153,7 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
     return InkWell(
         onTap: () async {
           if (this.textEditingController.value.text != null) {
-            String data = AppConfig.baseUrl +
+            String data = this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl +
                 "/?otpCode=" +
                 this.textEditingController.value.text! +
                 "&authMode=otp";
@@ -185,7 +184,7 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
       ]),
       onTap: () async {
         if (this.textEditingController.value.text != null) {
-          String data = AppConfig.baseUrl +
+          String data = this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl +
               "/?otpCode=" +
               this.textEditingController.value.text! +
               "&authMode=otp";
@@ -544,6 +543,7 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
           showTicketCode == true
               ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             VwTextFieldWidgetState.ticketCodeViewer(
+                baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
                 ticketshowevent:
                 this.widget.getCurrentFormResponseFunction(),
                 context: context)

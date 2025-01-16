@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:matrixclient2base/appconfig.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
 
 
 typedef OnTapButton = void Function();
@@ -11,8 +12,8 @@ class PublicQuestionButtonMenuWidget extends StatefulWidget{
    required this.caption,
    required this.onTapButton,
 
-    this.textColor=Colors.white,
-    this.primaryColor=AppConfig.primaryColor,
+    required this.textColor,
+    required this.primaryColor,
     this.fontSize=13
 });
 
@@ -21,6 +22,7 @@ class PublicQuestionButtonMenuWidget extends StatefulWidget{
   final Color primaryColor;
   final Color textColor;
   final double fontSize;
+
 
 
   PublicQuestionButtonMenuWidgetState createState()=>PublicQuestionButtonMenuWidgetState();

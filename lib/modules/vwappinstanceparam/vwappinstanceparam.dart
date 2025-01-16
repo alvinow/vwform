@@ -1,3 +1,4 @@
+import 'package:matrixclient2base/appconfig.dart';
 import 'package:matrixclient2base/modules/base/vwloginresponse/vwloginresponse.dart';
 import 'package:vwform/modules/pagecoordinator/bloc/pagecoordinator_bloc.dart';
 
@@ -7,11 +8,13 @@ class VwAppInstanceParam{
     this.loginResponse,
     required this.appBloc,
     required this.baseUrl,
-    required this.locale
+    required this.locale,
+    required this.baseAppConfig
 
 });
   final VwLoginResponse? loginResponse;
   final PagecoordinatorBloc appBloc;
   final String baseUrl;
   final String locale;
+  final BaseAppConfig baseAppConfig;
 }

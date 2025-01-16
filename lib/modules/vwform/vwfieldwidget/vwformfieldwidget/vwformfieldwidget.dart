@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:matrixclient2base/appconfig.dart';
 import 'package:matrixclient2base/modules/base/vwclassencodedjson/vwclassencodedjson.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
@@ -21,25 +20,21 @@ import 'package:vwform/modules/vwwidget/vwoperatorticketpage/modules/vwoperatort
 import 'package:vwutil/modules/util/nodeutil.dart';
 
 class VwFormFieldWidget extends StatefulWidget {
-  const VwFormFieldWidget(
-      {super.key,
-
-        required this.appInstanceParam,
-        required this.field,
-        this.readOnly = false,
-        required this.formField,
-        this.onValueChanged,
-        required this.getFieldvalueCurrentResponseFunction,
-
-      });
+  const VwFormFieldWidget({
+    super.key,
+    required this.appInstanceParam,
+    required this.field,
+    this.readOnly = false,
+    required this.formField,
+    this.onValueChanged,
+    required this.getFieldvalueCurrentResponseFunction,
+  });
   final VwAppInstanceParam appInstanceParam;
   final VwFieldValue field;
   final bool readOnly;
   final VwFormField formField;
   final VwFieldWidgetChanged? onValueChanged;
   final GetCurrentFormResponseFunction getFieldvalueCurrentResponseFunction;
-
-
 
   _VwFormFieldWidgetState createState() => _VwFormFieldWidgetState();
 }
@@ -58,12 +53,18 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
     try {
       List<int> willBeDeleteList = [];
       for (int la = 0;
-      la < widget.field.valueFormResponse!.attachments!.length;
-      la++) {
+          la < widget.field.valueFormResponse!.attachments!.length;
+          la++) {
         VwNodeContent currentNodeContent =
-        widget.field.valueFormResponse!.attachments!.elementAt(la);
+            widget.field.valueFormResponse!.attachments!.elementAt(la);
 
-        if (currentNodeContent.tag == AppConfig.vwFormDefinition) {
+        if (currentNodeContent.tag ==
+            this
+                .widget
+                .appInstanceParam
+                .baseAppConfig
+                .generalConfig
+                .vwFormDefinition) {
           willBeDeleteList.add(la);
         }
       }
@@ -78,47 +79,47 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
   void setFormDefinition() {
     try {
       VwRowData? currentFormResponse =
-      widget.getFieldvalueCurrentResponseFunction();
+          widget.getFieldvalueCurrentResponseFunction();
 
       VwFieldValue? refInternalFieldValue =
-      VwFieldWidgetUtil.getInternalOfFielValueFromRowData(
-          source: currentFormResponse,
-          localFieldRef: widget.formField.fieldUiParam.localFieldRef!);
-
-      if(this.widget.formField.fieldUiParam.uiTypeId==VwFieldUiParam.uitFormPageByLocalFieldSource)
-      {
-        try {
-          VwFieldValue? formResponseFieldValue = NodeUtil
-              .getFieldValueByLocalFieldRef(rowData: currentFormResponse,
+          VwFieldWidgetUtil.getInternalOfFielValueFromRowData(
+              source: currentFormResponse,
               localFieldRef: widget.formField.fieldUiParam.localFieldRef!);
+
+      if (this.widget.formField.fieldUiParam.uiTypeId ==
+          VwFieldUiParam.uitFormPageByLocalFieldSource) {
+        try {
+          VwFieldValue? formResponseFieldValue =
+              NodeUtil.getFieldValueByLocalFieldRef(
+                  rowData: currentFormResponse,
+                  localFieldRef: widget.formField.fieldUiParam.localFieldRef!);
           VwNode? formResponseNode = NodeUtil.extractNodeFromLinkNode(
               formResponseFieldValue!.valueLinkNode!);
 
-          VwClassEncodedJson? formResponseClassEncodedJson = NodeUtil
-              .extractClassEncodedJsonFromContent(
-              nodeContent: formResponseNode!.content);
+          VwClassEncodedJson? formResponseClassEncodedJson =
+              NodeUtil.extractClassEncodedJsonFromContent(
+                  nodeContent: formResponseNode!.content);
 
           RemoteApi.decompressClassEncodedJson(formResponseClassEncodedJson!);
           currentFormDefinition =
               VwFormDefinition.fromJson(formResponseClassEncodedJson!.data!);
 
-          if(currentFormResponse.collectionName=="vwticketeventresponse" && this.widget.formField.fieldDefinition.fieldName=="primeStateFormResponse")
-          {
-            if(this.widget.field.valueFormResponse!.creatorUserId==this.widget.appInstanceParam.loginResponse!.userInfo!.user.recordId)
-            {
-              currentFormDefinition =null;
+          if (currentFormResponse.collectionName == "vwticketeventresponse" &&
+              this.widget.formField.fieldDefinition.fieldName ==
+                  "primeStateFormResponse") {
+            if (this.widget.field.valueFormResponse!.creatorUserId ==
+                this
+                    .widget
+                    .appInstanceParam
+                    .loginResponse!
+                    .userInfo!
+                    .user
+                    .recordId) {
+              currentFormDefinition = null;
             }
           }
-
-        }
-        catch(error)
-        {
-
-        }
-
-      }
-
-      else if (refInternalFieldValue!.valueLinkNode != null) {
+        } catch (error) {}
+      } else if (refInternalFieldValue!.valueLinkNode != null) {
         try {
           VwLinkNode currentLinkNode = refInternalFieldValue!.valueLinkNode!;
 
@@ -138,7 +139,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
           }
 
           VwFieldValue? currentFieldValue =
-          currentRecordLinkNode!.getFieldByName("formDefinition");
+              currentRecordLinkNode!.getFieldByName("formDefinition");
 
           VwClassEncodedJson? currentClassEncodedJson;
 
@@ -158,8 +159,8 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
           } else if (currentFieldValue!.valueLinkNode!.nodeType ==
               VwNode.ntnClassEncodedJson) {
             VwNode? currentFormDefinitionNode =
-            NodeUtil.extractNodeFromLinkNode(
-                currentFieldValue!.valueLinkNode!);
+                NodeUtil.extractNodeFromLinkNode(
+                    currentFieldValue!.valueLinkNode!);
 
             if (currentFormDefinitionNode != null) {
               currentClassEncodedJson =
@@ -177,13 +178,13 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
           refInternalFieldValue.valueLinkNode != null &&
           refInternalFieldValue.valueLinkNode!.cache != null &&
           refInternalFieldValue
-              .valueLinkNode!.cache!.node!.content.linkbasemodel !=
+                  .valueLinkNode!.cache!.node!.content.linkbasemodel !=
               null &&
           refInternalFieldValue.valueLinkNode!.cache!.node!.content
-              .linkbasemodel!.rendered !=
+                  .linkbasemodel!.rendered !=
               null &&
           refInternalFieldValue.valueLinkNode!.cache!.node!.content
-              .linkbasemodel!.rendered!.data !=
+                  .linkbasemodel!.rendered!.data !=
               null) {
         currentFormDefinition = VwFormDefinition.fromJson(refInternalFieldValue
             .valueLinkNode!
@@ -201,11 +202,11 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
         if (widget.field.valueFormResponse == null) {
           if (currentFormDefinition!.attachments != null) {
             List<VwNodeContent> nodeContentList =
-            NodeUtil.extractAttachmentsByTag(
-                attachments: currentFormDefinition!.attachments!,
-                nodeType: VwNode.ntnRowData,
-                tag: VwOperatorTicketPageDefinition
-                    .tagLatestFormResponseStateOnTicket);
+                NodeUtil.extractAttachmentsByTag(
+                    attachments: currentFormDefinition!.attachments!,
+                    nodeType: VwNode.ntnRowData,
+                    tag: VwOperatorTicketPageDefinition
+                        .tagLatestFormResponseStateOnTicket);
 
             if (nodeContentList.length > 0) {
               widget.field.valueFormResponse =
@@ -218,7 +219,8 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
           widget.field.valueFormResponse =
               VwFormDefinitionUtil.createBlankRowDataFromFormDefinition(
                   formDefinition: currentFormDefinition!,
-                  ownerUserId: widget.appInstanceParam.loginResponse!.userInfo!.user.recordId);
+                  ownerUserId: widget
+                      .appInstanceParam.loginResponse!.userInfo!.user.recordId);
         }
       }
     } catch (error) {
@@ -238,13 +240,12 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
       currentFormDefinition!.isReadOnly =
           currentFormDefinition!.isReadOnly || widget.readOnly;
 
-
-      if(this.widget.readOnly==true) {
+      if (this.widget.readOnly == true) {
         currentFormDefinition!.isReadOnly = this.widget.readOnly;
       }
 
       Widget currentFormPage = VwFormPage(
-        enableScaffold: false,
+          enableScaffold: false,
           disableScrollView: true,
           key: widget.key,
           isShowSaveButton: false,
@@ -254,7 +255,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
           appInstanceParam: this.widget.appInstanceParam,
           formResponse: widget.field.valueFormResponse!,
           formDefinition: currentFormDefinition!,
-          formDefinitionFolderNodeId: AppConfig.formDefinitionFolderNodeId);
+          formDefinitionFolderNodeId: this.widget.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId);
 
       //return currentFormPage;
 
@@ -262,14 +263,10 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Flexible( fit: FlexFit.loose,child: captionWidget),
-
+            Flexible(fit: FlexFit.loose, child: captionWidget),
             Flexible(
                 fit: FlexFit.loose,
-
-                child: Container(
-
-                    key: widget.key,   child: currentFormPage))
+                child: Container(key: widget.key, child: currentFormPage))
           ]);
     } else {
       return Center(child: Text("No Form"));

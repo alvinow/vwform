@@ -2,11 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:highlight_text/highlight_text.dart';
 import 'package:intl/intl.dart';
-import 'package:matrixclient2base/appconfig.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwdataformattimestamp/vwdataformattimestamp.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfielddefinition/vwfielddefinition.dart';
-import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
 import 'package:matrixclient2base/modules/base/vwuser/vwuser.dart';
 import 'package:uuid/uuid.dart';
@@ -18,7 +16,7 @@ import 'package:vwform/modules/vwform/vwformdefinition/vwformdefintionutil.dart'
 import 'package:vwform/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwsectionformdefinition/vwsectionformdefinition.dart';
 import 'package:vwform/modules/vwformpage/vwdefaultformpage.dart';
-import 'package:vwutil/modules/util/vwdateutil.dart';
+
 
 class VwUserRowViewer extends NodeRowViewer {
   VwUserRowViewer(
@@ -26,6 +24,7 @@ class VwUserRowViewer extends NodeRowViewer {
         required super.appInstanceParam,
         super.highlightedText,super.refreshDataOnParentFunction,
       });
+
 
 
   @override
@@ -86,7 +85,7 @@ class VwUserRowViewer extends NodeRowViewer {
                 MaterialPageRoute(
                     builder: (context) => VwFormPage(
                       //readOnly: true,
-                      formDefinitionFolderNodeId: AppConfig.formDefinitionFolderNodeId,
+                      formDefinitionFolderNodeId: this.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId,
                       appInstanceParam: this.appInstanceParam,
                       formDefinition: formParam,
                       formResponse: VwFormDefinitionUtil.createBlankRowDataFromFormDefinition(formDefinition: formParam, ownerUserId: appInstanceParam.loginResponse!.userInfo!.user.recordId),
@@ -117,8 +116,9 @@ class VwUserRowViewer extends NodeRowViewer {
     VwFieldValue emailFieldValue = VwFieldValue(fieldName: "email",valueString: user.email);
     VwFieldValue userStatusIdFieldValue=VwFieldValue(fieldName: "userStatusId",valueString: user.userStatusId);
 
+    /*
     VwRowData rowData=VwRowData(timestamp: VwDateUtil.nowTimestamp(),recordId: Uuid().v4(),
-        creatorUserId: AppConfig.invalidUserId,
+        creatorUserId: this.invalidUserId,
         fields: <VwFieldValue>[
       recordIdFieldValue,
       createdFieldValue,
@@ -128,7 +128,7 @@ class VwUserRowViewer extends NodeRowViewer {
       emailFieldValue,
       userStatusIdFieldValue
 
-    ]);
+    ]);*/
 
 
     VwFormField userFormField=VwFormField( fieldDefinition: VwFieldDefinition(fieldName: "recordId"), fieldUiParam: VwFieldUiParam());

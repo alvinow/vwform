@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:matrixclient2base/appconfig.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
 
 
 class VwInstagramBottomModalMenu extends StatefulWidget {
@@ -12,13 +13,15 @@ class VwInstagramBottomModalMenu extends StatefulWidget {
         required super.key,
         this.editArticleCardTapper,
         this.enableEdit = false,
-      this.rowNode,
+        this.rowNode,
+        required this.appInstanceParam
 
       });
 
   final InkWell? editArticleCardTapper;
   final bool enableEdit;
   final VwNode? rowNode;
+  final VwAppInstanceParam appInstanceParam;
 
   VwInstagramBottomModalMenuState createState() =>
       VwInstagramBottomModalMenuState();
@@ -76,7 +79,7 @@ class VwInstagramBottomModalMenuState
           color: Colors.black,
         ),
         onPressed: () async{
-          String url=AppConfig.baseUrl+r"?articleId="+ widget.rowNode!.recordId;
+          String url=this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl+r"?articleId="+ widget.rowNode!.recordId;
 
           await Clipboard.setData(ClipboardData(
               text: url ));

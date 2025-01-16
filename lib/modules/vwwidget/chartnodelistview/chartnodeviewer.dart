@@ -118,7 +118,7 @@ class ChartNodeViewer extends NodeRowViewer{
 
         ),
         primaryYAxis: NumericAxis(
-            numberFormat: NumberFormat.compactSimpleCurrency(locale: AppConfig.locale)
+            numberFormat: NumberFormat.compactSimpleCurrency(locale: this.appInstanceParam.baseAppConfig.generalConfig.locale)
         ),
         primaryXAxis: CategoryAxis(
 labelPlacement: LabelPlacement.betweenTicks,

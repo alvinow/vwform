@@ -24,12 +24,15 @@ class PageCoordinator extends StatelessWidget {
       this.goRouterState,
       this.url,
       required this.baseUrl,
-      required this.locale});
+      required this.locale,
+      required this.baseAppConfig
+      });
 
   final String? url;
   GoRouterState? goRouterState;
   final String baseUrl;
   final String locale;
+  final BaseAppConfig baseAppConfig;
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +48,17 @@ class PageCoordinator extends StatelessWidget {
         child: BodyPageCoordinator(
           locale: this.baseUrl,
           baseUrl: this.baseUrl,
+          baseAppConfig: this.baseAppConfig,
         ));
   }
 }
 
 class BodyPageCoordinator extends StatelessWidget {
-  const BodyPageCoordinator({required this.baseUrl, required this.locale});
+  const BodyPageCoordinator({required this.baseUrl, required this.locale,required this.baseAppConfig});
 
   final String baseUrl;
   final String locale;
+  final BaseAppConfig baseAppConfig;
 
   void viewArticleBackFunction(
       VwAppInstanceParam appInstanceParam, BuildContext buildContext) {
@@ -82,6 +87,7 @@ class BodyPageCoordinator extends StatelessWidget {
         Key key = Key("HomePagecoordinatorState");
 
         VwAppInstanceParam appInstanceParam = VwAppInstanceParam(
+          baseAppConfig: this.baseAppConfig,
             baseUrl: this.baseUrl,
             locale: this.locale,
             appBloc: bloc,
@@ -98,6 +104,7 @@ class BodyPageCoordinator extends StatelessWidget {
             mediaLinkNode: VwLinkNode(
                 nodeId: state.articleId, nodeType: VwNode.ntnRowData),
             appInstanceParam: VwAppInstanceParam(
+              baseAppConfig: this.baseAppConfig,
                 baseUrl: this.baseUrl,
                 locale: this.locale,
                 appBloc: bloc,
@@ -106,12 +113,12 @@ class BodyPageCoordinator extends StatelessWidget {
 
       if (state is InitsplashscreenPagecoordinatorState) {
         return MainSplash1(
-          backgroundColor: AppConfig.primaryColor,
+          backgroundColor: baseAppConfig.baseThemeConfig.primaryColor,
           titleColor: Colors.white,
-          showLogo: AppConfig.showAppLogoOnInitSplashScreen,
-          showTitle: AppConfig.showAppTitleOnInitSplashScreen,
-          logoAssetPath: AppConfig.mainLogoPath,
-          title: AppConfig.appTitle,
+          showLogo: this.baseAppConfig.baseThemeConfig.showAppLogoOnInitSplashScreen,
+          showTitle: this.baseAppConfig.baseThemeConfig.showAppTitleOnInitSplashScreen,
+          logoAssetPath: this.baseAppConfig.generalConfig.mainLogoPath,
+          title: this.baseAppConfig.generalConfig.appTitle,
           initsplashscreenParam: VwRowData(
               timestamp: VwDateUtil.nowTimestamp(), recordId: Uuid().v4()),
         );
@@ -123,6 +130,7 @@ class BodyPageCoordinator extends StatelessWidget {
         if (true) {
           return VwPublicLandingPage(
               appInstanceParam: VwAppInstanceParam(
+                baseAppConfig: this.baseAppConfig,
                   baseUrl: this.baseUrl,
                   locale: this.locale,
                   appBloc: bloc,
@@ -136,6 +144,7 @@ class BodyPageCoordinator extends StatelessWidget {
           baseUrl: this.baseUrl,
           key: UniqueKey(),
           appInstanceParam: VwAppInstanceParam(
+            baseAppConfig: this.baseAppConfig,
             appBloc: bloc,
             baseUrl: this.baseUrl,
             locale: this.locale,
@@ -146,7 +155,7 @@ class BodyPageCoordinator extends StatelessWidget {
 
       if (state is BootupPagecoordinatorState) {
         return MainSplash1(
-          logoAssetPath: AppConfig.mainLogoPath,
+          logoAssetPath: this.baseAppConfig.generalConfig.mainLogoPath,
           title: "Memuat Aplikasi...",
           initsplashscreenParam: VwRowData(
               timestamp: VwDateUtil.nowTimestamp(), recordId: Uuid().v4()),
@@ -155,7 +164,7 @@ class BodyPageCoordinator extends StatelessWidget {
       if (state is NewFormRecordState) {
         if (state.loginResponse.userInfo != null) {
           state.loginResponse.userInfo!.user.mainRoleUserGroupId =
-              AppConfig.specifiedFormSubmit;
+              this.baseAppConfig.generalConfig.specifiedFormSubmit;
 
           return VwHomePage(
               key: key,
@@ -163,6 +172,7 @@ class BodyPageCoordinator extends StatelessWidget {
               formResponse: state.formResponse,
               formDefinition: state.formDefinition,
               appInstanceParam: VwAppInstanceParam(
+                baseAppConfig: this.baseAppConfig,
                 baseUrl: this.baseUrl,
                 locale: this.locale,
                 loginResponse: state.loginResponse,
@@ -174,7 +184,7 @@ class BodyPageCoordinator extends StatelessWidget {
       }
 
       return MainSplash1(
-        logoAssetPath: AppConfig.mainLogoPath,
+        logoAssetPath: this.baseAppConfig.generalConfig.mainLogoPath,
         title: "Memuat Aplikasi...",
         initsplashscreenParam: VwRowData(
             timestamp: VwDateUtil.nowTimestamp(), recordId: Uuid().v4()),

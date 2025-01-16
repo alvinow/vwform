@@ -22,7 +22,7 @@ class VwFormResponseUserPage extends StatefulWidget {
   VwFormResponseUserPage(
       {super.key,
       required this.appInstanceParam,
-      this.folderNodeId = AppConfig.rootFolderNodeId,
+       required this.folderNodeId,
       this.isRootFolder = true,
       this.currentNode,
       this.enableCreateRecord = true,
@@ -41,8 +41,8 @@ class VwFormResponseUserPage extends StatefulWidget {
       this.showUserInfoIcon = true,
       this.showLoginButton = true,
       this.mainLogoMode = NodeListView.mlmText,
-      this.mainLogoImageAsset = AppConfig.textLogoPath,
-      this.mainLogoTextCaption = AppConfig.appTitle,
+        required this.mainLogoImageAsset, //= AppConfig.textLogoPath,
+        this.mainLogoTextCaption, //= AppConfig.appTitle,
       this.showSearchIcon = true,
       this.toolbarHeight = 64,
       this.toolbarPadding = 10,
@@ -58,10 +58,11 @@ class VwFormResponseUserPage extends StatefulWidget {
       this.formResponseIdList
       });
 
+
   final VwAppInstanceParam appInstanceParam;
   final bool isRootFolder;
   final List<String>? formResponseIdList;
-  final String folderNodeId;
+  late String folderNodeId;
   final VwNode? currentNode;
   final bool? enableCreateRecord;
   final bool showReloadButton;

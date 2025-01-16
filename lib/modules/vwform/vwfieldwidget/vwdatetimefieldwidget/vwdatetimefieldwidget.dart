@@ -20,11 +20,13 @@ import 'package:vwform/modules/vwform/vwformdefinition/vwformfield/vwformfield.d
 class VwDateTimeFieldWidget extends StatefulWidget{
   const VwDateTimeFieldWidget(
       {Key? key,
+        required this.locale,
         required this.field,
         required this.formField,
         this.onValueChanged})
       : super(key: key);
 
+  final String locale;
   final VwFieldValue field;
   final VwFormField formField;
   final VwFieldWidgetChanged? onValueChanged;
@@ -49,15 +51,15 @@ class VwDateTimeFieldWidgetState extends State<VwDateTimeFieldWidget> {
  DateFormat _getDateFormat(DateTimeFieldPickerMode dateTimeFieldPickerMode){
     if(dateTimeFieldPickerMode==DateTimeFieldPickerMode.date)
       {
-        return DateFormat("dd-MMM-yyyy",AppConfig .locale);
+        return DateFormat("dd-MMM-yyyy", this.widget.locale);
       }
     else  if(dateTimeFieldPickerMode==DateTimeFieldPickerMode.time)
       {
-        return DateFormat("hh:mm",AppConfig.locale);
+        return DateFormat("hh:mm",this.widget.locale);
       }
     else
       {
-        return DateFormat("dd-MMM-yyyy hh:mm",AppConfig.locale);
+        return DateFormat("dd-MMM-yyyy hh:mm",this.widget.locale);
       }
 
   }

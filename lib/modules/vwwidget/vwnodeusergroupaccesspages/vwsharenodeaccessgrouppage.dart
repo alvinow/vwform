@@ -102,6 +102,8 @@ class VwShareNodeAccesGroupPageState extends State<VwShareNodeAcccesGroupPage> {
   Future<void> asyncLoadDataFromServer() async {
     try {
       this.nodeRequestResponse = await RemoteApi.nodeRequestApiCall(
+        baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+          graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
           apiCallId: "getNodes",
           apiCallParam: this.apiCallParam(),
           loginSessionId: widget.appInstanceParam.loginResponse != null

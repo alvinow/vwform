@@ -222,10 +222,10 @@ class VwQuestionArticleRowViewerMaterialState
                             style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.resolveWith(
-                                      (states) => AppConfig.primaryColor),
+                                      (states) => this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor),
                               side: MaterialStateProperty.resolveWith(
                                   (states) =>
-                                      BorderSide(color: AppConfig.textColor)),
+                                      BorderSide(color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.textColor)),
                             ),
                             onPressed: () {
                               Navigator.of(context)
@@ -237,37 +237,37 @@ class VwQuestionArticleRowViewerMaterialState
                             },
                             icon: Icon(
                               Icons.person,
-                              color: AppConfig.textColor,
+                              color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.textColor,
                             ),
                             label: Text(
                               "Login",
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
-                                  color: AppConfig.textColor),
+                                  color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.textColor),
                             )),
                         TextButton.icon(
                             style: ButtonStyle(
                               side: MaterialStateProperty.resolveWith(
                                   (states) => BorderSide(
-                                      color: AppConfig.primaryColor)),
+                                      color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor)),
                               textStyle: MaterialStateProperty.resolveWith(
                                   (states) =>
-                                      TextStyle(color: AppConfig.primaryColor)),
+                                      TextStyle(color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor)),
                             ),
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
                             icon: Icon(
                               Icons.navigate_next,
-                              color: AppConfig.primaryColor,
+                              color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor,
                             ),
                             label: Text(
                               "Lanjut",
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
-                                  color: AppConfig.primaryColor),
+                                  color: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.primaryColor),
                             )),
                       ],
                     )
@@ -780,7 +780,7 @@ class VwQuestionArticleRowViewerMaterialState
 
             InkWell(
                 onTap: () async {
-                  String url = AppConfig.baseUrl +
+                  String url = this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl +
                       r"?articleId=" +
                       widget.rowNode!.recordId;
 
@@ -814,7 +814,7 @@ class VwQuestionArticleRowViewerMaterialState
                   .userInfo!
                   .user
                   .mainRoleUserGroupId ==
-              AppConfig.adminticketMainRoleUserGroupId) {
+              this.widget.appInstanceParam.baseAppConfig.generalConfig.adminticketMainRoleUserGroupId) {
         returnValue = true;
       } else {
         returnValue = this.widget.appInstanceParam.loginResponse != null &&
@@ -852,6 +852,7 @@ class VwQuestionArticleRowViewerMaterialState
                     useRootNavigator: true,
                     context: this.context,
                     builder: (context) => VwInstagramBottomModalMenu(
+                        appInstanceParam: this.widget.appInstanceParam,
                         key: UniqueKey(),
                         rowNode: widget.rowNode,
                         enableEdit: enableEdit,
@@ -968,6 +969,7 @@ class VwQuestionArticleRowViewerMaterialState
                 height: frameHeight,
                 width: screenSize.width,
                 child: YoutubeAppDemo(
+                    appInstanceParam: this.widget.appInstanceParam,
                     startSeconds: startseconds,
                     endSeconds: endseconds,
                     videoIds: [videoId!, videoId!]));
@@ -1013,6 +1015,7 @@ class VwQuestionArticleRowViewerMaterialState
                   height: height,
                   width: width,
                   child: YoutubeAppDemo(
+                      appInstanceParam: this.widget.appInstanceParam,
                       startSeconds: startseconds,
                       endSeconds: endseconds,
                       autoplay: false,

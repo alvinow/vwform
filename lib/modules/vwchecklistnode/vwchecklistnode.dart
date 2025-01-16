@@ -283,7 +283,7 @@ class VwCheckListNodeState extends State<VwCheckListNode> {
           refreshDataOnParentFunction: refreshDataOnParentFunction,
           formResponse: blankFormResponse,
           formDefinition: currentFormDefinition,
-          formDefinitionFolderNodeId: AppConfig .formDefinitionFolderNodeId);
+          formDefinitionFolderNodeId: this.widget.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId);
     }
 
     return returnValue;

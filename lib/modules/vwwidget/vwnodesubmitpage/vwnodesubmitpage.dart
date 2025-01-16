@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient2base/appconfig.dart';
-
 import 'package:matrixclient2base/modules/base/vwapicall/synctokenblock/synctokenblock.dart';
 import 'package:matrixclient2base/modules/base/vwbasemodel/vwbasemodel.dart';
 import 'package:matrixclient2base/modules/base/vwclassencodedjson/vwclassencodedjson.dart';
@@ -88,6 +86,48 @@ class VwNodeSubmitPageState extends State<VwNodeSubmitPage> {
 
   VwNodeUpsyncResult? lastNodeUpsyncResult;
 
+
+  @override
+  void initState() {
+
+
+    super.initState();
+
+    this.pageState = VwNodeSubmitPage.nspLoadingInitData;
+
+    this._refreshController = StreamController<String>(onListen: () async {
+      if (this.widget.node != null) {
+        this.currentNode = widget.node;
+      } else {
+        String recordId = Uuid().v4();
+
+        String creatorUserId =
+        this.widget.appInstanceParam.loginResponse != null &&
+            this.widget.appInstanceParam.loginResponse!.userInfo != null
+            ? this
+            .widget
+            .appInstanceParam
+            .loginResponse!
+            .userInfo!
+            .user
+            .recordId
+            : "invalid_user_record_id";
+
+        this.currentNode = VwNode(
+            creatorUserId: creatorUserId,
+            parentNodeId: widget.parentNodeId,
+            recordId: recordId,
+            ownerUserId:
+            widget.appInstanceParam.loginResponse!.userInfo!.user.recordId,
+            displayName: recordId,
+            nodeType: VwNode.ntnRowData,
+            content: VwNodeContent(rowData: VwRowData(parentNodeId: this.widget.parentNodeId, recordId: Uuid().v4())));
+      }
+
+      await this._asyncLoadData();
+    });
+  }
+
   void implementOnSelectedFormDefinitionNodeChanged(
       {required VwNode selectedFormDefinitionNode}) {
     this.selectedFormDefinitionNode = selectedFormDefinitionNode;
@@ -140,51 +180,14 @@ class VwNodeSubmitPageState extends State<VwNodeSubmitPage> {
     return returnValue;
   }
 
-  @override
-  void initState() {
-    this.pageState = VwNodeSubmitPage.nspLoadingInitData;
 
-    super.initState();
-
-    this._refreshController = StreamController<String>(onListen: () async {
-      if (this.widget.node != null) {
-        this.currentNode = widget.node;
-      } else {
-        String recordId = Uuid().v4();
-
-        String creatorUserId =
-            this.widget.appInstanceParam.loginResponse != null &&
-                    this.widget.appInstanceParam.loginResponse!.userInfo != null
-                ? this
-                    .widget
-                    .appInstanceParam
-                    .loginResponse!
-                    .userInfo!
-                    .user
-                    .recordId
-                : "invalid_user_record_id";
-
-        this.currentNode = VwNode(
-            creatorUserId: creatorUserId,
-            parentNodeId: widget.parentNodeId,
-            recordId: recordId,
-            ownerUserId:
-                widget.appInstanceParam.loginResponse!.userInfo!.user.recordId,
-            displayName: recordId,
-            nodeType: VwNode.ntnRowData,
-            content: VwNodeContent(rowData: VwRowData(parentNodeId: this.widget.parentNodeId, recordId: Uuid().v4())));
-      }
-
-      await this._asyncLoadData();
-    });
-  }
 
   Future<void> _asyncLoadData() async {
     await _asyncLoadParentNodeFromServer();
   }
 
   String getLoginSessionId() {
-    String returnValue = AppConfig .loginSessionGuestUserId;
+    String returnValue = this.widget.appInstanceParam.baseAppConfig.generalConfig .loginSessionGuestUserId;
     try {
       returnValue = widget.appInstanceParam.loginResponse!.loginSessionId!;
     } catch (error) {}
@@ -196,6 +199,7 @@ class VwNodeSubmitPageState extends State<VwNodeSubmitPage> {
       {String crudMode = VwBaseModel.cmCreateOrUpdate}) async {
     try {
       SyncTokenBlock? syncTokenBlock = await VwNodeStoreOnHive.getToken(
+          graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
           loginSessionId:
               widget.appInstanceParam.loginResponse!.loginSessionId!,
           count: 1,
@@ -218,6 +222,8 @@ class VwNodeSubmitPageState extends State<VwNodeSubmitPage> {
 
         VwNodeRequestResponse nodeRequestRespose =
             await RemoteApi.nodeRequestApiCall(
+              baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+                graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
                 apiCallId: "syncNode",
                 apiCallParam: apiCallParam,
                 loginSessionId: this.getLoginSessionId());
@@ -289,6 +295,8 @@ class VwNodeSubmitPageState extends State<VwNodeSubmitPage> {
       ]);
 
       VwNodeRequestResponse returnValue = await RemoteApi.nodeRequestApiCall(
+        baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+          graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
           apiCallId: "getNodes",
           apiCallParam: apiCallParam,
           loginSessionId: this.getLoginSessionId());

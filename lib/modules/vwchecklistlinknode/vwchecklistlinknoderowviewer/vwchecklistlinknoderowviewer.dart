@@ -90,7 +90,7 @@ class VwCheckListLinkNodeRowViewer extends NodeRowViewer {
     return VwFormPage(
         isShowSaveButton: false,
         isMultipageSections: true,
-        formDefinitionFolderNodeId: AppConfig.formDefinitionFolderNodeId,
+        formDefinitionFolderNodeId: this.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId,
         appInstanceParam: appInstanceParam,
         formDefinition: formDefinition,
         formResponse: shadowFormResponse,

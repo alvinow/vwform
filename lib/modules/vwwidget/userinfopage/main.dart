@@ -63,7 +63,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
           if (this.widget.appInstanceParam.loginResponse != null &&
               this.widget.appInstanceParam.loginResponse!.loginSessionId !=
                   null) {
-            String loginBySessionIdUrl = AppConfig.baseUrl +
+            String loginBySessionIdUrl = this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl +
                 "/?loginSessionId=" +
                 this.widget.appInstanceParam.loginResponse!.loginSessionId! +
                 "&authMode=loginBySessionId";
@@ -120,7 +120,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            AppConfig.appTitle,
+            this.widget.appInstanceParam.baseAppConfig.generalConfig.appTitle,
             style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600),
           ),
           SizedBox(
@@ -128,7 +128,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
           ),
           Container(
               child: Text(
-                "v." + AppConfig.appVersion,
+                "v." + this.widget.appInstanceParam.baseAppConfig.generalConfig.appVersion,
                 style: TextStyle(fontSize: 12),
               ))
         ]);

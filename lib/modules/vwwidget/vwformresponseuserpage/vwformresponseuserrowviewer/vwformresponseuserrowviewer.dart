@@ -59,7 +59,7 @@ class VwFormResponseUserRowViewer extends NodeRowViewer {
           for (int la = 0; la < formResponse.attachments!.length; la++) {
             VwNodeContent currentNodeContent= formResponse.attachments!.elementAt(la);
 
-            if(currentNodeContent.tag==AppConfig.tagLinkBaseModelFormDefinition && currentNodeContent.linkbasemodel!=null && currentNodeContent.linkbasemodel!.rendered!=null)
+            if(currentNodeContent.tag==this.appInstanceParam.baseAppConfig.generalConfig.tagLinkBaseModelFormDefinition && currentNodeContent.linkbasemodel!=null && currentNodeContent.linkbasemodel!.rendered!=null)
               {
                 RemoteApi.decompressClassEncodedJson(currentNodeContent.linkbasemodel!.rendered!);
                 VwFormDefinition formDefinition=VwFormDefinition.fromJson(currentNodeContent.linkbasemodel!.rendered!.data!);
@@ -96,7 +96,7 @@ class VwFormResponseUserRowViewer extends NodeRowViewer {
                                 VwFormPage(
                                   appInstanceParam: this.appInstanceParam,
                                     isMultipageSections: true,
-                                    formDefinitionFolderNodeId: AppConfig.formDefinitionFolderNodeId,
+                                    formDefinitionFolderNodeId: this.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId,
 
                                     formDefinition: formDefinition,
                                     formResponse: formResponseClone,

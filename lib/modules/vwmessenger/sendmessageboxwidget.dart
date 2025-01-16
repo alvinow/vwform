@@ -119,6 +119,8 @@ class SendMesageBoxWidgetState extends State<SendMesageBoxWidget> {
 
       if (true && loginSessionId != null) {
         SyncTokenBlock? syncTokenBlock = await VwNodeStoreOnHive.getToken(
+            graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+
             loginSessionId: loginSessionId, count: 1, apiCallId: "getToken");
 
         if (syncTokenBlock != null) {
@@ -165,6 +167,8 @@ class SendMesageBoxWidgetState extends State<SendMesageBoxWidget> {
 
           VwNodeUpsyncResultPackage nodeUpsyncResultPackage =
               await RemoteApi.nodeUpsyncRequestApiCall(
+                graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress ,
+                baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
                   apiCallId: "syncNodeContent",
                   apiCallParam: apiCallParam,
                   loginSessionId: loginSessionId);

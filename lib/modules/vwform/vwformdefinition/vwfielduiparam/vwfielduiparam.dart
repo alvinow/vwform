@@ -31,7 +31,7 @@ class VwFieldUiParam{
     this.refParentTagNodeId,
     this.nodeContainerTagLinkNode,
     this.refTagListFieldFileStorageFieldName,
-    this.fieldDisplayFormat=const VwFieldDisplayFormat(),
+    this.fieldDisplayFormat=const VwFieldDisplayFormat(locale:"ID_id"),
     this.isCalculatedField,
     this.calculatedFormula,
     this.maxChar=1600,

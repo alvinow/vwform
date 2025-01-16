@@ -98,6 +98,7 @@ class VwBrowseFolderRowViewer extends NodeRowViewer {
           print("Open Folder: " + rowNode.recordId);
 
           Widget folderPage = VwFormResponseUserPage(
+            mainLogoImageAsset: this.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
             currentNode: rowNode,
             appInstanceParam: this.appInstanceParam,
             mainLogoTextCaption: rowNode.displayName,

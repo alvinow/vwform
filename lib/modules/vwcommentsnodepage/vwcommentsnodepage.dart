@@ -61,6 +61,7 @@ class VwCommentsNodePageState extends State<VwCommentsNodePage>{
     );*/
 
     return VwFormResponseUserPage(
+      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
      bottomSideMode:getEnableCommentBoxBottomSide()? NodeListView.bsmCommentBox:NodeListView.bsmDisabled,
       zeroDataCaption: "(Belum ada komentar)",
       enableAppBar: true,

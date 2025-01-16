@@ -178,7 +178,7 @@ class VwFormPageNodeViewerWidgetState
             appInstanceParam: this.widget.appInstanceParam,
             formResponse: formResponse,
             formDefinition: currentFormDefinition!,
-            formDefinitionFolderNodeId: AppConfig.formDefinitionFolderNodeId);
+            formDefinitionFolderNodeId:  this.widget.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId);
 
         //return currentFormPage;
 

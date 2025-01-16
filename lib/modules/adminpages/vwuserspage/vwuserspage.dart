@@ -17,13 +17,13 @@ class VwUsersPage extends StatelessWidget {
   VwUsersPage(
       {required this.appInstanceParam,
         required this.parentBloc,
-        this.refreshDataOnParentFunction
+        this.refreshDataOnParentFunction,
       });
+
 
   final VwAppInstanceParam appInstanceParam;
   final Bloc parentBloc;
   final RefreshDataOnParentFunction? refreshDataOnParentFunction;
-
 
 
   Widget nodeRowViewer(
@@ -47,7 +47,17 @@ class VwUsersPage extends StatelessWidget {
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text('Uploading Data...')));
 
-        await VwNodeStoreOnHive(boxName: AppConfig.unsyncedRecordFieldname)
+        String unsyncFieldName=this.appInstanceParam.baseAppConfig.generalConfig.unsyncedRecordFieldname;
+
+        await VwNodeStoreOnHive(
+            boxName: unsyncFieldName,
+            graphqlServerAddress: this.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+            appTitle: this.appInstanceParam.baseAppConfig.generalConfig.appTitle,
+            appversion: this.appInstanceParam.baseAppConfig.generalConfig.appVersion,
+            unsyncedRecordFieldname: this.appInstanceParam.baseAppConfig.generalConfig.unsyncedRecordFieldname,
+          loggedInUser: this.appInstanceParam.baseAppConfig.generalConfig.loggedInUser
+
+        )
             .syncToServer(loginSessionId: this.appInstanceParam.loginResponse!.loginSessionId!);
       },
     );
@@ -60,7 +70,7 @@ class VwUsersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final VwRowData apiCallParam = VwRowData(timestamp: VwDateUtil.nowTimestamp(),creatorUserId: AppConfig.invalidUserId, recordId: Uuid().v4(),fields: <VwFieldValue>[
+    final VwRowData apiCallParam = VwRowData(timestamp: VwDateUtil.nowTimestamp(),creatorUserId: this.appInstanceParam.baseAppConfig.generalConfig.invalidUserId, recordId: Uuid().v4(),fields: <VwFieldValue>[
       VwFieldValue(fieldName: "nodeId",valueString: "e827de48-8404-4dbe-9cc5-7d5b2ca7ffb1"),
       VwFieldValue(fieldName: "depth",valueNumber: 1),
       VwFieldValue(fieldName: "depth1FilterObject",valueTypeId: VwFieldValue.vatObject,value: {"content.contentContext.contentClassName":"VwUser"})

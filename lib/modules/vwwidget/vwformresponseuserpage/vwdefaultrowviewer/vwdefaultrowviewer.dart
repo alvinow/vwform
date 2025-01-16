@@ -156,6 +156,8 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
 
       VwNodeRequestResponse nodeRequestResponse =
           await RemoteApi.nodeRequestApiCall(
+            baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+            graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
               apiCallId: "getNodes",
               apiCallParam: this.apiCallParam(),
               loginSessionId: widget.appInstanceParam.loginResponse != null

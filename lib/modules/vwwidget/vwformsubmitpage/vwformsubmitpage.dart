@@ -90,7 +90,13 @@ class VwFormSubmitPageState extends State<VwFormSubmitPage> {
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text('Uploading Data...')));
 
-        await VwNodeStoreOnHive(boxName: AppConfig.unsyncedRecordFieldname)
+        await VwNodeStoreOnHive(boxName: this.widget.appInstanceParam.baseAppConfig.generalConfig.unsyncedRecordFieldname,
+        graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+          appTitle: this.widget.appInstanceParam.baseAppConfig.generalConfig.appTitle,
+          appversion: this.widget.appInstanceParam.baseAppConfig.generalConfig.appVersion,
+          unsyncedRecordFieldname: this.widget.appInstanceParam.baseAppConfig.generalConfig.unsyncedRecordFieldname,
+          loggedInUser: this.widget.appInstanceParam.baseAppConfig.generalConfig.loggedInUser
+        )
             .syncToServer(
                 loginSessionId: this
                     .widget
@@ -155,6 +161,8 @@ class VwFormSubmitPageState extends State<VwFormSubmitPage> {
           ]);
 
       nodeRequestResponse = await RemoteApi.nodeRequestApiCall(
+        baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+          graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
           apiCallId: "getNodes",
           apiCallParam: currentApiCallParam,
           loginSessionId:
@@ -274,7 +282,7 @@ class VwFormSubmitPageState extends State<VwFormSubmitPage> {
                   key: Key(formResponse.recordId),
                   appInstanceParam: this.widget.appInstanceParam,
                   formDefinitionFolderNodeId:
-                      AppConfig.formDefinitionFolderNodeId,
+                      this.widget.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId,
                   isMultipageSections: true,
                   formDefinition: formDefinition,
                   formResponse: formResponse,

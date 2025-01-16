@@ -125,7 +125,7 @@ class VwToDoListOperatorTicketPageState extends State<VwToDoListOperatorTicketPa
               MaterialPageRoute(
                   builder: (context) => VwFormPage(
                         formDefinitionFolderNodeId:
-                            AppConfig.formDefinitionFolderNodeId,
+                        this.widget.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId,
                         appInstanceParam: this.widget.appInstanceParam,
                         isMultipageSections: true,
                         formDefinition: initFormDefinition!,
@@ -198,6 +198,7 @@ class VwToDoListOperatorTicketPageState extends State<VwToDoListOperatorTicketPa
         descriptionSubFieldName: "totnilmask",
         descriptionPrefix: "Rp",
         descriptionDisplayFormat: VwFieldDisplayFormat(
+          locale: this.widget.appInstanceParam.baseAppConfig.generalConfig.locale,
             fieldFormat: VwFieldDisplayFormat.vsfNumeric,
             numberTextInputFormatter:
                 VwNumberTextInputFormatter(decimalDigits: 0)),
@@ -321,7 +322,7 @@ class VwToDoListOperatorTicketPageState extends State<VwToDoListOperatorTicketPa
                   builder: (context) => VwFormPage(
                         appInstanceParam: this.widget.appInstanceParam,
                         formDefinitionFolderNodeId:
-                            AppConfig.formDefinitionFolderNodeId,
+                        this.widget.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId,
                         isMultipageSections: true,
                         formDefinition: ticketResponseFormDefinition!,
                         formResponse: formResponse,
@@ -380,7 +381,7 @@ class VwToDoListOperatorTicketPageState extends State<VwToDoListOperatorTicketPa
               MaterialPageRoute(
                   builder: (context) => VwFormPage(
                         formDefinitionFolderNodeId:
-                            AppConfig.formDefinitionFolderNodeId,
+                        this.widget.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId,
                         appInstanceParam: this.widget.appInstanceParam,
                         isMultipageSections: true,
                         formDefinition: ticketResponseFormDefinition!,

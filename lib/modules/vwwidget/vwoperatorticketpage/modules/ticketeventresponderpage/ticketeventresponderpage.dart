@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:matrixclient2base/appconfig.dart';
 import 'package:matrixclient2base/modules/base/vwclassencodedjson/vwclassencodedjson.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
@@ -61,7 +60,11 @@ class TicketEventResponderPageState extends State<TicketEventResponderPage> {
             ),
           ]);
 
-      returnValue = await RemoteApi.nodeRequestApiCall (apiCallId: "getNodes",
+      returnValue = await RemoteApi.nodeRequestApiCall (
+          baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+          graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+
+          apiCallId: "getNodes",
           apiCallParam: apiCallParam, loginSessionId: this.widget.appInstanceParam.loginResponse!.loginSessionId!);
 
 
@@ -144,7 +147,8 @@ class TicketEventResponderPageState extends State<TicketEventResponderPage> {
                         VwFormPage(
                           appInstanceParam: this.widget.appInstanceParam,
                           formDefinitionFolderNodeId:
-                          AppConfig.formDefinitionFolderNodeId,
+                              this.widget.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId,
+
                           isMultipageSections: true,
                           formDefinition: ticketResponseFormDefinition!,
                           formResponse: formResponse!,
