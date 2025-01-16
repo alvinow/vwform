@@ -238,7 +238,7 @@ class VwSelectNodeRecordPage extends StatelessWidget {
         : NodeListView.nfmServer;
 
     return NodeListView(
-
+      mainLogoImageAsset: this.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
       appInstanceParam: this.appInstanceParam,
       apiCallId: "getNodes",
       mainLogoMode: NodeListView.mlmText,

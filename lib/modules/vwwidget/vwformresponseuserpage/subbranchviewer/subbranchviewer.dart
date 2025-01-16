@@ -129,6 +129,7 @@ class SubBranchViewerState extends State<SubBranchViewer>{
           appInstanceParam: widget.appInstanceParam);
 
       Widget branchWidget = NodeListView(
+          mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
           key: this.branchKey,
           zeroDataCaption: "0 record",
           reloadButtonSize: 18,

@@ -82,6 +82,7 @@ class ChartNodeListViewState extends State<ChartNodeListView>{
   Widget build(BuildContext context) {
 
     Widget body=NodeListView (
+      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
       mainHeaderBackgroundColor: const Color.fromARGB(255,200, 200, 200),
         mainHeaderTitleTextColor: Colors.black,
         appInstanceParam:  this.widget.appInstanceParam,

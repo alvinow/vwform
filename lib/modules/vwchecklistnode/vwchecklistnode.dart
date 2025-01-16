@@ -746,6 +746,7 @@ class VwCheckListNodeState extends State<VwCheckListNode> {
     Widget returnValue = Container();
     try {
       returnValue = NodeListView(
+        mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
         excludedRow: this.createExcludedNodeList(),
         appInstanceParam: widget.appInstanceParam,
         topRowWidget: this.createTopRowWidget(),
@@ -789,6 +790,7 @@ class VwCheckListNodeState extends State<VwCheckListNode> {
   @override
   Widget build(BuildContext context) {
     Widget body = NodeListView(
+      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
         enableAppBar: false,
         showReloadButton: false,
         rowUpperPadding: 0,

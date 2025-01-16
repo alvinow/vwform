@@ -961,7 +961,9 @@ class BranchviewerState extends State<BranchViewer> {
                   : this.widget.actionMenuButton!
             ]);
 
+        /*
         Widget branch0NodeListViewWidget = NodeListView(
+            mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
             key: this.branch0Key,
             zeroDataCaption: "0 record",
             reloadButtonSize: 18,
@@ -971,12 +973,13 @@ class BranchviewerState extends State<BranchViewer> {
             appInstanceParam: widget.appInstanceParam,
             apiCallParam: BranchviewerState.apiCallParam(
                 widget.childrenBranch.elementAt(0)),
-            nodeRowViewerFunction: nodeRowViewer);
+            nodeRowViewerFunction: nodeRowViewer);*/
 
         Widget branch1NodeListViewWidget = Container();
 
         if (widget.childrenBranch.length > 1) {
           branch1NodeListViewWidget = NodeListView(
+              mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
               key: this.branch0Key,
               reloadButtonSize: 18,
               zeroDataCaption: "0 record",

@@ -713,13 +713,13 @@ class UserRvspTicketPageState extends State<UserRvspTicketPage> {
                   ],
                     title: Row(children: [
 
-                  this.widget.appInstanceParam.baseAppConfig.generalConfig.centerLogoMode == NodeListView.mlmLogo
+                  this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.centerLogoMode == NodeListView.mlmLogo
                       ? Image.asset(
                     this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
                           scale: 15,
                         )
                       : Container(),
-                      this.widget.appInstanceParam.baseAppConfig.generalConfig.centerLogoMode == NodeListView.mlmText
+                      this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.centerLogoMode == NodeListView.mlmText
                       ?InkWell(
                       onTap: () async{
                         final Uri url = Uri.parse('https://alumniitb.org');

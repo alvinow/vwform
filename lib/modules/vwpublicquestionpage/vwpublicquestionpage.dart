@@ -55,7 +55,7 @@ class VwPublicQuestionPageState extends State<VwPublicQuestionPage> {
       //topRowWidget: this.getTopRowWidget(),
       enableCreateRecord: false,
       mainLogoMode: NodeListView.mlmLogo,
-      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.rootLogoPath,
+      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.rootLogoPath,
       mainLogoTextCaption: this.widget.appInstanceParam.baseAppConfig.generalConfig.appTitle,
       folderNodeId: "15b492f8-e4fb-496d-a999-a4afc39bc184",
       key: this.formUserResponseKey,

@@ -91,7 +91,7 @@ class VwSelectRecipientWidgetState extends State<VwSelectRecipientWidget>{
   @override
   Widget build(BuildContext context) {
     return NodeListView(
-
+      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
       appInstanceParam: this.widget.appInstanceParam,
       apiCallId: "getNodes",
       mainLogoTextCaption: "Select user",

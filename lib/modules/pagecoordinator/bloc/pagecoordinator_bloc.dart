@@ -84,6 +84,7 @@ class PagecoordinatorBloc
         VwRowData currentRowData = this.sinkRowDataList!.elementAt(0);
         VwNodeUpsyncResultPackage nodeUpsyncResultPackage =
             await ServerSyncUtil.syncNodeRowData(
+              graphqlServerAddress: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.graphqlServerAddress,
                 rowData: currentRowData,
                 loginSessionId:
                 sinkAppInstanceParam!.loginResponse!.loginSessionId!,

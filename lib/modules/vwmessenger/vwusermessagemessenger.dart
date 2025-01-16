@@ -174,6 +174,7 @@ class VwUserMessageMessengerState extends State<VwUserMessageMessenger> {
   @override
   Widget build(BuildContext context) {
     return NodeListView(
+      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
         isListReverse: true,
         footer: this.messageBoxPluginWidget,
         footerWidgetParameter: VwRowData(recordId: Uuid().v4(), fields: [

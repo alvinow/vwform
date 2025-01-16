@@ -176,6 +176,7 @@ class TicketEventResponderPageState extends State<TicketEventResponderPage> {
   NodeListView buildEventDefinitionNodeList(
       {required List<VwLinkNode> ticketEventDefinitionLinkNodeList, RefreshDataOnParentFunction? refreshDataOnParentFunction}) {
     return NodeListView(
+        mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
         nodeFetchMode: NodeListView.nfmParent,
         showSearchIcon: false,
         mainLogoMode: NodeListView.mlmText,

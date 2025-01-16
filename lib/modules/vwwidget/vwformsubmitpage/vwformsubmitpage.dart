@@ -292,6 +292,7 @@ class VwFormSubmitPageState extends State<VwFormSubmitPage> {
                 );
               } else {
                 Widget nodeListView = NodeListView(
+                  mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
                   enableScaffold: true,
                   appInstanceParam: this.widget.appInstanceParam,
                   fieldValue: VwFieldValue(
@@ -332,6 +333,7 @@ class VwFormSubmitPageState extends State<VwFormSubmitPage> {
     }
 
     return NodeListView(
+      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
       enableScaffold: true,
       appInstanceParam: this.widget.appInstanceParam,
       apiCallId: "getNodes",

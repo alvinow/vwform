@@ -122,6 +122,7 @@ class VwNodeUserGroupAccessPageState extends State<VwNodeUserGroupAccessPage>{
   Widget build(BuildContext context) {
 
     Widget peopleWithAccessNodeList= NodeListView(
+      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
       key: this.stateKey,
       enableScaffold: true,
       appInstanceParam: this.widget.appInstanceParam,

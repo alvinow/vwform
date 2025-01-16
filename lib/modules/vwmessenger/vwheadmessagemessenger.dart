@@ -142,6 +142,8 @@ class VwmessengerState extends State<VwHeadMessageMessenger>{
 
   @override
   Widget build(BuildContext context) {
-    return NodeListView(  key: this.stateKey, getFloatingActionButton: this._getCreateRecordFloatingActionButton, mainLogoMode: NodeListView.mlmText, mainLogoTextCaption: "Messenger", showBackArrow: true, appInstanceParam: widget.appInstanceParam, apiCallParam: getHeadMessengerApiCallParam(), nodeRowViewerFunction: nodeRowViewer);
+    return NodeListView(
+        mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
+        key: this.stateKey, getFloatingActionButton: this._getCreateRecordFloatingActionButton, mainLogoMode: NodeListView.mlmText, mainLogoTextCaption: "Messenger", showBackArrow: true, appInstanceParam: widget.appInstanceParam, apiCallParam: getHeadMessengerApiCallParam(), nodeRowViewerFunction: nodeRowViewer);
   }
 }

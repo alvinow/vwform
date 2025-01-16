@@ -66,6 +66,7 @@ class VwToDoListOperatorTicketPageState extends State<VwToDoListOperatorTicketPa
 
   NodeListView buildNodeListViewInitiator(BuildContext context) {
     NodeListView returnValue = NodeListView(
+      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
       appInstanceParam: this.widget.appInstanceParam,
       key: widget.key,
       apiCallId: "getNodes",
@@ -415,6 +416,7 @@ class VwToDoListOperatorTicketPageState extends State<VwToDoListOperatorTicketPa
       {required List<VwLinkNode> ticketEventDefinitionLinkNodeList,
       RefreshDataOnParentFunction? refreshDataOnParentFunction}) {
     return NodeListView(
+        mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
         nodeFetchMode: NodeListView.nfmParent,
         showSearchIcon: true,
         mainLogoMode: NodeListView.mlmText,
@@ -465,6 +467,7 @@ class VwToDoListOperatorTicketPageState extends State<VwToDoListOperatorTicketPa
 
   NodeListView buildNodeListViewResponder(BuildContext context) {
     return NodeListView(
+      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
       mainHeaderBackgroundColor: const Color.fromARGB(255,200, 200, 200),
       mainHeaderTitleTextColor: Colors.black,
       appInstanceParam: this.widget.appInstanceParam,

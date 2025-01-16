@@ -289,6 +289,7 @@ class VwTagCheckListFieldWidgetState extends State<VwTagCheckListFieldWidget> {
 
           
             child: NodeListView(
+              mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
               enableScaffold: false,
               titleColumns: listViewTitleColumnList,
               nodeFetchMode: NodeListView.nfmParent,

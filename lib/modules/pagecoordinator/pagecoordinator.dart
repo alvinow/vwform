@@ -125,7 +125,7 @@ class BodyPageCoordinator extends StatelessWidget {
       }
 
       if (state is RegInfoPagePagecoordinatorState) {
-        return RegInfoPage(state: state);
+        return RegInfoPage(baseAppConfig: this.baseAppConfig, state: state);
       } else if (state is PublicLandingPagePagecoordinatorState) {
         if (true) {
           return VwPublicLandingPage(

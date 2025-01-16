@@ -63,7 +63,7 @@ class VwPublicLandingPageState extends State<VwPublicLandingPage>{
       enableCreateRecord: false,
       mainLogoTextCaption: this.widget.appInstanceParam.baseAppConfig.generalConfig.appTitle,
       mainLogoMode: NodeListView.mlmText,
-      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.rootLogoPath,
+      mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.baseThemeConfig.rootLogoPath,
 
       folderNodeId: APIVirtualNode.exploreNodeFeed,
       key: this.formUserResponseKey,

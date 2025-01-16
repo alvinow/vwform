@@ -77,6 +77,7 @@ class VwUsersPage extends StatelessWidget {
     ]);
 
     return NodeListView(
+      mainLogoImageAsset: this.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
 appInstanceParam: this.appInstanceParam,
 
         apiCallId: "getNodes",
