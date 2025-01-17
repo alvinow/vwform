@@ -6,7 +6,6 @@ import 'package:matrixclient2base/modules/base/vwapicall/apivirtualnode/apivirtu
 import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
 import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
-import 'package:nodelistview/modules/homepage/vwhomepage.dart';
 import 'package:nodelistview/modules/reginfopage/reginfopage.dart';
 import 'package:uuid/uuid.dart';
 import 'package:vwform/modules/loginpage/loginpage.dart';
@@ -15,10 +14,20 @@ import 'package:vwform/modules/pagecoordinator/bloc/pagecoordinator_bloc.dart';
 import 'package:vwform/modules/publiclandingpage/publiclandingpage.dart';
 import 'package:vwform/modules/splashscreens/mainsplash1/mainsplash1.dart';
 import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformdefinition.dart';
 import 'package:vwform/modules/vwwidget/vwloadingpage/vwloadingpage.dart';
 import 'package:vwutil/modules/util/vwdateutil.dart';
 
-typedef HomePageFunction = Widget Function({required Key key, required VwAppInstanceParam appInstanceParam});
+typedef HomePageFunction = Widget Function({
+required Key? key,
+required VwAppInstanceParam appInstanceParam,
+
+  required int initialIndex,
+  VwRowData ? formResponse,
+  VwFormDefinition ? formDefinition,
+  VwNode ? containerFolderNode,
+
+});
 
 class PageCoordinator extends StatelessWidget {
   PageCoordinator(
@@ -94,7 +103,7 @@ class BodyPageCoordinator extends StatelessWidget {
             appBloc: bloc,
             loginResponse: state.loginResponse);
 
-        return this.homePageFunction(key: key, appInstanceParam: appInstanceParam);
+        return this.homePageFunction(key: key, initialIndex:0, appInstanceParam: appInstanceParam);
         //return VwHomePage(key: key, appInstanceParam: appInstanceParam);
       }
 
@@ -162,8 +171,9 @@ class BodyPageCoordinator extends StatelessWidget {
           state.loginResponse.userInfo!.user.mainRoleUserGroupId =
               this.baseAppConfig.generalConfig.specifiedFormSubmit;
 
-          return VwHomePage(
+          return this.homePageFunction(
               key: key,
+              initialIndex:0,
               containerFolderNode: state.containerFolderNode,
               formResponse: state.formResponse,
               formDefinition: state.formDefinition,

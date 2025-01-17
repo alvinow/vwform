@@ -885,7 +885,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: e92cb9085a1cd31d182380d036b38a1f1b237e06
+      resolved-ref: "9fec0e9df02f05a244bffd519abf24e69f1052ff"
       url: "https://github.com/alvinow/matrixclient2base.git"
     source: git
     version: "1.0.0+1"
@@ -950,7 +950,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "1ad5f043fd759e6b5e2a9a80ae4efcac88b66ff5"
+      resolved-ref: "1130c44d117dee278b742cb5050c020bf0f505f3"
       url: "https://github.com/alvinow/nodelistview.git"
     source: git
     version: "1.0.0+1"
@@ -1701,7 +1701,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: b013d1222cf788771bc6108875552e1fbb7ee4ed
+      resolved-ref: fb2690419e9a7d368ef2f5d668b1c6f33bc555c4
       url: "https://github.com/alvinow/vwutil.git"
     source: git
     version: "1.0.0+1"
