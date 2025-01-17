@@ -265,6 +265,7 @@ class PagecoordinatorBloc
     //appMode="ticket99";
 
 
+    /*
     if (this.sinkAppInstanceParam!.baseAppConfig.generalConfig.showStartSplashScreen == true) {
       emit(InitsplashscreenPagecoordinatorState(
           initsplashscreenParam: VwRowData(
@@ -278,6 +279,7 @@ class PagecoordinatorBloc
 
       await Future.delayed(const Duration(seconds: 2), () {});
     }
+    */
 
     emit(LoadingPagecoordinatorState(
         loadingParam: VwRowData(
