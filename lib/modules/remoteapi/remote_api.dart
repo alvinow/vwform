@@ -238,7 +238,7 @@ class RemoteApi {
           await VwGraphQlClient.httpPostGraphQl(
             baseUrl: baseUrl,
               timeoutSecond: 20,
-              url: graphqlServerAddress,
+              //url: graphqlServerAddress,
               graphQlQuery: graphQlQuery);
 
           if(graphQlServerResponse.apiCallResponse!=null &&
@@ -281,7 +281,7 @@ class RemoteApi {
           await VwGraphQlClient.httpPostGraphQl(
             baseUrl: baseUrl,
               timeoutSecond: 240,
-              url: graphqlServerAddress,
+              //url: graphqlServerAddress,
               graphQlQuery: graphQlQuery);
 
 
@@ -353,7 +353,7 @@ class RemoteApi {
           loginSessionId: loginSessionId,
           parameter: apiCallParam);
 
-      VwGraphQlServerResponse graphQlServerResponse =await VwGraphQlClient.httpPostGraphQl(baseUrl: baseUrl, timeoutSecond: 60,url: graphqlServerAddress,graphQlQuery: graphQlQuery);
+      VwGraphQlServerResponse graphQlServerResponse =await VwGraphQlClient.httpPostGraphQl(baseUrl: baseUrl, timeoutSecond: 60,/*url: graphqlServerAddress,*/graphQlQuery: graphQlQuery);
 
       if (graphQlServerResponse.httpResponse != null) {
         returnValue.httpResponse = graphQlServerResponse.httpResponse;

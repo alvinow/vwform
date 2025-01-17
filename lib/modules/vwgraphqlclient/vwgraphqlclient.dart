@@ -12,7 +12,7 @@ import 'package:vwutil/modules/util/vwmultipartrequest/vwmultipartrequest.dart';
 
 class VwGraphQlClient {
   static Future<VwGraphQlServerResponse> httpPostGraphQl(
-      {required String url,
+      {
         required String baseUrl,
       required VwGraphQlQuery graphQlQuery,
       int timeoutSecond = 20}) async {
@@ -47,9 +47,9 @@ class VwGraphQlClient {
           returnValue.apiCallResponse =
               VwApiCallResponse.fromJson(graphQlQueryResponseRoot);
         }
-      } else {
+      }/* else {
         returnValue.httpResponse = await _http.Client()
-            .post(Uri.parse(url),
+            .post(Uri.parse(serverUrlAddress),
                 headers: httpHeaders, body: json.encode(graphQlQuery.getJSON()))
             .timeout(Duration(seconds: timeoutSecond));
 
@@ -74,7 +74,7 @@ class VwGraphQlClient {
                 error.toString());
           }
         }
-      }
+      }*/
 
       if (returnValue.apiCallResponse != null &&
           returnValue.apiCallResponse!.valueResponseClassEncodedJson != null) {

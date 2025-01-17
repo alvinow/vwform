@@ -177,7 +177,7 @@ class PagecoordinatorBloc
           await VwGraphQlClient.httpPostGraphQl(
             baseUrl: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.baseUrl,
               timeoutSecond: 20,
-              url: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.graphqlServerAddress,
+              //url: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.graphqlServerAddress,
               graphQlQuery: graphQlQuery);
 
       print("Api Call Response Status Code");
