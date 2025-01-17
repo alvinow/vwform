@@ -260,7 +260,7 @@ class RemoteApi {
   }
 
   static Future<VwNodeUpsyncResultPackage> nodeUpsyncRequestApiCall(
-      {required String baseUrl, required String graphqlServerAddress, required VwRowData apiCallParam, required String loginSessionId,required String apiCallId}) async {
+      {required String baseUrl, /* required String graphqlServerAddress,*/ required VwRowData apiCallParam, required String loginSessionId,required String apiCallId}) async {
     VwNodeUpsyncResultPackage returnValue =
         VwNodeUpsyncResultPackage(nodeUpsyncResultList: []);
 

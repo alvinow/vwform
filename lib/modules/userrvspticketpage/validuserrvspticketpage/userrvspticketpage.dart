@@ -211,7 +211,7 @@ class UserRvspTicketPageState extends State<UserRvspTicketPage> {
         VwNodeUpsyncResultPackage nodeUpsyncResultPackage =
             await RemoteApi.nodeUpsyncRequestApiCall(
               baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
-              graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+              //graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
                 apiCallId: "syncNodeContent",
                 apiCallParam: apiCallParam,
                 loginSessionId: this.widget.ticketCode);

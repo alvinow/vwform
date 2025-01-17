@@ -167,7 +167,7 @@ class SendMesageBoxWidgetState extends State<SendMesageBoxWidget> {
 
           VwNodeUpsyncResultPackage nodeUpsyncResultPackage =
               await RemoteApi.nodeUpsyncRequestApiCall(
-                graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress ,
+                //graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress ,
                 baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
                   apiCallId: "syncNodeContent",
                   apiCallParam: apiCallParam,

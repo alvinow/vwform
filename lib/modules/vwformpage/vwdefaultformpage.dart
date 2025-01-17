@@ -1199,7 +1199,7 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
             VwNodeUpsyncResultPackage nodeUpsyncResultPackage =
             await RemoteApi.nodeUpsyncRequestApiCall(
                 baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
-                graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+                //graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
                 apiCallId: "syncNodeContent",
                 apiCallParam: apiCallParam,
                 loginSessionId: this
@@ -1430,7 +1430,7 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
             VwNodeUpsyncResultPackage nodeUpsyncResultPackage =
             await RemoteApi.nodeUpsyncRequestApiCall(
                 baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
-              graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+              //graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
                 apiCallId: "syncNodeContent",
                 apiCallParam: apiCallParam,
                 loginSessionId: this.getLoginSessionId());
