@@ -36,13 +36,14 @@ part 'pagecoordinator_state.dart';
 class PagecoordinatorBloc
     extends Bloc<PagecoordinatorEvent, PagecoordinatorState> {
   List<VwRowData>? sinkRowDataList;
-  VwAppInstanceParam sinkAppInstanceParam;
+  VwAppInstanceParam? sinkAppInstanceParam;
   VwLoginResponse? currentLoginResponse;
+  final BaseAppConfig baseAppConfig;
   //GoRouterState? goRouterState;
 
   bool? syncRowDataActive;
 
-  PagecoordinatorBloc({required this.sinkAppInstanceParam}) : super(BootupPagecoordinatorState()) {
+  PagecoordinatorBloc({required this.baseAppConfig}) : super(BootupPagecoordinatorState()) {
     sinkRowDataList = [];
 
     syncRowDataActive = false;
@@ -85,7 +86,6 @@ class PagecoordinatorBloc
         VwNodeUpsyncResultPackage nodeUpsyncResultPackage =
             await ServerSyncUtil.syncNodeRowData(
               baseUrl: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.baseUrl,
-              //graphqlServerAddress: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.graphqlServerAddress,
                 rowData: currentRowData,
                 loginSessionId:
                 sinkAppInstanceParam!.loginResponse!.loginSessionId!,
@@ -134,9 +134,9 @@ class PagecoordinatorBloc
       Emitter<PagecoordinatorState> emit) async {
     await VwLoginResponseSharedPref.deleteLoginResponseInstance(
         VwAuthUtil.getClientUserLoggedInBoxName(
-            loggedInUser: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.loggedInUser,
-            appTitle: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.appTitle,
-            appVersion: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.appVersion
+            loggedInUser: this.baseAppConfig.generalConfig.loggedInUser,
+            appTitle: this.baseAppConfig.generalConfig.appTitle,
+            appVersion: this.baseAppConfig.generalConfig.appVersion
         ));
 
     emit(LoadingPagecoordinatorState(

@@ -25,32 +25,32 @@ class PageCoordinator extends StatelessWidget {
       this.requestUrl,
       //required this.baseUrl,
       //required this.locale,
-      //required this.baseAppConfig
-        required this.appInstanceParam
+      required this.baseAppConfig
+      //required this.appInstanceParam
       });
 
   final String? requestUrl;
   GoRouterState? goRouterState;
   //final String baseUrl;
   //final String locale;
-  //final BaseAppConfig baseAppConfig;
-  final VwAppInstanceParam appInstanceParam;
+  final BaseAppConfig baseAppConfig;
+  //final VwAppInstanceParam appInstanceParam;
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
           BlocProvider(
-              create: (_) => PagecoordinatorBloc(sinkAppInstanceParam: appInstanceParam)
+              create: (_) => PagecoordinatorBloc(baseAppConfig: baseAppConfig)
                 ..add(BootstrapPagecoordinatorEvent(
                     goRouterState: goRouterState,
                     requestUrl: requestUrl,
                     timestamp: DateTime.now())))
         ],
         child: BodyPageCoordinator(
-          locale: this.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
-          baseUrl: this.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
-          baseAppConfig: this.appInstanceParam.baseAppConfig,
+          locale: this.baseAppConfig.generalConfig.baseUrl,
+          baseUrl: this.baseAppConfig.generalConfig.baseUrl,
+          baseAppConfig: this.baseAppConfig,
         ));
   }
 }
