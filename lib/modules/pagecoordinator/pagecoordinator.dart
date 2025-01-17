@@ -19,14 +19,12 @@ import 'package:vwform/modules/vwwidget/vwloadingpage/vwloadingpage.dart';
 import 'package:vwutil/modules/util/vwdateutil.dart';
 
 typedef HomePageFunction = Widget Function({
-required Key? key,
-required VwAppInstanceParam appInstanceParam,
-
+  required Key? key,
+  required VwAppInstanceParam appInstanceParam,
   required int initialIndex,
-  VwRowData ? formResponse,
-  VwFormDefinition ? formDefinition,
-  VwNode ? containerFolderNode,
-
+  VwRowData? formResponse,
+  VwFormDefinition? formDefinition,
+  VwNode? containerFolderNode,
 });
 
 class PageCoordinator extends StatelessWidget {
@@ -35,8 +33,7 @@ class PageCoordinator extends StatelessWidget {
       this.goRouterState,
       this.requestUrl,
       required this.baseAppConfig,
-      required this.homePageFunction
-      });
+      required this.homePageFunction});
 
   final String? requestUrl;
   GoRouterState? goRouterState;
@@ -65,7 +62,10 @@ class PageCoordinator extends StatelessWidget {
 
 class BodyPageCoordinator extends StatelessWidget {
   const BodyPageCoordinator(
-      {required this.homePageFunction, required this.baseUrl, required this.locale,required this.baseAppConfig});
+      {required this.homePageFunction,
+      required this.baseUrl,
+      required this.locale,
+      required this.baseAppConfig});
 
   final String baseUrl;
   final String locale;
@@ -99,11 +99,12 @@ class BodyPageCoordinator extends StatelessWidget {
         Key key = Key("HomePagecoordinatorState");
 
         VwAppInstanceParam appInstanceParam = VwAppInstanceParam(
-          baseAppConfig: this.baseAppConfig,
+            baseAppConfig: this.baseAppConfig,
             appBloc: bloc,
             loginResponse: state.loginResponse);
 
-        return this.homePageFunction(key: key, initialIndex:0, appInstanceParam: appInstanceParam);
+        return this.homePageFunction(
+            key: key, initialIndex: 0, appInstanceParam: appInstanceParam);
         //return VwHomePage(key: key, appInstanceParam: appInstanceParam);
       }
 
@@ -115,7 +116,7 @@ class BodyPageCoordinator extends StatelessWidget {
             mediaLinkNode: VwLinkNode(
                 nodeId: state.articleId, nodeType: VwNode.ntnRowData),
             appInstanceParam: VwAppInstanceParam(
-              baseAppConfig: this.baseAppConfig,
+                baseAppConfig: this.baseAppConfig,
                 appBloc: bloc,
                 loginResponse: state.loginResponse));
       }
@@ -124,8 +125,10 @@ class BodyPageCoordinator extends StatelessWidget {
         return MainSplash1(
           backgroundColor: baseAppConfig.baseThemeConfig.primaryColor,
           titleColor: Colors.white,
-          showLogo: this.baseAppConfig.baseThemeConfig.showAppLogoOnInitSplashScreen,
-          showTitle: this.baseAppConfig.baseThemeConfig.showAppTitleOnInitSplashScreen,
+          showLogo:
+              this.baseAppConfig.baseThemeConfig.showAppLogoOnInitSplashScreen,
+          showTitle:
+              this.baseAppConfig.baseThemeConfig.showAppTitleOnInitSplashScreen,
           logoAssetPath: this.baseAppConfig.generalConfig.mainLogoPath,
           title: this.baseAppConfig.generalConfig.appTitle,
           initsplashscreenParam: VwRowData(
@@ -139,7 +142,7 @@ class BodyPageCoordinator extends StatelessWidget {
         if (true) {
           return VwPublicLandingPage(
               appInstanceParam: VwAppInstanceParam(
-                baseAppConfig: this.baseAppConfig,
+                  baseAppConfig: this.baseAppConfig,
                   appBloc: bloc,
                   loginResponse: state.loginResponse),
               rootFolderNodeId: APIVirtualNode.exploreNodeFeed);
@@ -173,7 +176,7 @@ class BodyPageCoordinator extends StatelessWidget {
 
           return this.homePageFunction(
               key: key,
-              initialIndex:0,
+              initialIndex: 0,
               containerFolderNode: state.containerFolderNode,
               formResponse: state.formResponse,
               formDefinition: state.formDefinition,
