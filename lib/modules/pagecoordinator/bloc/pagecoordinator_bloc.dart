@@ -262,6 +262,7 @@ class PagecoordinatorBloc
 
     //appMode="ticket99";
 
+    /*
     if (this.sinkAppInstanceParam!.baseAppConfig.generalConfig.showStartSplashScreen == true) {
       emit(InitsplashscreenPagecoordinatorState(
           initsplashscreenParam: VwRowData(
@@ -274,7 +275,7 @@ class PagecoordinatorBloc
           ])));
 
       await Future.delayed(const Duration(seconds: 2), () {});
-    }
+    }*/
 
     emit(LoadingPagecoordinatorState(
         loadingParam: VwRowData(
@@ -289,8 +290,9 @@ class PagecoordinatorBloc
     bool isAuthorized = false;
     const bool isWeb = kIsWeb;
 
-    String? url;
+    //String? url;
     String? articleId;
+    /*
     if(this.goRouterState!=null)
       {
         if(this.goRouterState!.pathParameters!=null
@@ -352,7 +354,7 @@ class PagecoordinatorBloc
         return;
 
       }
-
+*/
     /*
 
     else if (isWeb && event.url != null) {
