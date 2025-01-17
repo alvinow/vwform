@@ -48,7 +48,7 @@ class VwHeadMessageMessengerRowViewer extends NodeRowViewer
 
     VwFieldValue? titleFieldValue =
     VwCardParameterUtil.renderJsonFieldName(
-      locale: this.appInstanceParam.locale,
+      locale: this.appInstanceParam.baseAppConfig.generalConfig.locale,
         sourceNode: this.rowNode, parameter: senderCardParameter);
 
    VwNode? returnValue;
@@ -82,7 +82,7 @@ class VwHeadMessageMessengerRowViewer extends NodeRowViewer
 
     VwFieldValue? titleFieldValue =
     VwCardParameterUtil.renderJsonFieldName(
-        locale: this.appInstanceParam.locale,
+        locale: this.appInstanceParam.baseAppConfig.generalConfig.locale,
         sourceNode: this.rowNode, parameter: senderCardParameter);
 
     String? titleText;
@@ -92,7 +92,7 @@ class VwHeadMessageMessengerRowViewer extends NodeRowViewer
           senderCardParameter?.fieldDisplayFormat;
 
       titleText = VwCardParameterUtil.getStringFormFieldValue(
-          locale: this.appInstanceParam.locale,
+          locale: this.appInstanceParam.baseAppConfig.generalConfig.locale,
           fieldValue: titleFieldValue,
           fieldDisplayFormat: fieldDisplayFormat);
     }
@@ -117,7 +117,7 @@ class VwHeadMessageMessengerRowViewer extends NodeRowViewer
 
     VwFieldValue? titleFieldValue =
     VwCardParameterUtil.renderJsonFieldName(
-        locale: this.appInstanceParam.locale,
+        locale: this.appInstanceParam.baseAppConfig.generalConfig.locale,
         sourceNode: this.rowNode, parameter: senderCardParameter);
 
     String? titleText;
@@ -127,7 +127,7 @@ class VwHeadMessageMessengerRowViewer extends NodeRowViewer
           senderCardParameter?.fieldDisplayFormat;
 
       titleText = VwCardParameterUtil.getStringFormFieldValue(
-          locale: this.appInstanceParam.locale,
+          locale: this.appInstanceParam.baseAppConfig.generalConfig.locale,
           fieldValue: titleFieldValue,
           fieldDisplayFormat: fieldDisplayFormat);
     }

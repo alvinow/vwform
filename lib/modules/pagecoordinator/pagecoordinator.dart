@@ -88,8 +88,6 @@ class BodyPageCoordinator extends StatelessWidget {
 
         VwAppInstanceParam appInstanceParam = VwAppInstanceParam(
           baseAppConfig: this.baseAppConfig,
-            baseUrl: this.baseUrl,
-            locale: this.locale,
             appBloc: bloc,
             loginResponse: state.loginResponse);
 
@@ -105,8 +103,6 @@ class BodyPageCoordinator extends StatelessWidget {
                 nodeId: state.articleId, nodeType: VwNode.ntnRowData),
             appInstanceParam: VwAppInstanceParam(
               baseAppConfig: this.baseAppConfig,
-                baseUrl: this.baseUrl,
-                locale: this.locale,
                 appBloc: bloc,
                 loginResponse: state.loginResponse));
       }
@@ -131,8 +127,6 @@ class BodyPageCoordinator extends StatelessWidget {
           return VwPublicLandingPage(
               appInstanceParam: VwAppInstanceParam(
                 baseAppConfig: this.baseAppConfig,
-                  baseUrl: this.baseUrl,
-                  locale: this.locale,
                   appBloc: bloc,
                   loginResponse: state.loginResponse),
               rootFolderNodeId: APIVirtualNode.exploreNodeFeed);
@@ -146,8 +140,6 @@ class BodyPageCoordinator extends StatelessWidget {
           appInstanceParam: VwAppInstanceParam(
             baseAppConfig: this.baseAppConfig,
             appBloc: bloc,
-            baseUrl: this.baseUrl,
-            locale: this.locale,
           ),
           paramLoginPage: state.loginParam,
         );
@@ -173,8 +165,6 @@ class BodyPageCoordinator extends StatelessWidget {
               formDefinition: state.formDefinition,
               appInstanceParam: VwAppInstanceParam(
                 baseAppConfig: this.baseAppConfig,
-                baseUrl: this.baseUrl,
-                locale: this.locale,
                 loginResponse: state.loginResponse,
                 appBloc: bloc,
               ));
