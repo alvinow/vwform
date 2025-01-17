@@ -18,23 +18,21 @@ import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
 import 'package:vwform/modules/vwwidget/vwloadingpage/vwloadingpage.dart';
 import 'package:vwutil/modules/util/vwdateutil.dart';
 
+typedef HomePageFunction = Widget Function({required Key key, required VwAppInstanceParam appInstanceParam});
+
 class PageCoordinator extends StatelessWidget {
   PageCoordinator(
       {super.key,
       this.goRouterState,
       this.requestUrl,
-      //required this.baseUrl,
-      //required this.locale,
-      required this.baseAppConfig
-      //required this.appInstanceParam
+      required this.baseAppConfig,
+      required this.homePageFunction
       });
 
   final String? requestUrl;
   GoRouterState? goRouterState;
-  //final String baseUrl;
-  //final String locale;
   final BaseAppConfig baseAppConfig;
-  //final VwAppInstanceParam appInstanceParam;
+  final HomePageFunction homePageFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -51,16 +49,19 @@ class PageCoordinator extends StatelessWidget {
           locale: this.baseAppConfig.generalConfig.baseUrl,
           baseUrl: this.baseAppConfig.generalConfig.baseUrl,
           baseAppConfig: this.baseAppConfig,
+          homePageFunction: this.homePageFunction,
         ));
   }
 }
 
 class BodyPageCoordinator extends StatelessWidget {
-  const BodyPageCoordinator({required this.baseUrl, required this.locale,required this.baseAppConfig});
+  const BodyPageCoordinator(
+      {required this.homePageFunction, required this.baseUrl, required this.locale,required this.baseAppConfig});
 
   final String baseUrl;
   final String locale;
   final BaseAppConfig baseAppConfig;
+  final HomePageFunction homePageFunction;
 
   void viewArticleBackFunction(
       VwAppInstanceParam appInstanceParam, BuildContext buildContext) {
@@ -93,7 +94,8 @@ class BodyPageCoordinator extends StatelessWidget {
             appBloc: bloc,
             loginResponse: state.loginResponse);
 
-        return VwHomePage(key: key, appInstanceParam: appInstanceParam);
+        return this.homePageFunction(key: key, appInstanceParam: appInstanceParam);
+        //return VwHomePage(key: key, appInstanceParam: appInstanceParam);
       }
 
       if (state is ViewArticleState) {
