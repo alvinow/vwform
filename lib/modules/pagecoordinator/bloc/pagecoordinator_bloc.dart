@@ -38,7 +38,7 @@ class PagecoordinatorBloc
   List<VwRowData>? sinkRowDataList;
   VwAppInstanceParam? sinkAppInstanceParam;
   VwLoginResponse? currentLoginResponse;
-  GoRouterState? goRouterState;
+  //GoRouterState? goRouterState;
 
   bool? syncRowDataActive;
 
@@ -250,10 +250,12 @@ class PagecoordinatorBloc
 
   void _onBootstrapPagecoordinatorEvent(BootstrapPagecoordinatorEvent event,
       Emitter<PagecoordinatorState> emit) async {
+
+    /*
     if(event.goRouterState!=null)
       {
         this.goRouterState=event.goRouterState;
-      }
+      }*/
 
     String? authMode = "standard";
     String? appMode = "standard";
