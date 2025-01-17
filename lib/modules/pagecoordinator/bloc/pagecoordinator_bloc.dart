@@ -119,9 +119,9 @@ class PagecoordinatorBloc
       Emitter<PagecoordinatorState> emit) async {
     VwLoginResponse? loginResponse =
         await VwAuthUtil.getSavedLoggedInLoginResponseInLocal(
-          loggedInUser: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.loggedInUser,
-          appTitle: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.appTitle,
-          appVersion: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.appVersion
+          loggedInUser: this.baseAppConfig.generalConfig.loggedInUser,
+          appTitle: this.baseAppConfig.generalConfig.appTitle,
+          appVersion: this.baseAppConfig.generalConfig.appVersion
         );
 
     emit(PublicLandingPagePagecoordinatorState(
@@ -175,9 +175,9 @@ class PagecoordinatorBloc
 
       VwGraphQlServerResponse graphQlServerResponse =
           await VwGraphQlClient.httpPostGraphQl(
-            baseUrl: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.baseUrl,
+            baseUrl: this.baseAppConfig.generalConfig.baseUrl,
               timeoutSecond: 20,
-              //url: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.graphqlServerAddress,
+
               graphQlQuery: graphQlQuery);
 
       print("Api Call Response Status Code");
@@ -628,8 +628,8 @@ class PagecoordinatorBloc
 
                 VwNodeRequestResponse nodeRequestResponse =
                 await RemoteApi.nodeRequestApiCall(
-                  baseUrl: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.baseUrl,
-                    graphqlServerAddress: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.graphqlServerAddress,
+                  baseUrl: this.baseAppConfig.generalConfig.baseUrl,
+                    graphqlServerAddress: this.baseAppConfig.generalConfig.graphqlServerAddress,
                     apiCallId: "getNodes",
                     apiCallParam: currentApiCallQueryFormDefinition,
                     loginSessionId: loginResponse.loginSessionId!);
@@ -679,8 +679,8 @@ class PagecoordinatorBloc
                         VwNodeRequestResponse
                         nodeRequestResponseContainerFormDefinition =
                         await RemoteApi.nodeRequestApiCall(
-                          baseUrl: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.baseUrl,
-                            graphqlServerAddress: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.graphqlServerAddress,
+                          baseUrl: this.baseAppConfig.generalConfig.baseUrl,
+                            graphqlServerAddress: this.baseAppConfig.generalConfig.graphqlServerAddress,
                             apiCallId: "getNodes",
                             apiCallParam: currentApiCallContainerFormDefinition,
                             loginSessionId: loginResponse.loginSessionId!);
@@ -734,7 +734,7 @@ class PagecoordinatorBloc
     }
     else
       {
-        if(this.sinkAppInstanceParam!.baseAppConfig.generalConfig.appId=="edokumen")
+        if(this.baseAppConfig.generalConfig.appId=="edokumen")
           {
             emit(LoginPagecoordinatorState(loginParam: VwRowData(fields: [], recordId: Uuid().v4())));
           }
@@ -765,9 +765,9 @@ class PagecoordinatorBloc
 
     VwLoginResponse? loginResponse =
         await VwAuthUtil.getSavedLoggedInLoginResponseInLocal(
-            loggedInUser: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.loggedInUser,
-            appTitle: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.appTitle,
-            appVersion: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.appVersion
+            loggedInUser: this.baseAppConfig.generalConfig.loggedInUser,
+            appTitle: this.baseAppConfig.generalConfig.appTitle,
+            appVersion: this.baseAppConfig.generalConfig.appVersion
         );
 
     if (loginResponse != null) {
