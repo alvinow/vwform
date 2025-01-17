@@ -36,13 +36,13 @@ part 'pagecoordinator_state.dart';
 class PagecoordinatorBloc
     extends Bloc<PagecoordinatorEvent, PagecoordinatorState> {
   List<VwRowData>? sinkRowDataList;
-  VwAppInstanceParam? sinkAppInstanceParam;
+  VwAppInstanceParam sinkAppInstanceParam;
   VwLoginResponse? currentLoginResponse;
   //GoRouterState? goRouterState;
 
   bool? syncRowDataActive;
 
-  PagecoordinatorBloc() : super(BootupPagecoordinatorState()) {
+  PagecoordinatorBloc({required this.sinkAppInstanceParam}) : super(BootupPagecoordinatorState()) {
     sinkRowDataList = [];
 
     syncRowDataActive = false;

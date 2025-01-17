@@ -8,10 +8,10 @@ abstract class PagecoordinatorEvent extends Equatable {
 }
 
 class BootstrapPagecoordinatorEvent extends PagecoordinatorEvent {
-  BootstrapPagecoordinatorEvent({required this.timestamp, this.goRouterState, this.url});
+  BootstrapPagecoordinatorEvent({required this.timestamp, this.goRouterState, this.requestUrl});
 
   final DateTime timestamp;
-  final String? url;
+  final String? requestUrl;
   GoRouterState? goRouterState;
 
   @override
