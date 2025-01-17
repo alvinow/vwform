@@ -51,7 +51,8 @@ class VwUserNotificationPage extends StatelessWidget {
         await VwNodeStoreOnHive(
           unsyncedRecordFieldname: this.appInstanceParam.baseAppConfig.generalConfig.unsyncedRecordFieldname,
           loggedInUser:this.appInstanceParam.baseAppConfig.generalConfig.loggedInUser ,
-          graphqlServerAddress: this.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+          baseUrl: this.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+            //graphqlServerAddress: this.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
             appTitle: this.appInstanceParam.baseAppConfig.generalConfig.appTitle,
             appversion: this.appInstanceParam.baseAppConfig.generalConfig.appVersion,
             boxName: this.appInstanceParam.baseAppConfig.generalConfig.unsyncedRecordFieldname)

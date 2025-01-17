@@ -1122,7 +1122,8 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
         bool isSyncSuccessfull = false;
 
         SyncTokenBlock? syncTokenBlock = await VwNodeStoreOnHive.getToken(
-            graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+            //graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+            baseUrl:this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl ,
             loginSessionId:
             widget.appInstanceParam.loginResponse!.loginSessionId!,
             count: widget.formResponse.syncFormResponseList!.length,
@@ -1353,7 +1354,8 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
         } else if (this.currentFormDefinition.dataSource ==
             VwDataSourceDefinition.smServer) {
           SyncTokenBlock? syncTokenBlock = await VwNodeStoreOnHive.getToken(
-              graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+              baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+            //graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
               loginSessionId: this.getLoginSessionId(),
               count: 1,
               apiCallId: "getToken");

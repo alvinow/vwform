@@ -91,8 +91,9 @@ class VwFormSubmitPageState extends State<VwFormSubmitPage> {
             .showSnackBar(const SnackBar(content: Text('Uploading Data...')));
 
         await VwNodeStoreOnHive(boxName: this.widget.appInstanceParam.baseAppConfig.generalConfig.unsyncedRecordFieldname,
-        graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
-          appTitle: this.widget.appInstanceParam.baseAppConfig.generalConfig.appTitle,
+        //graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+          baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
+            appTitle: this.widget.appInstanceParam.baseAppConfig.generalConfig.appTitle,
           appversion: this.widget.appInstanceParam.baseAppConfig.generalConfig.appVersion,
           unsyncedRecordFieldname: this.widget.appInstanceParam.baseAppConfig.generalConfig.unsyncedRecordFieldname,
           loggedInUser: this.widget.appInstanceParam.baseAppConfig.generalConfig.loggedInUser

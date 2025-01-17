@@ -119,8 +119,8 @@ class SendMesageBoxWidgetState extends State<SendMesageBoxWidget> {
 
       if (true && loginSessionId != null) {
         SyncTokenBlock? syncTokenBlock = await VwNodeStoreOnHive.getToken(
-            graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
-
+           // graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+          baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
             loginSessionId: loginSessionId, count: 1, apiCallId: "getToken");
 
         if (syncTokenBlock != null) {

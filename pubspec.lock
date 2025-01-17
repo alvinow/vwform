@@ -1692,7 +1692,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "06dd63c5aa44c31aea9077d53fb8d68954dd236c"
+      resolved-ref: "22b85f8eebdc922c84538e3d64baee215f73f9ad"
       url: "https://github.com/alvinow/vwnodestoreonhive.git"
     source: git
     version: "1.0.0+1"
