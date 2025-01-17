@@ -220,9 +220,9 @@ class PagecoordinatorBloc
         bool syncVwDbClientResult =
             await VwLoginResponseSharedPref.syncLoginResponseInstance(
                 VwAuthUtil.getClientUserLoggedInBoxName(
-                  appTitle: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.appTitle,
-                  appVersion: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.appVersion,
-                  loggedInUser: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.loggedInUser
+                  appTitle: this.baseAppConfig.generalConfig.appTitle,
+                  appVersion: this.baseAppConfig.generalConfig.appVersion,
+                  loggedInUser: this.baseAppConfig.generalConfig.loggedInUser
                 ), loginResponse);
 
         print("syncVwDbClientResult=" + syncVwDbClientResult.toString());
@@ -591,9 +591,9 @@ class PagecoordinatorBloc
             authMode == "standard") {
           loginResponse = await VwLoginResponseSharedPref.getLoginResponseInstance(
               VwAuthUtil.getClientUserLoggedInBoxName(
-                  loggedInUser: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.loggedInUser,
-                  appTitle: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.appTitle,
-                  appVersion: this.sinkAppInstanceParam!.baseAppConfig.generalConfig.appVersion
+                  loggedInUser: this.baseAppConfig.generalConfig.loggedInUser,
+                  appTitle: this.baseAppConfig.generalConfig.appTitle,
+                  appVersion: this.baseAppConfig.generalConfig.appVersion
               ));
         }
 
