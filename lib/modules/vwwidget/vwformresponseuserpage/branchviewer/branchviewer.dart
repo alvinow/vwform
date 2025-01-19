@@ -726,7 +726,7 @@ class BranchviewerState extends State<BranchViewer> {
                               Text(
                                 "jmlh.",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 11),
+                                style: TextStyle(fontSize: 9),
                               )
                             ]),
                       )),
@@ -746,7 +746,7 @@ class BranchviewerState extends State<BranchViewer> {
                             children: [
                               Text("nilai",
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 11)),
+                                  style: TextStyle(fontSize: 9)),
                               SizedBox(
                                 width: 3,
                               ),
@@ -842,7 +842,7 @@ class BranchviewerState extends State<BranchViewer> {
                   title,
                   maxLines: 2,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 11),
+                  style: TextStyle(fontSize: 9),
                 ))
               ])),
               Container(
@@ -860,7 +860,7 @@ class BranchviewerState extends State<BranchViewer> {
                       borderRadius: BorderRadius.circular(0),
                     ),
                     child: Text(nilaiString,
-                        textAlign: textALign, style: TextStyle(fontSize: 11)),
+                        textAlign: textALign, style: TextStyle(fontSize: 9)),
                   ),
                 ),
               ]))
