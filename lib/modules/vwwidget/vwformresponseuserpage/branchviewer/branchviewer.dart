@@ -330,6 +330,9 @@ class BranchviewerState extends State<BranchViewer> {
       VwFieldValue jumlahtemuan = VwFieldValue(fieldName: "jumlahtemuan",valueTypeId: VwFieldValue.vatNumber,valueNumber: 0);
       VwFieldValue nilaitemuan =  VwFieldValue(fieldName: "nilaitemuan",valueTypeId: VwFieldValue.vatNumber);
 
+      VwFieldValue jumlahsubtemuan = VwFieldValue(fieldName: "jumlahsubtemuan",valueTypeId: VwFieldValue.vatNumber,valueNumber: 0);
+      VwFieldValue nilaisubtemuan =  VwFieldValue(fieldName: "nilaisubtemuan",valueTypeId: VwFieldValue.vatNumber);
+
       VwFieldValue  jumlahrekomendasi = VwFieldValue(fieldName: "jumlahtemuan",valueTypeId: VwFieldValue.vatNumber,valueNumber: 0);;
       VwFieldValue  nilairekomendasi = VwFieldValue(fieldName: "nilaitemuan",valueTypeId: VwFieldValue.vatNumber);
 
@@ -367,6 +370,14 @@ class BranchviewerState extends State<BranchViewer> {
               nilaitemuan = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
                       fieldName: "nilaitemuan", defaultValue: nilaitemuan)!;
+
+              jumlahsubtemuan = nodeContent!.rowData!
+                  .getFieldByNameOrDefaultFieldValue(
+                  fieldName: "jumlahsubtemuan", defaultValue: jumlahtemuan)!;
+
+              nilaisubtemuan = nodeContent!.rowData!
+                  .getFieldByNameOrDefaultFieldValue(
+                  fieldName: "nilaisubtemuan", defaultValue: nilaitemuan)!;
 
               jumlahrekomendasi = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
@@ -417,9 +428,16 @@ class BranchviewerState extends State<BranchViewer> {
                 child: BranchviewerState.createCellStatusColumnHeaderTemuan(
                     nilai: nilaitemuan,
                     jumlah: jumlahtemuan,
-                    color: Colors.red,
+                    color: Colors.lightBlue,
                     localeId: currentLocaleId,
                     title: "Temuan")),
+            Flexible(
+                child: BranchviewerState.createCellStatusColumnHeaderTemuan(
+                    nilai: nilaisubtemuan,
+                    jumlah: jumlahsubtemuan,
+                    color: Colors.lightBlue,
+                    localeId: currentLocaleId,
+                    title: "Sub Temuan")),
             Flexible(
                 child: BranchviewerState.createCellStatusColumnHeaderTemuan(
                     nilai: nilairekomendasi,
@@ -462,8 +480,8 @@ class BranchviewerState extends State<BranchViewer> {
           children: [
             Flexible(
                 child: BranchviewerState.createCellStatusColumnHeaderTemuan(
-                    nilai: nilaitemuan,
-                    jumlah: jumlahtemuan,
+                    nilai: nilaisubtemuan,
+                    jumlah: jumlahsubtemuan,
                     color: Color(0xc6f6fc),
                     localeId: currentLocaleId,
                     title: "Sub Temuan")),
