@@ -42,6 +42,7 @@ class VwDropdownLinkNodeFieldWidgetState
     extends State<VwDropDownLinkNodeFieldWidget> {
   void implementRefreshDataOnParentFunction() {
     print("refresh data from isi form");
+    this._implementFieldValueChanged();
     setState(() {});
   }
 
@@ -317,7 +318,7 @@ class VwDropdownLinkNodeFieldWidgetState
           );
         });
 
-        this.widget.onValueChanged!(this.widget.field,this.widget.field,true);
+
       }
       VwNode? rowNode = widget.field.valueLinkNode != null
           ? NodeUtil.getNode(linkNode: widget.field.valueLinkNode!)
