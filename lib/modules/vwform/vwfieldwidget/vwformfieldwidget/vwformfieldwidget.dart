@@ -5,6 +5,7 @@ import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.
 import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnodecontent/vwnodecontent.dart';
+import 'package:uuid/uuid.dart';
 import 'package:vwform/modules/formutil/formutil.dart';
 import 'package:vwform/modules/remoteapi/remote_api.dart';
 import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
@@ -237,6 +238,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
         DefaultTextStyle.of(context).style,
         widget.readOnly);
 
+    this.currentFormDefinition=null;
     this.setFormDefinition();
 
     if (currentFormDefinition != null) {
@@ -277,7 +279,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
                 child: Container(key: widget.key, child: currentFormPage))
           ]);
     } else {
-      return Center(child: Text("No Form"));
+      return Center(key:Key(Uuid().v4()),child: Text("No Form"));
     }
   }
 }
