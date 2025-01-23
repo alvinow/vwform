@@ -18,6 +18,10 @@ VwFormFieldValidationResponseComponent
           validationMethodName: json['validationMethodName'] as String,
           sufficeSuggestion: json['sufficeSuggestion'] as String,
           errorMessage: json['errorMessage'] as String?,
+          validationFormResponse: json['validationFormResponse'] == null
+              ? null
+              : VwFormValidationResponse.fromJson(
+                  json['validationFormResponse'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$VwFormFieldValidationResponseComponentToJson(
@@ -30,4 +34,5 @@ Map<String, dynamic> _$VwFormFieldValidationResponseComponentToJson(
       'validationMethodName': instance.validationMethodName,
       'sufficeSuggestion': instance.sufficeSuggestion,
       'errorMessage': instance.errorMessage,
+      'validationFormResponse': instance.validationFormResponse,
     };

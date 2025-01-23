@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformvalidationresponse/vwformvalidationresponse.dart';
 part 'vwformfieldvalidationresponsecomponent.g.dart';
 
 @JsonSerializable()
@@ -11,6 +12,7 @@ class VwFormFieldValidationResponseComponent {
   final String validationMethodName;
   final String sufficeSuggestion;
   final String? errorMessage;
+  final VwFormValidationResponse? validationFormResponse;
 
   VwFormFieldValidationResponseComponent(
       {required this.fieldName,
@@ -19,7 +21,9 @@ class VwFormFieldValidationResponseComponent {
         required this.validationMethodCode,
         required this.validationMethodName,
         required this.sufficeSuggestion,
-      this.errorMessage});
+      this.errorMessage,
+      this.validationFormResponse
+      });
 
   factory VwFormFieldValidationResponseComponent.fromJson(Map<String, dynamic> json) =>
       _$VwFormFieldValidationResponseComponentFromJson(json);
