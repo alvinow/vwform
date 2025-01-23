@@ -279,7 +279,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
                 child: Container(key: widget.key, child: currentFormPage))
           ]);
     } else {
-      return Center(key:Key(Uuid().v4()),child: Text("No Form"));
+      return Container(key:Key(Uuid().v4()));
     }
   }
 }
