@@ -250,7 +250,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
       Widget currentFormPage = VwFormPage(
           enableScaffold: false,
           disableScrollView: true,
-          key: widget.key,
+          key: Key(currentFormDefinition!.recordId),
           isShowSaveButton: false,
           enablePopContextAfterSucessfullySaved: false,
           isMultipageSections: true,
@@ -258,7 +258,12 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
           appInstanceParam: this.widget.appInstanceParam,
           formResponse: widget.field.valueFormResponse!,
           formDefinition: currentFormDefinition!,
-          formDefinitionFolderNodeId: this.widget.appInstanceParam.baseAppConfig.generalConfig.formDefinitionFolderNodeId);
+          formDefinitionFolderNodeId: this
+              .widget
+              .appInstanceParam
+              .baseAppConfig
+              .generalConfig
+              .formDefinitionFolderNodeId);
 
       //return currentFormPage;
 
