@@ -283,7 +283,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
         DefaultTextStyle.of(context).style,
         widget.readOnly);
 
-   
+
 
     this.currentFormDefinition = null;
     this.setFormDefinition();

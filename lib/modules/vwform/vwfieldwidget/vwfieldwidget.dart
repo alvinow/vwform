@@ -295,6 +295,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
           VwFieldUiParam.uitFormPageByLocalFieldSource &&
           (this.widget.field.valueTypeId == VwFieldValue.vatValueFormResponse || this.widget.field.valueTypeId == VwFieldValue.vatValueFormResponseCommentOnly )) {
         returnValue = VwFormFieldWidget(
+            formFieldValidationResponse:widget.formFieldValidationResponse,
             readOnly: widget.readOnly,
             key: this.fieldKey,
             getFieldvalueCurrentResponseFunction: this.widget
