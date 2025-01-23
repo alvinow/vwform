@@ -17,9 +17,12 @@ import 'package:vwform/modules/vwform/vwformdefinition/vwfielduiparam/vwfielduip
 import 'package:vwform/modules/vwform/vwformdefinition/vwformdefinition.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwformdefintionutil.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformvalidationresponse/vwformfieldvalidationresponsecomponent/vwformfieldvalidationresponsecomponent.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformvalidationresponse/vwformvalidationresponse.dart';
 import 'package:vwform/modules/vwformpage/vwdefaultformpage.dart';
 import 'package:vwform/modules/vwwidget/vwoperatorticketpage/modules/vwoperatorticketpagedefinition/vwoperatorticketpagedefinition.dart';
 import 'package:vwutil/modules/util/nodeutil.dart';
+import '../../vwformdefinition/vwformvalidationresponse/vwformfieldvalidationresponse/vwformfieldvalidationresponse.dart';
 
 class VwFormFieldWidget extends StatefulWidget {
   const VwFormFieldWidget({
@@ -30,6 +33,7 @@ class VwFormFieldWidget extends StatefulWidget {
     required this.formField,
     this.onValueChanged,
     required this.getFieldvalueCurrentResponseFunction,
+    this.formFieldValidationResponse
   });
   final VwAppInstanceParam appInstanceParam;
   final VwFieldValue field;
@@ -37,6 +41,7 @@ class VwFormFieldWidget extends StatefulWidget {
   final VwFormField formField;
   final VwFieldWidgetChanged? onValueChanged;
   final GetCurrentFormResponseFunction getFieldvalueCurrentResponseFunction;
+  final VwFormFieldValidationResponse? formFieldValidationResponse;
 
   _VwFormFieldWidgetState createState() => _VwFormFieldWidgetState();
 }
@@ -242,6 +247,34 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
     }
   }
 
+  VwFormValidationResponse? getFormValidationResponse(){
+    VwFormValidationResponse? returnValue;
+    try
+    {
+      if(this.widget.formFieldValidationResponse!=null)
+        {
+          for(int la=0;la<this.widget.formFieldValidationResponse!.validationReponses.length;la++)
+            {
+              VwFormFieldValidationResponseComponent? currentComponent=this.widget.formFieldValidationResponse!.validationReponses.elementAt(la);
+
+              if(currentComponent!=null && currentComponent.validationFormResponse!=null)
+                  {
+                    returnValue=currentComponent!.validationFormResponse;
+                    break;
+                  }
+            }
+        }
+
+
+    }
+    catch(error)
+    {
+
+    }
+
+    return returnValue;
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget captionWidget = VwFieldWidget.getLabel(
@@ -250,7 +283,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
         DefaultTextStyle.of(context).style,
         widget.readOnly);
 
-    VwFormDefinition? prevFormDefinition = this.currentFormDefinition;
+   
 
     this.currentFormDefinition = null;
     this.setFormDefinition();
@@ -271,7 +304,10 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
         currentFormDefinition!.isReadOnly = this.widget.readOnly;
       }
 
+
+
       Widget currentFormPage = VwFormPage(
+         formValidationResponse: this.getFormValidationResponse(),
           enableScaffold: false,
           disableScrollView: true,
           key: Key(currentFormDefinition!.recordId),

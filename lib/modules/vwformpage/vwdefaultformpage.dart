@@ -80,7 +80,7 @@ class VwFormPage extends StatefulWidget{
         this.backgroundColor = const Color.fromARGB(255, 209, 240, 255),
         this.borderColor = Colors.lightBlueAccent,
         this.resultCallback,
-
+        this.formValidationResponse
       });
   final VwAppInstanceParam appInstanceParam;
   VwRowData formResponse;
@@ -109,6 +109,8 @@ class VwFormPage extends StatefulWidget{
   final Color backgroundColor;
   final Color borderColor;
   final VwFormPageResult? resultCallback;
+  final VwFormValidationResponse? formValidationResponse;
+
 
 
 
@@ -240,6 +242,11 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
     _animation = Tween<double>(begin: 0, end: 1).animate(curvedAnimation);
 
     this.resetFormValidationResponse();
+    if(this.widget.formValidationResponse!=null)
+      {
+        this.formValidationResponse=this.widget.formValidationResponse!;
+      }
+
 
 
     this._refreshController = StreamController<String>(onListen: () async {
