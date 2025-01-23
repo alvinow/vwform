@@ -80,7 +80,8 @@ class VwFormPage extends StatefulWidget{
         this.backgroundColor = const Color.fromARGB(255, 209, 240, 255),
         this.borderColor = Colors.lightBlueAccent,
         this.resultCallback,
-        this.formValidationResponse
+        this.formValidationResponse,
+        this.isShowFormName=true;
       });
   final VwAppInstanceParam appInstanceParam;
   VwRowData formResponse;
@@ -93,6 +94,7 @@ class VwFormPage extends StatefulWidget{
   final bool loadFormDefinitionFormServer;
   final bool enableUpdateInputFormResponse;
   final String? formName;
+  final bool isShowFormName;
 
   final String
   initState; //0:data loaded,  1: async loading by formResponseId, 2: async saving by formResponseId
@@ -570,6 +572,8 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
         ),
       );
 
+
+
       Widget nodeInfoWidget = ExpansionTileCard(
         title: InkWell(
             onLongPress: () async {
@@ -623,6 +627,11 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
     Widget returnValue = Container();
     try {
       Widget titleWidget = getTitleWidget();
+
+      if(this.widget.isShowFormName==false)
+      {
+        titleWidget=Container();
+      }
 
       returnValue = Container(
           key: key,
