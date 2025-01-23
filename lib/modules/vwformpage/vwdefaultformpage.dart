@@ -81,7 +81,7 @@ class VwFormPage extends StatefulWidget{
         this.borderColor = Colors.lightBlueAccent,
         this.resultCallback,
         this.formValidationResponse,
-        this.isShowFormName=true;
+        this.isShowFormName=true
       });
   final VwAppInstanceParam appInstanceParam;
   VwRowData formResponse;
