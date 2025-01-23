@@ -893,10 +893,10 @@ packages:
     dependency: transitive
     description:
       name: md5_file_checksum
-      sha256: "1a18b3ba2910783d5eeb4290b004ca58302590f3cc919c87112996265a1c0682"
+      sha256: "60130debb1489ae49449050ad5faa730bff86985dfac5a06c56f279de329994b"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.6"
   meta:
     dependency: transitive
     description:
@@ -950,7 +950,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "1130c44d117dee278b742cb5050c020bf0f505f3"
+      resolved-ref: "48cec08511ca59bfe5b84be4c83fddbeac9a0e39"
       url: "https://github.com/alvinow/nodelistview.git"
     source: git
     version: "1.0.0+1"
@@ -1701,7 +1701,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: fb2690419e9a7d368ef2f5d668b1c6f33bc555c4
+      resolved-ref: d8970af5633a9c62456177005147be0346076dca
       url: "https://github.com/alvinow/vwutil.git"
     source: git
     version: "1.0.0+1"

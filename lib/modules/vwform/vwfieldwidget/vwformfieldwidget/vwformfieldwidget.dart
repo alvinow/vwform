@@ -5,6 +5,7 @@ import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.
 import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnodecontent/vwnodecontent.dart';
+import 'package:vwform/modules/formutil/formutil.dart';
 import 'package:vwform/modules/remoteapi/remote_api.dart';
 import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
 import 'package:vwform/modules/vwdatasourcedefinition/vwdatasourcedefinition.dart';
@@ -90,7 +91,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
           VwFieldUiParam.uitFormPageByLocalFieldSource) {
         try {
           VwFieldValue? formResponseFieldValue =
-              NodeUtil.getFieldValueByLocalFieldRef(
+              FormUtil.getFieldValueByLocalFieldRef(
                   rowData: currentFormResponse,
                   localFieldRef: widget.formField.fieldUiParam.localFieldRef!);
           VwNode? formResponseNode = NodeUtil.extractNodeFromLinkNode(
