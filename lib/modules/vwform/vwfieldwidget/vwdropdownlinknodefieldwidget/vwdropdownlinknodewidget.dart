@@ -260,7 +260,7 @@ class VwDropdownLinkNodeFieldWidgetState
                     ]))
 
         ) : Container();
-        cardTapper = InkWell(onTap: () {
+        cardTapper = InkWell(onTap: () async{
           List<VwLinkNode>? candidateRecords = [];
           if (this.widget.formField.fieldUiParam.uiTypeId ==
               VwFieldUiParam.uitDropdownLinkNodeByLocalFieldSource &&
@@ -298,7 +298,7 @@ class VwDropdownLinkNodeFieldWidgetState
 
 
 
-          Navigator.push(
+          await Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) =>
@@ -316,6 +316,8 @@ class VwDropdownLinkNodeFieldWidgetState
                     )),
           );
         });
+
+        this.widget.onValueChanged!(this.widget.field,this.widget.field,true);
       }
       VwNode? rowNode = widget.field.valueLinkNode != null
           ? NodeUtil.getNode(linkNode: widget.field.valueLinkNode!)
