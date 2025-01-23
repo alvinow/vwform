@@ -218,15 +218,27 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
         }
 
         if (widget.field.valueFormResponse == null) {
+          this.resetValueFormResponse();
+          /*
           widget.field.valueFormResponse =
               VwFormDefinitionUtil.createBlankRowDataFromFormDefinition(
                   formDefinition: currentFormDefinition!,
                   ownerUserId: widget
-                      .appInstanceParam.loginResponse!.userInfo!.user.recordId);
+                      .appInstanceParam.loginResponse!.userInfo!.user.recordId);*/
         }
       }
     } catch (error) {
       print("error catched on VwFormFieldWidget.setFormDefinition()");
+    }
+  }
+
+  void resetValueFormResponse() {
+    if (this.currentFormDefinition != null) {
+      widget.field.valueFormResponse =
+          VwFormDefinitionUtil.createBlankRowDataFromFormDefinition(
+              formDefinition: currentFormDefinition!,
+              ownerUserId: widget
+                  .appInstanceParam.loginResponse!.userInfo!.user.recordId);
     }
   }
 
@@ -238,8 +250,18 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
         DefaultTextStyle.of(context).style,
         widget.readOnly);
 
-    this.currentFormDefinition=null;
+    VwFormDefinition? prevFormDefinition = this.currentFormDefinition;
+
+    this.currentFormDefinition = null;
     this.setFormDefinition();
+
+    if (this.widget.field.valueFormResponse != null &&
+        this.currentFormDefinition != null) {
+      if (this.currentFormDefinition!.recordId !=
+          this.widget.field.valueFormResponse!.collectionName) {
+        this.resetValueFormResponse();
+      }
+    }
 
     if (currentFormDefinition != null) {
       currentFormDefinition!.isReadOnly =
@@ -279,8 +301,8 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
                 child: Container(key: widget.key, child: currentFormPage))
           ]);
     } else {
-      this.widget.field.valueFormResponse=null;
-      return Container(key:Key(Uuid().v4()));
+      this.widget.field.valueFormResponse = null;
+      return Container(key: Key(Uuid().v4()));
     }
   }
 }
