@@ -46,7 +46,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
   @override
   void initState() {
     super.initState();
-    this.setFormDefinition();
+    //this.setFormDefinition();
     this.clearAttachments();
   }
 
@@ -236,6 +236,8 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
         this.widget.formField,
         DefaultTextStyle.of(context).style,
         widget.readOnly);
+
+    this.setFormDefinition();
 
     if (currentFormDefinition != null) {
       currentFormDefinition!.isReadOnly =
