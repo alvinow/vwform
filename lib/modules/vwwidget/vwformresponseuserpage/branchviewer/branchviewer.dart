@@ -246,7 +246,13 @@ class BranchviewerState extends State<BranchViewer> {
     
     Color backgroundColor=Color.fromRGBO(90, 171, 232, 1);
     
-    Widget addNewRecordButton=Tooltip(message: 'Tambah Record Baru "'+title+'"',  child:Container(padding: EdgeInsets.all(2), color: Colors.white,child: Icon(Icons.add,color: backgroundColor,size: 14,),));
+    Widget addNewRecordButton=Tooltip(message: 'Tambah Record Baru "'+title+'"',  child:Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+      ),
+
+      padding: EdgeInsets.all(2),child: Icon(Icons.add,color: backgroundColor,size: 14,),));
 
     return Container(
       padding: EdgeInsets.fromLTRB(8, 5, 8, 5),
