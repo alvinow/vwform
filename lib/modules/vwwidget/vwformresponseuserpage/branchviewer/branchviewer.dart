@@ -257,7 +257,7 @@ class BranchviewerState extends State<BranchViewer> {
           icon,
           SizedBox(width: 3,),
           Text(title, textAlign: TextAlign.left,style: TextStyle(fontSize: 12, color: Colors.white)),
-          SizedBox(width: 3,),
+          SizedBox(width: 6,),
           InkWell(onTap: (){
             VwNodeSubmitPage nodeSubmitPage = VwNodeSubmitPage(
                 presetValues: presetValues,
