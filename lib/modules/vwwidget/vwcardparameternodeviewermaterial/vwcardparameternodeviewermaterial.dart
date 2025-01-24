@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
@@ -8,7 +6,6 @@ import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.
 import 'package:matrixclient2base/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
 import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient2base/modules/base/vwnode/vwnodecontent/vwnodecontentutil.dart';
 import 'package:matrixclient2base/modules/base/vwuser/vwuser.dart';
 import 'package:vwform/modules/remoteapi/remote_api.dart';
 import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';

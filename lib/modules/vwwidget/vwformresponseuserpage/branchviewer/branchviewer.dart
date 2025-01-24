@@ -243,11 +243,15 @@ class BranchviewerState extends State<BranchViewer> {
       RefreshDataOnParentFunction? refreshDataOnParentFunction,
       VwRowData? presetValues}) {
     const widgetKey = "123456789";
+    
+    Color backgroundColor=Color.fromRGBO(90, 171, 232, 1);
+    
+    Widget addNewRecordButton=Container(padding: EdgeInsets.all(2), color: Colors.white,child: Icon(Icons.add,color: backgroundColor,size: 16,),);
 
     return Container(
       padding: EdgeInsets.fromLTRB(8, 5, 8, 5),
       margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-      color: Color.fromRGBO(90, 171, 232, 1),
+      color: backgroundColor,
       child: Row(
         children:[
           icon,
@@ -277,7 +281,7 @@ class BranchviewerState extends State<BranchViewer> {
               context,
               MaterialPageRoute(builder: (context) => nodeSubmitPage),
             );
-          }, child: Icon(Icons.add,color: Colors.white,size: 16,))
+          }, child: addNewRecordButton)
         ]
       ),
     );
