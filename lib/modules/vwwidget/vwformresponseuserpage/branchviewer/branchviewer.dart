@@ -248,7 +248,7 @@ class BranchviewerState extends State<BranchViewer> {
     
     Widget addNewRecordButton=Tooltip(message: 'Tambah Record Baru "'+title+'"',  child:Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(3),
+        borderRadius: BorderRadius.circular(5),
         color: Colors.white,
       ),
 
