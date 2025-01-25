@@ -14,17 +14,16 @@ import 'package:vwform/modules/vwwidget/vwcardparameternodeviewermaterial/vwcard
 import 'package:vwform/modules/vwwidget/vwselectnoderecordpage/vwselectnoderecordpage.dart';
 import 'package:vwutil/modules/util/nodeutil.dart';
 
-
 class VwDropDownLinkNodeFieldWidget extends StatefulWidget {
   const VwDropDownLinkNodeFieldWidget(
       {super.key,
-        required this.field,
-        this.readOnly = false,
-        required this.formField,
-        this.onValueChanged,
-        required this.appInstanceParam,
-        this.showChoiceButton = true,
-        required this.getFieldvalueCurrentResponseFunction});
+      required this.field,
+      this.readOnly = false,
+      required this.formField,
+      this.onValueChanged,
+      required this.appInstanceParam,
+      this.showChoiceButton = true,
+      required this.getFieldvalueCurrentResponseFunction});
 
   final VwFieldValue field;
   final bool readOnly;
@@ -46,11 +45,9 @@ class VwDropdownLinkNodeFieldWidgetState
     setState(() {});
   }
 
-
-  String? getNodeContextId(){
+  String? getNodeContextId() {
     String? returnValue;
-    try
-    {
+    try {
       /*
       if(this.widget.getFieldvalueCurrentResponseFunction().formDefinitionId=="vwticket")
         {
@@ -81,45 +78,48 @@ class VwDropdownLinkNodeFieldWidgetState
 
       }
 */
-    }
-    catch(error)
-    {
-
-    }
+    } catch (error) {}
 
     return returnValue;
   }
 
-  String? getTicketAccessMethodParameter1(){
+  String? getTicketAccessMethodParameter1() {
     String? returnValue;
-    try
-        {
-        for(int la=0 ;la<this.widget.appInstanceParam.loginResponse!.userInfo!.roleInfoList!.length;la++)
-          {
-            VwRowData currentRowData=this.widget.appInstanceParam.loginResponse!.userInfo!.roleInfoList!.elementAt(la);
+    try {
+      for (int la = 0;
+          la <
+              this
+                  .widget
+                  .appInstanceParam
+                  .loginResponse!
+                  .userInfo!
+                  .roleInfoList!
+                  .length;
+          la++) {
+        VwRowData currentRowData = this
+            .widget
+            .appInstanceParam
+            .loginResponse!
+            .userInfo!
+            .roleInfoList!
+            .elementAt(la);
 
-            if(currentRowData.collectionName=="vwticketusergroup")
-              {
-                returnValue=currentRowData.getFieldByName("ticketAccessMethodParameter1")!.valueString.toString();
-                break;
-
-              }
-          }
-
+        if (currentRowData.collectionName == "vwticketusergroup") {
+          returnValue = currentRowData
+              .getFieldByName("ticketAccessMethodParameter1")!
+              .valueString
+              .toString();
+          break;
         }
-        catch(error)
-    {
-
-    }
+      }
+    } catch (error) {}
 
     return returnValue;
-
   }
 
-  Map<String,dynamic>? contextNodeFilter(){
-    Map<String,dynamic>? returnValue;
-    try
-    {
+  Map<String, dynamic>? contextNodeFilter() {
+    Map<String, dynamic>? returnValue;
+    try {
       /*
       if(this.widget.getFieldvalueCurrentResponseFunction().formDefinitionId=="vwticket")
       {
@@ -166,37 +166,24 @@ class VwDropdownLinkNodeFieldWidgetState
 
       }
 */
-
-    }
-    catch(error)
-    {
-
-    }
-
+    } catch (error) {}
 
     return returnValue;
-
   }
 
-
-  void _implementFieldValueChanged(VwLinkNode? linkNode){
-
-    if(this.widget.onValueChanged!=null)
-      {
-        this.widget.onValueChanged!(this.widget.field,this.widget.field,true);
-      }
-
+  void _implementFieldValueChanged(VwLinkNode? linkNode) {
+    if (this.widget.onValueChanged != null) {
+      this.widget.onValueChanged!(this.widget.field, this.widget.field, true);
+    }
   }
 
   Widget buildFieldDisplay() {
-    Widget returnValue=Text("(Error : Error occured when displaying value)");
+    Widget returnValue = Text("(Error : Error occured when displaying value)");
     try {
       Widget captionWidget = VwFieldWidget.getLabel(
           widget.field,
           this.widget.formField,
-          DefaultTextStyle
-              .of(context)
-              .style,
+          DefaultTextStyle.of(context).style,
           widget.readOnly);
 
       String emptyText = "(kosong)";
@@ -206,8 +193,8 @@ class VwDropdownLinkNodeFieldWidgetState
           : emptyText;
 
       String collectionNameValue = widget.field.valueLinkNode != null &&
-          widget.field.valueLinkNode!.contentContext != null &&
-          widget.field.valueLinkNode!.contentContext!.collectionName != null
+              widget.field.valueLinkNode!.contentContext != null &&
+              widget.field.valueLinkNode!.contentContext!.collectionName != null
           ? widget.field.valueLinkNode!.contentContext!.collectionName!
           : emptyText;
 
@@ -220,16 +207,16 @@ class VwDropdownLinkNodeFieldWidgetState
 
       String? title = recordIdValue;
 
-      if (this.widget.field.valueLinkNode != null &&  NodeUtil.extractNodeFromLinkNode(this.widget.field.valueLinkNode!)!=null) {
+      if (this.widget.field.valueLinkNode != null &&
+          NodeUtil.extractNodeFromLinkNode(this.widget.field.valueLinkNode!) !=
+              null) {
         String? titleFieldValue;
         VwNode? currentNode =
-        NodeUtil.extractNodeFromLinkNode(this.widget.field.valueLinkNode!);
+            NodeUtil.extractNodeFromLinkNode(this.widget.field.valueLinkNode!);
 
         titleFieldValue = NodeUtil
             .getValueStringFromContentRecordCollectionWithEnabledSubFieldName(
-            currentNode!, titleFieldName, titleSubFieldName);
-
-
+                currentNode!, titleFieldName, titleSubFieldName);
 
         if (titleFieldValue != null) {
           title = titleFieldValue;
@@ -243,68 +230,72 @@ class VwDropdownLinkNodeFieldWidgetState
       InkWell cardTapper = InkWell(onTap: () {});
       Widget clearSelectionWidget = Container();
 
-
       if (widget.showChoiceButton == true &&
           widget.readOnly == false &&
           widget.formField.fieldUiParam.isReadOnly == false) {
-        clearSelectionWidget =
-        this.widget.field.valueLinkNode != null ? InkWell(
-            onTap: () {
-              this.widget.field.valueLinkNode = null;
-              this.implementRefreshDataOnParentFunction();
-            },
-            child: Container(margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                child: Row(mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text("Kosongkan Piihan",
-                        style: TextStyle(color: Colors.grey),),
-                    ]))
-
-        ) : Container();
-        cardTapper = InkWell(onTap: () async{
+        clearSelectionWidget = this.widget.field.valueLinkNode != null
+            ? InkWell(
+                onTap: () {
+                  this.widget.field.valueLinkNode = null;
+                  this.implementRefreshDataOnParentFunction();
+                },
+                child: Container(
+                    margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "Kosongkan Piihan",
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ])))
+            : Container();
+        cardTapper = InkWell(onTap: () async {
           List<VwLinkNode>? candidateRecords = [];
           if (this.widget.formField.fieldUiParam.uiTypeId ==
-              VwFieldUiParam.uitDropdownLinkNodeByLocalFieldSource &&
+                  VwFieldUiParam.uitDropdownLinkNodeByLocalFieldSource &&
               widget.formField.fieldUiParam.localFieldRef != null) {
             VwRowData formResponse =
-            widget.getFieldvalueCurrentResponseFunction();
+                widget.getFieldvalueCurrentResponseFunction();
 
             VwFieldValue? refInternalFieldValue =
-            VwFieldWidgetUtil.getInternalOfFielValueFromRowData(
-                source: formResponse,
-                localFieldRef: widget.formField.fieldUiParam.localFieldRef!);
+                VwFieldWidgetUtil.getInternalOfFielValueFromRowData(
+                    source: formResponse,
+                    localFieldRef:
+                        widget.formField.fieldUiParam.localFieldRef!);
 
             if (refInternalFieldValue != null) {
               if (refInternalFieldValue.valueTypeId ==
-                  VwFieldValue.vatValueLinkNodeList &&
+                      VwFieldValue.vatValueLinkNodeList &&
                   refInternalFieldValue.valueLinkNodeList != null &&
                   refInternalFieldValue.valueLinkNodeList!.length > 0) {
                 candidateRecords = refInternalFieldValue.valueLinkNodeList;
               } else if (refInternalFieldValue.valueTypeId ==
-                  VwFieldValue.vatValueLinkNode &&
+                      VwFieldValue.vatValueLinkNode &&
                   refInternalFieldValue.valueLinkNode != null) {
                 candidateRecords.add(refInternalFieldValue.valueLinkNode!);
               }
             }
-          } else
-          if (widget.formField.fieldUiParam.collectionListViewDefinition !=
-              null &&
+          } else if (widget
+                      .formField.fieldUiParam.collectionListViewDefinition !=
+                  null &&
               widget.formField.fieldUiParam.collectionListViewDefinition!
-                  .staticRefLinkNodeList !=
+                      .staticRefLinkNodeList !=
                   null) {
             candidateRecords = widget.formField.fieldUiParam
                 .collectionListViewDefinition!.staticRefLinkNodeList!;
           }
 
-
-
-
           await Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>
-                    VwSelectNodeRecordPage(
-                      parentFormResponse: this.widget.getFieldvalueCurrentResponseFunction==null?null:this.widget.getFieldvalueCurrentResponseFunction(),
+                builder: (context) => VwSelectNodeRecordPage(
+                      parentFormResponse: this
+                                  .widget
+                                  .getFieldvalueCurrentResponseFunction ==
+                              null
+                          ? null
+                          : this.widget.getFieldvalueCurrentResponseFunction(),
                       getNodeContextId: this.getNodeContextId(),
                       contextNodeFilter: this.contextNodeFilter(),
                       onChanged: this._implementFieldValueChanged,
@@ -313,12 +304,10 @@ class VwDropdownLinkNodeFieldWidgetState
                       formField: widget.formField,
                       appInstanceParam: widget.appInstanceParam,
                       refreshDataOnParentFunction:
-                      this.implementRefreshDataOnParentFunction,
+                          this.implementRefreshDataOnParentFunction,
                     )),
           );
         });
-
-
       }
       VwNode? rowNode = widget.field.valueLinkNode != null
           ? NodeUtil.getNode(linkNode: widget.field.valueLinkNode!)
@@ -326,7 +315,7 @@ class VwDropdownLinkNodeFieldWidgetState
 
       if (widget.formField.fieldUiParam.collectionListViewDefinition != null &&
           widget.formField.fieldUiParam.collectionListViewDefinition!
-              .cardParameter !=
+                  .cardParameter !=
               null &&
           rowNode != null) {
         if (rowNode != null) {
@@ -339,60 +328,58 @@ class VwDropdownLinkNodeFieldWidgetState
         }
       }
       Widget selectButtonWidget =
-      widget.formField.fieldUiParam.isReadOnly == false
-          ? Icon(
-        Icons.keyboard_arrow_down,
-        size: 40,
-        color: Colors.black,
-      )
-          : Container();
+          widget.formField.fieldUiParam.isReadOnly == false
+              ? Icon(
+                  Icons.keyboard_arrow_down,
+                  size: 35,
+                  color: Colors.black,
+                )
+              : Container();
 
       if (valueWidget == null) {
-        valueWidget = InkWell(
-          child: Container(
-              padding: EdgeInsets.all(3),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                      margin: EdgeInsets.fromLTRB(0, 0, 0, 3),
-                      child: Text(title,
-                          style: TextStyle(fontSize: 18, color: Colors.grey))),
-                  title == emptyText
-                      ? Container()
-                      : Text(
-                    collectionNameValue,
-                    style: TextStyle(color: Colors.grey),
-                  )
-                ],
-              )),
-          onTap: cardTapper.onTap,
-        );
+        valueWidget = Container(
+            padding: EdgeInsets.all(3),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                    margin: EdgeInsets.fromLTRB(0, 0, 0, 3),
+                    child: Text(title,
+                        style: TextStyle(fontSize: 18, color: Colors.grey))),
+                title == emptyText
+                    ? Container()
+                    : Text(
+                        collectionNameValue,
+                        style: TextStyle(color: Colors.grey),
+                      )
+              ],
+            ));
       }
 
+      Widget displaySelectionWidget = InkWell(
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Expanded(child: Container(color: Colors.cyan, margin: EdgeInsets.all(2),child:valueWidget)),
+          widget.showChoiceButton == true ? selectButtonWidget : Container()
+        ]),
+        onTap: cardTapper.onTap,
+      );
 
       returnValue =
-      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Container(
             margin: EdgeInsets.fromLTRB(0, 0, 0, 6), child: captionWidget),
         Container(
+            margin: EdgeInsets.all(2),
             padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
             decoration: BoxDecoration(border: Border.all(color: Colors.black)),
             child:
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                Expanded(child: valueWidget),
-                widget.showChoiceButton == true
-                    ? selectButtonWidget
-                    : Container()
-              ]),
-
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              displaySelectionWidget,
             ])),
         clearSelectionWidget
       ]);
-    }
-    catch(error)
-    {
+    } catch (error) {
       print("error catched when displaying Value");
     }
     return returnValue;
