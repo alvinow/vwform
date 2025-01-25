@@ -359,7 +359,7 @@ class VwDropdownLinkNodeFieldWidgetState
       Widget displaySelectionWidget = InkWell(
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Expanded(child: Container(color: Colors.cyan, margin: EdgeInsets.all(2),child:valueWidget)),
+          Expanded(child: Container( margin: EdgeInsets.all(1),child:valueWidget)),
           widget.showChoiceButton == true ? selectButtonWidget : Container()
         ]),
         onTap: cardTapper.onTap,
