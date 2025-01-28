@@ -20,7 +20,7 @@ import 'package:vwutil/modules/util/vwdateutil.dart';
 class VwDefaultRowViewer extends StatefulWidget {
   VwDefaultRowViewer(
       {required super.key,
-        required this.appInstanceParam,
+      required this.appInstanceParam,
       required this.rowNode,
       this.highlightedText,
       this.refreshDataOnParentFunction,
@@ -29,7 +29,6 @@ class VwDefaultRowViewer extends StatefulWidget {
       this.localeId = "id_ID",
       this.customCardtapper,
       this.reloadPeriodic = 600});
-
 
   final int reloadPeriodic;
   final VwAppInstanceParam appInstanceParam;
@@ -54,9 +53,8 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
 
   @override
   void initState() {
-
     super.initState();
-    this.isForceRefreshRecord=false;
+    this.isForceRefreshRecord = false;
     nodeCurrent = widget.rowNode;
     currentState = "init";
     this._refreshController = new StreamController<String>();
@@ -65,28 +63,22 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
     isVisible = true;
   }
 
-  void implementReloadRecordOnParent(){
+  void implementReloadRecordOnParent() {
     setState(() {
-      this.isForceRefreshRecord=true;
+      this.isForceRefreshRecord = true;
       this._handleRefresh();
     });
   }
 
   Future<void> _handleRefresh() async {
     try {
-      if (this.isVisible == true || this.isForceRefreshRecord==true) {
-
-        if (this.nodeCurrent.recordId ==
-            "cd0a49d1-3f8b-4b7f-9c68-6880f8b97c03") {
-          print(this.nodeCurrent.recordId);
-          print(this.nodeCurrent.nodeStatusId);
-        }
-
+      if (this.isVisible == true || this.isForceRefreshRecord == true) {
         int deltaSeconds = lastRefresh == null
             ? 0
             : DateTime.now().difference(lastRefresh!).inSeconds;
-        if ((lastRefresh != null && deltaSeconds > 3) || this.isForceRefreshRecord==true) {
-          this.isForceRefreshRecord=false;
+        if ((lastRefresh != null && deltaSeconds > 3) ||
+            this.isForceRefreshRecord == true) {
+          this.isForceRefreshRecord = false;
           try {
             await this._asyncLoadData();
           } catch (error) {}
@@ -127,6 +119,8 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
         fields: <VwFieldValue>[
           VwFieldValue(
               fieldName: "nodeId", valueString: this.widget.rowNode.recordId),
+          VwFieldValue(
+              fieldName: "currentStateKey", valueString: this.nodeCurrent.stateKey),
           VwFieldValue(fieldName: "depth", valueNumber: 1),
           /*VwFieldValue(
               fieldName: "depth1FilterObject",
@@ -148,16 +142,22 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
   Future<VwNode> _asyncLoadData() async {
     VwNode returnValue = nodeCurrent;
     try {
-      if (widget.rowNode.recordId == "cd0a49d1-3f8b-4b7f-9c68-6880f8b97c03") {
-        print(widget.rowNode.recordId);
-      }
-
       currentState = "onRefresh";
 
       VwNodeRequestResponse nodeRequestResponse =
           await RemoteApi.nodeRequestApiCall(
-            baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
-            graphqlServerAddress: this.widget.appInstanceParam.baseAppConfig.generalConfig.graphqlServerAddress,
+              baseUrl: this
+                  .widget
+                  .appInstanceParam
+                  .baseAppConfig
+                  .generalConfig
+                  .baseUrl,
+              graphqlServerAddress: this
+                  .widget
+                  .appInstanceParam
+                  .baseAppConfig
+                  .generalConfig
+                  .graphqlServerAddress,
               apiCallId: "getNodes",
               apiCallParam: this.apiCallParam(),
               loginSessionId: widget.appInstanceParam.loginResponse != null
@@ -165,11 +165,30 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
                   : "<invalid_loginSessionId>");
 
       if (nodeRequestResponse.renderedNodePackage!.rootNode != null) {
-        returnValue = nodeCurrent;
 
-        setState(() {
-          nodeCurrent = nodeRequestResponse.renderedNodePackage!.rootNode!;
-        });
+        bool doUpdateCurrentNode=true;
+        VwNode newCandidateNode=nodeRequestResponse.renderedNodePackage!.rootNode!;
+
+        if( nodeCurrent.stateKey!=null && newCandidateNode.stateKey!=null && nodeCurrent.stateKey!=newCandidateNode.stateKey)
+          {
+
+          }
+        else{
+          doUpdateCurrentNode=false;
+        }
+
+
+        if(doUpdateCurrentNode)
+          {
+            nodeCurrent = newCandidateNode ;
+            returnValue = nodeCurrent;
+            setState(() {});
+          }
+
+
+
+
+
       } else if (nodeRequestResponse.apiCallResponse!.responseStatusCode ==
               200 &&
           nodeRequestResponse.renderedNodePackage != null &&
@@ -188,7 +207,6 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
 
   @override
   Widget build(BuildContext context) {
-
     return StreamBuilder(
         stream: _refreshController.stream,
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
@@ -256,7 +274,9 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
             return RefreshIndicator(
                 onRefresh: _handleRefresh,
                 child: VisibilityDetector(
-                  key: widget.key==null?Key(this.nodeCurrent.recordId):widget.key!,
+                  key: widget.key == null
+                      ? Key(this.nodeCurrent.recordId)
+                      : widget.key!,
                   onVisibilityChanged: (visibilityInfo) {
                     var visiblePercentage =
                         visibilityInfo.visibleFraction * 100;
@@ -267,13 +287,14 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
                     }
                   },
                   child: VwBrowseFolderRowViewer(
-                      key:Key(this.nodeCurrent.recordId),
+                      key: Key(this.nodeCurrent.recordId),
                       appInstanceParam: widget.appInstanceParam,
                       rowNode: this.nodeCurrent,
                       rowViewerBoxContraints:
                           this.widget.rowViewerBoxContraints,
                       highlightedText: widget.highlightedText,
-                      refreshDataOnParentRecordFunction: implementReloadRecordOnParent,
+                      refreshDataOnParentRecordFunction:
+                          implementReloadRecordOnParent,
                       refreshDataOnParentFunction:
                           widget.refreshDataOnParentFunction,
                       commandToParentFunction: widget.commandToParentFunction),
