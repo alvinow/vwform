@@ -28,7 +28,7 @@ class VwDefaultRowViewer extends StatefulWidget {
       this.commandToParentFunction,
       this.localeId = "id_ID",
       this.customCardtapper,
-      this.reloadPeriodic = 600});
+      this.reloadPeriodic = 7});
 
   final int reloadPeriodic;
   final VwAppInstanceParam appInstanceParam;
