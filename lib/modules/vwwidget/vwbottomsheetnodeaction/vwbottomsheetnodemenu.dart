@@ -97,13 +97,14 @@ class VwBottomSheetNodeMenuState extends State<VwBottomSheetNodeMenu>{
       String currentNodeString=json.encode(this.widget.currentNode.toJson());
 
       VwNode injectNode=VwNode.fromJson(json.decode(currentNodeString) );
-      isNodeSuccesfullyUpdated=false;
+      //isNodeSuccesfullyUpdated=false;
       await Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => VwNodeSubmitPage(nodeSubmitPageStateChanged: this.onChangePageState, node: injectNode, parentNodeId: injectNode.parentNodeId==null?"<invalid_node_id>":currentNode!.parentNodeId.toString(), appInstanceParam: appInstanceParam, refreshDataOnParentFunction: widget.refreshDataOnParentFunction),
           ));
 
+      /*
       if(this.isNodeSuccesfullyUpdated)
         {
           VwRowData updatedNodeRowData=VwRowData(recordId: Uuid().v4());
@@ -111,7 +112,7 @@ class VwBottomSheetNodeMenuState extends State<VwBottomSheetNodeMenu>{
           NodeUtil.nodeToRowData(nodeSource: injectNode, rowDataDestination: updatedNodeRowData);
 
           NodeUtil.updateNodeFromRowData(nodeDestination: this.widget.currentNode, rowDataSource: updatedNodeRowData);
-        }
+        }*/
 
 
 

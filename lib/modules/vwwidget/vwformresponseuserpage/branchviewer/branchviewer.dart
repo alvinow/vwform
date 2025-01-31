@@ -33,7 +33,7 @@ class BranchViewer extends StatefulWidget {
       this.commandToParentFunction,
       this.refreshDataOnParentFunction,
       this.isRoot = false,
-        this.backgroundColor=Colors.white,
+      this.backgroundColor = Colors.white,
       this.actionMenuButton});
 
   final double leftMargin;
@@ -167,17 +167,9 @@ class BranchviewerState extends State<BranchViewer> {
 
   void implementRefreshBranch() {
     try {
-      print("Refresh:" + widget.parentNode.content!.rowData!.collectionName!);
-
       if (this.widget.refreshDataOnParentFunction != null) {
         this.widget.refreshDataOnParentFunction!();
       }
-
-      /*
-      setState(() {
-        this.branch0Key = Key(Uuid().v4());
-        this.branch1Key = Key(Uuid().v4());
-      });*/
     } catch (error) {}
   }
 
@@ -207,18 +199,22 @@ class BranchviewerState extends State<BranchViewer> {
       CreateRecordButtonChildBranch currentButtonDef =
           childBranch.createRecordButtonList.elementAt(la);
 
-      Widget currentButton = BranchviewerState.getCreateRecordFloatingActionButton(
-
-        icon: Icon(currentButtonDef.icon,color: Colors.white,size: 18,),
-          parentNodeId: childBranch.branchNodeId,
-          presetValues: currentButtonDef.newRecordPresetValues,
-          formDefinitionIdList: [
-            currentButtonDef.createRecordFormDefinitionId.toString()
-          ],
-          refreshDataOnParentFunction: refreshDataOnParentFunction,
-          context: context,
-          appInstanceParam: appInstanceParam,
-          title: currentButtonDef.title);
+      Widget currentButton =
+          BranchviewerState.getCreateRecordFloatingActionButton(
+              icon: Icon(
+                currentButtonDef.icon,
+                color: Colors.white,
+                size: 18,
+              ),
+              parentNodeId: childBranch.branchNodeId,
+              presetValues: currentButtonDef.newRecordPresetValues,
+              formDefinitionIdList: [
+                currentButtonDef.createRecordFormDefinitionId.toString()
+              ],
+              refreshDataOnParentFunction: refreshDataOnParentFunction,
+              context: context,
+              appInstanceParam: appInstanceParam,
+              title: currentButtonDef.title);
 
       buttonList.add(Container(
           constraints: BoxConstraints(maxWidth: 300), child: currentButton));
@@ -237,138 +233,148 @@ class BranchviewerState extends State<BranchViewer> {
       required String parentNodeId,
       required BuildContext context,
       required String title,
-        required Widget icon,
+      required Widget icon,
       required VwAppInstanceParam appInstanceParam,
       SyncNodeToParentFunction? syncNodeToParentFunction,
       RefreshDataOnParentFunction? refreshDataOnParentFunction,
       VwRowData? presetValues}) {
     const widgetKey = "123456789";
-    
-    Color backgroundColor=Color.fromRGBO(90, 171, 232, 1);
-    
-    Widget addNewRecordButton=Tooltip(message: 'Tambah Record Baru "'+title+'"',  child:Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        color: Colors.white,
-      ),
 
-      padding: EdgeInsets.all(2),child: Icon(Icons.add,color: backgroundColor,size: 14,),));
+    Color backgroundColor = Color.fromRGBO(90, 171, 232, 1);
+
+    Widget addNewRecordButton = Tooltip(
+        message: 'Tambah Record Baru "' + title + '"',
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: Colors.white,
+          ),
+          padding: EdgeInsets.all(2),
+          child: Icon(
+            Icons.add,
+            color: backgroundColor,
+            size: 14,
+          ),
+        ));
 
     return Container(
       padding: EdgeInsets.fromLTRB(8, 5, 8, 5),
       margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
       color: backgroundColor,
-      child: Row(
-        children:[
-          icon,
-          SizedBox(width: 3,),
-          Text(title, textAlign: TextAlign.left,style: TextStyle(fontSize: 12, color: Colors.white)),
-          SizedBox(width: 6,),
-          InkWell(onTap: (){
-            VwNodeSubmitPage nodeSubmitPage = VwNodeSubmitPage(
+      child: Row(children: [
+        icon,
+        SizedBox(
+          width: 3,
+        ),
+        Text(title,
+            textAlign: TextAlign.left,
+            style: TextStyle(fontSize: 12, color: Colors.white)),
+        SizedBox(
+          width: 6,
+        ),
+        InkWell(
+            onTap: () {
+              VwNodeSubmitPage nodeSubmitPage = VwNodeSubmitPage(
+                  presetValues: presetValues,
+                  key: Key(widgetKey),
+                  formDefinitionIdList: formDefinitionIdList,
+                  parentNodeId: parentNodeId,
+                  appInstanceParam: appInstanceParam,
+                  refreshDataOnParentFunction: refreshDataOnParentFunction);
+
+              /*
+              VwFormSubmitPage formSubmitPage = VwFormSubmitPage(
+                lockPresetValue: true,
                 presetValues: presetValues,
                 key: Key(widgetKey),
-                formDefinitionIdList: formDefinitionIdList,
-                parentNodeId: parentNodeId,
+                defaultFormDefinitionIdList: formDefinitionIdList,
                 appInstanceParam: appInstanceParam,
-                refreshDataOnParentFunction: refreshDataOnParentFunction);
+                refreshDataOnParentFunction: refreshDataOnParentFunction,
+              );*/
 
-            VwFormSubmitPage formSubmitPage = VwFormSubmitPage(
-              lockPresetValue: true,
-              presetValues: presetValues,
-              key: Key(widgetKey),
-              defaultFormDefinitionIdList: formDefinitionIdList,
-              appInstanceParam: appInstanceParam,
-              refreshDataOnParentFunction:
-              refreshDataOnParentFunction,
-            );
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => nodeSubmitPage),
-            );
-          }, child: addNewRecordButton)
-        ]
-      ),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => nodeSubmitPage),
+              );
+            },
+            child: addNewRecordButton)
+      ]),
     );
-
-
-    return Container(
-        margin: EdgeInsets.all(2),
-        child:TextButton.icon( style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.resolveWith((states) {
-        // If the button is pressed, return green, otherwise blue
-        if (states.contains(MaterialState.hovered)) {
-          return Colors.lightBlueAccent;
-        }
-        return Colors.blue;
-      })
-    ), onPressed: (){
-          VwNodeSubmitPage nodeSubmitPage = VwNodeSubmitPage(
-              presetValues: presetValues,
-              key: Key(widgetKey),
-              formDefinitionIdList: formDefinitionIdList,
-              parentNodeId: parentNodeId,
-              appInstanceParam: appInstanceParam,
-              refreshDataOnParentFunction: refreshDataOnParentFunction);
-
-          VwFormSubmitPage formSubmitPage = VwFormSubmitPage(
-            lockPresetValue: true,
-            presetValues: presetValues,
-            key: Key(widgetKey),
-            defaultFormDefinitionIdList: formDefinitionIdList,
-            appInstanceParam: appInstanceParam,
-            refreshDataOnParentFunction:
-            refreshDataOnParentFunction,
-          );
-
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => nodeSubmitPage),
-          );
-        }, icon: Icon(Icons.add,color: Colors.white,size: 18,), label: Text(title, textAlign: TextAlign.left,style: TextStyle(fontSize: 12, color: Colors.white),)));
-
 
 
   }
 
-
-  static Widget createStatusColumnHeader({VwRowData? parentCurrentRowData,required String currentSummaryId,required String currentLocaleId}) {
+  static Widget createStatusColumnHeader(
+      {VwRowData? parentCurrentRowData,
+      required String currentSummaryId,
+      required String currentLocaleId}) {
     try {
       Widget summaryRow = Container();
 
-      VwFieldValue jumlahtemuan = VwFieldValue(fieldName: "jumlahtemuan",valueTypeId: VwFieldValue.vatNumber,valueNumber: 0);
-      VwFieldValue nilaitemuan =  VwFieldValue(fieldName: "nilaitemuan",valueTypeId: VwFieldValue.vatNumber);
+      VwFieldValue jumlahtemuan = VwFieldValue(
+          fieldName: "jumlahtemuan",
+          valueTypeId: VwFieldValue.vatNumber,
+          valueNumber: 0);
+      VwFieldValue nilaitemuan = VwFieldValue(
+          fieldName: "nilaitemuan", valueTypeId: VwFieldValue.vatNumber);
 
-      VwFieldValue jumlahsubtemuan = VwFieldValue(fieldName: "jumlahsubtemuan",valueTypeId: VwFieldValue.vatNumber,valueNumber: 0);
-      VwFieldValue nilaisubtemuan =  VwFieldValue(fieldName: "nilaisubtemuan",valueTypeId: VwFieldValue.vatNumber);
+      VwFieldValue jumlahsubtemuan = VwFieldValue(
+          fieldName: "jumlahsubtemuan",
+          valueTypeId: VwFieldValue.vatNumber,
+          valueNumber: 0);
+      VwFieldValue nilaisubtemuan = VwFieldValue(
+          fieldName: "nilaisubtemuan", valueTypeId: VwFieldValue.vatNumber);
 
-      VwFieldValue  jumlahrekomendasi = VwFieldValue(fieldName: "jumlahtemuan",valueTypeId: VwFieldValue.vatNumber,valueNumber: 0);;
-      VwFieldValue  nilairekomendasi = VwFieldValue(fieldName: "nilaitemuan",valueTypeId: VwFieldValue.vatNumber);
+      VwFieldValue jumlahrekomendasi = VwFieldValue(
+          fieldName: "jumlahtemuan",
+          valueTypeId: VwFieldValue.vatNumber,
+          valueNumber: 0);
+      ;
+      VwFieldValue nilairekomendasi = VwFieldValue(
+          fieldName: "nilaitemuan", valueTypeId: VwFieldValue.vatNumber);
 
-      VwFieldValue  jumlahsudahsesuai = VwFieldValue(fieldName: "jumlahtemuan",valueTypeId: VwFieldValue.vatNumber,valueNumber: 0);;
-      VwFieldValue  nilaisudahsesuai = VwFieldValue(fieldName: "nilaitemuan",valueTypeId: VwFieldValue.vatNumber);
+      VwFieldValue jumlahsudahsesuai = VwFieldValue(
+          fieldName: "jumlahtemuan",
+          valueTypeId: VwFieldValue.vatNumber,
+          valueNumber: 0);
+      ;
+      VwFieldValue nilaisudahsesuai = VwFieldValue(
+          fieldName: "nilaitemuan", valueTypeId: VwFieldValue.vatNumber);
 
-      VwFieldValue  jumlahdalamproses = VwFieldValue(fieldName: "jumlahtemuan",valueTypeId: VwFieldValue.vatNumber,valueNumber: 0);;
-      VwFieldValue  nilaidalamproses = VwFieldValue(fieldName: "nilaitemuan",valueTypeId: VwFieldValue.vatNumber);
+      VwFieldValue jumlahdalamproses = VwFieldValue(
+          fieldName: "jumlahtemuan",
+          valueTypeId: VwFieldValue.vatNumber,
+          valueNumber: 0);
+      ;
+      VwFieldValue nilaidalamproses = VwFieldValue(
+          fieldName: "nilaitemuan", valueTypeId: VwFieldValue.vatNumber);
 
-      VwFieldValue  jumlahbelumtinjut = VwFieldValue(fieldName: "jumlahtemuan",valueTypeId: VwFieldValue.vatNumber,valueNumber: 0);;
-      VwFieldValue  nilaibelumtinjut = VwFieldValue(fieldName: "nilaitemuan",valueTypeId: VwFieldValue.vatNumber);
+      VwFieldValue jumlahbelumtinjut = VwFieldValue(
+          fieldName: "jumlahtemuan",
+          valueTypeId: VwFieldValue.vatNumber,
+          valueNumber: 0);
+      ;
+      VwFieldValue nilaibelumtinjut = VwFieldValue(
+          fieldName: "nilaitemuan", valueTypeId: VwFieldValue.vatNumber);
 
-      VwFieldValue  jumlahtidakdapat = VwFieldValue(fieldName: "jumlahtemuan",valueTypeId: VwFieldValue.vatNumber,valueNumber: 0);;
-      VwFieldValue  nilaitidakdapat = VwFieldValue(fieldName: "nilaitemuan",valueTypeId: VwFieldValue.vatNumber);
+      VwFieldValue jumlahtidakdapat = VwFieldValue(
+          fieldName: "jumlahtemuan",
+          valueTypeId: VwFieldValue.vatNumber,
+          valueNumber: 0);
+      ;
+      VwFieldValue nilaitidakdapat = VwFieldValue(
+          fieldName: "nilaitemuan", valueTypeId: VwFieldValue.vatNumber);
 
       String? summaryRecordId;
 
-      if (
-      parentCurrentRowData!.attachments != null &&
+      if (parentCurrentRowData!.attachments != null &&
           parentCurrentRowData!.attachments!.length > 0) {
         try {
           for (int la = 0;
               la < parentCurrentRowData!.attachments!.length;
               la++) {
-            VwNodeContent? nodeContent = parentCurrentRowData!.attachments!
-                .elementAtOrNull(la);
+            VwNodeContent? nodeContent =
+                parentCurrentRowData!.attachments!.elementAtOrNull(la);
 
             summaryRecordId = nodeContent!.rowData!.recordId;
 
@@ -383,48 +389,57 @@ class BranchviewerState extends State<BranchViewer> {
 
               jumlahsubtemuan = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
-                  fieldName: "jumlahsubtemuan", defaultValue: jumlahtemuan)!;
+                      fieldName: "jumlahsubtemuan",
+                      defaultValue: jumlahtemuan)!;
 
               nilaisubtemuan = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
-                  fieldName: "nilaisubtemuan", defaultValue: nilaitemuan)!;
+                      fieldName: "nilaisubtemuan", defaultValue: nilaitemuan)!;
 
               jumlahrekomendasi = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
-                      fieldName: "jumlahrekomendasi", defaultValue: jumlahrekomendasi)!;
+                      fieldName: "jumlahrekomendasi",
+                      defaultValue: jumlahrekomendasi)!;
               nilairekomendasi = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
-                      fieldName: "nilairekomendasi", defaultValue: nilairekomendasi)!;
+                      fieldName: "nilairekomendasi",
+                      defaultValue: nilairekomendasi)!;
 
               jumlahsudahsesuai = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
-                      fieldName: "jumlahsudahsesuai", defaultValue: jumlahsudahsesuai)!;
+                      fieldName: "jumlahsudahsesuai",
+                      defaultValue: jumlahsudahsesuai)!;
               nilaisudahsesuai = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
-                      fieldName: "nilaisudahsesuai", defaultValue: nilaisudahsesuai)!;
+                      fieldName: "nilaisudahsesuai",
+                      defaultValue: nilaisudahsesuai)!;
 
               jumlahdalamproses = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
-                      fieldName: "jumlahdalamproses", defaultValue: jumlahdalamproses)!;
+                      fieldName: "jumlahdalamproses",
+                      defaultValue: jumlahdalamproses)!;
               nilaidalamproses = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
-                      fieldName: "nilaidalamproses", defaultValue: nilaidalamproses)!;
+                      fieldName: "nilaidalamproses",
+                      defaultValue: nilaidalamproses)!;
 
               jumlahbelumtinjut = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
-                      fieldName: "jumlahbelumtinjut", defaultValue: jumlahbelumtinjut)!;
+                      fieldName: "jumlahbelumtinjut",
+                      defaultValue: jumlahbelumtinjut)!;
               nilaibelumtinjut = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
-                      fieldName: "nilaibelumtinjut", defaultValue: nilaibelumtinjut)!;
+                      fieldName: "nilaibelumtinjut",
+                      defaultValue: nilaibelumtinjut)!;
 
               jumlahtidakdapat = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
-                      fieldName: "jumlahtidakdapat", defaultValue: jumlahtidakdapat)!;
+                      fieldName: "jumlahtidakdapat",
+                      defaultValue: jumlahtidakdapat)!;
               nilaitidakdapat = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
-                      fieldName: "nilaitidakdapat", defaultValue: nilaitidakdapat)!;
-
-
+                      fieldName: "nilaitidakdapat",
+                      defaultValue: nilaitidakdapat)!;
             }
             break;
           }
@@ -532,14 +547,15 @@ class BranchviewerState extends State<BranchViewer> {
                     title: "Tidak Dapat")),
           ],
         );
-      }
-      else if (currentSummaryId == "rekomendasitemuanlhp" || currentSummaryId == "rekomendasisubtemuanlhp" ) {
+      } else if (currentSummaryId == "rekomendasitemuanlhp" ||
+          currentSummaryId == "rekomendasisubtemuanlhp") {
         if (parentCurrentRowData != null) {
-          VwFieldValue? statusRekomendasiTindakLanjutFieldValue = parentCurrentRowData !
-              .getFieldByName("statusrekomendasitindaklanjut");
+          VwFieldValue? statusRekomendasiTindakLanjutFieldValue =
+              parentCurrentRowData!
+                  .getFieldByName("statusrekomendasitindaklanjut");
 
-          VwFieldValue? nilaiRekomendasiTindakLanjutFieldValue = parentCurrentRowData !
-              .getFieldByName("nilairekomendasi");
+          VwFieldValue? nilaiRekomendasiTindakLanjutFieldValue =
+              parentCurrentRowData!.getFieldByName("nilairekomendasi");
 
           VwFieldValue nilaiRekomendasiSudahSesuai = new VwFieldValue(
               fieldName: "name1", valueTypeId: VwFieldValue.vatNumber);
@@ -558,15 +574,10 @@ class BranchviewerState extends State<BranchViewer> {
 
           VwFieldValue statusRekomendasi = VwFieldValue(
             fieldName: "nama",
-
           );
 
           if (statusRekomendasiTindakLanjutFieldValue != null &&
-              statusRekomendasiTindakLanjutFieldValue.valueLinkNode != null
-
-          ) {
-
-
+              statusRekomendasiTindakLanjutFieldValue.valueLinkNode != null) {
             VwNode? statusRekomendasiNode = NodeUtil.extractNodeFromLinkNode(
                 statusRekomendasiTindakLanjutFieldValue.valueLinkNode!);
 
@@ -581,69 +592,73 @@ class BranchviewerState extends State<BranchViewer> {
               }
             }
 
-            String kodeStatusRekomendasi=statusRekomendasiNode!.content.rowData!
+            String kodeStatusRekomendasi = statusRekomendasiNode!
+                .content.rowData!
                 .getFieldByName("kode")!
-                .valueString.toString();
+                .valueString
+                .toString();
 
-            if ( kodeStatusRekomendasi=="1") {
+            if (kodeStatusRekomendasi == "1") {
               nilaiRekomendasiBelumTinjut.valueNumber =
                   nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
+            } else if (kodeStatusRekomendasi == "2") {
+              nilaiRekomendasiDalamProses.valueNumber =
+                  nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
+            } else if (kodeStatusRekomendasi == "3") {
+              nilaiRekomendasiSudahSesuai.valueNumber =
+                  nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
+            } else if (kodeStatusRekomendasi == "4") {
+              nilaiRekomendasiTidakDapat.valueNumber =
+                  nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
             }
-            else if(kodeStatusRekomendasi=="2")
-            {
-              nilaiRekomendasiDalamProses.valueNumber=nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
-            }
-            else if(kodeStatusRekomendasi=="3")
-              {
-                nilaiRekomendasiSudahSesuai.valueNumber=nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
-              }
-            else if(kodeStatusRekomendasi=="4")
-              {
-                nilaiRekomendasiTidakDapat.valueNumber=nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
-              }
-
           }
 
           summaryRow = Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Flexible(
-                  child: BranchviewerState.createCellStatusColumnHeaderRekomendasi(
-                      fieldValue: statusRekomendasi,
-                      textALign: TextAlign.start,
-                      color: Colors.red,
-                      localeId: currentLocaleId,
-                      title: "Status")),
+                  child:
+                      BranchviewerState.createCellStatusColumnHeaderRekomendasi(
+                          fieldValue: statusRekomendasi,
+                          textALign: TextAlign.start,
+                          color: Colors.red,
+                          localeId: currentLocaleId,
+                          title: "Status")),
               Flexible(
-                  child: BranchviewerState.createCellStatusColumnHeaderRekomendasi(
-                      fieldValue: nilaiRekomendasiTindakLanjutFieldValue!,
-                      color: Colors.lightBlue,
-                      localeId: currentLocaleId,
-                      title: "Rekomendasi")),
+                  child:
+                      BranchviewerState.createCellStatusColumnHeaderRekomendasi(
+                          fieldValue: nilaiRekomendasiTindakLanjutFieldValue!,
+                          color: Colors.lightBlue,
+                          localeId: currentLocaleId,
+                          title: "Rekomendasi")),
               Flexible(
-                  child: BranchviewerState.createCellStatusColumnHeaderRekomendasi(
-                      fieldValue: nilaiRekomendasiSudahSesuai,
-                      color: Colors.lightBlue,
-                      localeId: currentLocaleId,
-                      title: "Sudah Sesuai")),
+                  child:
+                      BranchviewerState.createCellStatusColumnHeaderRekomendasi(
+                          fieldValue: nilaiRekomendasiSudahSesuai,
+                          color: Colors.lightBlue,
+                          localeId: currentLocaleId,
+                          title: "Sudah Sesuai")),
               Flexible(
-                  child: BranchviewerState.createCellStatusColumnHeaderRekomendasi(
-                      fieldValue: nilaiRekomendasiDalamProses,
-                      color: Colors.lightBlue,
-                      localeId: currentLocaleId,
-                      title: "Dalam Proses")),
+                  child:
+                      BranchviewerState.createCellStatusColumnHeaderRekomendasi(
+                          fieldValue: nilaiRekomendasiDalamProses,
+                          color: Colors.lightBlue,
+                          localeId: currentLocaleId,
+                          title: "Dalam Proses")),
               Flexible(
-                  child: BranchviewerState.createCellStatusColumnHeaderRekomendasi(
-                      fieldValue: nilaiRekomendasiBelumTinjut,
-                      color: Colors.lightBlue,
-                      localeId: currentLocaleId,
-                      title: "Belum Tinjut")),
+                  child:
+                      BranchviewerState.createCellStatusColumnHeaderRekomendasi(
+                          fieldValue: nilaiRekomendasiBelumTinjut,
+                          color: Colors.lightBlue,
+                          localeId: currentLocaleId,
+                          title: "Belum Tinjut")),
               Flexible(
-                  child: BranchviewerState.createCellStatusColumnHeaderRekomendasi(
-                      fieldValue: nilaiRekomendasiTidakDapat,
-                      color: Colors.lightBlue,
-                      localeId: currentLocaleId,
-                      title: "Tidak Dapat")),
+                  child:
+                      BranchviewerState.createCellStatusColumnHeaderRekomendasi(
+                          fieldValue: nilaiRekomendasiTidakDapat,
+                          color: Colors.lightBlue,
+                          localeId: currentLocaleId,
+                          title: "Tidak Dapat")),
             ],
           );
         }
@@ -674,25 +689,24 @@ class BranchviewerState extends State<BranchViewer> {
 
   static Widget createCellStatusColumnHeaderTemuan(
       {required VwFieldValue jumlah,
-        required  VwFieldValue nilai,
+      required VwFieldValue nilai,
       required Color color,
-        required String localeId,
+      required String localeId,
       required String title}) {
-    NumberFormat formatCurrency = NumberFormat.simpleCurrency(
-        locale: localeId, decimalDigits: 0);
+    NumberFormat formatCurrency =
+        NumberFormat.simpleCurrency(locale: localeId, decimalDigits: 0);
 
-    String nilaiString ="";
+    String nilaiString = "";
 
-    String jumlahString="";
+    String jumlahString = "";
 
-    if(nilai.valueNumber!=null && nilai.valueNumber!>0) {
-      nilaiString=formatCurrency.format(nilai.valueNumber);
+    if (nilai.valueNumber != null && nilai.valueNumber! > 0) {
+      nilaiString = formatCurrency.format(nilai.valueNumber);
     }
 
-    if(jumlah.valueNumber!=null && jumlah.valueNumber!>0)
-      {
-        jumlahString=jumlah.valueNumber!.toString();
-      }
+    if (jumlah.valueNumber != null && jumlah.valueNumber! > 0) {
+      jumlahString = jumlah.valueNumber!.toString();
+    }
 
     return Container(
         decoration: BoxDecoration(
@@ -712,7 +726,6 @@ class BranchviewerState extends State<BranchViewer> {
               )
             ])),
             Container(
-
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -806,8 +819,7 @@ class BranchviewerState extends State<BranchViewer> {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text(nilaiString,
-                                style: TextStyle(fontSize: 11)),
+                            Text(nilaiString, style: TextStyle(fontSize: 11)),
                             SizedBox(
                               width: 3,
                             ),
@@ -823,11 +835,11 @@ class BranchviewerState extends State<BranchViewer> {
       {required VwFieldValue fieldValue,
       TextAlign textALign = TextAlign.end,
       required Color color,
-       required String localeId,
+      required String localeId,
       required String title}) {
     try {
-      NumberFormat formatCurrency = NumberFormat.simpleCurrency(
-          locale:localeId, decimalDigits: 0);
+      NumberFormat formatCurrency =
+          NumberFormat.simpleCurrency(locale: localeId, decimalDigits: 0);
 
       String nilaiString = fieldValue.getValueAsString();
 
@@ -884,9 +896,8 @@ class BranchviewerState extends State<BranchViewer> {
     return Container(child: Text("Failed to Render"));
   }
 
-  Widget twoChildBranch({required BuildContext context,required Widget parentRow}){
-
-
+  Widget twoChildBranch(
+      {required BuildContext context, required Widget parentRow}) {
     return Container(
         color: this.widget.backgroundColor,
         key: this.widget.key,
@@ -896,17 +907,36 @@ class BranchviewerState extends State<BranchViewer> {
           key: this.stateKey,
           children: [
             Container(child: parentRow),
-
-            Container(margin: EdgeInsets.fromLTRB(25, 0, 0, 0), child:SubBranchViewer(key:this.branch0Key,commandToParentFunction: widget.commandToParentFunction,  refreshBranch: this.implementRefreshBranch, parentNode: widget.parentNode, childBranch: widget.childrenBranch.elementAt(0), appInstanceParam: widget.appInstanceParam, summaryId: widget.summaryId, localeId: widget.localeId)),
-            Container(margin: EdgeInsets.fromLTRB(25, 0, 0, 0), child:SubBranchViewer(key:this.branch1Key, commandToParentFunction: widget.commandToParentFunction,refreshBranch: this.implementRefreshBranch, parentNode: widget.parentNode, childBranch: widget.childrenBranch.elementAt(1), appInstanceParam: widget.appInstanceParam, summaryId: widget.summaryId, localeId: widget.localeId)),
+            Container(
+                margin: EdgeInsets.fromLTRB(25, 0, 0, 0),
+                child: SubBranchViewer(
+                    key: this.branch0Key,
+                    commandToParentFunction: widget.commandToParentFunction,
+                    refreshBranch: this.implementRefreshBranch,
+                    parentNode: widget.parentNode,
+                    childBranch: widget.childrenBranch.elementAt(0),
+                    appInstanceParam: widget.appInstanceParam,
+                    summaryId: widget.summaryId,
+                    localeId: widget.localeId)),
+            Container(
+                margin: EdgeInsets.fromLTRB(25, 0, 0, 0),
+                child: SubBranchViewer(
+                    key: this.branch1Key,
+                    commandToParentFunction: widget.commandToParentFunction,
+                    refreshBranch: this.implementRefreshBranch,
+                    parentNode: widget.parentNode,
+                    childBranch: widget.childrenBranch.elementAt(1),
+                    appInstanceParam: widget.appInstanceParam,
+                    summaryId: widget.summaryId,
+                    localeId: widget.localeId)),
           ],
         ));
   }
 
-  Widget oneChildBranch({required BuildContext context,required Widget parentRow}){
-
-    widget.childrenBranch.elementAt(0).isInitiallyExpanded=true;
-    widget.childrenBranch.elementAt(0).hideExpandedButton=true;
+  Widget oneChildBranch(
+      {required BuildContext context, required Widget parentRow}) {
+    widget.childrenBranch.elementAt(0).isInitiallyExpanded = true;
+    widget.childrenBranch.elementAt(0).hideExpandedButton = true;
     return Container(
         color: this.widget.backgroundColor,
         key: this.widget.key,
@@ -916,8 +946,17 @@ class BranchviewerState extends State<BranchViewer> {
           key: this.stateKey,
           children: [
             Container(child: parentRow),
-
-            Container(margin: EdgeInsets.fromLTRB(25, 0, 0, 0), child:SubBranchViewer(key:this.branch0Key, commandToParentFunction: widget.commandToParentFunction,refreshBranch: this.implementRefreshBranch, parentNode: widget.parentNode, childBranch: widget.childrenBranch.elementAt(0), appInstanceParam: widget.appInstanceParam, summaryId: widget.summaryId, localeId: widget.localeId)),
+            Container(
+                margin: EdgeInsets.fromLTRB(25, 0, 0, 0),
+                child: SubBranchViewer(
+                    key: this.branch0Key,
+                    commandToParentFunction: widget.commandToParentFunction,
+                    refreshBranch: this.implementRefreshBranch,
+                    parentNode: widget.parentNode,
+                    childBranch: widget.childrenBranch.elementAt(0),
+                    appInstanceParam: widget.appInstanceParam,
+                    summaryId: widget.summaryId,
+                    localeId: widget.localeId)),
           ],
         ));
   }
@@ -964,7 +1003,7 @@ class BranchviewerState extends State<BranchViewer> {
 
                   //color: Colors.red,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [buttonExpandBranchCurrentlyExpanded()])),
               Column(children: [
@@ -977,12 +1016,18 @@ class BranchviewerState extends State<BranchViewer> {
                         summaryWidthPortrait > 0 ? 30 : 0),
                     width: summaryWidthPortrait,
                     height: summaryWidthPortrait == 0 ? 0 : null,
-                    child: createStatusColumnHeader(parentCurrentRowData: widget.parentNode.content.rowData,currentSummaryId: widget.summaryId,currentLocaleId: widget.localeId ))
+                    child: createStatusColumnHeader(
+                        parentCurrentRowData: widget.parentNode.content.rowData,
+                        currentSummaryId: widget.summaryId,
+                        currentLocaleId: widget.localeId))
               ]),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 3, 0, 10),
                 width: summaryWidthLandscape,
-                child: createStatusColumnHeader(parentCurrentRowData: widget.parentNode.content.rowData,currentSummaryId: widget.summaryId,currentLocaleId: widget.localeId ),
+                child: createStatusColumnHeader(
+                    parentCurrentRowData: widget.parentNode.content.rowData,
+                    currentSummaryId: widget.summaryId,
+                    currentLocaleId: widget.localeId),
               ),
               this.widget.actionMenuButton == null
                   ? Container()
@@ -1001,7 +1046,7 @@ class BranchviewerState extends State<BranchViewer> {
             appInstanceParam: widget.appInstanceParam,
             apiCallParam: BranchviewerState.apiCallParam(
                 widget.childrenBranch.elementAt(0)),
-            nodeRowViewerFunction: nodeRowViewer);*/
+            nodeRowViewerFunction: nodeRowViewer);
 
         Widget branch1NodeListViewWidget = Container();
 
@@ -1018,16 +1063,12 @@ class BranchviewerState extends State<BranchViewer> {
                   widget.childrenBranch.elementAt(1)),
               nodeRowViewerFunction: nodeRowViewer);
         }
-
+*/
         //return branchWidget;
         if (widget.childrenBranch.length > 1) {
-
           return this.twoChildBranch(context: context, parentRow: parentRow);
-
-
         } else {
           return this.oneChildBranch(context: context, parentRow: parentRow);
-
         }
       } else {
         return Container(
@@ -1049,7 +1090,6 @@ class BranchviewerState extends State<BranchViewer> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-
                             width: recordWidth, child: widget.parentWidget),
                         isLandscapeMode == true
                             ? Container()
@@ -1057,14 +1097,22 @@ class BranchviewerState extends State<BranchViewer> {
                                 margin: EdgeInsets.fromLTRB(30,
                                     summaryWidthPortrait > 0 ? 10 : 0, 0, 10),
                                 width: summaryWidthPortrait,
-                                child: createStatusColumnHeader(parentCurrentRowData: widget.parentNode.content.rowData,currentSummaryId: widget.summaryId,currentLocaleId: widget.localeId ))
+                                child: createStatusColumnHeader(
+                                    parentCurrentRowData:
+                                        widget.parentNode.content.rowData,
+                                    currentSummaryId: widget.summaryId,
+                                    currentLocaleId: widget.localeId))
                       ]),
                   isLandscapeMode == false
                       ? Container()
                       : Container(
                           margin: EdgeInsets.fromLTRB(0, 3, 0, 10),
                           width: summaryWidthLandscape,
-                          child: createStatusColumnHeader(parentCurrentRowData: widget.parentNode.content.rowData,currentSummaryId: widget.summaryId,currentLocaleId: widget.localeId ),
+                          child: createStatusColumnHeader(
+                              parentCurrentRowData:
+                                  widget.parentNode.content.rowData,
+                              currentSummaryId: widget.summaryId,
+                              currentLocaleId: widget.localeId),
                         ),
                   this.widget.actionMenuButton == null
                       ? Container()

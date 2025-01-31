@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:matrixclient2base/modules/base/vwapicall/synctokenblock/synctokenblock.dart';
@@ -27,6 +28,7 @@ import 'package:vwform/modules/vwwidget/vwnodesubmitpage/vwnodeeditorpage.dart';
 import 'package:vwnodestoreonhive/vwnodestoreonhive/vwnodestoreonhive.dart';
 import 'package:vwutil/modules/util/nodeutil.dart';
 import 'package:vwutil/modules/util/widgetutil.dart';
+import 'package:convert/convert.dart';
 
 
 typedef VwNodeSubmitPageStateChanged = void Function(
@@ -87,9 +89,16 @@ class VwNodeSubmitPageState extends State<VwNodeSubmitPage> {
   VwNodeUpsyncResult? lastNodeUpsyncResult;
 
 
+  VwNode copyNodeInstanceProp({ required VwNode source })
+  {
+
+  String sourceString=  jsonEncode(source.toJson());
+  return  VwNode.fromJson(jsonDecode(sourceString));
+
+  }
+
   @override
   void initState() {
-
 
     super.initState();
 
@@ -97,7 +106,10 @@ class VwNodeSubmitPageState extends State<VwNodeSubmitPage> {
 
     this._refreshController = StreamController<String>(onListen: () async {
       if (this.widget.node != null) {
-        this.currentNode = widget.node;
+        //this.currentNode = widget.node;
+        if(this.widget.node!=null) {
+          this.currentNode = this.copyNodeInstanceProp(source: widget.node!);
+        }
       } else {
         String recordId = Uuid().v4();
 
