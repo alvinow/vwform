@@ -169,7 +169,12 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
         bool doUpdateCurrentNode=true;
         VwNode newCandidateNode=nodeRequestResponse.renderedNodePackage!.rootNode!;
 
-        if( nodeCurrent.nodeStatusId==VwNode.nsDeleted || (nodeCurrent.stateKey!=null && newCandidateNode.stateKey!=null && nodeCurrent.stateKey!=newCandidateNode.stateKey))
+        if(newCandidateNode.nodeStatusId==VwNode.nsDeleted)
+          {
+            print("Record has been deleted");
+          }
+
+        if( newCandidateNode.nodeStatusId==VwNode.nsDeleted || (nodeCurrent.stateKey!=null && newCandidateNode.stateKey!=null && nodeCurrent.stateKey!=newCandidateNode.stateKey))
           {
 
           }
