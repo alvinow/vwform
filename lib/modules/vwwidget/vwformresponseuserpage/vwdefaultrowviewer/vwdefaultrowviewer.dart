@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
@@ -28,7 +26,7 @@ class VwDefaultRowViewer extends StatefulWidget {
       this.commandToParentFunction,
       this.localeId = "id_ID",
       this.customCardtapper,
-      this.reloadPeriodic = 7});
+      this.reloadPeriodic = 2});
 
   final int reloadPeriodic;
   final VwAppInstanceParam appInstanceParam;
@@ -45,22 +43,29 @@ class VwDefaultRowViewer extends StatefulWidget {
 class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
   late StreamController<String> _refreshController;
   late VwNode nodeCurrent;
-  DateTime? lastRefresh;
+
   Timer? timer;
   late String currentState; // init, doRefresh onRefresh, standby
+  DateTime? lastRefresh;
   late bool isVisible;
   late bool isForceRefreshRecord;
+
+  static String initRvState="initRvState";
+  static String doRefreshRvState="doRefreshRvState";
+  static String onRefreshRvState="onRefreshRvState";
+  static String standbyRvState="standbyRvState";
 
   @override
   void initState() {
     super.initState();
-    this.isForceRefreshRecord = false;
+
     nodeCurrent = widget.rowNode;
-    currentState = "init";
+    currentState = VwDefaultRowViewerState.initRvState;
     this._refreshController = new StreamController<String>();
     this.timer = Timer.periodic(
         Duration(seconds: widget.reloadPeriodic), implementOnTimer);
     isVisible = true;
+    this.isForceRefreshRecord = false;
   }
 
   void implementReloadRecordOnParent() {
@@ -76,7 +81,7 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
         int deltaSeconds = lastRefresh == null
             ? 0
             : DateTime.now().difference(lastRefresh!).inSeconds;
-        if ((lastRefresh != null && deltaSeconds > 3) ||
+        if ((lastRefresh != null && deltaSeconds > widget.reloadPeriodic) ||
             this.isForceRefreshRecord == true) {
           this.isForceRefreshRecord = false;
           try {
@@ -104,12 +109,7 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
       this._handleRefresh();
     });
 
-    /*
-        setState(() {
-          currentState="doRefresh";
-          requestDoRefresh=DateTime.now();
-          executeSetState=DateTime.now();
-        });*/
+
   }
 
   VwRowData apiCallParam() {
@@ -142,7 +142,7 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
   Future<VwNode> _asyncLoadData() async {
     VwNode returnValue = nodeCurrent;
     try {
-      currentState = "onRefresh";
+      currentState = VwDefaultRowViewerState.onRefreshRvState;
 
       VwNodeRequestResponse nodeRequestResponse =
           await RemoteApi.nodeRequestApiCall(
@@ -169,7 +169,7 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
         bool doUpdateCurrentNode=true;
         VwNode newCandidateNode=nodeRequestResponse.renderedNodePackage!.rootNode!;
 
-        if( nodeCurrent.stateKey!=null && newCandidateNode.stateKey!=null && nodeCurrent.stateKey!=newCandidateNode.stateKey)
+        if( nodeCurrent.nodeStatusId==VwNode.nsDeleted || (nodeCurrent.stateKey!=null && newCandidateNode.stateKey!=null && nodeCurrent.stateKey!=newCandidateNode.stateKey))
           {
 
           }
@@ -197,11 +197,11 @@ class VwDefaultRowViewerState extends State<VwDefaultRowViewer> {
           this.nodeCurrent.nodeStatusId = VwNode.nsDeleted;
         });
       }
-      currentState = "standby";
+      currentState = VwDefaultRowViewerState.standbyRvState;
     } catch (error) {
       print(error.toString());
     }
-    currentState = "standby";
+    currentState =  VwDefaultRowViewerState.standbyRvState;
     return returnValue;
   }
 
