@@ -748,10 +748,10 @@ packages:
     dependency: transitive
     description:
       name: just_audio_platform_interface
-      sha256: "0243828cce503c8366cc2090cefb2b3c871aa8ed2f520670d76fd47aa1ab2790"
+      sha256: "271b93b484c6f494ecd72a107fffbdb26b425f170c665b9777a0a24a726f2f24"
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.0"
+    version: "4.4.0"
   just_audio_web:
     dependency: transitive
     description:
@@ -885,7 +885,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: b220012906d4f6e137ee02e51e6e09b81d9e0584
+      resolved-ref: e99525a972f9375c1c08d82fe30c297c582d1eb1
       url: "https://github.com/alvinow/matrixclient2base.git"
     source: git
     version: "1.0.0+1"
@@ -1701,7 +1701,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: efeca6cb1aaedb62a89610d59afcd5c694e84a48
+      resolved-ref: a9367f171a62bc2cf09107e163e1a08820e16ea8
       url: "https://github.com/alvinow/vwutil.git"
     source: git
     version: "1.0.0+1"
