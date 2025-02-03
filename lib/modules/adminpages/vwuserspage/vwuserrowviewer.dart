@@ -116,20 +116,6 @@ class VwUserRowViewer extends NodeRowViewer {
     VwFieldValue emailFieldValue = VwFieldValue(fieldName: "email",valueString: user.email);
     VwFieldValue userStatusIdFieldValue=VwFieldValue(fieldName: "userStatusId",valueString: user.userStatusId);
 
-    /*
-    VwRowData rowData=VwRowData(timestamp: VwDateUtil.nowTimestamp(),recordId: Uuid().v4(),
-        creatorUserId: this.invalidUserId,
-        fields: <VwFieldValue>[
-      recordIdFieldValue,
-      createdFieldValue,
-      updatedFieldValue,
-      usernameFieldValue,
-      displaynameFieldValue,
-      emailFieldValue,
-      userStatusIdFieldValue
-
-    ]);*/
-
 
     VwFormField userFormField=VwFormField( fieldDefinition: VwFieldDefinition(fieldName: "recordId"), fieldUiParam: VwFieldUiParam());
     VwFormField timestampCreatedFormField=VwFormField(fieldDefinition: VwFieldDefinition(fieldName: "timestamp.created") ,fieldUiParam: VwFieldUiParam());
@@ -140,15 +126,6 @@ class VwUserRowViewer extends NodeRowViewer {
     VwFormField userStatusIdFormField=VwFormField(fieldDefinition: VwFieldDefinition(fieldName: "userStatusId",),fieldUiParam: VwFieldUiParam(caption:"User Status "));
 
 
-    /*
-    VwRowFieldParam userRowField = VwRowFieldParam(formFields: [userFormField]);
-    VwRowFieldParam timestampCreatedRowField = VwRowFieldParam(formFields: [timestampCreatedFormField]);
-    VwRowFieldParam timestampUpdatedRowField = VwRowFieldParam(formFields: [timestampUpdatedFormField]);
-    VwRowFieldParam usernameRowField = VwRowFieldParam(formFields: [usernameFormField]);
-    VwRowFieldParam displaynamRowField = VwRowFieldParam(formFields: [displaynameFormField]);
-    VwRowFieldParam emailRowField = VwRowFieldParam(formFields: [emailFormField]);
-    VwRowFieldParam userStatusIdRowField = VwRowFieldParam(formFields: [userStatusIdFormField]);
-*/
     VwSectionFormDefinition section1=VwSectionFormDefinition(formFields: [
 
       usernameFormField,
