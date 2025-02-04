@@ -6,12 +6,12 @@ part 'vwnodeupsyncresult.g.dart';
 
 @JsonSerializable()
 class VwNodeUpsyncResult {
-  VwNodeUpsyncResult({this.formValidationResponse, required this.syncResult, required this.nodeId,required this.isTokenValid});
-
+  VwNodeUpsyncResult({this.formValidationResponse, this.responseRequestNodeList ,required this.syncResult, required this.nodeId,required this.isTokenValid});
   VwFormValidationResponse? formValidationResponse;
   VwSyncResult syncResult;
   String nodeId;
   bool isTokenValid;
+  List<VwNode>? responseRequestNodeList;
 
   factory VwNodeUpsyncResult.fromJson(Map<String, dynamic> json) =>
       _$VwNodeUpsyncResultFromJson(json);

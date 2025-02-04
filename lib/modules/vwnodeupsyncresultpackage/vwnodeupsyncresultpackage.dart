@@ -11,6 +11,7 @@ class VwNodeUpsyncResultPackage {
   List<VwNodeUpsyncResult> nodeUpsyncResultList;
   VwApiCallResponse? apiCallResponse;
 
+
   factory VwNodeUpsyncResultPackage.fromJson(Map<String, dynamic> json) =>
       _$VwNodeUpsyncResultPackageFromJson(json);
   Map<String, dynamic> toJson() => _$VwNodeUpsyncResultPackageToJson(this);

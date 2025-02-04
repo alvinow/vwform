@@ -12,6 +12,10 @@ VwNodeUpsyncResult _$VwNodeUpsyncResultFromJson(Map<String, dynamic> json) =>
           ? null
           : VwFormValidationResponse.fromJson(
               json['formValidationResponse'] as Map<String, dynamic>),
+      responseRequestNodeList:
+          (json['responseRequestNodeList'] as List<dynamic>?)
+              ?.map((e) => VwNode.fromJson(e as Map<String, dynamic>))
+              .toList(),
       syncResult:
           VwSyncResult.fromJson(json['syncResult'] as Map<String, dynamic>),
       nodeId: json['nodeId'] as String,
@@ -24,4 +28,5 @@ Map<String, dynamic> _$VwNodeUpsyncResultToJson(VwNodeUpsyncResult instance) =>
       'syncResult': instance.syncResult,
       'nodeId': instance.nodeId,
       'isTokenValid': instance.isTokenValid,
+      'responseRequestNodeList': instance.responseRequestNodeList,
     };
