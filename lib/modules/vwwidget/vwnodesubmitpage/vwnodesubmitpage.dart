@@ -35,7 +35,10 @@ import 'package:vwutil/modules/util/widgetutil.dart';
 
 
 typedef VwNodeSubmitPageStateChanged = void Function(
-    {required String pageState});
+    {required String pageState });
+
+typedef VwNodeSubmitPageUpsyncResult = void Function(
+    {required VwNodeUpsyncResult nodeUpsyncResult });
 
 class VwNodeSubmitPage extends StatefulWidget {
   VwNodeSubmitPage({
@@ -51,6 +54,7 @@ class VwNodeSubmitPage extends StatefulWidget {
     this.nodeSubmitPageStateChanged,
     this.lockPresetValue = true,
     this.selectedFormDefinitionNode,
+    this.nodeSubmitPageUpsyncResult
   });
 
   final VwNode? node;
@@ -63,6 +67,7 @@ class VwNodeSubmitPage extends StatefulWidget {
   final VwRowData? presetValues;
   final bool lockPresetValue;
   final VwNodeSubmitPageStateChanged? nodeSubmitPageStateChanged;
+  final VwNodeSubmitPageUpsyncResult? nodeSubmitPageUpsyncResult;
   final VwNode? selectedFormDefinitionNode;
 
   static const String nspInitDataLoaded = 'nspInitDataLoaded';
@@ -267,6 +272,7 @@ class VwNodeSubmitPageState extends State<VwNodeSubmitPage> {
 
 
 
+
                   if (widget.refreshDataOnParentFunction != null) {
                     widget.refreshDataOnParentFunction!();
                   }
@@ -305,6 +311,11 @@ class VwNodeSubmitPageState extends State<VwNodeSubmitPage> {
       {
         widget.nodeSubmitPageStateChanged!(pageState:this.pageState );
       }
+      if(this.widget.nodeSubmitPageUpsyncResult!=null && lastNodeUpsyncResult!=null)
+      {
+        this.widget.nodeSubmitPageUpsyncResult!(nodeUpsyncResult:lastNodeUpsyncResult! );
+      }
+
       this._refreshController.sink.add(this.pageState);
 
       setState(() {});
