@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:matrixclient2base/modules/base/store/vwsyncresult/vwsyncresult.dart';
 import 'package:matrixclient2base/modules/base/vwapicall/synctokenblock/synctokenblock.dart';
 import 'package:matrixclient2base/modules/base/vwbasemodel/vwbasemodel.dart';
 import 'package:matrixclient2base/modules/base/vwclassencodedjson/vwclassencodedjson.dart';
@@ -28,7 +29,9 @@ import 'package:vwform/modules/vwwidget/vwnodesubmitpage/vwnodeeditorpage.dart';
 import 'package:vwnodestoreonhive/vwnodestoreonhive/vwnodestoreonhive.dart';
 import 'package:vwutil/modules/util/nodeutil.dart';
 import 'package:vwutil/modules/util/widgetutil.dart';
-import 'package:convert/convert.dart';
+
+
+
 
 
 typedef VwNodeSubmitPageStateChanged = void Function(
@@ -260,6 +263,10 @@ class VwNodeSubmitPageState extends State<VwNodeSubmitPage> {
                 if (lastNodeUpsyncResult!.syncResult.createdCount == 1 ||
                     lastNodeUpsyncResult!.syncResult.updatedCount == 1) {
                   this.pageState = VwNodeSubmitPage.nspSuccessSyncingNode;
+
+
+
+
                   if (widget.refreshDataOnParentFunction != null) {
                     widget.refreshDataOnParentFunction!();
                   }
@@ -293,6 +300,10 @@ class VwNodeSubmitPageState extends State<VwNodeSubmitPage> {
 
       if (this.widget.nodeSubmitPageStateChanged != null) {
         this.widget.nodeSubmitPageStateChanged!(pageState: this.pageState);
+      }
+      if(widget.nodeSubmitPageStateChanged!=null)
+      {
+        widget.nodeSubmitPageStateChanged!(pageState:this.pageState );
       }
       this._refreshController.sink.add(this.pageState);
 
