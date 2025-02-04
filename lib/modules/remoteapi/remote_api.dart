@@ -295,7 +295,7 @@ class RemoteApi {
       returnValue.apiCallResponse = graphQlServerResponse.apiCallResponse;
     }
     catch (error) {
-      print("Error catched on RemoteApi.nodeUpsyncRequestApiCall: " +error.toString());
+      print("Error catched on RemoteApi.nodeUpsyncRequestApiCall : " +error.toString());
     }
 
     return returnValue;
