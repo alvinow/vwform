@@ -393,8 +393,14 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
       }
       else
         {
+          returnValue = Container(
+              key: widget.key,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [fieldWidget],
+              ));
 
-              returnValue=fieldWidget;
+
 
         }
     }

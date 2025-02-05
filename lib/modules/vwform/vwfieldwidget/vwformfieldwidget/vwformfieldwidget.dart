@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:matrixclient2base/modules/base/vwclassencodedjson/vwclassencodedjson.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
@@ -345,7 +346,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
             Flexible(fit: FlexFit.loose, child: captionWidget),
             Flexible(
                 fit: FlexFit.loose,
-                child: Container(key: widget.key, child: Text("(Blank Form)")))
+                child: Container(key: widget.key, child: Text("(Blank Form)",style:TextStyle(color:Colors.grey) )))
           ]);
     }
   }
