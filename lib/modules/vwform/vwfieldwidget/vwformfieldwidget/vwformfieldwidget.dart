@@ -341,7 +341,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
       return Column(
           key: this.widget.key,
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Flexible(fit: FlexFit.loose, child: captionWidget),
             Flexible(
