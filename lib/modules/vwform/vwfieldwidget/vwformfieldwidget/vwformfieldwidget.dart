@@ -25,16 +25,15 @@ import 'package:vwutil/modules/util/nodeutil.dart';
 import '../../vwformdefinition/vwformvalidationresponse/vwformfieldvalidationresponse/vwformfieldvalidationresponse.dart';
 
 class VwFormFieldWidget extends StatefulWidget {
-  const VwFormFieldWidget({
-    super.key,
-    required this.appInstanceParam,
-    required this.field,
-    this.readOnly = false,
-    required this.formField,
-    this.onValueChanged,
-    required this.getFieldvalueCurrentResponseFunction,
-    this.formFieldValidationResponse
-  });
+  const VwFormFieldWidget(
+      {super.key,
+      required this.appInstanceParam,
+      required this.field,
+      this.readOnly = false,
+      required this.formField,
+      this.onValueChanged,
+      required this.getFieldvalueCurrentResponseFunction,
+      this.formFieldValidationResponse});
   final VwAppInstanceParam appInstanceParam;
   final VwFieldValue field;
   final bool readOnly;
@@ -247,30 +246,32 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
     }
   }
 
-  VwFormValidationResponse? getFormValidationResponse(){
+  VwFormValidationResponse? getFormValidationResponse() {
     VwFormValidationResponse? returnValue;
-    try
-    {
-      if(this.widget.formFieldValidationResponse!=null)
-        {
-          for(int la=0;la<this.widget.formFieldValidationResponse!.validationReponses.length;la++)
-            {
-              VwFormFieldValidationResponseComponent? currentComponent=this.widget.formFieldValidationResponse!.validationReponses.elementAt(la);
+    try {
+      if (this.widget.formFieldValidationResponse != null) {
+        for (int la = 0;
+            la <
+                this
+                    .widget
+                    .formFieldValidationResponse!
+                    .validationReponses
+                    .length;
+            la++) {
+          VwFormFieldValidationResponseComponent? currentComponent = this
+              .widget
+              .formFieldValidationResponse!
+              .validationReponses
+              .elementAt(la);
 
-              if(currentComponent!=null && currentComponent.validationFormResponse!=null)
-                  {
-                    returnValue=currentComponent!.validationFormResponse;
-                    break;
-                  }
-            }
+          if (currentComponent != null &&
+              currentComponent.validationFormResponse != null) {
+            returnValue = currentComponent!.validationFormResponse;
+            break;
+          }
         }
-
-
-    }
-    catch(error)
-    {
-
-    }
+      }
+    } catch (error) {}
 
     return returnValue;
   }
@@ -282,8 +283,6 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
         this.widget.formField,
         DefaultTextStyle.of(context).style,
         widget.readOnly);
-
-
 
     this.currentFormDefinition = null;
     this.setFormDefinition();
@@ -304,11 +303,9 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
         currentFormDefinition!.isReadOnly = this.widget.readOnly;
       }
 
-
-
       Widget currentFormPage = VwFormPage(
           isShowFormName: false,
-         formValidationResponse: this.getFormValidationResponse(),
+          formValidationResponse: this.getFormValidationResponse(),
           enableScaffold: false,
           disableScrollView: true,
           key: Key(currentFormDefinition!.recordId),
@@ -339,7 +336,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
           ]);
     } else {
       this.widget.field.valueFormResponse = null;
-      return Container(key: Key(Uuid().v4()));
+      return Container(key: Key("null"+this.widget.formField.fieldDefinition.fieldName));
     }
   }
 }

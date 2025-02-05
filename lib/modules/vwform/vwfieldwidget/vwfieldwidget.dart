@@ -27,22 +27,19 @@ import 'package:vwform/modules/vwform/vwformdefinition/vwformvalidationresponse/
 typedef VwFieldWidgetChanged = void Function(VwFieldValue, VwFieldValue, bool);
 
 class VwFieldWidget extends StatefulWidget {
-  const VwFieldWidget(
-      {super.key,
-        required this.appInstanceParam,
-      this.readOnly = false,
-      required this.field,
-      required this.formField,
-      this.onValueChanged,
-      this.formFieldValidationResponse,
-      this.parentRef,
-      required this.getCurrentFormResponseFunction,
-      required this.getCurrentFormDefinitionFunction,
-        this.enableAlwaysSetStateOnValueChanged=true,
-
-      });
-
-
+  const VwFieldWidget({
+    super.key,
+    required this.appInstanceParam,
+    this.readOnly = false,
+    required this.field,
+    required this.formField,
+    this.onValueChanged,
+    this.formFieldValidationResponse,
+    this.parentRef,
+    required this.getCurrentFormResponseFunction,
+    required this.getCurrentFormDefinitionFunction,
+    this.enableAlwaysSetStateOnValueChanged = true,
+  });
 
   final VwAppInstanceParam appInstanceParam;
   final bool readOnly;
@@ -55,7 +52,6 @@ class VwFieldWidget extends StatefulWidget {
   final GetCurrentFormResponseFunction getCurrentFormResponseFunction;
   final GetCurrentFormDefinitionFunction getCurrentFormDefinitionFunction;
 
-
   _VwFieldWidgetState createState() => _VwFieldWidgetState();
 
   static Widget getLabel(VwFieldValue field, VwFormField formField,
@@ -66,8 +62,10 @@ class VwFieldWidget extends StatefulWidget {
         ? field.fieldName
         : formField.fieldUiParam.caption!;
 
-    TextSpan mandatoryFlag =
-        TextSpan(text: "*", style: TextStyle(fontWeight: FontWeight.w400, color: Colors.red, fontSize: 16));
+    TextSpan mandatoryFlag = TextSpan(
+        text: "*",
+        style: TextStyle(
+            fontWeight: FontWeight.w400, color: Colors.red, fontSize: 16));
 
     List<InlineSpan> textSpanList = [];
 
@@ -110,17 +108,13 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    if(this.widget.key==null)
-      {
-        this.fieldKey=Key(widget.formField.fieldDefinition.fieldName);
-      }
-    else{
-      this.fieldKey=widget.key!;
+    if (this.widget.key == null) {
+      this.fieldKey = Key(widget.formField.fieldDefinition.fieldName);
+    } else {
+      this.fieldKey = widget.key!;
     }
     this.currentToggleSwitch = false;
   }
-
-
 
   void _implementOnFieldvalueChanged(
       VwFieldValue newField, VwFieldValue oldField, bool doSetState) {
@@ -128,91 +122,75 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
       this.widget.onValueChanged!(newField, oldField, doSetState);
     }
 
-
-
-    if (doSetState==true || this.widget.enableAlwaysSetStateOnValueChanged==true) {
-
-      if(widget.onValueChanged!=null)
-        {
-          widget.onValueChanged!(newField,oldField,true);
-        }
-      else
-        {
-          setState(() {});
-        }
-
-
+    if (doSetState == true ||
+        this.widget.enableAlwaysSetStateOnValueChanged == true) {
+      if (widget.onValueChanged != null) {
+        widget.onValueChanged!(newField, oldField, true);
+      } else {
+        setState(() {});
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-
-    if(this.widget.field==null) {
+    if (this.widget.field == null) {
       //do nothing
-    }
-    else
-    {
-      this.widget.field.valueTypeId=this.widget.formField.fieldDefinition.valueTypeId;
+    } else {
+      this.widget.field.valueTypeId =
+          this.widget.formField.fieldDefinition.valueTypeId;
     }
 
     Widget returnValue = VwTextFieldWidget(
-      appInstanceParam: this.widget.appInstanceParam,
+        appInstanceParam: this.widget.appInstanceParam,
         key: Key(this.widget.formField.fieldDefinition.fieldName),
         field: this.widget.field,
         readOnly: this.widget.readOnly,
         formField: this.widget.formField,
-        getCurrentFormResponseFunction: this.widget
-            .getCurrentFormResponseFunction,
+        getCurrentFormResponseFunction:
+            this.widget.getCurrentFormResponseFunction,
         onValueChanged: this._implementOnFieldvalueChanged);
 
     try {
-      if(this.widget.formField.fieldUiParam.uiTypeId == VwFieldUiParam.uitCalculatedNumberField)
-        {
-          returnValue = VwCalculatedNumberFieldWidget(
-              key: Key(this.widget.formField.fieldDefinition.fieldName),
-              field: this.widget.field,
-
-              formField: this.widget.formField,
-              getCurrentFormResponseFunction: this.widget
-                  .getCurrentFormResponseFunction,
-              onValueChanged: this._implementOnFieldvalueChanged);
-        }
-      else if(this.widget.formField.fieldUiParam.uiTypeId == VwFieldUiParam.uitFormPageNodeViewer)
-        {
-          returnValue =  VwFormPageNodeViewerWidget(
-              readOnly: widget.readOnly,
-              key: this.fieldKey,
-              getFieldvalueCurrentResponseFunction: this.widget
-                  .getCurrentFormResponseFunction,
-              appInstanceParam: widget.appInstanceParam,
-              field: this.widget.field,
-              onValueChanged: this._implementOnFieldvalueChanged,
-              formField: this.widget.formField);
-        }
-
-      else if (this.widget.formField.fieldUiParam.uiTypeId ==
+      if (this.widget.formField.fieldUiParam.uiTypeId ==
+          VwFieldUiParam.uitCalculatedNumberField) {
+        returnValue = VwCalculatedNumberFieldWidget(
+            key: Key(this.widget.formField.fieldDefinition.fieldName),
+            field: this.widget.field,
+            formField: this.widget.formField,
+            getCurrentFormResponseFunction:
+                this.widget.getCurrentFormResponseFunction,
+            onValueChanged: this._implementOnFieldvalueChanged);
+      } else if (this.widget.formField.fieldUiParam.uiTypeId ==
+          VwFieldUiParam.uitFormPageNodeViewer) {
+        returnValue = VwFormPageNodeViewerWidget(
+            readOnly: widget.readOnly,
+            key: this.fieldKey,
+            getFieldvalueCurrentResponseFunction:
+                this.widget.getCurrentFormResponseFunction,
+            appInstanceParam: widget.appInstanceParam,
+            field: this.widget.field,
+            onValueChanged: this._implementOnFieldvalueChanged,
+            formField: this.widget.formField);
+      } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitTagChecklist) {
         returnValue = VwTagCheckListFieldWidget(
-
           readOnly: this.widget.readOnly,
-          key:Key(this.widget.formField.fieldDefinition.fieldName),
+          key: Key(this.widget.formField.fieldDefinition.fieldName),
           formDefinition: this.widget.getCurrentFormDefinitionFunction(),
-          getCurrentFormResponseFunction: this.widget
-              .getCurrentFormResponseFunction,
+          getCurrentFormResponseFunction:
+              this.widget.getCurrentFormResponseFunction,
           field: widget.field,
           formField: widget.formField,
           appInstanceParam: widget.appInstanceParam,
         );
-      }
-
-      else if (this.widget.formField.fieldUiParam.uiTypeId ==
-          VwFieldUiParam.uitDropdownLinkNode ||
+      } else if (this.widget.formField.fieldUiParam.uiTypeId ==
+              VwFieldUiParam.uitDropdownLinkNode ||
           this.widget.formField.fieldUiParam.uiTypeId ==
               VwFieldUiParam.uitDropdownLinkNodeByLocalFieldSource) {
         returnValue = VwDropDownLinkNodeFieldWidget(
-            getFieldvalueCurrentResponseFunction: this.widget
-                .getCurrentFormResponseFunction,
+            getFieldvalueCurrentResponseFunction:
+                this.widget.getCurrentFormResponseFunction,
             appInstanceParam: widget.appInstanceParam,
             field: this.widget.field,
             readOnly: this.widget.readOnly,
@@ -221,7 +199,6 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitDropdown) {
         if (this.widget.formField.fieldUiParam.parameter != null) {
-
           returnValue = VwDropdownFieldWidget(
               field: this.widget.field,
               readOnly: this.widget.readOnly,
@@ -247,59 +224,55 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
               formField: this.widget.formField,
               onValueChanged: this._implementOnFieldvalueChanged);
         }
-      }
-      else if (this.widget.formField.fieldUiParam.uiTypeId ==
+      } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitNodeListView) {
         if (this.widget.formField.fieldUiParam.collectionListViewDefinition !=
             null) {
           returnValue = VwNodeListViewFieldWidget(
-            getCurrentFormDefinitionFunction: this.widget.getCurrentFormDefinitionFunction,
-              getFieldvalueCurrentResponseFunction: this.widget
-                  .getCurrentFormResponseFunction,
+              getCurrentFormDefinitionFunction:
+                  this.widget.getCurrentFormDefinitionFunction,
+              getFieldvalueCurrentResponseFunction:
+                  this.widget.getCurrentFormResponseFunction,
               field: widget.field,
               formField: widget.formField,
               appInstanceParam: widget.appInstanceParam,
               parentRef: this.widget.parentRef);
         }
-      }
-
-      else if (this.widget.formField.fieldUiParam.uiTypeId ==
+      } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitCheckListLinkNodeWidget) {
         if (this.widget.formField.fieldUiParam.collectionListViewDefinition !=
             null) {
           returnValue = VwCheckListLinkNodeFieldWidget(
-
-              getFieldvalueCurrentResponseFunction: this.widget
-                  .getCurrentFormResponseFunction,
+              getFieldvalueCurrentResponseFunction:
+                  this.widget.getCurrentFormResponseFunction,
               field: widget.field,
               formField: widget.formField,
               appInstanceParam: widget.appInstanceParam,
               parentRef: this.widget.parentRef);
         }
-      }
-      else if (this.widget.formField.fieldUiParam.uiTypeId ==
+      } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitCheckListNodeWidget) {
         if (this.widget.formField.fieldUiParam.collectionListViewDefinition !=
             null) {
           returnValue = VwCheckListLinkNodeFieldWidget(
-
-              getFieldvalueCurrentResponseFunction: this.widget
-                  .getCurrentFormResponseFunction,
+              getFieldvalueCurrentResponseFunction:
+                  this.widget.getCurrentFormResponseFunction,
               field: widget.field,
               formField: widget.formField,
               appInstanceParam: widget.appInstanceParam,
               parentRef: this.widget.parentRef);
         }
-      }
-      else if (this.widget.formField.fieldUiParam.uiTypeId ==
-          VwFieldUiParam.uitFormPageByLocalFieldSource &&
-          (this.widget.field.valueTypeId == VwFieldValue.vatValueFormResponse || this.widget.field.valueTypeId == VwFieldValue.vatValueFormResponseCommentOnly )) {
+      } else if (this.widget.formField.fieldUiParam.uiTypeId ==
+              VwFieldUiParam.uitFormPageByLocalFieldSource &&
+          (this.widget.field.valueTypeId == VwFieldValue.vatValueFormResponse ||
+              this.widget.field.valueTypeId ==
+                  VwFieldValue.vatValueFormResponseCommentOnly)) {
         returnValue = VwFormFieldWidget(
-            formFieldValidationResponse:widget.formFieldValidationResponse,
+            formFieldValidationResponse: widget.formFieldValidationResponse,
             readOnly: widget.readOnly,
             key: this.fieldKey,
-            getFieldvalueCurrentResponseFunction: this.widget
-                .getCurrentFormResponseFunction,
+            getFieldvalueCurrentResponseFunction:
+                this.widget.getCurrentFormResponseFunction,
             appInstanceParam: widget.appInstanceParam,
             field: this.widget.field,
             onValueChanged: this._implementOnFieldvalueChanged,
@@ -308,11 +281,12 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitFileField) {
         returnValue = VwFileFieldWidget(
-
-          key: Key(widget.getCurrentFormResponseFunction().recordId+widget.field.fieldName),
-            getCurrentFormResponseFunction: this.widget
-                .getCurrentFormResponseFunction,
-            getCurrentFormDefinitionFunction: this.widget.getCurrentFormDefinitionFunction,
+            key: Key(widget.getCurrentFormResponseFunction().recordId +
+                widget.field.fieldName),
+            getCurrentFormResponseFunction:
+                this.widget.getCurrentFormResponseFunction,
+            getCurrentFormDefinitionFunction:
+                this.widget.getCurrentFormDefinitionFunction,
             onValueChanged: _implementOnFieldvalueChanged,
             appInstanceParam: this.widget.appInstanceParam,
             readOnly: this.widget.readOnly,
@@ -322,7 +296,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
           VwFieldUiParam.uitCheckboxField) {
         returnValue = VwCheckboxFieldWidget(
             field: this.widget.field, formField: this.widget.formField);
-      }  else if (this.widget.formField.fieldUiParam.uiTypeId ==
+      } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitStaticTextField) {
         returnValue = VwTextWidget(
           field: this.widget.field,
@@ -341,27 +315,24 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
             formField: this.widget.formField,
             onValueChanged: this._implementOnFieldvalueChanged);
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
-          VwFieldUiParam.uitDateField ||
+              VwFieldUiParam.uitDateField ||
           this.widget.formField.fieldUiParam.uiTypeId ==
               VwFieldUiParam.uitTimeField ||
           this.widget.formField.fieldUiParam.uiTypeId ==
-              VwFieldUiParam.uitDateTimeField) {
-
-
-      }
+              VwFieldUiParam.uitDateTimeField) {}
 
       if (this.widget.formFieldValidationResponse != null &&
           this.widget.formFieldValidationResponse!.validationReponses.length >
               0) {
         List<String> errorList = [];
         for (int la = 0;
-        la <
-            this
-                .widget
-                .formFieldValidationResponse!
-                .validationReponses
-                .length;
-        la++) {
+            la <
+                this
+                    .widget
+                    .formFieldValidationResponse!
+                    .validationReponses
+                    .length;
+            la++) {
           VwFormFieldValidationResponseComponent currentElement = this
               .widget
               .formFieldValidationResponse!
@@ -372,8 +343,8 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
             errorList.add(currentElement.errorMessage == null
                 ? currentElement.sufficeSuggestion
                 : currentElement.errorMessage! +
-                ": " +
-                currentElement.sufficeSuggestion);
+                    ": " +
+                    currentElement.sufficeSuggestion);
           }
         }
 
@@ -381,17 +352,18 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
         //create widget
         for (int la = 0; la < errorList.length; la++) {
           String currentElement = errorList.elementAt(la);
-          Widget errorWidget = Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Widget errorWidget =
+              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Icon(
               Icons.error_outline,
               color: Colors.red,
             ),
             Flexible(
                 child: Text(
-                  currentElement,
-                  overflow: TextOverflow.fade,
-                  style: TextStyle(color: Colors.red),
-                ))
+              currentElement,
+              overflow: TextOverflow.fade,
+              style: TextStyle(color: Colors.red),
+            ))
           ]);
           errorWidgetList.add(errorWidget);
         }
@@ -399,31 +371,30 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
         Widget errorWidgetColumn = errorWidgetList.length == 0
             ? Container()
             : Container(
-            margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: errorWidgetList,
-            ));
+                margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: errorWidgetList,
+                ));
 
-        if(returnValue!=Container()) {
+        if (returnValue.key != null &&
+            returnValue.key !=
+                Key("null" + this.widget.formField.fieldDefinition.fieldName)) {
           returnValue = Container(
               key: Key(this.widget.formField.fieldDefinition.fieldName),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [returnValue, errorWidgetColumn],
               ));
-        }
-        else{
+        } else {
           returnValue = Container(
-              key: Key("null"+this.widget.formField.fieldDefinition.fieldName));
-
+              key: Key(
+                  "null" + this.widget.formField.fieldDefinition.fieldName));
         }
       }
-    }
-    catch(error)
-    {
-      print("Error catched on VwFieldWidgetUtil.build="+error.toString());
+    } catch (error) {
+      print("Error catched on VwFieldWidgetUtil.build=" + error.toString());
     }
     return returnValue;
   }
