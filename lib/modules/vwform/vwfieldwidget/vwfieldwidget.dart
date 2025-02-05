@@ -141,7 +141,11 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
           this.widget.formField.fieldDefinition.valueTypeId;
     }
 
-    Widget returnValue = VwTextFieldWidget(
+    Widget returnValue = Container(
+        key: Key(
+            "null" + this.widget.formField.fieldDefinition.fieldName));
+
+    Widget fieldWidget = VwTextFieldWidget(
         appInstanceParam: this.widget.appInstanceParam,
         key: Key(this.widget.formField.fieldDefinition.fieldName),
         field: this.widget.field,
@@ -154,7 +158,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
     try {
       if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitCalculatedNumberField) {
-        returnValue = VwCalculatedNumberFieldWidget(
+        fieldWidget = VwCalculatedNumberFieldWidget(
             key: Key(this.widget.formField.fieldDefinition.fieldName),
             field: this.widget.field,
             formField: this.widget.formField,
@@ -163,7 +167,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
             onValueChanged: this._implementOnFieldvalueChanged);
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitFormPageNodeViewer) {
-        returnValue = VwFormPageNodeViewerWidget(
+        fieldWidget = VwFormPageNodeViewerWidget(
             readOnly: widget.readOnly,
             key: this.fieldKey,
             getFieldvalueCurrentResponseFunction:
@@ -174,7 +178,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
             formField: this.widget.formField);
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitTagChecklist) {
-        returnValue = VwTagCheckListFieldWidget(
+        fieldWidget = VwTagCheckListFieldWidget(
           readOnly: this.widget.readOnly,
           key: Key(this.widget.formField.fieldDefinition.fieldName),
           formDefinition: this.widget.getCurrentFormDefinitionFunction(),
@@ -188,7 +192,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
           VwFieldUiParam.uitDropdownLinkNode ||
           this.widget.formField.fieldUiParam.uiTypeId ==
               VwFieldUiParam.uitDropdownLinkNodeByLocalFieldSource) {
-        returnValue = VwDropDownLinkNodeFieldWidget(
+        fieldWidget = VwDropDownLinkNodeFieldWidget(
             getFieldvalueCurrentResponseFunction:
             this.widget.getCurrentFormResponseFunction,
             appInstanceParam: widget.appInstanceParam,
@@ -199,7 +203,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitDropdown) {
         if (this.widget.formField.fieldUiParam.parameter != null) {
-          returnValue = VwDropdownFieldWidget(
+          fieldWidget = VwDropdownFieldWidget(
               field: this.widget.field,
               readOnly: this.widget.readOnly,
               formField: this.widget.formField,
@@ -208,7 +212,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitMultipleChoice) {
         if (this.widget.formField.fieldUiParam.parameter != null) {
-          returnValue = VwMultipleChoiceFieldWidget(
+          fieldWidget = VwMultipleChoiceFieldWidget(
               field: this.widget.field,
               readOnly: this.widget.readOnly,
               formField: this.widget.formField,
@@ -217,7 +221,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitChecklist) {
         if (this.widget.formField.fieldUiParam.parameter != null) {
-          returnValue = VwChecklistFieldWidget(
+          fieldWidget = VwChecklistFieldWidget(
               key: this.fieldKey,
               field: this.widget.field,
               readOnly: this.widget.readOnly,
@@ -228,7 +232,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
           VwFieldUiParam.uitNodeListView) {
         if (this.widget.formField.fieldUiParam.collectionListViewDefinition !=
             null) {
-          returnValue = VwNodeListViewFieldWidget(
+          fieldWidget = VwNodeListViewFieldWidget(
               getCurrentFormDefinitionFunction:
               this.widget.getCurrentFormDefinitionFunction,
               getFieldvalueCurrentResponseFunction:
@@ -242,7 +246,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
           VwFieldUiParam.uitCheckListLinkNodeWidget) {
         if (this.widget.formField.fieldUiParam.collectionListViewDefinition !=
             null) {
-          returnValue = VwCheckListLinkNodeFieldWidget(
+          fieldWidget = VwCheckListLinkNodeFieldWidget(
               getFieldvalueCurrentResponseFunction:
               this.widget.getCurrentFormResponseFunction,
               field: widget.field,
@@ -254,7 +258,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
           VwFieldUiParam.uitCheckListNodeWidget) {
         if (this.widget.formField.fieldUiParam.collectionListViewDefinition !=
             null) {
-          returnValue = VwCheckListLinkNodeFieldWidget(
+          fieldWidget = VwCheckListLinkNodeFieldWidget(
               getFieldvalueCurrentResponseFunction:
               this.widget.getCurrentFormResponseFunction,
               field: widget.field,
@@ -267,7 +271,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
           (this.widget.field.valueTypeId == VwFieldValue.vatValueFormResponse ||
               this.widget.field.valueTypeId ==
                   VwFieldValue.vatValueFormResponseCommentOnly)) {
-        returnValue = VwFormFieldWidget(
+        fieldWidget = VwFormFieldWidget(
             formFieldValidationResponse: widget.formFieldValidationResponse,
             readOnly: widget.readOnly,
             key: this.fieldKey,
@@ -280,7 +284,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
         //returnValue=VwFormPage(isMultipageSections: true,isShowAppBar: false, loginResponse: widget.loginResponse!, formResponse: widget.field.valueRowData! , formDefinition: this.widget.formField.fieldUiParam.formDefinition!, parentBloc: widget.parentBloc, formDefinitionFolderNodeId: AppConfig.formDefinitionFolderNodeId);
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitFileField) {
-        returnValue = VwFileFieldWidget(
+        fieldWidget = VwFileFieldWidget(
             key: Key(widget
                 .getCurrentFormResponseFunction()
                 .recordId +
@@ -296,23 +300,23 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
             formField: this.widget.formField);
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitCheckboxField) {
-        returnValue = VwCheckboxFieldWidget(
+        fieldWidget= VwCheckboxFieldWidget(
             field: this.widget.field, formField: this.widget.formField);
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitStaticTextField) {
-        returnValue = VwTextWidget(
+        fieldWidget = VwTextWidget(
           field: this.widget.field,
           formField: this.widget.formField,
         );
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitCaption) {
-        returnValue = VwCaptionFieldWidget(
+        fieldWidget = VwCaptionFieldWidget(
           field: this.widget.field,
           formField: this.widget.formField,
         );
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitSpinEditField) {
-        returnValue = VwSpinEditFieldWidget(
+        fieldWidget= VwSpinEditFieldWidget(
             field: this.widget.field,
             formField: this.widget.formField,
             onValueChanged: this._implementOnFieldvalueChanged);
@@ -384,17 +388,8 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
             key: widget.key,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [returnValue, errorWidgetColumn],
+              children: [fieldWidget, errorWidgetColumn],
             ));
-      }
-      else {
-        if (returnValue.key != null &&
-            returnValue.key ==
-                Key("null" + this.widget.formField.fieldDefinition.fieldName)) {
-          returnValue = Container(
-              key: Key(
-                  "null" + this.widget.formField.fieldDefinition.fieldName));
-        }
       }
     }
       catch (error) {
