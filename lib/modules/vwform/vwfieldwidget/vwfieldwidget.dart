@@ -393,14 +393,9 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
       }
       else
         {
-          if(fieldWidget.key==Key("null"+this.widget.formField.fieldDefinition.fieldName))
-            {
 
-            }
-          else
-            {
               returnValue=fieldWidget;
-            }
+
         }
     }
       catch (error) {

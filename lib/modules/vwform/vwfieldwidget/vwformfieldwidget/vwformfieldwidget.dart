@@ -337,7 +337,16 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
           ]);
     } else {
       this.widget.field.valueFormResponse = null;
-      return Container(key: Key("null"+this.widget.formField.fieldDefinition.fieldName));
+      return Column(
+          key: this.widget.key,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Flexible(fit: FlexFit.loose, child: captionWidget),
+            Flexible(
+                fit: FlexFit.loose,
+                child: Container(key: widget.key, child: Text("(Blank Form)")))
+          ]);
     }
   }
 }
