@@ -391,6 +391,17 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
               children: [fieldWidget, errorWidgetColumn],
             ));
       }
+      else
+        {
+          if(fieldWidget.key==Key("null"+this.widget.formField.fieldDefinition.fieldName))
+            {
+
+            }
+          else
+            {
+              returnValue=fieldWidget;
+            }
+        }
     }
       catch (error) {
       print("Error catched on VwFieldWidgetUtil.build=" + error.toString());
