@@ -26,7 +26,7 @@ import '../../vwformdefinition/vwformvalidationresponse/vwformfieldvalidationres
 
 class VwFormFieldWidget extends StatefulWidget {
   const VwFormFieldWidget(
-      {super.key,
+      {required super.key,
       required this.appInstanceParam,
       required this.field,
       this.readOnly = false,
@@ -326,6 +326,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
       //return currentFormPage;
 
       return Column(
+        key: this.widget.key,
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -382,7 +382,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
             returnValue.key !=
                 Key("null" + this.widget.formField.fieldDefinition.fieldName)) {
           returnValue = Container(
-              key: Key(this.widget.formField.fieldDefinition.fieldName),
+              key: widget.key,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [returnValue, errorWidgetColumn],

@@ -408,7 +408,7 @@ class VwFormState extends State<VwForm> {
 
               print(currentFormField.fieldDefinition.fieldName +" field key : "+ responseFieldWidget.key.toString());
 
-              if(responseFieldWidget.key==Key("null"+currentFormField.fieldDefinition.fieldName))
+              if(responseFieldWidget.key!=null && responseFieldWidget.key==Key("null"+currentFormField.fieldDefinition.fieldName))
                 {
                 print("Blank Form Field");
                 }
