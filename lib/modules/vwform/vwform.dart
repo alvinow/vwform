@@ -377,33 +377,47 @@ class VwFormState extends State<VwForm> {
               initialValue.renderedFormResponseList =
                   this.initFormResponse.renderedFormResponseList;
 
-              Widget currentFieldWidget = Container(
-                  decoration: widget.fieldBoxDecoration,
-                  padding: EdgeInsets.fromLTRB(12, 0, 8, 10),
-                  margin: EdgeInsets.fromLTRB(0, 7, 0, 7),
-                  child: VwFieldWidget(
-                    key: Key(newCurrentFormField.fieldDefinition.fieldName),
-                    parentRef: this.initFormResponse.collectionName == null
-                        ? null
-                        : VwLinkNode(
-                            nodeType: VwNode.ntnLinkRowCollection,
-                            nodeId: this.initFormResponse.recordId,
-                            contentContext: VwContentContext(
-                                collectionName:
-                                    this.initFormResponse.collectionName!,
-                                recordId: this.initFormResponse.recordId),
-                          ),
-                    appInstanceParam: this.widget.appInstanceParam,
-                    readOnly: this.widget.formDefinition.isReadOnly,
-                    formFieldValidationResponse: formFieldValidationResponse,
-                    field: initialValue,
-                    formField: newCurrentFormField,
-                    onValueChanged: this._implementOnFieldWidgetChanged,
-                    getCurrentFormResponseFunction:
-                        this.implementGetCurrentFormResponseFunction,
-                    getCurrentFormDefinitionFunction:
-                        this.implementGetCurrentFormDefinitionFunction,
-                  ));
+
+
+              Widget responseFieldWidget=VwFieldWidget(
+                key: Key(newCurrentFormField.fieldDefinition.fieldName),
+                parentRef: this.initFormResponse.collectionName == null
+                    ? null
+                    : VwLinkNode(
+                  nodeType: VwNode.ntnLinkRowCollection,
+                  nodeId: this.initFormResponse.recordId,
+                  contentContext: VwContentContext(
+                      collectionName:
+                      this.initFormResponse.collectionName!,
+                      recordId: this.initFormResponse.recordId),
+                ),
+                appInstanceParam: this.widget.appInstanceParam,
+                readOnly: this.widget.formDefinition.isReadOnly,
+                formFieldValidationResponse: formFieldValidationResponse,
+                field: initialValue,
+                formField: newCurrentFormField,
+                onValueChanged: this._implementOnFieldWidgetChanged,
+                getCurrentFormResponseFunction:
+                this.implementGetCurrentFormResponseFunction,
+                getCurrentFormDefinitionFunction:
+                this.implementGetCurrentFormDefinitionFunction,
+              );
+
+              Widget currentFieldWidget=Container(key:Key("null"+currentFormField.fieldDefinition.fieldName));
+
+              if(responseFieldWidget.key==Key("null"+currentFormField.fieldDefinition.fieldName))
+                {
+
+                }
+
+              else  {
+                currentFieldWidget = Container(
+                    decoration: widget.fieldBoxDecoration,
+                    padding: EdgeInsets.fromLTRB(12, 0, 8, 10),
+                    margin: EdgeInsets.fromLTRB(0, 7, 0, 7),
+                    child: responseFieldWidget);
+              }
+
 
               if (currentFormField.fieldUiParam.uiTypeId ==
                       VwFieldUiParam.uitFormPageByLinkFormDefinition ||

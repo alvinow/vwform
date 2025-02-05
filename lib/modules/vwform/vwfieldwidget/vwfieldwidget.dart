@@ -346,28 +346,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
               VwFieldUiParam.uitTimeField ||
           this.widget.formField.fieldUiParam.uiTypeId ==
               VwFieldUiParam.uitDateTimeField) {
-        /*
-        Widget toggleOff = VwDateTimeFieldWidget(
-          key:Key(this.widget.formField.fieldDefinition.fieldName),
-            field: this.widget.field,
-            formField: this.widget.formField,
-            onValueChanged: this._implementOnFieldvalueChanged);
 
-        Widget toggleOn = Container(
-            child: VwDateTimeFieldWidget(
-                key:Key(this.widget.formField.fieldDefinition.fieldName),
-                field: this.widget.field,
-                formField: this.widget.formField,
-                onValueChanged: this._implementOnFieldvalueChanged));
-
-        if (this.currentToggleSwitch) {
-          this.currentToggleSwitch = !this.currentToggleSwitch;
-          returnValue = toggleOn;
-        } else {
-          this.currentToggleSwitch = !this.currentToggleSwitch;
-          returnValue = toggleOff;
-        }
-*/
 
       }
 
@@ -427,12 +406,19 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
               children: errorWidgetList,
             ));
 
-        returnValue = Container(
-            key: Key(this.widget.formField.fieldDefinition.fieldName),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [returnValue, errorWidgetColumn],
-            ));
+        if(returnValue!=Container()) {
+          returnValue = Container(
+              key: Key(this.widget.formField.fieldDefinition.fieldName),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [returnValue, errorWidgetColumn],
+              ));
+        }
+        else{
+          returnValue = Container(
+              key: Key("null"+this.widget.formField.fieldDefinition.fieldName));
+
+        }
       }
     }
     catch(error)

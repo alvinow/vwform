@@ -261,10 +261,10 @@ packages:
     dependency: "direct main"
     description:
       name: date_field
-      sha256: fcfb5985e3252b19a1a6e156eb7695ada4c2f1ad02b62b0727dc171904d522f9
+      sha256: "556bc3d9f356fa347a4640d4c672f9e08418532308fb94286f67586f9b774de3"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.1"
+    version: "6.0.2"
   device_info:
     dependency: transitive
     description:
@@ -950,7 +950,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "45e9f1b8465242ef475cd56624785354664d65ed"
+      resolved-ref: "6b29b602eb7d7c9dba2da938d95c604f5b030844"
       url: "https://github.com/alvinow/nodelistview.git"
     source: git
     version: "1.0.0+1"
