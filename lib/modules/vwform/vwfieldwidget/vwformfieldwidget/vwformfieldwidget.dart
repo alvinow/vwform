@@ -338,6 +338,9 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
           ]);
     } else {
       this.widget.field.valueFormResponse = null;
+      return Container(
+          key: this.widget.key);
+      /*
       return Column(
           key: this.widget.key,
           mainAxisSize: MainAxisSize.min,
@@ -345,7 +348,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
           children: [
             Flexible(fit: FlexFit.loose, child: captionWidget),
              Row(mainAxisAlignment: MainAxisAlignment.center,   children:[ Expanded(child:Text("(Blank Form)",style:TextStyle(color:Colors.grey)))] )
-          ]);
+          ]);*/
     }
   }
 }
