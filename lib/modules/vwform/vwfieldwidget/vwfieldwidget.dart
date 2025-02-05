@@ -378,21 +378,25 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
                   children: errorWidgetList,
                 ));
 
-        if (returnValue.key != null &&
-            returnValue.key !=
-                Key("null" + this.widget.formField.fieldDefinition.fieldName)) {
-          returnValue = Container(
-              key: widget.key,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [returnValue, errorWidgetColumn],
-              ));
-        } else {
-          returnValue = Container(
-              key: Key(
-                  "null" + this.widget.formField.fieldDefinition.fieldName));
-        }
+        returnValue = Container(
+            key: widget.key,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [returnValue, errorWidgetColumn],
+            ));
+
+
+
       }
+      else
+        {
+          if (returnValue.key != null &&
+              returnValue.key ==
+                  Key("null" + this.widget.formField.fieldDefinition.fieldName)) {
+            returnValue = Container(
+                key: Key(
+                    "null" + this.widget.formField.fieldDefinition.fieldName));
+          }
     } catch (error) {
       print("Error catched on VwFieldWidgetUtil.build=" + error.toString());
     }
