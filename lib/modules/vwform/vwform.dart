@@ -407,37 +407,38 @@ class VwFormState extends State<VwForm> {
 
               if(responseFieldWidget.key==Key("null"+currentFormField.fieldDefinition.fieldName))
                 {
-
+                print("Blank Form Field");
                 }
 
-              else  {
+              else {
                 currentFieldWidget = Container(
                     decoration: widget.fieldBoxDecoration,
                     padding: EdgeInsets.fromLTRB(12, 0, 8, 10),
                     margin: EdgeInsets.fromLTRB(0, 7, 0, 7),
                     child: responseFieldWidget);
+
+
+                if (currentFormField.fieldUiParam.uiTypeId ==
+                    VwFieldUiParam.uitFormPageByLinkFormDefinition ||
+                    currentFormField.fieldUiParam.uiTypeId ==
+                        VwFieldUiParam.uitFormPageByLocalFieldSource ||
+                    currentFormField.fieldUiParam.uiTypeId ==
+                        VwFieldUiParam.uitFormPageByStaticFormDefinition) {
+                  fieldsWidgets.add(
+                      Flexible(fit: FlexFit.loose, child: currentFieldWidget));
+                } else {
+                  fieldsWidgets.add(
+                      Flexible(fit: FlexFit.tight, child: currentFieldWidget));
+                }
+
+                Widget rowWidget = Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: fieldsWidgets);
+
+                rowsWidgets.add(rowWidget);
               }
-
-
-              if (currentFormField.fieldUiParam.uiTypeId ==
-                      VwFieldUiParam.uitFormPageByLinkFormDefinition ||
-                  currentFormField.fieldUiParam.uiTypeId ==
-                      VwFieldUiParam.uitFormPageByLocalFieldSource ||
-                  currentFormField.fieldUiParam.uiTypeId ==
-                      VwFieldUiParam.uitFormPageByStaticFormDefinition) {
-                fieldsWidgets.add(Flexible(fit: FlexFit.loose, child: currentFieldWidget));
-              } else {
-                fieldsWidgets.add(
-                    Flexible(fit: FlexFit.tight, child: currentFieldWidget));
-              }
-
-              Widget rowWidget = Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: fieldsWidgets);
-
-              rowsWidgets.add(rowWidget);
             }
           }
         }
