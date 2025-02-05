@@ -341,12 +341,10 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
       return Column(
           key: this.widget.key,
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Flexible(fit: FlexFit.loose, child: captionWidget),
-            Flexible(
-                fit: FlexFit.loose,
-                child: Container(key: widget.key, child: Row(mainAxisAlignment: MainAxisAlignment.center,   children:[ Expanded(child:Text("(Blank Form)",style:TextStyle(color:Colors.grey)))] )))
+             Row(mainAxisAlignment: MainAxisAlignment.center,   children:[ Expanded(child:Text("(Blank Form)",style:TextStyle(color:Colors.grey)))] )
           ]);
     }
   }
