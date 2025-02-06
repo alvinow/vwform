@@ -640,7 +640,7 @@ class BranchviewerState extends State<BranchViewer> {
                       BranchviewerState.createCellStatusColumnHeaderRekomendasi(
                           fieldValue: statusRekomendasi,
                           textALign: TextAlign.start,
-                          textColor: statusTextColor,
+                          textValueColor: statusTextColor,
                           backgroundColor: Colors.lightBlue,
                           localeId: currentLocaleId,
                           title: "Status")),
@@ -854,8 +854,9 @@ class BranchviewerState extends State<BranchViewer> {
   static Widget createCellStatusColumnHeaderRekomendasi(
       {required VwFieldValue fieldValue,
       TextAlign textALign = TextAlign.end,
+        double textValueFontSize=10,
       required Color backgroundColor,
-        Color textColor=Colors.black,
+        Color textValueColor=Colors.black,
       required String localeId,
       required String title}) {
     try {
@@ -903,7 +904,7 @@ class BranchviewerState extends State<BranchViewer> {
                       borderRadius: BorderRadius.circular(0),
                     ),
                     child: Text(nilaiString,
-                        textAlign: textALign, style: TextStyle(color: textColor, fontSize: 9)),
+                        textAlign: textALign, style: TextStyle(color: textValueColor, fontSize: textValueFontSize)),
                   ),
                 ),
               ]))
