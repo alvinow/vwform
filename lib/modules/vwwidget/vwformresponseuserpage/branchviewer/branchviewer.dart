@@ -559,8 +559,8 @@ class BranchviewerState extends State<BranchViewer> {
 
           VwFieldValue nilaiRekomendasiTindakLanjutFieldValue=VwFieldValue(fieldName: "nilairupiah",valueTypeId: VwFieldValue.vatNumber);
 
-          if(formnilairekomendasiFieldValue!=null && parentCurrentRowData!.getFieldByName("nilairupiah")!=null) {
-            nilaiRekomendasiTindakLanjutFieldValue = parentCurrentRowData!.getFieldByName("nilairupiah")!;
+          if(formnilairekomendasiFieldValue!=null && formnilairekomendasiFieldValue.valueFormResponse!=null && formnilairekomendasiFieldValue.valueFormResponse!.getFieldByName("nilairupiah")!=null) {
+            nilaiRekomendasiTindakLanjutFieldValue = formnilairekomendasiFieldValue.valueFormResponse!.getFieldByName("nilairupiah")!;
           }
 
           VwFieldValue nilaiRekomendasiSudahSesuai = new VwFieldValue(
