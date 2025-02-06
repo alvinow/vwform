@@ -557,10 +557,10 @@ class BranchviewerState extends State<BranchViewer> {
 
           VwFieldValue? formnilairekomendasiFieldValue=parentCurrentRowData!.getFieldByName("formnilairekomendasi");
 
-          VwFieldValue? nilaiRekomendasiTindakLanjutFieldValue ;
+          VwFieldValue nilaiRekomendasiTindakLanjutFieldValue=VwFieldValue(fieldName: "nilairupiah",valueTypeId: VwFieldValue.vatNumber);
 
-          if(formnilairekomendasiFieldValue!=null) {
-            nilaiRekomendasiTindakLanjutFieldValue = parentCurrentRowData!.getFieldByName("nilairupiah");
+          if(formnilairekomendasiFieldValue!=null && parentCurrentRowData!.getFieldByName("nilairupiah")!=null) {
+            nilaiRekomendasiTindakLanjutFieldValue = parentCurrentRowData!.getFieldByName("nilairupiah")!;
           }
 
           VwFieldValue nilaiRekomendasiSudahSesuai = new VwFieldValue(
@@ -604,18 +604,20 @@ class BranchviewerState extends State<BranchViewer> {
                 .valueString
                 .toString();
 
-            if (kodeStatusRekomendasi == "1") {
-              nilaiRekomendasiBelumTinjut.valueNumber =
-                  nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
-            } else if (kodeStatusRekomendasi == "2") {
-              nilaiRekomendasiDalamProses.valueNumber =
-                  nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
-            } else if (kodeStatusRekomendasi == "3") {
-              nilaiRekomendasiSudahSesuai.valueNumber =
-                  nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
-            } else if (kodeStatusRekomendasi == "4") {
-              nilaiRekomendasiTidakDapat.valueNumber =
-                  nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
+            if(nilaiRekomendasiTindakLanjutFieldValue!=null) {
+              if (kodeStatusRekomendasi == "1") {
+                nilaiRekomendasiBelumTinjut.valueNumber =
+                    nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
+              } else if (kodeStatusRekomendasi == "2") {
+                nilaiRekomendasiDalamProses.valueNumber =
+                    nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
+              } else if (kodeStatusRekomendasi == "3") {
+                nilaiRekomendasiSudahSesuai.valueNumber =
+                    nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
+              } else if (kodeStatusRekomendasi == "4") {
+                nilaiRekomendasiTidakDapat.valueNumber =
+                    nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
+              }
             }
           }
 
