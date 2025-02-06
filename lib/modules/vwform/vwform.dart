@@ -42,20 +42,20 @@ typedef NodeRowViewerFunction = Widget Function(
 class VwForm extends StatefulWidget {
   const VwForm(
       {required super.key,
-      required this.appInstanceParam,
-      required this.initFormResponse,
-      required this.formDefinition,
-      this.onFormValueChanged,
-      this.boxDecoration,
-      this.width = 300,
-      this.sectionIndex,
-      this.formValidationResponse,
-      this.backGroundColor = Colors.grey,
+        required this.appInstanceParam,
+        required this.initFormResponse,
+        required this.formDefinition,
+        this.onFormValueChanged,
+        this.boxDecoration,
+        this.width = 300,
+        this.sectionIndex,
+        this.formValidationResponse,
+        this.backGroundColor = Colors.grey,
 
-      this.fieldBoxDecoration = const BoxDecoration(
-        color: Colors.white,
+        this.fieldBoxDecoration = const BoxDecoration(
+          color: Colors.white,
 
-      )});
+        )});
   final VwAppInstanceParam appInstanceParam;
   final VwFormDefinition formDefinition;
   final VwRowData initFormResponse;
@@ -98,7 +98,7 @@ class VwFormState extends State<VwForm> {
 
   static void prepareInitialValue(
       {required VwRowData includedInFormDefinition,
-      required VwRowData initFormResponse}) {
+        required VwRowData initFormResponse}) {
     /*
       static const String vatNull = 'vatNull';
   static const String vatString = 'vatString';
@@ -123,14 +123,14 @@ class VwFormState extends State<VwForm> {
         for (int la = 0; la < initFormResponse.fields!.length; la++) {
           try {
             VwFieldValue currentInitFormResponseFieldValue =
-                initFormResponse.fields!.elementAt(la);
+            initFormResponse.fields!.elementAt(la);
 
             String currentInitFormResponseFieldName =
                 currentInitFormResponseFieldValue.fieldName;
 
             VwFieldValue? includedInFormDefinitionFieldValue =
-                includedInFormDefinition
-                    .getFieldByName(currentInitFormResponseFieldName);
+            includedInFormDefinition
+                .getFieldByName(currentInitFormResponseFieldName);
 
             if (currentInitFormResponseFieldValue.valueTypeId == VwFieldValue.vatString &&
                 currentInitFormResponseFieldValue.valueString == null) {
@@ -166,7 +166,7 @@ class VwFormState extends State<VwForm> {
               currentInitFormResponseFieldValue.valueClassEncodedJson =
                   includedInFormDefinitionFieldValue?.valueClassEncodedJson;
             } else if (currentInitFormResponseFieldValue.valueTypeId ==
-                    VwFieldValue.vatFieldFileStorage &&
+                VwFieldValue.vatFieldFileStorage &&
                 currentInitFormResponseFieldValue.valueFieldFileStorage ==
                     null) {
               currentInitFormResponseFieldValue.valueFieldFileStorage =
@@ -176,7 +176,7 @@ class VwFormState extends State<VwForm> {
               currentInitFormResponseFieldValue.valueRowData =
                   includedInFormDefinitionFieldValue?.valueRowData;
             } else if (currentInitFormResponseFieldValue.valueTypeId ==
-                    VwFieldValue.vatValueRowDataList &&
+                VwFieldValue.vatValueRowDataList &&
                 currentInitFormResponseFieldValue.valueRowDataList == null) {
               currentInitFormResponseFieldValue.valueRowDataList =
                   includedInFormDefinitionFieldValue?.valueRowDataList;
@@ -185,18 +185,18 @@ class VwFormState extends State<VwForm> {
               currentInitFormResponseFieldValue.valueStringList =
                   includedInFormDefinitionFieldValue?.valueStringList;
             } else if (currentInitFormResponseFieldValue.valueTypeId ==
-                    VwFieldValue.vatValueFieldValueList &&
+                VwFieldValue.vatValueFieldValueList &&
                 currentInitFormResponseFieldValue.valueFieldValueList == null) {
               currentInitFormResponseFieldValue.valueFieldValueList =
                   includedInFormDefinitionFieldValue?.valueFieldValueList;
             }  else if (includedInFormDefinitionFieldValue != null) {
               if (currentInitFormResponseFieldValue.valueTypeId ==
-                      VwFieldValue.vatValueLinkNode &&
+                  VwFieldValue.vatValueLinkNode &&
                   currentInitFormResponseFieldValue.valueLinkNode == null) {
                 currentInitFormResponseFieldValue.valueLinkNode =
                     includedInFormDefinitionFieldValue.valueLinkNode;
               } else if (currentInitFormResponseFieldValue.valueTypeId ==
-                      VwFieldValue.vatValueLinkNodeList &&
+                  VwFieldValue.vatValueLinkNodeList &&
                   currentInitFormResponseFieldValue.valueLinkNodeList == null) {
                 currentInitFormResponseFieldValue.valueLinkNodeList =
                     includedInFormDefinitionFieldValue.valueLinkNodeList;
@@ -258,66 +258,66 @@ class VwFormState extends State<VwForm> {
     try {
       if (sectionIndex < widget.formDefinition.sections.length) {
         VwSectionFormDefinition sectionFormParam =
-            this.widget.formDefinition.sections.elementAt(sectionIndex);
+        this.widget.formDefinition.sections.elementAt(sectionIndex);
 
         List<Widget> rowsWidgets = <Widget>[];
 
         Widget sectionName = sectionFormParam.name == null
             ? Container()
             : Container(
-                constraints: BoxConstraints(maxWidth: 600),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Flexible(
-                      fit: FlexFit.loose,
-                      child: Text(
-                        sectionFormParam.name!,
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ],
+          constraints: BoxConstraints(maxWidth: 600),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Flexible(
+                fit: FlexFit.loose,
+                child: Text(
+                  sectionFormParam.name!,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              );
+              ),
+            ],
+          ),
+        );
 
         Widget? descriptionWidget = sectionFormParam.description == null
             ? Container()
             : Container(
-                constraints: BoxConstraints(maxWidth: 600),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Flexible(
-                      fit: FlexFit.loose,
-                      child: Text(
-                        sectionFormParam.description!,
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
+          constraints: BoxConstraints(maxWidth: 600),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Flexible(
+                fit: FlexFit.loose,
+                child: Text(
+                  sectionFormParam.description!,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              );
+              ),
+            ],
+          ),
+        );
 
         Widget sectionTitle = sectionFormParam.name == null
             ? Container()
             : Container(
-                decoration: widget.fieldBoxDecoration,
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                margin: EdgeInsets.fromLTRB(0, 0, 0, 7),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [sectionName, descriptionWidget],
-                ));
+            decoration: widget.fieldBoxDecoration,
+            padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+            margin: EdgeInsets.fromLTRB(0, 0, 0, 7),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [sectionName, descriptionWidget],
+            ));
 
         rowsWidgets.add(sectionTitle);
 
@@ -325,18 +325,18 @@ class VwFormState extends State<VwForm> {
           List<Widget> fieldsWidgets = <Widget>[];
 
           VwFormField currentFormField =
-              sectionFormParam.formFields.elementAt(ta);
+          sectionFormParam.formFields.elementAt(ta);
 
           if (currentFormField.fieldUiParam.uiTypeId ==
               VwFieldUiParam.uitHidden) {
             //do nothing
           } else {
             Map<String, dynamic> currentFormFieldDyn =
-                currentFormField.toJson();
+            currentFormField.toJson();
             String currentFormFieldString = json.encode(currentFormFieldDyn);
 
             VwFormField newCurrentFormField =
-                VwFormField.fromJson(json.decode(currentFormFieldString));
+            VwFormField.fromJson(json.decode(currentFormFieldString));
 
             //modding based on Form
             if (this.widget.formDefinition.isReadOnly == true) {
@@ -363,10 +363,10 @@ class VwFormState extends State<VwForm> {
               if (this.widget.formValidationResponse != null) {
                 formFieldValidationResponse = VwFormValidationResponseUtil
                     .getFormFieldValidationResponseByFieldName(
-                        formValidationResponse:
-                            this.widget.formValidationResponse!,
-                        fieldName:
-                            newCurrentFormField.fieldDefinition.fieldName);
+                    formValidationResponse:
+                    this.widget.formValidationResponse!,
+                    fieldName:
+                    newCurrentFormField.fieldDefinition.fieldName);
               }
 
               if (this.initFormResponse.syncFormResponseList == null) {
@@ -377,66 +377,53 @@ class VwFormState extends State<VwForm> {
               initialValue.renderedFormResponseList =
                   this.initFormResponse.renderedFormResponseList;
 
+              Widget currentFieldWidget = Container(
+                  decoration: widget.fieldBoxDecoration,
+                  padding: EdgeInsets.fromLTRB(12, 0, 8, 10),
+                  margin: EdgeInsets.fromLTRB(0, 7, 0, 7),
+                  child: VwFieldWidget(
+                    key: Key(newCurrentFormField.fieldDefinition.fieldName),
+                    parentRef: this.initFormResponse.collectionName == null
+                        ? null
+                        : VwLinkNode(
+                      nodeType: VwNode.ntnLinkRowCollection,
+                      nodeId: this.initFormResponse.recordId,
+                      contentContext: VwContentContext(
+                          collectionName:
+                          this.initFormResponse.collectionName!,
+                          recordId: this.initFormResponse.recordId),
+                    ),
+                    appInstanceParam: this.widget.appInstanceParam,
+                    readOnly: this.widget.formDefinition.isReadOnly,
+                    formFieldValidationResponse: formFieldValidationResponse,
+                    field: initialValue,
+                    formField: newCurrentFormField,
+                    onValueChanged: this._implementOnFieldWidgetChanged,
+                    getCurrentFormResponseFunction:
+                    this.implementGetCurrentFormResponseFunction,
+                    getCurrentFormDefinitionFunction:
+                    this.implementGetCurrentFormDefinitionFunction,
+                  ));
 
-
-              Widget responseFieldWidget=VwFieldWidget(
-                key: Key(newCurrentFormField.fieldDefinition.fieldName),
-                parentRef: this.initFormResponse.collectionName == null
-                    ? null
-                    : VwLinkNode(
-                  nodeType: VwNode.ntnLinkRowCollection,
-                  nodeId: this.initFormResponse.recordId,
-                  contentContext: VwContentContext(
-                      collectionName:
-                      this.initFormResponse.collectionName!,
-                      recordId: this.initFormResponse.recordId),
-                ),
-                appInstanceParam: this.widget.appInstanceParam,
-                readOnly: this.widget.formDefinition.isReadOnly,
-                formFieldValidationResponse: formFieldValidationResponse,
-                field: initialValue,
-                formField: newCurrentFormField,
-                onValueChanged: this._implementOnFieldWidgetChanged,
-                getCurrentFormResponseFunction:
-                this.implementGetCurrentFormResponseFunction,
-                getCurrentFormDefinitionFunction:
-                this.implementGetCurrentFormDefinitionFunction,
-              );
-
-              Widget currentFieldWidget=Container(key:Key("null"+currentFormField.fieldDefinition.fieldName));
-
-
-
-
-              else {
-                currentFieldWidget = Container(
-                    decoration: widget.fieldBoxDecoration,
-                    padding: EdgeInsets.fromLTRB(12, 0, 8, 10),
-                    margin: EdgeInsets.fromLTRB(0, 7, 0, 7),
-                    child: responseFieldWidget);
-
-
-                if (currentFormField.fieldUiParam.uiTypeId ==
-                    VwFieldUiParam.uitFormPageByLinkFormDefinition ||
-                    currentFormField.fieldUiParam.uiTypeId ==
-                        VwFieldUiParam.uitFormPageByLocalFieldSource ||
-                    currentFormField.fieldUiParam.uiTypeId ==
-                        VwFieldUiParam.uitFormPageByStaticFormDefinition) {
-                  fieldsWidgets.add(
-                      Flexible(fit: FlexFit.loose, child: currentFieldWidget));
-                } else {
-                  fieldsWidgets.add(
-                      Flexible(fit: FlexFit.tight, child: currentFieldWidget));
-                }
-
-                Widget rowWidget = Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: fieldsWidgets);
-
-                rowsWidgets.add(rowWidget);
+              if (currentFormField.fieldUiParam.uiTypeId ==
+                  VwFieldUiParam.uitFormPageByLinkFormDefinition ||
+                  currentFormField.fieldUiParam.uiTypeId ==
+                      VwFieldUiParam.uitFormPageByLocalFieldSource ||
+                  currentFormField.fieldUiParam.uiTypeId ==
+                      VwFieldUiParam.uitFormPageByStaticFormDefinition) {
+                fieldsWidgets.add(Flexible(fit: FlexFit.loose, child: currentFieldWidget));
+              } else {
+                fieldsWidgets.add(
+                    Flexible(fit: FlexFit.tight, child: currentFieldWidget));
               }
+
+              Widget rowWidget = Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: fieldsWidgets);
+
+              rowsWidgets.add(rowWidget);
             }
           }
         }
