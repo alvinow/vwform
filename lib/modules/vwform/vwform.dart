@@ -406,12 +406,7 @@ class VwFormState extends State<VwForm> {
               Widget currentFieldWidget=Container(key:Key("null"+currentFormField.fieldDefinition.fieldName));
 
 
-              print(currentFormField.fieldDefinition.fieldName +" field key : "+ responseFieldWidget.key.toString());
 
-              if(responseFieldWidget.key!=null && responseFieldWidget.key==Key("null"+currentFormField.fieldDefinition.fieldName))
-                {
-                print("Blank Form Field");
-                }
 
               else {
                 currentFieldWidget = Container(
