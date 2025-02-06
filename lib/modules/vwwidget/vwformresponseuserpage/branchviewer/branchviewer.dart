@@ -581,6 +581,7 @@ class BranchviewerState extends State<BranchViewer> {
           VwFieldValue statusRekomendasi = VwFieldValue(
             fieldName: "nama",
           );
+          Color statusTextColor=Colors.black;
 
           if (statusRekomendasiTindakLanjutFieldValue != null &&
               statusRekomendasiTindakLanjutFieldValue.valueLinkNode != null) {
@@ -604,14 +605,19 @@ class BranchviewerState extends State<BranchViewer> {
                 .valueString
                 .toString();
 
+
+
             if(nilaiRekomendasiTindakLanjutFieldValue!=null) {
               if (kodeStatusRekomendasi == "1") {
+                statusTextColor=Colors.red;
                 nilaiRekomendasiBelumTinjut.valueNumber =
                     nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
               } else if (kodeStatusRekomendasi == "2") {
+                statusTextColor=Colors.orange;
                 nilaiRekomendasiDalamProses.valueNumber =
                     nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
               } else if (kodeStatusRekomendasi == "3") {
+                statusTextColor=Colors.green;
                 nilaiRekomendasiSudahSesuai.valueNumber =
                     nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
               } else if (kodeStatusRekomendasi == "4") {
@@ -621,6 +627,11 @@ class BranchviewerState extends State<BranchViewer> {
             }
           }
 
+
+
+
+
+
           summaryRow = Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -629,42 +640,43 @@ class BranchviewerState extends State<BranchViewer> {
                       BranchviewerState.createCellStatusColumnHeaderRekomendasi(
                           fieldValue: statusRekomendasi,
                           textALign: TextAlign.start,
-                          color: Colors.red,
+                          textColor: statusTextColor,
+                          backgroundColor: Colors.lightBlue,
                           localeId: currentLocaleId,
                           title: "Status")),
               Flexible(
                   child:
                       BranchviewerState.createCellStatusColumnHeaderRekomendasi(
                           fieldValue: nilaiRekomendasiTindakLanjutFieldValue!,
-                          color: Colors.lightBlue,
+                          backgroundColor: Colors.lightBlue,
                           localeId: currentLocaleId,
                           title: "Rekomendasi")),
               Flexible(
                   child:
                       BranchviewerState.createCellStatusColumnHeaderRekomendasi(
                           fieldValue: nilaiRekomendasiSudahSesuai,
-                          color: Colors.lightBlue,
+                          backgroundColor: Colors.lightBlue,
                           localeId: currentLocaleId,
                           title: "Sudah Sesuai")),
               Flexible(
                   child:
                       BranchviewerState.createCellStatusColumnHeaderRekomendasi(
                           fieldValue: nilaiRekomendasiDalamProses,
-                          color: Colors.lightBlue,
+                          backgroundColor: Colors.lightBlue,
                           localeId: currentLocaleId,
                           title: "Dalam Proses")),
               Flexible(
                   child:
                       BranchviewerState.createCellStatusColumnHeaderRekomendasi(
                           fieldValue: nilaiRekomendasiBelumTinjut,
-                          color: Colors.lightBlue,
+                          backgroundColor: Colors.lightBlue,
                           localeId: currentLocaleId,
                           title: "Belum Tinjut")),
               Flexible(
                   child:
                       BranchviewerState.createCellStatusColumnHeaderRekomendasi(
                           fieldValue: nilaiRekomendasiTidakDapat,
-                          color: Colors.lightBlue,
+                          backgroundColor: Colors.lightBlue,
                           localeId: currentLocaleId,
                           title: "Tidak Dapat")),
             ],
@@ -842,7 +854,8 @@ class BranchviewerState extends State<BranchViewer> {
   static Widget createCellStatusColumnHeaderRekomendasi(
       {required VwFieldValue fieldValue,
       TextAlign textALign = TextAlign.end,
-      required Color color,
+      required Color backgroundColor,
+        Color textColor=Colors.black,
       required String localeId,
       required String title}) {
     try {
@@ -890,7 +903,7 @@ class BranchviewerState extends State<BranchViewer> {
                       borderRadius: BorderRadius.circular(0),
                     ),
                     child: Text(nilaiString,
-                        textAlign: textALign, style: TextStyle(fontSize: 9)),
+                        textAlign: textALign, style: TextStyle(color: textColor, fontSize: 9)),
                   ),
                 ),
               ]))
