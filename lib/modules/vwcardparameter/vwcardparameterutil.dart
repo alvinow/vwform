@@ -21,12 +21,13 @@ class VwCardParameterUtil {
 
   static String? getStringFormFieldValue(
       {required VwFieldValue fieldValue,
-      VwFieldDisplayFormat? fieldDisplayFormat,required String locale}) {
+      VwFieldDisplayFormat? fieldDisplayFormat,
+      required String locale}) {
     String? returnValue;
     try {
       if (fieldDisplayFormat != null) {
         returnValue = DisplayFormatUtil.renderDisplayFormat(
-            fieldDisplayFormat!, fieldValue,locale);
+            fieldDisplayFormat!, fieldValue, locale);
       } else {
         if (fieldValue.valueTypeId == VwFieldValue.vatString &&
             fieldValue.valueString != null) {
@@ -53,7 +54,9 @@ class VwCardParameterUtil {
   }
 
   static VwFieldValue? renderJsonFieldNameByStringJsonFieldName(
-      {required VwNode sourceNode, required String jsonFieldName, required String locale}) {
+      {required VwNode sourceNode,
+      required String jsonFieldName,
+      required String locale}) {
     /*
     {
     functionName:"concat",
@@ -69,7 +72,7 @@ class VwCardParameterUtil {
           VwJsonFieldNameCardParameter.fromJson(jsonDecode(jsonFieldName));
 
       returnValue = VwCardParameterUtil.renderJsonFieldName(
-          sourceNode: sourceNode, parameter: parameter,locale: locale);
+          sourceNode: sourceNode, parameter: parameter, locale: locale);
     } catch (error) {}
 
     return returnValue;
@@ -77,7 +80,8 @@ class VwCardParameterUtil {
 
   static VwFieldValue? renderJsonFieldName(
       {required VwNode sourceNode,
-      required VwJsonFieldNameCardParameter parameter, required String locale}) {
+      required VwJsonFieldNameCardParameter parameter,
+      required String locale}) {
     /*
     {
     functionName:"concat",
@@ -95,29 +99,24 @@ class VwCardParameterUtil {
           for (int la = 0; la < parameter.memberList!.length; la++) {
             try {
               VwJsonFieldNameCardParameter currentParameter =
-              parameter.memberList!.elementAt(la);
-
+                  parameter.memberList!.elementAt(la);
 
               VwFieldValue? currentResult =
-              VwCardParameterUtil.renderJsonFieldName(
-                  sourceNode: sourceNode, parameter: currentParameter,locale: locale);
+                  VwCardParameterUtil.renderJsonFieldName(
+                      sourceNode: sourceNode,
+                      parameter: currentParameter,
+                      locale: locale);
 
               String? currentValueString =
-              VwCardParameterUtil.getStringFormFieldValue(
-                  fieldValue: currentResult!,
-                  fieldDisplayFormat: currentParameter.fieldDisplayFormat
-                  ,locale: locale
-              );
-
+                  VwCardParameterUtil.getStringFormFieldValue(
+                      fieldValue: currentResult!,
+                      fieldDisplayFormat: currentParameter.fieldDisplayFormat,
+                      locale: locale);
 
               if (currentResult != null && currentValueString != null) {
                 concatResult = concatResult + currentValueString.toString();
               }
-            }
-            catch(error)
-              {
-
-              }
+            } catch (error) {}
           }
           returnValue.valueString = concatResult;
         } else {
@@ -135,16 +134,30 @@ class VwCardParameterUtil {
                 .nodeExplorerDefinition!.fieldExplorerList
                 .elementAt(la);
 
-
-
-
             currentExploredResult = VwCardParameterUtil.exploreField(
                 sourceNode: currentLevelNode, definition: currentDefinition);
 
             if (la + 1 <
                 parameter.nodeExplorerDefinition!.fieldExplorerList.length) {
-              VwNode? candidateSourceNode = NodeUtil .getNode(
+              VwNode? candidateSourceNode = NodeUtil.getNode(
                   linkNode: currentExploredResult!.valueLinkNode!);
+
+              if (candidateSourceNode == null && currentExploredResult.valueTypeId==VwFieldValue.vatValueFormResponse && currentExploredResult
+                  .valueFormResponse!=null) {
+
+                VwFieldValue? currentFieldValue = currentExploredResult
+                    .valueFormResponse!
+                    .getFieldByName(currentDefinition.fieldName);
+
+                if (currentFieldValue != null &&
+                    currentFieldValue!.valueTypeId ==
+                        VwFieldValue.vatValueLinkNode &&
+                    currentFieldValue.valueLinkNode != null) {
+                  candidateSourceNode = NodeUtil.getNode(
+                      linkNode: currentFieldValue.valueLinkNode!);
+                }
+              }
+
               if (candidateSourceNode != null) {
                 currentLevelNode = candidateSourceNode;
               } else {
@@ -176,15 +189,15 @@ class VwCardParameterUtil {
     VwFieldValue? returnValue;
     try {
       if (definition.nodeType == VwNode.ntnRowData) {
-
         returnValue =
             sourceNode.content.rowData!.getFieldByName(definition.fieldName);
+      } else if (definition.nodeType == VwNode.ntnClassEncodedJson) {
+        returnValue = VwFieldValue(
+            fieldName: definition.fieldName,
+            valueString: sourceNode
+                .content.classEncodedJson!.data![definition.fieldName]
+                .toString());
       }
-      else if(definition.nodeType == VwNode.ntnClassEncodedJson)
-        {
-          returnValue = VwFieldValue(fieldName: definition.fieldName,valueString: sourceNode.content.classEncodedJson!.data![definition.fieldName].toString());
-        }
-
     } catch (error) {}
     return returnValue;
   }
