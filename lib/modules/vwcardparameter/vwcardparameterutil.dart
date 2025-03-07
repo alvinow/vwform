@@ -139,30 +139,33 @@ class VwCardParameterUtil {
 
             if (la + 1 <
                 parameter.nodeExplorerDefinition!.fieldExplorerList.length) {
-              VwNode? candidateSourceNode = NodeUtil.getNode(
-                  linkNode: currentExploredResult!.valueLinkNode!);
+              if (currentExploredResult != null) {
+                VwNode? candidateSourceNode = NodeUtil.getNode(
+                    linkNode: currentExploredResult!.valueLinkNode!);
 
-              if (candidateSourceNode == null && currentExploredResult.valueTypeId==VwFieldValue.vatValueFormResponse && currentExploredResult
-                  .valueFormResponse!=null) {
+                if (candidateSourceNode == null &&
+                    currentExploredResult!.valueTypeId ==
+                        VwFieldValue.vatValueFormResponse &&
+                    currentExploredResult!.valueFormResponse != null) {
+                  VwFieldValue? currentFieldValue = currentExploredResult!
+                      .valueFormResponse!
+                      .getFieldByName(currentDefinition.fieldName);
 
-                VwFieldValue? currentFieldValue = currentExploredResult
-                    .valueFormResponse!
-                    .getFieldByName(currentDefinition.fieldName);
-
-                if (currentFieldValue != null &&
-                    currentFieldValue!.valueTypeId ==
-                        VwFieldValue.vatValueLinkNode &&
-                    currentFieldValue.valueLinkNode != null) {
-                  candidateSourceNode = NodeUtil.getNode(
-                      linkNode: currentFieldValue.valueLinkNode!);
+                  if (currentFieldValue != null &&
+                      currentFieldValue!.valueTypeId ==
+                          VwFieldValue.vatValueLinkNode &&
+                      currentFieldValue.valueLinkNode != null) {
+                    candidateSourceNode = NodeUtil.getNode(
+                        linkNode: currentFieldValue.valueLinkNode!);
+                  }
                 }
-              }
 
-              if (candidateSourceNode != null) {
-                currentLevelNode = candidateSourceNode;
-              } else {
-                returnValue!.valueString = "(not found)";
-                break;
+                if (candidateSourceNode != null) {
+                  currentLevelNode = candidateSourceNode;
+                } else {
+                  returnValue!.valueString = "(not found)";
+                  break;
+                }
               }
             } else {
               returnValue = currentExploredResult;
