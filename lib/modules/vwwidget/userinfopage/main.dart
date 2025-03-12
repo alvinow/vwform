@@ -15,14 +15,42 @@ import 'package:vwform/modules/vwwidget/vwqrcodepage/vwqrcodepage.dart';
 
 
 class UserInfoPage extends StatefulWidget {
-  UserInfoPage({required this.appInstanceParam});
+  UserInfoPage({required this.appInstanceParam, this.showClosePageButton=true});
 
   final VwAppInstanceParam appInstanceParam;
+  final bool showClosePageButton;
 
   _UserInfoPageState createState() => _UserInfoPageState();
 }
 
 class _UserInfoPageState extends State<UserInfoPage> {
+
+  PreferredSize? buildAppBar()
+  {
+    PreferredSize? returnValue;
+
+    if(widget.showClosePageButton==true)
+      {
+        returnValue=PreferredSize(
+            preferredSize: Size.fromHeight(30.0),
+            child: AppBar(
+              centerTitle: true,
+              leading: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.close)),
+              automaticallyImplyLeading: false,
+            )),
+      }
+    else{
+
+    }
+
+    return returnValue;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     Widget returnValue = Container();
@@ -189,17 +217,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
     );
 
     returnValue = Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(30.0),
-          child: AppBar(
-            centerTitle: true,
-            leading: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Icon(Icons.close)),
-            automaticallyImplyLeading: false,
-          )),
+      appBar: this.buildAppBar(),
       body: SingleChildScrollView(
         child: Center(child: bodyWidget),
       ),
