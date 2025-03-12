@@ -41,7 +41,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                   },
                   child: Icon(Icons.close)),
               automaticallyImplyLeading: false,
-            )),
+            ));
       }
     else{
 
