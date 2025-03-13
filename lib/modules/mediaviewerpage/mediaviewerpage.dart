@@ -204,6 +204,7 @@ class MediaViewerPageState extends State<MediaViewerPage> {
 
         if (nodeRequestResponse.httpResponse != null &&
             nodeRequestResponse.httpResponse!.statusCode == 200) {
+          /*
           if (nodeRequestResponse.renderedNodePackage != null &&
               nodeRequestResponse.renderedNodePackage!.parentArticleNode !=
                   null) {
@@ -234,7 +235,8 @@ class MediaViewerPageState extends State<MediaViewerPage> {
             this.currentLoadStatus = MediaViewerPage.fsNodeLoaded;
           } else {
             this.currentLoadStatus = MediaViewerPage.fsNodeNotExits;
-          }
+          }*/
+          this.currentLoadStatus = MediaViewerPage.fsNodeNotExits;
         } else {
           this.currentLoadStatus = MediaViewerPage.errorLoadingNode;
         }
