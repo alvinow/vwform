@@ -950,7 +950,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "3442cbbb2c9802ee912433d7ca0ea61f640ca6d6"
+      resolved-ref: "2c3a95b65b50e369028b94b51acb99f83c80d06a"
       url: "https://github.com/alvinow/nodelistview.git"
     source: git
     version: "1.0.0+1"
@@ -1701,7 +1701,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "44638e4c5a76d81782dd653830099d8902235b6c"
+      resolved-ref: "9b4f254fd6b2135ee1185aedac426106dd9336fa"
       url: "https://github.com/alvinow/vwutil.git"
     source: git
     version: "1.0.0+1"
