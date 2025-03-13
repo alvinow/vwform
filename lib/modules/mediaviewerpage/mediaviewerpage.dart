@@ -136,7 +136,7 @@ class MediaViewerPageState extends State<MediaViewerPage> {
     );*/
 
     return VwFormResponseUserPage(
-      showPrintButton: false,,
+      showPrintButton: false,
       mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
       commandToParentFunction: this.implementCommandToParentFunction,
       parentArticleNode: NodeUtil.getNode(linkNode: widget.mediaLinkNode),
