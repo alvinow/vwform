@@ -55,7 +55,8 @@ class VwFormResponseUserPage extends StatefulWidget {
       this.parentArticleNode,
       this.commandToParentFunction,
       this.mainLogoAlignment = NodeListView.mlaLeft,
-      this.formResponseIdList
+      this.formResponseIdList,
+        this.showPrintButton = false
       });
 
 
@@ -97,6 +98,7 @@ class VwFormResponseUserPage extends StatefulWidget {
   final VwNode? parentArticleNode;
   final CommandToParentFunction? commandToParentFunction;
   final String mainLogoAlignment;
+  final bool showPrintButton;
 
   _VwFormResponseUserPage createState() => _VwFormResponseUserPage();
 }
@@ -314,7 +316,7 @@ class _VwFormResponseUserPage extends State<VwFormResponseUserPage>
   @override
   Widget build(BuildContext context) {
     Widget body = NodeListView(
-
+      showPrintButton: widget.showPrintButton,
       key: this.stateKey,
       drawer: this.customDrawer,
       showMessenger: true,
