@@ -678,6 +678,7 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
         for (int la = 0; la < formResponseCloned.attachments!.length; la++) {
           VwNodeContent currentNodeContent =
           formResponseCloned.attachments!.elementAt(la);
+          /*
           if (currentNodeContent.linkbasemodel != null &&
               currentNodeContent.linkbasemodel!.cache != null) {
             int lengthDataCompressed = currentNodeContent
@@ -699,7 +700,7 @@ class VwDefaultFormPageState extends State<VwFormPage> with SingleTickerProvider
                 lengthDataUncompressed.toString() +
                 ", recompressed=" +
                 lengthDataRecompressed.toString());
-          }
+          }*/
         }
       }
 

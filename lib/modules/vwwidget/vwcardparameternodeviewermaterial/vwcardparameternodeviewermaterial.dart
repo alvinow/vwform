@@ -44,14 +44,19 @@ class VwCardParameterNodeViewerMaterial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isRowNodeContentNotNull = rowNode.content != null;
+    /*
     bool isLinkBasemodelNotNull = rowNode.content.linkbasemodel != null &&
         (rowNode.content.linkbasemodel!.rendered != null ||
-            rowNode.content.linkbasemodel!.cache != null);
+            rowNode.content.linkbasemodel!.cache != null);*/
+
+    /*
     bool isLinkRowCollectionNotNull =
         rowNode.content.linkRowCollection != null &&
             (rowNode.content.linkRowCollection!.cache != null ||
                 rowNode.content.linkRowCollection!.rendered != null ||
                 rowNode.content.linkRowCollection!.sync != null);
+
+     */
     bool isClassEncodedJsonNotNull = rowNode.content.classEncodedJson != null;
     bool isRowDataNotNull = rowNode.content.rowData != null;
 

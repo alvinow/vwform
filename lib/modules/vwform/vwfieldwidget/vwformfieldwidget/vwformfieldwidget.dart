@@ -181,7 +181,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
                 VwFormDefinition.fromJson(currentClassEncodedJson!.data!);
           }
         } catch (error) {}
-      } else if (refInternalFieldValue != null &&
+      } /*else if (refInternalFieldValue != null &&
           refInternalFieldValue.valueLinkNode != null &&
           refInternalFieldValue.valueLinkNode!.cache != null &&
           refInternalFieldValue
@@ -201,7 +201,7 @@ class _VwFormFieldWidgetState extends State<VwFormFieldWidget> {
             .linkbasemodel!
             .rendered!
             .data!);
-      }
+      }*/
 
       if (currentFormDefinition != null) {
         currentFormDefinition!.dataSource = VwDataSourceDefinition.smParent;

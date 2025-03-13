@@ -44,7 +44,7 @@ class VwFormResponseUserRowViewer extends NodeRowViewer {
     var f = NumberFormat.simpleCurrency(locale: 'id_ID');
 
     try {
-
+    /*
       if (rowNode.content != null &&
           rowNode.content.linkRowCollection != null &&
           rowNode.content.linkRowCollection!.rendered!=null &&
@@ -115,7 +115,7 @@ class VwFormResponseUserRowViewer extends NodeRowViewer {
 
 
 
-      }
+      }*/
     } catch (error) {
       returnValue = Text(rowNode.recordId + ': Error=' + error.toString());
     }

@@ -114,6 +114,7 @@ class VwFormSubmitRowViewer extends NodeRowViewer {
     var f = NumberFormat.simpleCurrency(locale: 'id_ID');
 
     try {
+      /*
       if (rowNode.content != null &&
           rowNode.content.linkbasemodel != null &&
           rowNode.content.linkbasemodel!.rendered != null &&
@@ -128,7 +129,7 @@ class VwFormSubmitRowViewer extends NodeRowViewer {
         VwFormDefinition formParam =
             VwFormDefinition.fromJson(rowNode.content.classEncodedJson!.data!);
         returnValue = this.rowWidget(formParam, context);
-      }
+      }*/
     } catch (error) {
       returnValue = Text(rowNode.recordId + ': Error=' + error.toString());
     }

@@ -96,11 +96,12 @@ class VwCheckListNodeState extends State<VwCheckListNode> {
       try {
         // nodeRecoded.content.linkRowCollection!.rendered = null;
 
+        /*
         if (nodeRecoded.content.linkRowCollection!.rendered != null) {
           nodeRecoded.content.linkRowCollection!.cache =
               nodeRecoded.content.linkRowCollection!.rendered;
           nodeRecoded.content.linkRowCollection!.rendered = null;
-        }
+        }*/
       } catch (error) {}
       NodeUtil.injectNodeToLinkNodeList(
           nodeRecoded, widget.fieldValue.valueLinkNodeList!);

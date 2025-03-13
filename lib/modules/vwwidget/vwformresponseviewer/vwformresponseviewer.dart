@@ -37,6 +37,7 @@ class VwFormResponseViewer extends StatefulWidget {
     for (int la = 0; la < nodes.length; la++) {
       VwNode currentNode = nodes.elementAt(la);
       try {
+        /*
         if (currentNode.nodeType == VwNode.ntnLinkRowCollection &&
             currentNode.content.linkRowCollection != null &&
             currentNode.content.linkRowCollection!.rendered != null) {
@@ -106,7 +107,7 @@ class VwFormResponseViewer extends StatefulWidget {
               returnValue.rows.add(rowData);
             }
           }
-        }
+        }*/
       } catch (error) {
         print("Error catched on createQueryResultFromNodeList" +
             error.toString());
@@ -156,7 +157,7 @@ class _VwFormResponseViewer extends State<VwFormResponseViewer> {
           .formResponsesNode
           .renderedNodeList!
           .elementAt(selectedIndex);
-
+      /*
       if (selectedNode.content.linkRowCollection != null &&
           selectedNode.content.linkRowCollection!.rendered != null &&
           selectedNode.content.linkRowCollection!.rendered!.attachments !=
@@ -176,7 +177,7 @@ class _VwFormResponseViewer extends State<VwFormResponseViewer> {
           selectedFormResponse = formResponse;
           selectedFormDefinition = formDefinition;
         }
-      }
+      }*/
     }
     setState(() {});
   }

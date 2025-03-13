@@ -138,6 +138,7 @@ class VwCheckListLinkNodeRowViewer extends NodeRowViewer {
       }
     }
 
+    /*
     if (this.rowNode.nodeType == VwNode.ntnLinkBaseModelCollection &&
         this.rowNode.content.linkbasemodel!.rendered!.className ==
             "VwUserGroup") {
@@ -147,7 +148,7 @@ class VwCheckListLinkNodeRowViewer extends NodeRowViewer {
 
         print("Functional Role Id=" + userGroup.functionalRoleId.toString());
       } catch (error) {}
-    }
+    }*/
 
     Widget returnValue = Container();
     try {

@@ -17,6 +17,7 @@ class VwFormDefinitionUtil{
         required List<VwNodeContent> nodeContents}) {
     for (int la = 0; la < nodeContents.length; la++) {
       VwNodeContent currentNodeContent = nodeContents.elementAt(la);
+      /*
       if (currentNodeContent.tag == tagLinkBaseModelFormDefinition &&
           currentNodeContent.linkbasemodel != null &&
           currentNodeContent.linkbasemodel!.rendered != null) {
@@ -26,7 +27,7 @@ class VwFormDefinitionUtil{
 
           return formDefinition;
         } catch (error) {}
-      }
+      }*/
     }
 
     return null;

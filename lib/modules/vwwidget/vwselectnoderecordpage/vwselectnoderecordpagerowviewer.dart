@@ -53,6 +53,7 @@ class VwSelectNodeRecordPageRowViewer extends NodeRowViewer {
             if (nodeRecordSelected != null) {
 
               try {
+                /*
                 if(this.rowNode.content.linkRowCollection!=null) {
                   //this.rowNode.content.linkRowCollection!.rendered = null;
                   //this.rowNode.content.linkRowCollection!.cache = null;
@@ -60,7 +61,7 @@ class VwSelectNodeRecordPageRowViewer extends NodeRowViewer {
                 if(this.rowNode.content.linkbasemodel!=null) {
                   //this.rowNode.content.linkbasemodel!.rendered = null;
                   //this.rowNode.content.linkbasemodel!.cache = null;
-                }
+                }*/
               }
               catch(error)
             {
@@ -74,23 +75,9 @@ class VwSelectNodeRecordPageRowViewer extends NodeRowViewer {
                   nodeType: this.rowNode.nodeType,
 
                   contentContext: VwContentContext(
-                    collectionName: this.rowNode.nodeType ==
-                        VwNode.ntnLinkBaseModelCollection
-                        ? this.rowNode.content.linkbasemodel!.collectionName
-                        : this.rowNode.nodeType == VwNode.ntnLinkRowCollection
-                        ? this
-                        .rowNode
-                        .content
-                        .linkRowCollection!
-                        .collectionName
-                        : this.rowNode.nodeType == VwNode.ntnRowData
+                    collectionName: this.rowNode.nodeType == VwNode.ntnRowData
                         ?this.rowNode.content.rowData!.collectionName:null,
-                    recordId: this.rowNode.nodeType ==
-                        VwNode.ntnLinkBaseModelCollection
-                        ? this.rowNode.content.linkbasemodel!.recordId
-                        : this.rowNode.nodeType == VwNode.ntnLinkRowCollection
-                        ? this.rowNode.content.linkRowCollection!.recordId
-                        : this.rowNode.nodeType == VwNode.ntnRowData
+                    recordId:this.rowNode.nodeType == VwNode.ntnRowData
                         ?this.rowNode.content.rowData!.recordId  : null,
                   ),
               );

@@ -47,6 +47,7 @@ class VwUserRowViewer extends NodeRowViewer {
     var f = NumberFormat.simpleCurrency(locale: 'id_ID');
 
     try {
+      /*
       if (rowNode.content != null &&
           rowNode.content.linkbasemodel != null &&
           rowNode.content.linkbasemodel!.rendered!=null &&
@@ -96,7 +97,7 @@ class VwUserRowViewer extends NodeRowViewer {
             },
             child: row
         );
-      }
+      }*/
     } catch (error) {
       returnValue = Text(rowNode.recordId + ': Error=' + error.toString());
     }
