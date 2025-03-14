@@ -885,7 +885,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "9a24363c7fd024d34e54023873fae2c720e62754"
+      resolved-ref: "3cfbc5bac82a432735799993157d9054eb5c7936"
       url: "https://github.com/alvinow/matrixclient2base.git"
     source: git
     version: "1.0.0+1"
@@ -950,7 +950,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "123c747e2e770653dfbe82f70b92a626e3414ab3"
+      resolved-ref: "12fe7b7ec7de5bff3aeb22b90e2cf212e6b70d15"
       url: "https://github.com/alvinow/nodelistview.git"
     source: git
     version: "1.0.0+1"
