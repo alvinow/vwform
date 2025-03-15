@@ -70,10 +70,10 @@ dependencies:
   loading_indicator:
   material_dialogs:
   flutter_cache_manager:
+  syncfusion_flutter_charts: ^26.2.14
   syncfusion_flutter_pdfviewer:
   flutter_svg:
   zoom_pinch_overlay:
-  syncfusion_flutter_charts:
   audio_session:
   carousel_slider:
   just_audio:
