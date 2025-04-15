@@ -120,52 +120,7 @@ class VwDropdownLinkNodeFieldWidgetState
   Map<String, dynamic>? contextNodeFilter() {
     Map<String, dynamic>? returnValue;
     try {
-      /*
-      if(this.widget.getFieldvalueCurrentResponseFunction().formDefinitionId=="vwticket")
-      {
-        VwFieldValue? ticketEventDefinitionFieldValue=  this.widget.getFieldvalueCurrentResponseFunction().getFieldByName("ticketEventDefinition");
 
-
-
-
-
-        if(ticketEventDefinitionFieldValue!=null &&  ticketEventDefinitionFieldValue.valueLinkNode!=null)
-
-          if(ticketEventDefinitionFieldValue!.valueLinkNode!.nodeId=="0706dc53-63a0-48b1-ba76-93efc3a6bcb5")
-          {
-            returnValue={
-              "content.rowData.fields": {
-                r"$all": [
-                  {
-                    r"$elemMatch": { "fieldName": "jenisTransaksiInduk", "valueString": { r"$in": ["spby"] } }
-                  },
-                  {
-                    r"$elemMatch": { "fieldName": "NIP_PPK", "valueString": { r"$in": [this.getTicketAccessMethodParameter1()] } }
-                  },
-                ]
-              }
-
-            };
-          }
-          else if(ticketEventDefinitionFieldValue!.valueLinkNode!.nodeId=="fe7f851c-e1ef-47f2-9f41-4b4b1e84ac80")
-          {
-            returnValue={
-              "content.rowData.fields": {
-                r"$all": [
-                  {
-                    r"$elemMatch": { "fieldName": "jenisTransaksiInduk", "valueString": { r"$in": ["spp"] } }
-                  },
-                  {
-                    r"$elemMatch": { "fieldName": "NIP_PPK", "valueString": { r"$in": [this.getTicketAccessMethodParameter1()] } }
-                  },
-                ]
-              }
-
-            };
-          }
-
-      }
-*/
     } catch (error) {}
 
     return returnValue;

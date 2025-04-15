@@ -103,6 +103,8 @@ class VwSelectNodeRecordPage extends StatelessWidget {
         .toString();
     //final String? collectionName=this.formField.fieldDefinition.fieldConstraint.collectionName;
 
+
+
     VwRowData apiCallParam = VwRowData(
         timestamp: VwDateUtil.nowTimestamp(),
         recordId: Uuid().v4(),
@@ -121,6 +123,11 @@ class VwSelectNodeRecordPage extends StatelessWidget {
               valueTypeId: VwFieldValue.vatBoolean,
               valueBoolean: true),
         ]);
+
+    if(this.parentFormResponse!=null && apiCallParam.fields!=null)
+      {
+        apiCallParam.fields!.add(VwFieldValue(fieldName: "parentFormResponse", valueFormResponse: this.parentFormResponse));
+      }
 
     if(this.formField.fieldUiParam.collectionListViewDefinition!=null)
       {
