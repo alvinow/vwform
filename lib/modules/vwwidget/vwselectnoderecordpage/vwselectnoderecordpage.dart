@@ -126,7 +126,7 @@ class VwSelectNodeRecordPage extends StatelessWidget {
 
     if(this.parentFormResponse!=null && apiCallParam.fields!=null)
       {
-        apiCallParam.fields!.add(VwFieldValue(fieldName: "parentFormResponse", valueFormResponse: this.parentFormResponse));
+        apiCallParam.fields!.add(VwFieldValue(fieldName: "parentFormResponse", valueTypeId: VwFieldValue.vatValueFormResponse, valueFormResponse: this.parentFormResponse));
       }
 
     if(this.formField.fieldUiParam.collectionListViewDefinition!=null)
