@@ -109,6 +109,7 @@ class VwSelectNodeRecordPage extends StatelessWidget {
         timestamp: VwDateUtil.nowTimestamp(),
         recordId: Uuid().v4(),
         fields: <VwFieldValue>[
+          VwFieldValue(fieldName: "currentFieldName",  valueString: this.formField.fieldDefinition.fieldName),
           VwFieldValue(fieldName: "nodeId", valueString: nodeId),
           VwFieldValue(
               fieldName: "depth",
