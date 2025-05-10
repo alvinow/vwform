@@ -255,16 +255,17 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
 
       if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitDateTimeField) {
+
         currentValueString = VwDateUtil.indonesianFormatLocalTimeZone(
-            this.widget.field.valueDateTime!);
+            this.widget.field.valueDateTime!.toLocal());
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitDateField) {
         currentValueString = VwDateUtil.indonesianFormatLocalTimeZone_DateOnly(
-            this.widget.field.valueDateTime!);
+            this.widget.field.valueDateTime!.toLocal());
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitTimeField) {
         currentValueString = VwDateUtil.indonesianFormatLocalTimeZone_TimeOnly(
-            this.widget.field.valueDateTime!);
+            this.widget.field.valueDateTime!.toLocal());
       }
 
       textEditingController.text = currentValueString.toString();
@@ -332,9 +333,26 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
     if (this.widget.onValueChanged != null) {
       VwFieldValue oldValue = VwFieldValue.clone(this.widget.field);
 
-      this.widget.field.valueDateTime = newDateTime;
+      if(newDateTime!=null)
+        {
+          if(newDateTime!.isUtc)
+            {
+              this.widget.field.valueDateTime = newDateTime!;
+            }
+          else
+            {
+              this.widget.field.valueDateTime = newDateTime!.toUtc();
+            }
 
-      this.widget.onValueChanged!(this.widget.field, oldValue, true);
+          this.widget.onValueChanged!(this.widget.field, oldValue, true);
+        }
+      else{
+        this.widget.field.valueDateTime = newDateTime;
+        this.widget.onValueChanged!(this.widget.field, oldValue, true);
+      }
+
+
+
     }
   }
 
