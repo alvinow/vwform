@@ -118,7 +118,7 @@ class VwDateTimeFieldWidgetState extends State<VwDateTimeFieldWidget> {
                 //dateTextStyle: TextStyle(fontSize: 17),
                 //use24hFormat: true,
                 //initialDate: DateTime.now(),
-                initialValue: this.widget.field.valueDateTime,
+                initialValue: this.widget.field.valueDateTime!=null?this.widget.field.valueDateTime!.toLocal():null,
                 decoration: InputDecoration(
                   hintStyle: const TextStyle(color: Colors.black45),
                   errorStyle: const TextStyle(color: Colors.redAccent),
@@ -155,7 +155,15 @@ class VwDateTimeFieldWidgetState extends State<VwDateTimeFieldWidget> {
   }
 
   void _onFieldValueDateSelected(DateTime? value) {
-    this._onFieldValueChanged(value);
+
+    if(value!=null)
+      {
+        this._onFieldValueChanged(value!.toUtc());
+      }
+    else {
+      this._onFieldValueChanged(null);
+    }
+
   }
 
   void _onFieldValueChanged(DateTime? value) {
