@@ -429,8 +429,8 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
           DateTime? newDateTime = await showOmniDateTimePicker(
             context: context,
             initialDate: this.widget.field.valueDateTime != null
-                ? this.widget.field.valueDateTime!
-                : DateTime.now(),
+                ? this.widget.field.valueDateTime!.toLocal()
+                : DateTime.now().toLocal(),
             firstDate: DateTime(1600).subtract(const Duration(days: 3652)),
             lastDate: DateTime.now().add(
               const Duration(days: 3652),
