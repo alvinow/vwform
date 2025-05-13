@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
 import 'package:vwform/modules/vwwidget/vwformresponseuserpage/vwformresponseuserpage.dart';
 
@@ -31,6 +30,7 @@ class VwLhpPageState extends State<VwLhpPage> {
         mainLogoTextCaption: "LHP",
         key: widget.key,
         isRootFolder: true,
+        showPrintButton: true,
         folderNodeId: "response_lhpformdefinition",
         appInstanceParam: widget.appInstanceParam);
   }
