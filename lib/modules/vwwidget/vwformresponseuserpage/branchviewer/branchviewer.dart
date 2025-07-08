@@ -392,9 +392,29 @@ class BranchviewerState extends State<BranchViewer> {
                       fieldName: "jumlahsubtemuan",
                       defaultValue: jumlahtemuan)!;
 
+             VwFieldValue? formnilaitemuanFieldValue=  nodeContent!.rowData!.getFieldByName("formnilaitemuan");
+
+
+             if(formnilaitemuanFieldValue!=null && formnilaitemuanFieldValue.valueFormResponse!=null)
+               {
+                try {
+                  VwFieldValue? nilairupiahFieldValue = formnilaitemuanFieldValue
+                      .valueFormResponse!.getFieldByName("nilairupiah");
+
+
+                  nilaisubtemuan.valueNumber = nilairupiahFieldValue!.valueNumber!;
+                }
+                catch(error)
+                  {
+
+                  }
+               }
+
+
+             /*
               nilaisubtemuan = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
-                      fieldName: "nilaisubtemuan", defaultValue: nilaitemuan)!;
+                      fieldName: "nilaisubtemuan", defaultValue: nilaitemuan)!;*/
 
               jumlahrekomendasi = nodeContent!.rowData!
                   .getFieldByNameOrDefaultFieldValue(
