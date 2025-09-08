@@ -242,6 +242,7 @@ class VwDropdownLinkNodeFieldWidgetState
           await
 
             showModalBottomSheet(
+                isScrollControlled: true,
                 context:context,
                 builder: (context) => SizedBox(
                     height: MediaQuery.of(context).copyWith().size.height * 0.95,
