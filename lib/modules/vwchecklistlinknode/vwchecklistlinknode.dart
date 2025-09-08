@@ -295,6 +295,7 @@ class VwCheckListLinkNodeState extends State<VwCheckListLinkNode> {
         ),
         onPressed: () {
           showModalBottomSheet(
+              isScrollControlled: true,
             context: context,
             builder: (context) =>
                 SizedBox(
