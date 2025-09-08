@@ -119,9 +119,7 @@ class VwDropdownLinkNodeFieldWidgetState
 
   Map<String, dynamic>? contextNodeFilter() {
     Map<String, dynamic>? returnValue;
-    try {
-
-    } catch (error) {}
+    try {} catch (error) {}
 
     return returnValue;
   }
@@ -241,10 +239,13 @@ class VwDropdownLinkNodeFieldWidgetState
                 .collectionListViewDefinition!.staticRefLinkNodeList!;
           }
 
-          await Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => VwSelectNodeRecordPage(
+          await
+
+            showModalBottomSheet(
+                context:context,
+                builder: (context) => SizedBox(
+                    height: MediaQuery.of(context).copyWith().size.height * 0.75,
+                    child:VwSelectNodeRecordPage(
                       parentFormResponse: this
                                   .widget
                                   .getFieldvalueCurrentResponseFunction ==
@@ -260,8 +261,8 @@ class VwDropdownLinkNodeFieldWidgetState
                       appInstanceParam: widget.appInstanceParam,
                       refreshDataOnParentFunction:
                           this.implementRefreshDataOnParentFunction,
-                    )),
-          );
+                    )));
+
         });
       }
       VwNode? rowNode = widget.field.valueLinkNode != null
@@ -314,7 +315,8 @@ class VwDropdownLinkNodeFieldWidgetState
       Widget displaySelectionWidget = InkWell(
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Expanded(child: Container( margin: EdgeInsets.all(1),child:valueWidget)),
+          Expanded(
+              child: Container(margin: EdgeInsets.all(1), child: valueWidget)),
           widget.showChoiceButton == true ? selectButtonWidget : Container()
         ]),
         onTap: cardTapper.onTap,

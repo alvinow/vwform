@@ -74,7 +74,6 @@ class VwShowLocationWidgetState extends State<VwShowLocationWidget> {
                 color: Colors.greenAccent.withAlpha(50),
                 borderStrokeWidth: 4,
                 borderColor: Colors.greenAccent,
-                isFilled: true,
               ),
             ],
           ),
