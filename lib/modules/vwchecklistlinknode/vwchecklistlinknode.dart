@@ -43,10 +43,12 @@ class VwCheckListLinkNode extends StatefulWidget {
       this.isReadOnly = false,
       required this.getFieldvalueCurrentResponseFunction,
       this.getCurrentFormDefinitionFunction,
+        this.bottomModalSheetHeightFactor=0.75,
 
       });
 
   final VwLinkNode? parentRef;
+  final double bottomModalSheetHeightFactor;
   final VwAppInstanceParam appInstanceParam;
   //final VwCollectionListViewDefinition collectionListViewDefinition;
   final VwFieldUiParam fieldUiParam;
@@ -294,7 +296,12 @@ class VwCheckListLinkNodeState extends State<VwCheckListLinkNode> {
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            builder: (context) => createSelectNodeListView(context)
+            builder: (context) =>
+                SizedBox(
+                  height: MediaQuery.of(context).copyWith().size.height * this.widget.bottomModalSheetHeightFactor,
+                    child:createSelectNodeListView(context)
+                )
+
           );
           /*
           Navigator.push(
@@ -330,8 +337,14 @@ class VwCheckListLinkNodeState extends State<VwCheckListLinkNode> {
 
               if (currentFormPage != null) {
                 showModalBottomSheet(
+                    isScrollControlled: true,
+
                     context: context,
-                    builder: (context) =>  currentFormPage
+                    builder: (context) =>
+                    SizedBox(
+                        height: MediaQuery.of(context).copyWith().size.height * this.widget.bottomModalSheetHeightFactor,
+                        child:currentFormPage
+                    )
                 );
                 /*
                 Navigator.push(
