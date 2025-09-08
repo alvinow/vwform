@@ -244,7 +244,7 @@ class VwDropdownLinkNodeFieldWidgetState
             showModalBottomSheet(
                 context:context,
                 builder: (context) => SizedBox(
-                    height: MediaQuery.of(context).copyWith().size.height * 0.75,
+                    height: MediaQuery.of(context).copyWith().size.height * 0.95,
                     child:VwSelectNodeRecordPage(
                       parentFormResponse: this
                                   .widget
