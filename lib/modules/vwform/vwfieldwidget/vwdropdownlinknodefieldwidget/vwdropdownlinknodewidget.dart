@@ -245,7 +245,7 @@ class VwDropdownLinkNodeFieldWidgetState
                 isScrollControlled: true,
                 context:context,
                 builder: (context) => SizedBox(
-                    height: MediaQuery.of(context).copyWith().size.height * 0.95,
+                    height: MediaQuery.of(context).copyWith().size.height * 0.75,
                     child:VwSelectNodeRecordPage(
                       parentFormResponse: this
                                   .widget
