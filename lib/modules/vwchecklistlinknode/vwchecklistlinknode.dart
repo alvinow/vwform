@@ -292,11 +292,16 @@ class VwCheckListLinkNodeState extends State<VwCheckListLinkNode> {
           size: 15,
         ),
         onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => createSelectNodeListView(context)
+          );
+          /*
           Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => createSelectNodeListView(context)),
-          );
+          );*/
         });
   }
 
@@ -324,10 +329,15 @@ class VwCheckListLinkNodeState extends State<VwCheckListLinkNode> {
                   syncNodeToParentFunction, refreshDataOnParentFunction);
 
               if (currentFormPage != null) {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (context) =>  currentFormPage
+                );
+                /*
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => currentFormPage),
-                );
+                );*/
               } else {
                 print(" formDefinition Doesn't exists");
               }

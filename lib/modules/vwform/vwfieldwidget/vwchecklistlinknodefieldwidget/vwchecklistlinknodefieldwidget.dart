@@ -8,26 +8,22 @@ import 'package:vwform/modules/vwform/vwfieldwidget/vwfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwform.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
 
-
 class VwCheckListLinkNodeFieldWidget extends StatelessWidget {
-  const VwCheckListLinkNodeFieldWidget(
-      {Key? key,
-      required this.field,
-      this.readOnly = false,
-      required this.formField,
-      this.onValueChanged,
-      required this.appInstanceParam,
-      this.parentRef,
-      required this.getFieldvalueCurrentResponseFunction,
-
-      })
-      : super(key: key);
+  const VwCheckListLinkNodeFieldWidget({
+    Key? key,
+    required this.field,
+    this.readOnly = false,
+    required this.formField,
+    this.onValueChanged,
+    required this.appInstanceParam,
+    this.parentRef,
+    required this.getFieldvalueCurrentResponseFunction,
+  }) : super(key: key);
 
   final VwFieldValue field;
   final bool readOnly;
   final VwFormField formField;
   final VwFieldWidgetChanged? onValueChanged;
-
 
   final VwAppInstanceParam appInstanceParam;
   final VwLinkNode? parentRef;
@@ -43,8 +39,7 @@ class VwCheckListLinkNodeFieldWidget extends StatelessWidget {
     //field.valueLinkNodeList!.addAll(linkNodeList);
   }
 
-  void _onNodeFieldValueChanged(bool selected,VwNode node){
-
+  void _onNodeFieldValueChanged(bool selected, VwNode node) {
     this.onValueChanged!(this.field, this.field, true);
   }
 
@@ -64,8 +59,8 @@ class VwCheckListLinkNodeFieldWidget extends StatelessWidget {
       Container(
           height: 240,
           child: VwCheckListLinkNode(
-            formField: this.formField,
-            appInstanceParam: appInstanceParam,
+              formField: this.formField,
+              appInstanceParam: appInstanceParam,
               getFieldvalueCurrentResponseFunction:
                   this.getFieldvalueCurrentResponseFunction,
               fieldValue: this.field,
