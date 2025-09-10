@@ -3,6 +3,7 @@ import 'package:matrixclient2base/modules/base/nodeexplorerdefinition/fieldexplo
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
 import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:vwform/modules/remoteapi/remote_api.dart';
 import 'package:vwform/modules/vwcardparameter/vwjsonfieldnamecardparameter.dart';
 import 'package:vwutil/modules/util/displayformatutil.dart';
 import 'package:vwutil/modules/util/nodeutil.dart';
@@ -195,6 +196,10 @@ class VwCardParameterUtil {
         returnValue =
             sourceNode.content.rowData!.getFieldByName(definition.fieldName);
       } else if (definition.nodeType == VwNode.ntnClassEncodedJson) {
+
+        RemoteApi.decompressClassEncodedJson(sourceNode
+            .content.classEncodedJson!);
+
         returnValue = VwFieldValue(
             fieldName: definition.fieldName,
             valueString: sourceNode
