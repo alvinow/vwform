@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart' hide DropdownMenuItem;
+import 'package:flutter/material.dart' ;
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'ios_modal_dropdown.dart';
 
 class IosModalDropdownExample extends StatefulWidget {
@@ -37,7 +38,7 @@ class _IosModalDropdownExampleState extends State<IosModalDropdownExample> {
             const SizedBox(height: 16),
             IosModalDropdown<String>(
               items: items.map((String item) {
-                return DropdownMenuItem<String>(
+                return DropdownMenuItem <String>(
                   value: item,
                   child: Text(item),
                 );
@@ -51,7 +52,7 @@ class _IosModalDropdownExampleState extends State<IosModalDropdownExample> {
                 });
               },
               isExpanded: true,
-              buttonStyleData: const ButtonStyleData(
+              buttonStyleData: const  ButtonStyleData(
                 height: 50,
                 decoration: BoxDecoration(
                   border: Border.fromBorderSide(

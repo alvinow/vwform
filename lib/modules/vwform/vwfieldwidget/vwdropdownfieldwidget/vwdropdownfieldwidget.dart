@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
+import 'package:vwform/modules/ios_modal_dropdown/ios_modal_dropdown.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
 import 'package:vwutil/modules/util/vwrowdatautil.dart';
@@ -72,7 +73,7 @@ class _VwDropdownFieldWidgetState extends State<VwDropdownFieldWidget>{
   @override
   Widget build(BuildContext context) {
     Widget captionWidget= VwFieldWidget.getLabel(widget.field,this.widget.formField,DefaultTextStyle.of(context).style,widget.readOnly);
-    Widget dropdownWidget= DropdownButton2 (
+    Widget dropdownWidget= IosModalDropdown (
       isExpanded: true,
             hint: Text(
               '(Select)',
@@ -82,7 +83,7 @@ class _VwDropdownFieldWidgetState extends State<VwDropdownFieldWidget>{
               ),
             ),
             items: this.choices
-                .map((item) => DropdownMenuItem<String>(
+                .map((item) => DropdownMenuItem <String>(
               value: item,
               child: Text(
                 item,
@@ -102,7 +103,7 @@ class _VwDropdownFieldWidgetState extends State<VwDropdownFieldWidget>{
               height: 40,
               //width: 140,
             ),
-            menuItemStyleData: const MenuItemStyleData(
+            menuItemStyleData: const MenuItemStyleDataIos(
               height: 40,
             ),
           );

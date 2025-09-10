@@ -1,8 +1,9 @@
+import 'package:dropdown_button2/dropdown_button2.dart' hide MenuItemStyleData;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 typedef OnChangedCallback<T> = void Function(T? value);
-
+/*
 class ButtonStyleData {
   const ButtonStyleData({
     this.height,
@@ -50,9 +51,9 @@ class DropdownStyleData {
   final ScrollbarThemeData? scrollbarTheme;
   final Interval? openInterval;
 }
-
-class MenuItemStyleData {
-  const MenuItemStyleData({
+*/
+class MenuItemStyleDataIos {
+  const MenuItemStyleDataIos({
     this.height,
     this.padding,
     this.overlayColor,
@@ -66,7 +67,7 @@ class MenuItemStyleData {
   final TextStyle? textStyle;
   final List<double>? customHeights;
 }
-
+/*
 class IconStyleData {
   const IconStyleData({
     this.icon,
@@ -89,6 +90,8 @@ enum DropdownDirection {
   left,
 }
 
+ */
+/*
 class DropdownMenuItem<T> extends StatelessWidget {
   const DropdownMenuItem({
     super.key,
@@ -112,7 +115,7 @@ class DropdownMenuItem<T> extends StatelessWidget {
       child: child,
     );
   }
-}
+}*/
 
 class IosModalDropdown<T> extends StatefulWidget {
   const IosModalDropdown({
@@ -183,7 +186,7 @@ class IosModalDropdown<T> extends StatefulWidget {
   final ButtonStyleData? buttonStyleData;
   final IconStyleData? iconStyleData;
   final DropdownStyleData? dropdownStyleData;
-  final MenuItemStyleData? menuItemStyleData;
+  final MenuItemStyleDataIos? menuItemStyleData;
   final String? modalTitle;
   final Color? modalBackgroundColor;
   final Color? modalBarrierColor;
@@ -288,7 +291,9 @@ class _IosModalDropdownState<T> extends State<IosModalDropdown<T>> {
               itemBuilder: (context, index) {
                 final item = widget.items![index];
                 final isSelected = item.value == _selectedValue;
-                
+
+
+
                 return InkWell(
                   onTap: item.enabled
                       ? () {
