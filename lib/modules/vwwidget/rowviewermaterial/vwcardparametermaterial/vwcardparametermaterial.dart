@@ -272,7 +272,7 @@ class VwCardParameterMaterial extends StatelessWidget {
               ", " +
               this.lastUpdater.toString(),
           overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.end,
+          textAlign: TextAlign.start ,
           style: TextStyle(color: Colors.orangeAccent, fontSize: 11),
         ));
       }
