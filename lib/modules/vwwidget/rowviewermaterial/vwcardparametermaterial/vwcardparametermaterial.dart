@@ -16,37 +16,37 @@ import 'package:vwutil/modules/util/colurutil.dart';
 typedef OnTapRowCardFunction = void Function();
 
 class VwCardParameterMaterial extends StatelessWidget {
-  VwCardParameterMaterial({
-    required super.key,
-    required this.appInstanceParam,
-    required this.cardParameter,
-    this.title,
-    this.subTitle,
-    this.description,
-    this.dateTime,
-    this.selectWidget,
-    required this.cardTapper,
-    this.trailingWidget,
-    this.username,
-    this.timestamp,
-    this.medialinktitle,
-    this.imagetitle,
-    this.imagecontent,
-    this.htmlcontent,
-    this.articletype,
-    this.maincategory,
-    this.releaseStatus,
-    this.showAccountInfo = true,
-    this.location,
-    this.caption,
-    this.urllink,
-    this.recordNode,
-    this.rowViewerBoxConstraint,
-    this.eventDate,
-    this.commandToParentFunction,
-    this.lastUpdater,
-    this.lastUpdateDateTime,
-  });
+  VwCardParameterMaterial(
+      {required super.key,
+      required this.appInstanceParam,
+      required this.cardParameter,
+      this.title,
+      this.subTitle,
+      this.description,
+      this.dateTime,
+      this.selectWidget,
+      required this.cardTapper,
+      this.trailingWidget,
+      this.username,
+      this.timestamp,
+      this.medialinktitle,
+      this.imagetitle,
+      this.imagecontent,
+      this.htmlcontent,
+      this.articletype,
+      this.maincategory,
+      this.releaseStatus,
+      this.showAccountInfo = true,
+      this.location,
+      this.caption,
+      this.urllink,
+      this.recordNode,
+      this.rowViewerBoxConstraint,
+      this.eventDate,
+      this.commandToParentFunction,
+      this.lastUpdater,
+      this.lastUpdateDateTime,
+      this.datePosition = VwCardParameter.dpDatePositionBottom});
 
   final VwAppInstanceParam appInstanceParam;
   final VwCardParameter cardParameter;
@@ -77,6 +77,7 @@ class VwCardParameterMaterial extends StatelessWidget {
   final CommandToParentFunction? commandToParentFunction;
   final String? lastUpdater;
   final String? lastUpdateDateTime;
+  final String? datePosition;
 
   static const String csmNone = "csmNone";
   static const String csmSingleSelect = "csmSingleSelect";
@@ -98,92 +99,100 @@ class VwCardParameterMaterial extends StatelessWidget {
     return returnValue;
   }
 
-  static Widget applyTitleFieldDisplayFormat({required String locale, required String caption,required   VwFieldDisplayFormat? fieldDisplayFormat}){
-    Widget returnValue=Container();
-    try
-    {
-      if(caption!="") {
+  static Widget applyTitleFieldDisplayFormat(
+      {required String locale,
+      required String caption,
+      required VwFieldDisplayFormat? fieldDisplayFormat}) {
+    Widget returnValue = Container();
+    try {
+      if (caption != "") {
         VwFieldDisplayFormat currentDisplayFormat = fieldDisplayFormat != null
             ? fieldDisplayFormat
             : VwFieldDisplayFormat(locale: locale);
 
-        String prefixCaption=currentDisplayFormat.prefixCaption==null?"":currentDisplayFormat.prefixCaption!;
-        String sufixCaption=currentDisplayFormat.sufixCaption==null?"":currentDisplayFormat.sufixCaption!;
-
-
-
+        String prefixCaption = currentDisplayFormat.prefixCaption == null
+            ? ""
+            : currentDisplayFormat.prefixCaption!;
+        String sufixCaption = currentDisplayFormat.sufixCaption == null
+            ? ""
+            : currentDisplayFormat.sufixCaption!;
 
         returnValue = Container(
             padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
-            color: ColorUtil.parseColor(
-                currentDisplayFormat.backgroundColorHex),
+            color:
+                ColorUtil.parseColor(currentDisplayFormat.backgroundColorHex),
             child: Text(
-
-              prefixCaption+caption+sufixCaption,
+              prefixCaption + caption + sufixCaption,
               overflow: TextOverflow.ellipsis,
               maxLines: 10,
               textAlign: VwFieldDisplayFormat.getTextAlignFromString(
                   currentDisplayFormat.textAlign),
               style: TextStyle(
-                fontWeight: VwFieldDisplayFormat.getFontWeightFromString(currentDisplayFormat.fontWeight),
+                  fontWeight: VwFieldDisplayFormat.getFontWeightFromString(
+                      currentDisplayFormat.fontWeight),
                   fontStyle: VwFieldDisplayFormat.getFontStyleFromString(
                       currentDisplayFormat.fontStyle),
                   fontSize: currentDisplayFormat.fontSize,
-                  color: ColorUtil.parseColor(
-                      currentDisplayFormat.textColorHex)),
+                  color:
+                      ColorUtil.parseColor(currentDisplayFormat.textColorHex)),
             ));
       }
-
-
-
-    }
-    catch(error)
-    {
-
-    }
+    } catch (error) {}
     return returnValue;
   }
 
-  
+  static Widget createCardTile(
+      {Widget? leadingWidget,
+      Widget? titleWidget,
+      Widget? subtitleWidget,
+      Widget? descriptionWidget,
+      Widget? timeUpdatedWidget,
+      Widget? updaterInfoWidget,
+      Widget? trailingWidget,
+      String datePosition = VwCardParameter.dpDatePositionRight}) {
+    Widget returnValue = Container();
 
-  static Widget createCardTile({
+    try {
+      final Widget renderLeadingWidget =
+          leadingWidget == null ? Container() : leadingWidget;
 
-  Widget? leadingWidget,
-  Widget? titleWidget ,
-  Widget? subtitleWidget,
-    Widget? descriptionWidget,
-  Widget? timeUpdatedWidget,
-  Widget? updaterInfoWidget,
-  Widget? trailingWidget,
-    String? datePosition=VwCardParameter.dpDatePositionRight
-  })
-  {
-    Widget returnValue=Container();
-
-    try
-    {
-      final Widget renderLeadingWidget=leadingWidget==null?Container():leadingWidget;
-      final Widget renderCenterWidget=Column(
+      Widget renderCenterWidget = Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
-        titleWidget==null?Container():titleWidget,
-        subtitleWidget==null? Container():subtitleWidget,
-        descriptionWidget==null? Container():descriptionWidget,
-        timeUpdatedWidget==null? Container():timeUpdatedWidget,
-          updaterInfoWidget==null?Container():updaterInfoWidget
-      ],);
+          titleWidget == null ? Container() : titleWidget,
+          subtitleWidget == null ? Container() : subtitleWidget,
+          descriptionWidget == null ? Container() : descriptionWidget,
+          timeUpdatedWidget == null ? Container() : timeUpdatedWidget,
+          updaterInfoWidget == null ? Container() : updaterInfoWidget
+        ],
+      );
 
+      if (datePosition == VwCardParameter.dpDatePositionTop) {
+        renderCenterWidget = Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            timeUpdatedWidget == null ? Container() : timeUpdatedWidget,
+            titleWidget == null ? Container() : titleWidget,
+            subtitleWidget == null ? Container() : subtitleWidget,
+            descriptionWidget == null ? Container() : descriptionWidget,
+            updaterInfoWidget == null ? Container() : updaterInfoWidget
+          ],
+        );
+      }
 
-
-
-
-      returnValue=Container(margin: EdgeInsets.fromLTRB(0, 8, 0, 8), child:Row(   mainAxisSize: MainAxisSize.min,children: [renderLeadingWidget,Flexible(child: renderCenterWidget),trailingWidget==null?Container():trailingWidget!],));
-    }
-    catch(error)
-    {
-
-    }
+      returnValue = Container(
+          margin: EdgeInsets.fromLTRB(0, 8, 0, 8),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              renderLeadingWidget,
+              Flexible(child: renderCenterWidget),
+              trailingWidget == null ? Container() : trailingWidget!
+            ],
+          ));
+    } catch (error) {}
 
     return returnValue;
   }
@@ -211,30 +220,29 @@ class VwCardParameterMaterial extends StatelessWidget {
 
       String lTitleText = title.toString().trim();
 
+      Widget titleWidget = VwCardParameterMaterial.applyTitleFieldDisplayFormat(
+          locale: this.appInstanceParam.baseAppConfig.generalConfig.locale,
+          caption: lTitleText,
+          fieldDisplayFormat: this.cardParameter.titleDisplayFormat);
 
-
-      Widget titleWidget =VwCardParameterMaterial.applyTitleFieldDisplayFormat(locale: this.appInstanceParam.baseAppConfig.generalConfig.locale, caption: lTitleText, fieldDisplayFormat: this.cardParameter.titleDisplayFormat);
-
-      bool hideSubtitle = cardParameter.isShowSubtitle == false  ||
-          (
-              (this.subTitle==null || this.subTitle=="")
-              &&
+      bool hideSubtitle = cardParameter.isShowSubtitle == false ||
+          ((this.subTitle == null || this.subTitle == "") &&
               cardParameter.subtitleDisplayFormat != null &&
               cardParameter.subtitleDisplayFormat!.hideOnNull == true);
 
+      Widget subtitleWidget = hideSubtitle == false
+          ? VwCardParameterMaterial.applyTitleFieldDisplayFormat(
+              locale: this.appInstanceParam.baseAppConfig.generalConfig.locale,
+              caption: this.subTitle.toString().trim(),
+              fieldDisplayFormat: this.cardParameter.subtitleDisplayFormat)
+          : Container();
 
-
-
-      Widget subtitleWidget  = hideSubtitle==false? VwCardParameterMaterial.applyTitleFieldDisplayFormat(locale:this.appInstanceParam.baseAppConfig.generalConfig.locale, caption: this.subTitle.toString().trim(), fieldDisplayFormat: this.cardParameter.subtitleDisplayFormat):Container();
-
-
-
-      Widget timeUpdatedWidget = cardParameter.isShowDate==false? Container():VwCardParameterMaterial.applyTitleFieldDisplayFormat(locale:this.appInstanceParam.baseAppConfig.generalConfig.locale,caption: this.dateTime.toString(), fieldDisplayFormat: this.cardParameter.dateDisplayFormat );
-
-
-
-
-
+      Widget timeUpdatedWidget = cardParameter.isShowDate == false
+          ? Container()
+          : VwCardParameterMaterial.applyTitleFieldDisplayFormat(
+              locale: this.appInstanceParam.baseAppConfig.generalConfig.locale,
+              caption: this.dateTime.toString(),
+              fieldDisplayFormat: this.cardParameter.dateDisplayFormat);
 
       bool hideDescription = (cardParameter.cardStyle ==
                       VwCardParameter.csOneColumnWithDescription ||
@@ -245,29 +253,33 @@ class VwCardParameterMaterial extends StatelessWidget {
               cardParameter.descriptionDisplayFormat != null &&
               cardParameter.descriptionDisplayFormat!.hideOnNull == true);
 
-
-      Widget descriptionWidget  = hideDescription==false? VwCardParameterMaterial.applyTitleFieldDisplayFormat (locale:this.appInstanceParam.baseAppConfig.generalConfig.locale, caption: this.description.toString().trim(), fieldDisplayFormat: this.cardParameter.descriptionDisplayFormat):Container();
+      Widget descriptionWidget = hideDescription == false
+          ? VwCardParameterMaterial.applyTitleFieldDisplayFormat(
+              locale: this.appInstanceParam.baseAppConfig.generalConfig.locale,
+              caption: this.description.toString().trim(),
+              fieldDisplayFormat: this.cardParameter.descriptionDisplayFormat)
+          : Container();
 
       //Widget descriptionWidget  = Container();
 
-      Widget updaterInfoWidget=Container();
+      Widget updaterInfoWidget = Container();
 
-      if(this.cardParameter.isShowUpdaterInfo)
-      {
-        updaterInfoWidget=Container(child:Text("Update : "+this.lastUpdateDateTime.toString() +", "+ this.lastUpdater.toString(),overflow: TextOverflow.ellipsis, textAlign:TextAlign.end, style: TextStyle(color:Colors.orangeAccent,  fontSize: 11),));
-
+      if (this.cardParameter.isShowUpdaterInfo) {
+        updaterInfoWidget = Container(
+            child: Text(
+          "Update : " +
+              this.lastUpdateDateTime.toString() +
+              ", " +
+              this.lastUpdater.toString(),
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.end,
+          style: TextStyle(color: Colors.orangeAccent, fontSize: 11),
+        ));
       }
-
-
-
 
       //Widget bottomWidget =Container();
 
-
-
       Widget? leadingWidget;
-
-
 
       if (cardParameter.cardStyle == VwCardParameter.csOneColumn ||
           cardParameter.cardStyle ==
@@ -290,31 +302,30 @@ class VwCardParameterMaterial extends StatelessWidget {
               ]));
         }
       } else if (iconWidget != null) {
-        leadingWidget = Container(
-             width: 25, child: Row(children: [iconWidget]));
+        leadingWidget =
+            Container(width: 25, child: Row(children: [iconWidget]));
       } else {
         leadingWidget = null;
       }
       //bottomWidget=InkWell(onTap: this.cardTapper.onTap, child: bottomWidget,);
 
-      if( cardParameter.cardStyle ==VwCardParameter.csTwoColumnWithDescription ||
-      cardParameter.cardStyle == VwCardParameter.csTwoColumn ||
-      cardParameter.cardStyle == VwCardParameter.csOneColumn ||
-      cardParameter.cardStyle == VwCardParameter.csOneColumnWithDescription
-
-      )
-        {
-          cardWidget =  VwCardParameterMaterial.createCardTile(
+      if (cardParameter.cardStyle ==
+              VwCardParameter.csTwoColumnWithDescription ||
+          cardParameter.cardStyle == VwCardParameter.csTwoColumn ||
+          cardParameter.cardStyle == VwCardParameter.csOneColumn ||
+          cardParameter.cardStyle ==
+              VwCardParameter.csOneColumnWithDescription) {
+        cardWidget = VwCardParameterMaterial.createCardTile(
             leadingWidget: leadingWidget,
             titleWidget: titleWidget,
             subtitleWidget: subtitleWidget,
             descriptionWidget: descriptionWidget,
             timeUpdatedWidget: timeUpdatedWidget,
             updaterInfoWidget: updaterInfoWidget,
-            trailingWidget:  this.trailingWidget != null ? this.trailingWidget! : Container()
-          );
-        }
-       else if (cardParameter.cardStyle == VwCardParameter.csQuestion &&
+            trailingWidget: this.trailingWidget != null
+                ? this.trailingWidget!
+                : Container());
+      } else if (cardParameter.cardStyle == VwCardParameter.csQuestion &&
           this.recordNode != null) {
         return VwQuestionArticleRowViewerMaterial(
           rowNode: this.recordNode!,
@@ -382,7 +393,11 @@ class VwCardParameterMaterial extends StatelessWidget {
         key: super.key,
         child: Row(children: [
           Flexible(
-              child: Container(margin: EdgeInsets.fromLTRB(0, 0, 0, 7), color: Colors.lightBlueAccent, child:InkWell(onTap: this.cardTapper.onTap, child: cardWidget))),
+              child: Container(
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 7),
+                  color: Colors.lightBlueAccent,
+                  child: InkWell(
+                      onTap: this.cardTapper.onTap, child: cardWidget))),
           this.trailingWidget != null ? this.trailingWidget! : Container()
         ]));
   }
