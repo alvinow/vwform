@@ -57,6 +57,8 @@ VwCardParameter _$VwCardParameterFromJson(Map<String, dynamic> json) =>
       fieldNameMode:
           json['fieldNameMode'] as String? ?? VwCardParameter.fnmStandard,
       isShowUpdaterInfo: json['isShowUpdaterInfo'] as bool? ?? false,
+      datePosition: json['datePosition'] as String? ??
+          VwCardParameter.dpDatePositionRight,
     );
 
 Map<String, dynamic> _$VwCardParameterToJson(VwCardParameter instance) =>
@@ -96,5 +98,6 @@ Map<String, dynamic> _$VwCardParameterToJson(VwCardParameter instance) =>
       'maincategory': instance.maincategory,
       'releaseStatus': instance.releaseStatus,
       'fieldNameMode': instance.fieldNameMode,
+      'datePosition': instance.datePosition,
       'isShowUpdaterInfo': instance.isShowUpdaterInfo,
     };

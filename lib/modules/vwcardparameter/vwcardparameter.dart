@@ -42,7 +42,8 @@ class VwCardParameter {
         this.maincategory,
         this.releaseStatus,
         this.fieldNameMode=VwCardParameter.fnmStandard,
-        this.isShowUpdaterInfo=false
+        this.isShowUpdaterInfo=false,
+        this.datePosition=VwCardParameter.dpDatePositionRight
       });
 
   final String iconHexCode;
@@ -80,6 +81,7 @@ class VwCardParameter {
   final String? maincategory;
   final String? releaseStatus;
   final String fieldNameMode;
+  final String? datePosition;
   final bool isShowUpdaterInfo;
 
   static const String csQuestion = "csQuestion";
@@ -90,6 +92,10 @@ class VwCardParameter {
   static const String csOneColumnWithDescription = "csOneColumnWithDescription";
   static const String fnmStandard="fnmStandard";
   static const String fnmJson="fnmJson";
+
+  static  const String  dpDatePositionRight="dpRight";
+  static  const String dpDatePositionTop="dpTop";
+  static  const String dpDatePositionBottom="dpBottom";
 
   factory VwCardParameter.fromJson(Map<String, dynamic> json) =>
       _$VwCardParameterFromJson(json);

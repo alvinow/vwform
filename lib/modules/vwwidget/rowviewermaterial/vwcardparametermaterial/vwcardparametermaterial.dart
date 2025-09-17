@@ -154,7 +154,8 @@ class VwCardParameterMaterial extends StatelessWidget {
     Widget? descriptionWidget,
   Widget? timeUpdatedWidget,
   Widget? updaterInfoWidget,
-  Widget? trailingWidget
+  Widget? trailingWidget,
+    String? datePosition=VwCardParameter.dpDatePositionRight
   })
   {
     Widget returnValue=Container();
