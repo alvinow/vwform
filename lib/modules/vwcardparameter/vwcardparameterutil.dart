@@ -152,29 +152,30 @@ class VwCardParameterUtil {
                     currentExploredResult!.valueTypeId ==
                         VwFieldValue.vatValueFormResponse &&
                     currentExploredResult!.valueFormResponse != null) {
-                  VwFieldValue? currentFieldValue = currentExploredResult!
+
+                  FieldExplorerDefinition nextDefinition = parameter
+                      .nodeExplorerDefinition!.fieldExplorerList
+                      .elementAt(la+1);
+
+                  VwFieldValue? nextFieldValue = currentExploredResult!
                       .valueFormResponse!
-                      .getFieldByName(currentDefinition.fieldName);
+                      .getFieldByName(nextDefinition.fieldName);
+                  la++;
 
 
-
-                  if (currentFieldValue != null &&
-                      currentFieldValue!.valueTypeId ==
+                  if (nextFieldValue != null &&
+                      nextFieldValue!.valueTypeId ==
                           VwFieldValue.vatValueLinkNode &&
-                      currentFieldValue.valueLinkNode != null) {
+                      nextFieldValue.valueLinkNode != null) {
                     candidateSourceNode = NodeUtil.getNode(
-                        linkNode: currentFieldValue.valueLinkNode!);
+                        linkNode: nextFieldValue.valueLinkNode!);
                   }
-                  else if (currentFieldValue != null &&
-                      currentFieldValue!.valueTypeId ==
+                  else if (nextFieldValue != null &&
+                      nextFieldValue!.valueTypeId ==
                           VwFieldValue.vatValueFormResponse &&
-                      currentFieldValue.valueFormResponse != null) {
+                      nextFieldValue.valueFormResponse != null) {
 
-                    FieldExplorerDefinition nextDefinition = parameter
-                        .nodeExplorerDefinition!.fieldExplorerList
-                        .elementAt(la+1);
-
-                    VwFieldValue? nextFieldValue = currentFieldValue.valueFormResponse!.getFieldByName(nextDefinition.fieldName);
+                    //VwFieldValue? nextFieldValue = currentFieldValue.valueFormResponse!.getFieldByName(nextDefinition.fieldName);
 
                     if(nextFieldValue!=null && (nextFieldValue!.valueTypeId==VwFieldValue.vatString
                         ||
@@ -188,8 +189,8 @@ class VwCardParameterUtil {
 
                       ))
                       {
-                        la++;
-                        currentFieldValue=nextFieldValue;
+
+                        //currentFieldValue=nextFieldValue;
                         break;
                       }
 
