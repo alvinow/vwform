@@ -174,7 +174,7 @@ class VwCardParameterUtil {
                         .nodeExplorerDefinition!.fieldExplorerList
                         .elementAt(la+1);
 
-                    VwFieldValue? nextFieldValue = currentFieldValue.valueFormResponse!.getFieldByName(nextDefinition.fieldName)
+                    VwFieldValue? nextFieldValue = currentFieldValue.valueFormResponse!.getFieldByName(nextDefinition.fieldName);
 
                     if(nextFieldValue!=null && (nextFieldValue!.valueTypeId==VwFieldValue.vatString
                         ||
