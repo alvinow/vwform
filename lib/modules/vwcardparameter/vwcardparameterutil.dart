@@ -26,10 +26,14 @@ class VwCardParameterUtil {
       required String locale}) {
     String? returnValue;
     try {
+
+
+
       if (fieldDisplayFormat != null) {
         returnValue = DisplayFormatUtil.renderDisplayFormat(
             fieldDisplayFormat!, fieldValue, locale);
       } else {
+
         if (fieldValue.valueTypeId == VwFieldValue.vatString &&
             fieldValue.valueString != null) {
           returnValue = fieldValue.valueString;
@@ -72,6 +76,8 @@ class VwCardParameterUtil {
       VwJsonFieldNameCardParameter parameter =
           VwJsonFieldNameCardParameter.fromJson(jsonDecode(jsonFieldName));
 
+
+
       returnValue = VwCardParameterUtil.renderJsonFieldName(
           sourceNode: sourceNode, parameter: parameter, locale: locale);
     } catch (error) {}
@@ -101,6 +107,8 @@ class VwCardParameterUtil {
             try {
               VwJsonFieldNameCardParameter currentParameter =
                   parameter.memberList!.elementAt(la);
+
+
 
               VwFieldValue? currentResult =
                   VwCardParameterUtil.renderJsonFieldName(

@@ -41,7 +41,7 @@ dependencies:
   uuid:
   file_saver:
   flutter_fadein:
-  fluttertoast:
+  fluttertoast: 8.2.14
   infinite_scroll_pagination:
   permission_handler:
   dropdown_button2:
