@@ -192,10 +192,13 @@ class VwCardParameterUtil {
                       FieldExplorerDefinition next2Definition = parameter
                           .nodeExplorerDefinition!.fieldExplorerList
                           .elementAt(la + 1);
+                      la++;
 
                       VwFieldValue? next2FieldValue = currentExploredResult!
                           .valueFormResponse!
                           .getFieldByName(next2Definition.fieldName);
+
+                      returnValue=next2FieldValue;
 
                       if (next2FieldValue != null &&
                           next2FieldValue!.valueTypeId ==
