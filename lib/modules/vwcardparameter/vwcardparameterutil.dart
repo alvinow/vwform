@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:line_icons/line_icon.dart';
 import 'package:matrixclient2base/modules/base/nodeexplorerdefinition/fieldexplorerdefinition.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
@@ -26,14 +27,10 @@ class VwCardParameterUtil {
       required String locale}) {
     String? returnValue;
     try {
-
-
-
       if (fieldDisplayFormat != null) {
         returnValue = DisplayFormatUtil.renderDisplayFormat(
             fieldDisplayFormat!, fieldValue, locale);
       } else {
-
         if (fieldValue.valueTypeId == VwFieldValue.vatString &&
             fieldValue.valueString != null) {
           returnValue = fieldValue.valueString;
@@ -76,8 +73,6 @@ class VwCardParameterUtil {
       VwJsonFieldNameCardParameter parameter =
           VwJsonFieldNameCardParameter.fromJson(jsonDecode(jsonFieldName));
 
-
-
       returnValue = VwCardParameterUtil.renderJsonFieldName(
           sourceNode: sourceNode, parameter: parameter, locale: locale);
     } catch (error) {}
@@ -107,8 +102,6 @@ class VwCardParameterUtil {
             try {
               VwJsonFieldNameCardParameter currentParameter =
                   parameter.memberList!.elementAt(la);
-
-
 
               VwFieldValue? currentResult =
                   VwCardParameterUtil.renderJsonFieldName(
@@ -149,8 +142,11 @@ class VwCardParameterUtil {
             if (la + 1 <
                 parameter.nodeExplorerDefinition!.fieldExplorerList.length) {
               if (currentExploredResult != null) {
-                VwNode? candidateSourceNode = NodeUtil.getNode(
-                    linkNode: currentExploredResult!.valueLinkNode!);
+                VwNode? candidateSourceNode;
+                if (currentExploredResult!.valueLinkNode != null) {
+                  candidateSourceNode = NodeUtil.getNode(
+                      linkNode: currentExploredResult!.valueLinkNode!);
+                }
 
                 if (candidateSourceNode == null &&
                     currentExploredResult!.valueTypeId ==
@@ -160,12 +156,44 @@ class VwCardParameterUtil {
                       .valueFormResponse!
                       .getFieldByName(currentDefinition.fieldName);
 
+
+
                   if (currentFieldValue != null &&
                       currentFieldValue!.valueTypeId ==
                           VwFieldValue.vatValueLinkNode &&
                       currentFieldValue.valueLinkNode != null) {
                     candidateSourceNode = NodeUtil.getNode(
                         linkNode: currentFieldValue.valueLinkNode!);
+                  }
+                  else if (currentFieldValue != null &&
+                      currentFieldValue!.valueTypeId ==
+                          VwFieldValue.vatValueFormResponse &&
+                      currentFieldValue.valueFormResponse != null) {
+
+                    FieldExplorerDefinition nextDefinition = parameter
+                        .nodeExplorerDefinition!.fieldExplorerList
+                        .elementAt(la+1);
+
+                    VwFieldValue? nextFieldValue = currentFieldValue.valueFormResponse!.getFieldByName(nextDefinition.fieldName)
+
+                    if(nextFieldValue!=null && (nextFieldValue!.valueTypeId==VwFieldValue.vatString
+                        ||
+                        nextFieldValue!.valueTypeId==VwFieldValue.vatNumber
+                        ||
+                        nextFieldValue!.valueTypeId==VwFieldValue.vatDateTime
+                        ||
+                        nextFieldValue!.valueTypeId==VwFieldValue.vatDateOnly
+                        ||
+                        nextFieldValue!.valueTypeId==VwFieldValue.vatTimeOnly
+
+                      ))
+                      {
+                        la++;
+                        currentFieldValue=nextFieldValue;
+                        break;
+                      }
+
+
                   }
                 }
 
@@ -204,9 +232,8 @@ class VwCardParameterUtil {
         returnValue =
             sourceNode.content.rowData!.getFieldByName(definition.fieldName);
       } else if (definition.nodeType == VwNode.ntnClassEncodedJson) {
-
-        RemoteApi.decompressClassEncodedJson(sourceNode
-            .content.classEncodedJson!);
+        RemoteApi.decompressClassEncodedJson(
+            sourceNode.content.classEncodedJson!);
 
         returnValue = VwFieldValue(
             fieldName: definition.fieldName,
