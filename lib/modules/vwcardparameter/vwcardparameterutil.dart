@@ -152,16 +152,16 @@ class VwCardParameterUtil {
                     currentExploredResult!.valueTypeId ==
                         VwFieldValue.vatValueFormResponse &&
                     currentExploredResult!.valueFormResponse != null) {
-
                   FieldExplorerDefinition nextDefinition = parameter
                       .nodeExplorerDefinition!.fieldExplorerList
-                      .elementAt(la+1);
+                      .elementAt(la + 1);
 
                   VwFieldValue? nextFieldValue = currentExploredResult!
                       .valueFormResponse!
                       .getFieldByName(nextDefinition.fieldName);
                   la++;
 
+                  returnValue = nextFieldValue;
 
                   if (nextFieldValue != null &&
                       nextFieldValue!.valueTypeId ==
@@ -169,32 +169,42 @@ class VwCardParameterUtil {
                       nextFieldValue.valueLinkNode != null) {
                     candidateSourceNode = NodeUtil.getNode(
                         linkNode: nextFieldValue.valueLinkNode!);
-                  }
-                  else if (nextFieldValue != null &&
+                  } else if (nextFieldValue != null &&
+                      (nextFieldValue!.valueTypeId == VwFieldValue.vatString ||
+                          nextFieldValue!.valueTypeId ==
+                              VwFieldValue.vatNumber ||
+                          nextFieldValue!.valueTypeId ==
+                              VwFieldValue.vatDateTime ||
+                          nextFieldValue!.valueTypeId ==
+                              VwFieldValue.vatDateOnly ||
+                          nextFieldValue!.valueTypeId ==
+                              VwFieldValue.vatTimeOnly)) {
+                    break;
+                  } else if (nextFieldValue != null &&
                       nextFieldValue!.valueTypeId ==
                           VwFieldValue.vatValueFormResponse &&
                       nextFieldValue.valueFormResponse != null) {
-
                     //VwFieldValue? nextFieldValue = currentFieldValue.valueFormResponse!.getFieldByName(nextDefinition.fieldName);
 
-                    if(nextFieldValue!=null && (nextFieldValue!.valueTypeId==VwFieldValue.vatString
-                        ||
-                        nextFieldValue!.valueTypeId==VwFieldValue.vatNumber
-                        ||
-                        nextFieldValue!.valueTypeId==VwFieldValue.vatDateTime
-                        ||
-                        nextFieldValue!.valueTypeId==VwFieldValue.vatDateOnly
-                        ||
-                        nextFieldValue!.valueTypeId==VwFieldValue.vatTimeOnly
+                    if (la + 1 <
+                        parameter
+                            .nodeExplorerDefinition!.fieldExplorerList.length) {
+                      FieldExplorerDefinition next2Definition = parameter
+                          .nodeExplorerDefinition!.fieldExplorerList
+                          .elementAt(la + 1);
 
-                      ))
-                      {
+                      VwFieldValue? next2FieldValue = currentExploredResult!
+                          .valueFormResponse!
+                          .getFieldByName(next2Definition.fieldName);
 
-                        //currentFieldValue=nextFieldValue;
-                        break;
+                      if (next2FieldValue != null &&
+                          next2FieldValue!.valueTypeId ==
+                              VwFieldValue.vatValueLinkNode &&
+                          next2FieldValue.valueLinkNode != null) {
+                        candidateSourceNode = NodeUtil.getNode(
+                            linkNode: next2FieldValue.valueLinkNode!);
                       }
-
-
+                    }
                   }
                 }
 
