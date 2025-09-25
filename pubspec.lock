@@ -922,7 +922,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "5163035a806d38796ec9ad90a4fff577627f6d7c"
+      resolved-ref: e3ec8894c0694e105f84f697855b2f6bf04370cb
       url: "https://github.com/alvinow/matrixclient2base.git"
     source: git
     version: "1.0.0+1"
@@ -962,10 +962,10 @@ packages:
     dependency: "direct main"
     description:
       name: mobile_scanner
-      sha256: f536c5b8cadcf73d764bdce09c94744f06aa832264730f8971b21a60c5666826
+      sha256: "0b466a0a8a211b366c2e87f3345715faef9b6011c7147556ad22f37de6ba3173"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.10"
+    version: "6.0.11"
   modal_bottom_sheet:
     dependency: "direct main"
     description:
@@ -1730,7 +1730,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "009b5f44480ca7dfb29e7ae3e33e75cfac90009e"
+      resolved-ref: dc5f8cdf8c641c364d6908f2bb69286feb6f647c
       url: "https://github.com/alvinow/vwutil.git"
     source: git
     version: "1.0.0+1"
