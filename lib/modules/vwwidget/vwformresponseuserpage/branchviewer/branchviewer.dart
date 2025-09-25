@@ -656,8 +656,7 @@ class BranchviewerState extends State<BranchViewer> {
                     nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
               } else if (kodeStatusRekomendasi == "2") {
                 statusTextColor=Colors.orange;
-                nilaiRekomendasiDalamProses.valueNumber =
-                    nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
+                //nilaiRekomendasiDalamProses.valueNumber =nilaiRekomendasiTindakLanjutFieldValue!.valueNumber;
               } else if (kodeStatusRekomendasi == "3") {
                 statusTextColor=Colors.green;
                 nilaiRekomendasiSudahSesuai.valueNumber =
