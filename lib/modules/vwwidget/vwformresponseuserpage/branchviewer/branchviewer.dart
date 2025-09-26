@@ -631,11 +631,18 @@ class BranchviewerState extends State<BranchViewer> {
               {
                 try
                     {
-                      if (kodeStatusRekomendasi == "2") {
+                      if (kodeStatusRekomendasi == "2" ) {
                         VwRowData rekapRowData = parentCurrentRowData
                             .childFormResponseList!.elementAt(0);
 
                         nilaiRekomendasiDalamProses.valueNumber = rekapRowData.getFieldByName("nilaisudahsesuai")?.valueNumber;
+
+                      }
+                      else if (kodeStatusRekomendasi == "3" ) {
+                        VwRowData rekapRowData = parentCurrentRowData
+                            .childFormResponseList!.elementAt(0);
+
+                        nilaiRekomendasiSudahSesuai.valueNumber = rekapRowData.getFieldByName("nilaisudahsesuai")?.valueNumber;
 
                       }
                       
