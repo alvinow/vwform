@@ -136,8 +136,7 @@ class SubBranchViewerState extends State<SubBranchViewer>{
           enableAppBar: false,
           isScrollable: false,
           enableScaffold: false,
-          refreshDataOnParentFunction: this.implementRefreshBranch,
-          commandToParentFunction: this.implementCommandToRefeshFunction,
+          refreshDataToParentFunction: this.widget.refreshBranch,
           appInstanceParam: widget.appInstanceParam,
           apiCallParam: BranchviewerState.apiCallParam(
               widget.childBranch),

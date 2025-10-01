@@ -987,7 +987,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "60723de074d3f927e7ab6949d1c4fbbf2baf4c14"
+      resolved-ref: "8a6967691b5675539a19831d6eec43c1c6d3568a"
       url: "https://github.com/alvinow/nodelistview.git"
     source: git
     version: "1.0.0+1"
