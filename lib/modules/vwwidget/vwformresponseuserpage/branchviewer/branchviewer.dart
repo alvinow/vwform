@@ -72,6 +72,7 @@ class BranchviewerState extends State<BranchViewer> {
     }
   }
 
+
   static VwRowData apiCallParam(ChildBranch childBranch) {
     VwRowData returnValue = VwRowData(
         timestamp: VwDateUtil.nowTimestamp(),
@@ -992,7 +993,7 @@ class BranchviewerState extends State<BranchViewer> {
                 margin: EdgeInsets.fromLTRB(25, 0, 0, 0),
                 child: SubBranchViewer(
                     key: this.branch1Key,
-                    commandToParentFunction: widget.commandToParentFunction,
+                    commandToParentFunction: widget.commandToParentFunction!=null?widget.commandToParentFunction:this.implementReloadData,
                     refreshBranch: this.implementRefreshBranch,
                     parentNode: widget.parentNode,
                     childBranch: widget.childrenBranch.elementAt(1),
@@ -1007,6 +1008,7 @@ class BranchviewerState extends State<BranchViewer> {
       {required BuildContext context, required Widget parentRow}) {
     widget.childrenBranch.elementAt(0).isInitiallyExpanded = true;
     widget.childrenBranch.elementAt(0).hideExpandedButton = true;
+
     return Container(
         color: this.widget.backgroundColor,
         key: this.widget.key,
@@ -1020,7 +1022,7 @@ class BranchviewerState extends State<BranchViewer> {
                 margin: EdgeInsets.fromLTRB(25, 0, 0, 0),
                 child: SubBranchViewer(
                     key: this.branch0Key,
-                    commandToParentFunction: widget.commandToParentFunction,
+                    commandToParentFunction: widget.commandToParentFunction!=null?widget.commandToParentFunction:this.implementReloadData,
                     refreshBranch: this.implementRefreshBranch,
                     parentNode: widget.parentNode,
                     childBranch: widget.childrenBranch.elementAt(0),
