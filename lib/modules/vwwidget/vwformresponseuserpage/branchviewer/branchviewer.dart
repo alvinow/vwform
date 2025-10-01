@@ -982,7 +982,7 @@ class BranchviewerState extends State<BranchViewer> {
                 margin: EdgeInsets.fromLTRB(25, 0, 0, 0),
                 child: SubBranchViewer(
                     key: this.branch0Key,
-                    commandToParentFunction: widget.commandToParentFunction,
+                    commandToParentFunction: widget.commandToParentFunction!=null?widget.commandToParentFunction:this.implementReloadData,
                     refreshBranch: this.implementRefreshBranch,
                     parentNode: widget.parentNode,
                     childBranch: widget.childrenBranch.elementAt(0),
