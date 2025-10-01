@@ -1,5 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:matrixclient2base/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
+import 'package:json_annotation/json_annotation.dart';
 part 'vwcardparameter.g.dart';
 
 
