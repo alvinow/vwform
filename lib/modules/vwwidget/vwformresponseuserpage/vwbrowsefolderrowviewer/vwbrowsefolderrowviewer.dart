@@ -35,16 +35,7 @@ class VwBrowseFolderRowViewer extends NodeRowViewer {
       this.refreshDataOnParentRecordFunction!();
     }
 
-    if(this.rowNode.content.rowData!=null&& this.rowNode.content.rowData!.collectionName=="lhpformdefinition" )
-      {
 
-      }
-    else
-      {
-        if(this.refreshDataOnParentFunction!=null) {
-          this.refreshDataOnParentFunction!();
-        }
-      }
 
   }
 
