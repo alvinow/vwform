@@ -34,6 +34,10 @@ class VwBrowseFolderRowViewer extends NodeRowViewer {
     if (this.refreshDataOnParentRecordFunction != null) {
       this.refreshDataOnParentRecordFunction!();
     }
+
+    if(this.refreshDataOnParentFunction!=null) {
+      this.refreshDataOnParentFunction!();
+    }
   }
 
   @override
