@@ -10,8 +10,16 @@ import 'package:vwform/modules/vwwidget/vwformresponseuserpage/branchviewer/bran
 import 'package:vwform/modules/vwwidget/vwformresponseuserpage/branchviewer/childbranch.dart';
 import 'package:vwform/modules/vwwidget/vwformresponseuserpage/vwdefaultrowviewer/vwdefaultrowviewer.dart';
 
-class SubBranchViewer extends StatefulWidget{
-  SubBranchViewer({required super.key, required this.parentNode, required this.childBranch,required this.appInstanceParam,required this.summaryId,required this.localeId,this.refreshBranch,this.commandToParentFunction});
+class SubBranchViewer extends StatefulWidget {
+  SubBranchViewer(
+      {required super.key,
+      required this.parentNode,
+      required this.childBranch,
+      required this.appInstanceParam,
+      required this.summaryId,
+      required this.localeId,
+      this.refreshBranch,
+      this.commandToParentFunction});
 
   final String localeId;
   final String summaryId;
@@ -21,21 +29,21 @@ class SubBranchViewer extends StatefulWidget{
   final RefreshDataOnParentFunction? refreshBranch;
   final CommandToParentFunction? commandToParentFunction;
 
-  SubBranchViewerState createState()=>SubBranchViewerState();
+  SubBranchViewerState createState() => SubBranchViewerState();
 }
 
-class SubBranchViewerState extends State<SubBranchViewer>{
+class SubBranchViewerState extends State<SubBranchViewer> {
   late bool currentExpandedState;
   late Key branchKey;
 
   Widget nodeRowViewer(
       {required VwNode renderedNode,
-        required BuildContext context,
-        required int index,
-        Widget? topRowWidget,
-        String? highlightedText,
-        RefreshDataOnParentFunction? refreshDataOnParentFunction,
-        CommandToParentFunction? commandToParentFunction}) {
+      required BuildContext context,
+      required int index,
+      Widget? topRowWidget,
+      String? highlightedText,
+      RefreshDataOnParentFunction? refreshDataOnParentFunction,
+      CommandToParentFunction? commandToParentFunction}) {
     if (renderedNode.nodeType == VwNode.ntnTopNodeInsert) {
       if (topRowWidget != null) {
         return topRowWidget;
@@ -45,12 +53,11 @@ class SubBranchViewerState extends State<SubBranchViewer>{
     }
 
     return VwDefaultRowViewer(
-      key:Key(renderedNode.recordId),
+      key: Key(renderedNode.recordId),
       rowNode: renderedNode,
       appInstanceParam: this.widget.appInstanceParam,
       highlightedText: highlightedText,
-      refreshDataOnParentFunction:
-      this.implementRefreshBranch,
+      refreshDataOnParentFunction: this.implementRefreshBranch,
       commandToParentFunction: this.implementCommandToRefeshFunction,
     );
   }
@@ -60,15 +67,11 @@ class SubBranchViewerState extends State<SubBranchViewer>{
     // TODO: implement initState
     super.initState();
 
-    this.currentExpandedState=widget.childBranch.isInitiallyExpanded;
-    this.branchKey=Key(Uuid().v4());
+    this.currentExpandedState = widget.childBranch.isInitiallyExpanded;
+    this.branchKey = Key(Uuid().v4());
   }
 
   Widget buttonExpandBranchCurrentlyExpanded() {
-
-
-
-
     return InkWell(
       child: BranchviewerState.iconCircleDown(),
       onTap: () {
@@ -90,21 +93,15 @@ class SubBranchViewerState extends State<SubBranchViewer>{
     );
   }
 
-  void implementCommandToRefeshFunction(VwRowData formResponse){
-
-    if(widget.commandToParentFunction!=null)
-      {
-        widget.commandToParentFunction!(formResponse);
-      }
-
-
-
+  void implementCommandToRefeshFunction(VwRowData formResponse) {
+    if (widget.commandToParentFunction != null) {
+      widget.commandToParentFunction!(formResponse);
+    }
   }
 
   void implementRefreshBranch() {
     try {
       print("Refresh:" + widget.parentNode.content!.rowData!.collectionName!);
-
 
       if (this.widget.refreshBranch != null) {
         this.widget.refreshBranch!();
@@ -118,67 +115,64 @@ class SubBranchViewerState extends State<SubBranchViewer>{
 
   @override
   Widget build(BuildContext context) {
-
-    Widget returnValue=Container();
+    Widget returnValue = Container();
     try {
       Widget createButton = BranchviewerState.getCreateRecordButtonChildBranch(
-          childBranch:
-          widget.childBranch,
+          childBranch: widget.childBranch,
           context: context,
           refreshDataOnParentFunction: this.implementRefreshBranch,
           appInstanceParam: widget.appInstanceParam);
 
-      Widget branchWidget = NodeListView(
-          mainLogoImageAsset: this.widget.appInstanceParam.baseAppConfig.generalConfig.mainLogoPath,
-          key: this.branchKey,
-          zeroDataCaption: "0 record",
-          reloadButtonSize: 18,
-          enableAppBar: false,
-          isScrollable: false,
-          enableScaffold: false,
-          refreshDataToParentFunction: this.widget.refreshBranch,
-          appInstanceParam: widget.appInstanceParam,
-          apiCallParam: BranchviewerState.apiCallParam(
-              widget.childBranch),
-          nodeRowViewerFunction: nodeRowViewer);
-
-
-
-
-      if(this.currentExpandedState==true)
-        {
-          return
-            Column(
-              key:widget.key,
-              crossAxisAlignment: CrossAxisAlignment.start,
+      if (this.currentExpandedState == true) {
+        return Column(
+          key: widget.key,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Row(mainAxisAlignment: MainAxisAlignment.start, children: [this.widget.childBranch.hideExpandedButton?SizedBox(width: 20,): this.buttonExpandBranchCurrentlyExpanded(),createButton],),
-                branchWidget
+                this.widget.childBranch.hideExpandedButton
+                    ? SizedBox(
+                        width: 20,
+                      )
+                    : this.buttonExpandBranchCurrentlyExpanded(),
+                createButton
               ],
-            );
-        }
-      else
-        {
-          return
-            Column(
-              key:widget.key,
+            ),
+            NodeListView(
+                mainLogoImageAsset: this
+                    .widget
+                    .appInstanceParam
+                    .baseAppConfig
+                    .generalConfig
+                    .mainLogoPath,
+                key: this.branchKey,
+                zeroDataCaption: "0 record",
+                reloadButtonSize: 18,
+                enableAppBar: false,
+                isScrollable: false,
+                enableScaffold: false,
+                refreshDataToParentFunction: this.widget.refreshBranch,
+                appInstanceParam: widget.appInstanceParam,
+                apiCallParam:
+                    BranchviewerState.apiCallParam(widget.childBranch),
+                nodeRowViewerFunction: nodeRowViewer)
+          ],
+        );
+      } else {
+        return Column(
+          key: widget.key,
+          children: [
+            Row(
               children: [
-                Row(children: [this.buttonExpandBranchCurrentlyNotExpanded(),createButton],),
-
+                this.buttonExpandBranchCurrentlyNotExpanded(),
+                createButton
               ],
-            );
-
-
-        }
-
-    }
-    catch(error)
-    {
-
-    }
+            ),
+          ],
+        );
+      }
+    } catch (error) {}
     return returnValue;
-
-
   }
-
 }
