@@ -156,13 +156,14 @@ class BranchviewerState extends State<BranchViewer> {
   }
 
   void implementReloadData(VwRowData rowData) {
-    /*
+
+    print("Data reloaded, nodeId: "+ this.widget.parentNode.recordId);
     setState(() {
 
 
     });
 
-     */
+
   }
 
   void implementRefreshBranch() {
