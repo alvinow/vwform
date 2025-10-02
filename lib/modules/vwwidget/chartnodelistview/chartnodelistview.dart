@@ -70,7 +70,7 @@ class ChartNodeListViewState extends State<ChartNodeListView>{
           VwFieldValue(
               fieldName: "sortObject",
               valueTypeId: VwFieldValue.vatObject,
-              value: {"displayName": 1}),
+              value: {"indexKey.sortKey":1, "displayName": 1}),
           VwFieldValue(
               fieldName: "disableUserGroupPOV",
               valueTypeId: VwFieldValue.vatBoolean,
