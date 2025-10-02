@@ -15,6 +15,7 @@ class BirthdatePicker extends StatefulWidget {
   final bool enableDropdown;
   final DateTime? minDate;
   final DateTime? maxDate;
+  final bool forceUtc;
 
   const BirthdatePicker({
     Key? key,
@@ -25,6 +26,7 @@ class BirthdatePicker extends StatefulWidget {
     this.enableDropdown = true,
     this.minDate,
     this.maxDate,
+    this.forceUtc = false,
   }) : super(key: key);
 
   @override
@@ -47,19 +49,23 @@ class _BirthdatePickerState extends State<BirthdatePicker> {
   @override
   void initState() {
     super.initState();
+
+    // Display date based on its timezone (UTC or Local)
+    final displayDate = widget.initialDate;
+
     _monthController = TextEditingController(
-      text: widget.initialDate?.month.toString() ?? '',
+      text: displayDate?.month.toString() ?? '',
     );
     _dayController = TextEditingController(
-      text: widget.initialDate?.day.toString() ?? '',
+      text: displayDate?.day.toString() ?? '',
     );
     _yearController = TextEditingController(
-      text: widget.initialDate?.year.toString() ?? '',
+      text: displayDate?.year.toString() ?? '',
     );
 
-    _selectedMonth = widget.initialDate?.month;
-    _selectedDay = widget.initialDate?.day;
-    _selectedYear = widget.initialDate?.year;
+    _selectedMonth = displayDate?.month;
+    _selectedDay = displayDate?.day;
+    _selectedYear = displayDate?.year;
   }
 
   // Helper function to check if a year is a leap year
@@ -199,11 +205,13 @@ class _BirthdatePickerState extends State<BirthdatePicker> {
         final year = int.parse(_yearController.text);
 
         if (month >= 1 && month <= 12 && day >= 1 && day <= 31 && year >= 1900) {
-          // Preserve UTC/Local timezone and time from initialDate
+          // Determine timezone and time
           DateTime date;
-          if (widget.initialDate != null) {
-            final initial = widget.initialDate!;
-            if (initial.isUtc) {
+
+          if (widget.forceUtc) {
+            // Force UTC regardless of initialDate
+            if (widget.initialDate != null) {
+              final initial = widget.initialDate!;
               date = DateTime.utc(
                 year,
                 month,
@@ -215,20 +223,39 @@ class _BirthdatePickerState extends State<BirthdatePicker> {
                 initial.microsecond,
               );
             } else {
-              date = DateTime(
-                year,
-                month,
-                day,
-                initial.hour,
-                initial.minute,
-                initial.second,
-                initial.millisecond,
-                initial.microsecond,
-              );
+              date = DateTime.utc(year, month, day);
             }
           } else {
-            // If no initialDate, use local timezone with midnight time
-            date = DateTime(year, month, day);
+            // Preserve timezone from initialDate or use local
+            if (widget.initialDate != null) {
+              final initial = widget.initialDate!;
+              if (initial.isUtc) {
+                date = DateTime.utc(
+                  year,
+                  month,
+                  day,
+                  initial.hour,
+                  initial.minute,
+                  initial.second,
+                  initial.millisecond,
+                  initial.microsecond,
+                );
+              } else {
+                date = DateTime(
+                  year,
+                  month,
+                  day,
+                  initial.hour,
+                  initial.minute,
+                  initial.second,
+                  initial.millisecond,
+                  initial.microsecond,
+                );
+              }
+            } else {
+              // If no initialDate, use local timezone with midnight time
+              date = DateTime(year, month, day);
+            }
           }
 
           // Validate against date range

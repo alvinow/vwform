@@ -8,10 +8,13 @@ class BirthdatePickerDialog {
       BuildContext context, {
         DateTime? initialDate,
         String title = 'Select your birthdate',
+        String cancelText = 'Cancel',
+        String confirmText = 'Confirm',
         DateOrder dateOrder = DateOrder.mdy,
         bool enableDropdown = true,
         DateTime? minDate,
         DateTime? maxDate,
+        bool forceUtc = false,
       }) async {
     DateTime? selectedDate = initialDate;
 
@@ -67,6 +70,7 @@ class BirthdatePickerDialog {
                       enableDropdown: enableDropdown,
                       minDate: minDate,
                       maxDate: maxDate,
+                      forceUtc: forceUtc,
                       onDateChanged: (date) {
                         setModalState(() {
                           selectedDate = date;
@@ -82,9 +86,9 @@ class BirthdatePickerDialog {
                           onPressed: () {
                             Navigator.of(context).pop(null);
                           },
-                          child: const Text(
-                            'Cancel',
-                            style: TextStyle(
+                          child: Text(
+                            cancelText,
+                            style: const TextStyle(
                               fontSize: 16,
                               color: Colors.grey,
                             ),
@@ -108,9 +112,9 @@ class BirthdatePickerDialog {
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
-                          child: const Text(
-                            'Confirm',
-                            style: TextStyle(
+                          child: Text(
+                            confirmText,
+                            style: const TextStyle(
                               fontSize: 16,
                               color: Colors.white,
                             ),
