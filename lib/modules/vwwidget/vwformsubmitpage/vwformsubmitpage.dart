@@ -125,7 +125,7 @@ class VwFormSubmitPageState extends State<VwFormSubmitPage> {
             VwFieldValue(
                 fieldName: "sortObject",
                 valueTypeId: VwFieldValue.vatObject,
-                value: {"indexKey.sortKey":-1, "displayName": 1}),
+                value: {"indexKey.sortKey":1, "displayName": 1}),
             VwFieldValue(
                 fieldName: "depth1FilterObject",
                 valueTypeId: VwFieldValue.vatObject,
@@ -154,7 +154,7 @@ class VwFormSubmitPageState extends State<VwFormSubmitPage> {
             VwFieldValue(
                 fieldName: "sortObject",
                 valueTypeId: VwFieldValue.vatObject,
-                value: {"indexKey.sortKey":-1, "displayName": 1}),
+                value: {"indexKey.sortKey":1, "displayName": 1}),
             VwFieldValue(
                 fieldName: "depth1FilterObject",
                 valueTypeId: VwFieldValue.vatObject,
