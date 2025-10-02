@@ -55,7 +55,9 @@ class VwForm extends StatefulWidget {
         this.fieldBoxDecoration = const BoxDecoration(
           color: Colors.white,
 
-        )});
+        ),
+        this.defaultSortObject
+      });
   final VwAppInstanceParam appInstanceParam;
   final VwFormDefinition formDefinition;
   final VwRowData initFormResponse;
@@ -69,6 +71,7 @@ class VwForm extends StatefulWidget {
   final int? sectionIndex;
 
   final BoxDecoration fieldBoxDecoration;
+  final Object? defaultSortObject;
 
   @override
   VwFormState createState() => VwFormState();
