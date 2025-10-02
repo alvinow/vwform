@@ -387,7 +387,7 @@ class VwCheckListLinkNodeState extends State<VwCheckListLinkNode> {
           VwFieldValue(
               fieldName: "sortObject",
               valueTypeId: VwFieldValue.vatObject,
-              value: {"indexKey.sortKey":1, "displayName": 1}),
+              value: {"indexKey.sortKey":-1, "displayName": 1}),
         ]);
 
     Map<String, dynamic> collectionNameListFilter = {
@@ -503,7 +503,7 @@ class VwCheckListLinkNodeState extends State<VwCheckListLinkNode> {
                           .collectionListViewDefinition!
                           .dataSource
                           .sortObject
-                      : {"indexKey.sortKey":1, "displayName": 1}),
+                      : {"indexKey.sortKey":-1, "displayName": 1}),
             ]);
 
         if (this.widget.fieldUiParam.collectionListViewDefinition != null &&

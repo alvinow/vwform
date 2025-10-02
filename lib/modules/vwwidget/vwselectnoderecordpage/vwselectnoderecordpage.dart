@@ -118,7 +118,7 @@ class VwSelectNodeRecordPage extends StatelessWidget {
           VwFieldValue(
               fieldName: "sortObject",
               valueTypeId: VwFieldValue.vatObject,
-              value: {"indexKey.sortKey":1, "displayName": 1}),
+              value: {"indexKey.sortKey":-1, "displayName": 1}),
           VwFieldValue(
               fieldName: "disableUserGroupPOV",
               valueTypeId: VwFieldValue.vatBoolean,
