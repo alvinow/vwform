@@ -10,6 +10,8 @@ class BirthdatePickerDialog {
         String title = 'Select your birthdate',
         DateOrder dateOrder = DateOrder.mdy,
         bool enableDropdown = true,
+        DateTime? minDate,
+        DateTime? maxDate,
       }) async {
     DateTime? selectedDate = initialDate;
 
@@ -63,6 +65,8 @@ class BirthdatePickerDialog {
                       initialDate: initialDate,
                       dateOrder: dateOrder,
                       enableDropdown: enableDropdown,
+                      minDate: minDate,
+                      maxDate: maxDate,
                       onDateChanged: (date) {
                         setModalState(() {
                           selectedDate = date;
