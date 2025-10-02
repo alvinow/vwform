@@ -508,7 +508,7 @@ if(newDates!=null && newDates.length>0)
           if(newDate!=null)
           {
             this.doRefreshValue=true;
-            this._onDateValueChanged(newDate);
+            this._onDateValueChanged(newDate.toUtc());
           }
 
 
