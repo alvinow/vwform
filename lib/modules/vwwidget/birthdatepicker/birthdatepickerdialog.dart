@@ -2,15 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vwform/modules/vwwidget/birthdatepicker/birthdatepicker.dart';
 
+// Bottom Sheet Dialog
 class BirthdatePickerDialog {
   static Future<DateTime?> show(
       BuildContext context, {
         DateTime? initialDate,
         String title = 'Select your birthdate',
+        DateOrder dateOrder = DateOrder.mdy,
+        bool enableDropdown = true,
       }) async {
     DateTime? selectedDate = initialDate;
 
-    return showModalBottomSheet <DateTime?>(
+    return showModalBottomSheet<DateTime?>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
@@ -58,6 +61,8 @@ class BirthdatePickerDialog {
                     // Birthdate Picker
                     BirthdatePicker(
                       initialDate: initialDate,
+                      dateOrder: dateOrder,
+                      enableDropdown: enableDropdown,
                       onDateChanged: (date) {
                         setModalState(() {
                           selectedDate = date;

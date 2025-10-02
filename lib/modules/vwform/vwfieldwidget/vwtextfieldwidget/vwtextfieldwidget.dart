@@ -13,6 +13,7 @@ import 'package:vwform/modules/vwform/vwfieldwidget/vwfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwform.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwfielduiparam/vwfielduiparam.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
+import 'package:vwform/modules/vwwidget/birthdatepicker/birthdatepicker.dart';
 import 'package:vwform/modules/vwwidget/birthdatepicker/birthdatepickerdialog.dart';
 import 'package:vwform/modules/vwwidget/materialtransparentroute/materialtransparentroute.dart';
 import 'package:vwform/modules/vwwidget/vwqrcodepage/vwqrcodepage.dart';
@@ -499,6 +500,8 @@ if(newDates!=null && newDates.length>0)
             context,
             initialDate: this.widget.field.valueDateTime,
             title: 'Pilih Tanggal',
+            dateOrder: DateOrder.dmy,
+            enableDropdown: true,
           );
           if(newDate!=null)
           {
