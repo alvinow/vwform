@@ -498,10 +498,12 @@ if(newDates!=null && newDates.length>0)
 
           DateTime? newDate = await BirthdatePickerDialog.show(
             context,
-            initialDate: this.widget.field.valueDateTime,
+            initialDate: this.widget.field.valueDateTime!=null? this.widget.field.valueDateTime!.toLocal():null,
             title: 'Pilih Tanggal',
             dateOrder: DateOrder.dmy,
             enableDropdown: true,
+            minDate: new DateTime.utc(1950, 1, 1, 0, 0, 0),
+            maxDate: new DateTime.utc(2050, 12, 31, 23, 59, 0),
           );
           if(newDate!=null)
           {
