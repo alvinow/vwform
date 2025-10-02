@@ -13,6 +13,7 @@ import 'package:vwform/modules/vwform/vwfieldwidget/vwfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwform.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwfielduiparam/vwfielduiparam.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
+import 'package:vwform/modules/vwwidget/birthdatepicker/birthdatepickerdialog.dart';
 import 'package:vwform/modules/vwwidget/materialtransparentroute/materialtransparentroute.dart';
 import 'package:vwform/modules/vwwidget/vwqrcodepage/vwqrcodepage.dart';
 import 'package:vwutil/modules/util/nodeutil.dart';
@@ -470,6 +471,9 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
 
         {
 
+
+        /*
+
           List<DateTime?>? newDates = await showCalendarDatePicker2Dialog(
             context: context,
             config: CalendarDatePicker2WithActionButtonsConfig(
@@ -479,10 +483,7 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
             borderRadius: BorderRadius.circular(15),
             value: [this.widget.field.valueDateTime],
             dialogBackgroundColor: Colors.white,
-
-          );
-
-          if(newDates!=null && newDates.length>0)
+if(newDates!=null && newDates.length>0)
             {
               DateTime? newDate=newDates.elementAt(0);
 
@@ -492,6 +493,20 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
                   this._onDateValueChanged(newDate);
                 }
             }
+          );*/
+
+          DateTime? newDate = await BirthdatePickerDialog.show(
+            context,
+            initialDate: this.widget.field.valueDateTime,
+            title: 'Pilih Tanggal',
+          );
+          if(newDate!=null)
+          {
+            this.doRefreshValue=true;
+            this._onDateValueChanged(newDate);
+          }
+
+
 
         }
       },
