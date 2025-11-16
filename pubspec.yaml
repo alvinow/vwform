@@ -102,7 +102,10 @@ dependencies:
     git:
       url: https://github.com/alvinow/matrixclient2base.git
       ref: main
-
+  gstyle_datetime_picker:
+    git:
+      url: https://github.com/alvinow/gstyle_datetime_picker.dart.git
+      ref: main
 dev_dependencies:
   build_runner: ^2.4.7
   hive_generator:

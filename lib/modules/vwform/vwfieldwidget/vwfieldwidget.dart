@@ -325,7 +325,14 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
           this.widget.formField.fieldUiParam.uiTypeId ==
               VwFieldUiParam.uitTimeField ||
           this.widget.formField.fieldUiParam.uiTypeId ==
-              VwFieldUiParam.uitDateTimeField) {}
+              VwFieldUiParam.uitDateTimeField) {
+        if(this.widget.formField.fieldUiParam.uiTypeId == VwFieldUiParam.uitDateTimeField)
+          {
+
+          }
+
+
+      }
 
       if (this.widget.formFieldValidationResponse != null &&
           this.widget.formFieldValidationResponse!.validationReponses.length >
