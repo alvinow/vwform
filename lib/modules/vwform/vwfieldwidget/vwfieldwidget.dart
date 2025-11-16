@@ -7,6 +7,7 @@ import 'package:vwform/modules/vwform/vwfieldwidget/vwcaptionfieldwidget/vwcapti
 import 'package:vwform/modules/vwform/vwfieldwidget/vwcheckboxfieldwidget/vwcheckboxfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwchecklistfieldwidget/vwchecklistfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwchecklistlinknodefieldwidget/vwchecklistlinknodefieldwidget.dart';
+import 'package:vwform/modules/vwform/vwfieldwidget/vwdatefieldwidget/vwdatefieldwidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwdropdownfieldwidget/vwdropdownfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwdropdownlinknodefieldwidget/vwdropdownlinknodewidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwfilefieldwidget/vwfilefieldwidget.dart';
@@ -328,7 +329,15 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
               VwFieldUiParam.uitDateTimeField) {
         if(this.widget.formField.fieldUiParam.uiTypeId == VwFieldUiParam.uitDateTimeField)
           {
-
+            fieldWidget = VwDateFieldWidget(
+                appInstanceParam: this.widget.appInstanceParam,
+                key: Key(this.widget.formField.fieldDefinition.fieldName),
+                fieldValue: this.widget.field,
+                readOnly: this.widget.readOnly,
+                formField: this.widget.formField,
+                getCurrentFormResponseFunction:
+                this.widget.getCurrentFormResponseFunction,
+                onValueChanged: this._implementOnFieldvalueChanged);
           }
 
 

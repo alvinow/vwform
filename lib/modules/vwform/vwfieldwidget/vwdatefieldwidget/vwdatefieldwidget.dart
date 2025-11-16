@@ -62,6 +62,7 @@ class VwDateFieldWidgetState extends State<VwDateFieldWidget> {
       children: [
         this._buildFieldCaption(),
         GoogleStyleDatePicker(
+            readOnly:widget.readOnly,
             locale: widget.appInstanceParam.baseAppConfig.generalConfig.locale,
             initialDate: this.currentDateTime,
             minDate: DateTime(1900),
