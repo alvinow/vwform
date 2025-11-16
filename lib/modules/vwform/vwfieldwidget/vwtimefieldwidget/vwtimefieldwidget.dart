@@ -40,6 +40,7 @@ class _VwTimeFieldWidgetState extends State<VwTimeFieldWidget> {
 
   dynamic _implementDateTimeChanged(DateTime selectedDateTime) {
     this.currentDateTime = selectedDateTime;
+    this.widget.fieldValue.valueDateTime = this.currentDateTime;
   }
 
   void implementInitValue() {
