@@ -67,6 +67,7 @@ class _VwDateFieldWidgetState extends State<VwDateFieldWidget> {
             initialDate: this.currentDateTime,
             minDate: DateTime(1900),
             maxDate: DateTime(2050),
+            onChanged: this._implementDateTimeChanged,
             onDateSelected: this._implementDateTimeChanged)
       ],
     );

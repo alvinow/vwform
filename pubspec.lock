@@ -618,7 +618,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "5379945f6bf34b9ffb00e7d8e291528347c0ef2e"
+      resolved-ref: "2fe1960e7f0abe9eb2204e8900e38f2ac247ed59"
       url: "https://github.com/alvinow/gstyle_datetime_picker.dart.git"
     source: git
     version: "0.0.1"

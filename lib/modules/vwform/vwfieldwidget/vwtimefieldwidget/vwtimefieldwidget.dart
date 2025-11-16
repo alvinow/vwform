@@ -64,6 +64,7 @@ class _VwTimeFieldWidgetState extends State<VwTimeFieldWidget> {
         GoogleStyleTimePicker (
             readOnly:widget.readOnly,
             initialTime: this.currentDateTime,
+            onChanged: this._implementDateTimeChanged,
             onTimeSelected: this._implementDateTimeChanged)
       ],
     );

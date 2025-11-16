@@ -67,6 +67,7 @@ class _VwDatetimeFieldWidgetGstyleState extends State<VwDatetimeFieldWidgetGstyl
             initialDateTime: this.currentDateTime,
             minDate: DateTime(1900),
             maxDate: DateTime(2050),
+            onChanged: this._implementDateTimeChanged,
             onDateTimeSelected: this._implementDateTimeChanged)
       ],
     );
