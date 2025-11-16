@@ -330,6 +330,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
               VwFieldUiParam.uitTimeField ||
           this.widget.formField.fieldUiParam.uiTypeId ==
               VwFieldUiParam.uitDateTimeField) {
+        /*
         if(this.widget.formField.fieldUiParam.uiTypeId == VwFieldUiParam.uitDateField)
           {
             fieldWidget = VwDateFieldWidget(
@@ -365,7 +366,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
               getCurrentFormResponseFunction:
               this.widget.getCurrentFormResponseFunction,
               onValueChanged: this._implementOnFieldvalueChanged);
-        }
+        }*/
 
 
       }

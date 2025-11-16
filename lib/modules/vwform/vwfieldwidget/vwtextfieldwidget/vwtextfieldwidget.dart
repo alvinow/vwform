@@ -1,4 +1,3 @@
-import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -28,7 +27,7 @@ class VwTextFieldWidget extends StatefulWidget {
       this.readOnly = false,
       required this.formField,
       this.onValueChanged,
-        required this.appInstanceParam,
+      required this.appInstanceParam,
       required this.getCurrentFormResponseFunction})
       : super(key: key);
 
@@ -53,7 +52,7 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
     super.initState();
     this.textFormFieldKey = UniqueKey();
     this.initGenerateOtpCode();
-    this.doRefreshValue=false;
+    this.doRefreshValue = false;
     this.textEditingController = TextEditingController();
     this.refreshValue();
     this.isTextObscured = true;
@@ -91,7 +90,9 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
   }
 
   static Widget ticketCodeViewer(
-      {required String baseUrl, required VwRowData ticketshowevent, required BuildContext context}) {
+      {required String baseUrl,
+      required VwRowData ticketshowevent,
+      required BuildContext context}) {
     String? nameContactticket;
     //String? circleContactTicket;
     //String? addressline1;
@@ -147,15 +148,21 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
       username =
           userNode!.content.classEncodedJson!.data!["username"].toString();
     } catch (error) {}
-    String data = this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl +
-        "/?otpCode=" +
-        this.textEditingController.value.text! +
-        "&authMode=otp";
+    String data =
+        this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl +
+            "/?otpCode=" +
+            this.textEditingController.value.text! +
+            "&authMode=otp";
 
     return InkWell(
         onTap: () async {
           if (this.textEditingController.value.text != null) {
-            String data = this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl +
+            String data = this
+                    .widget
+                    .appInstanceParam
+                    .baseAppConfig
+                    .generalConfig
+                    .baseUrl +
                 "/?otpCode=" +
                 this.textEditingController.value.text! +
                 "&authMode=otp";
@@ -186,10 +193,11 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
       ]),
       onTap: () async {
         if (this.textEditingController.value.text != null) {
-          String data = this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl +
-              "/?otpCode=" +
-              this.textEditingController.value.text! +
-              "&authMode=otp";
+          String data =
+              this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl +
+                  "/?otpCode=" +
+                  this.textEditingController.value.text! +
+                  "&authMode=otp";
 
           await Navigator.push(
               context,
@@ -207,7 +215,6 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
             VwFieldUiParam.uitNumberTextField &&
         this.widget.field.valueNumber != null) {
       NumberFormat formatter = NumberFormat.decimalPatternDigits(
-
           decimalDigits: this
               .widget
               .formField
@@ -218,7 +225,7 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
           locale:
               this.widget.formField.fieldUiParam.fieldDisplayFormat!.locale);
 
-      formatter.maximumIntegerDigits=25;
+      formatter.maximumIntegerDigits = 25;
       String currentValue = formatter.format(this.widget.field.valueNumber);
 
       textEditingController.text = currentValue;
@@ -242,7 +249,7 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
           locale:
               this.widget.formField.fieldUiParam.fieldDisplayFormat!.locale);
 
-      formatter.maximumIntegerDigits=25;
+      formatter.maximumIntegerDigits = 25;
       String currentValue = formatter.format(this.widget.field.valueNumber);
 
       textEditingController.text = currentValue;
@@ -257,7 +264,6 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
 
       if (this.widget.formField.fieldUiParam.uiTypeId ==
           VwFieldUiParam.uitDateTimeField) {
-
         currentValueString = VwDateUtil.indonesianFormatLocalTimeZone(
             this.widget.field.valueDateTime!.toLocal());
       } else if (this.widget.formField.fieldUiParam.uiTypeId ==
@@ -329,32 +335,22 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
         : false;
   }
 
-
-
   void _onDateValueChanged(DateTime? newDateTime) {
     if (this.widget.onValueChanged != null) {
       VwFieldValue oldValue = VwFieldValue.clone(this.widget.field);
 
-      if(newDateTime!=null)
-        {
-          if(newDateTime!.isUtc)
-            {
-              this.widget.field.valueDateTime = newDateTime!;
-            }
-          else
-            {
-              this.widget.field.valueDateTime = newDateTime!.toUtc();
-            }
-
-          this.widget.onValueChanged!(this.widget.field, oldValue, true);
+      if (newDateTime != null) {
+        if (newDateTime!.isUtc) {
+          this.widget.field.valueDateTime = newDateTime!;
+        } else {
+          this.widget.field.valueDateTime = newDateTime!.toUtc();
         }
-      else{
+
+        this.widget.onValueChanged!(this.widget.field, oldValue, true);
+      } else {
         this.widget.field.valueDateTime = newDateTime;
         this.widget.onValueChanged!(this.widget.field, oldValue, true);
       }
-
-
-
     }
   }
 
@@ -383,28 +379,27 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
   Widget build(BuildContext context) {
     Widget returnValue = Container();
 
-    if(this.doRefreshValue==true)
-      {
-        this.doRefreshValue=false;
-        this.refreshValue();
-      }
+    if (this.doRefreshValue == true) {
+      this.doRefreshValue = false;
+      this.refreshValue();
+    }
 
     if (this.widget.formField.fieldUiParam.isCalculatedField == true) {
       //this.refreshByFieldValue();
     }
     final bool showQrCode =
-    (this.widget.formField.fieldDefinition.fieldName == "otpCode" &&
-        this.textEditingController.value.text != null &&
-        this.textEditingController.value.text.length > 0 &&
-        this.widget.getCurrentFormResponseFunction().formDefinitionId ==
-            "onetimepasswordcmeditformdefinition");
+        (this.widget.formField.fieldDefinition.fieldName == "otpCode" &&
+            this.textEditingController.value.text != null &&
+            this.textEditingController.value.text.length > 0 &&
+            this.widget.getCurrentFormResponseFunction().formDefinitionId ==
+                "onetimepasswordcmeditformdefinition");
 
     final bool showTicketCode =
-    (this.widget.formField.fieldDefinition.fieldName == "ticketCode" &&
-        this.textEditingController.value.text != null &&
-        this.textEditingController.value.text.length > 0 &&
-        this.widget.getCurrentFormResponseFunction().formDefinitionId ==
-            "ticketshoweventformdefinition");
+        (this.widget.formField.fieldDefinition.fieldName == "ticketCode" &&
+            this.textEditingController.value.text != null &&
+            this.textEditingController.value.text.length > 0 &&
+            this.widget.getCurrentFormResponseFunction().formDefinitionId ==
+                "ticketshoweventformdefinition");
 
     Widget captionWidget = VwFieldWidget.getLabel(
         widget.field,
@@ -424,8 +419,7 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
     Widget textFormFieldWidget = TextFormField(
       onTap: () async {
         if (this.widget.formField.fieldUiParam.uiTypeId ==
-            VwFieldUiParam.uitDateTimeField ||
-
+                VwFieldUiParam.uitDateTimeField ||
             this.widget.formField.fieldUiParam.uiTypeId ==
                 VwFieldUiParam.uitTimeField) {
           DateTime? newDateTime = await showOmniDateTimePicker(
@@ -463,17 +457,12 @@ class VwTextFieldWidgetState extends State<VwTextFieldWidget> {
           );
 
           if (newDateTime != null) {
-            this.doRefreshValue=true;
+            this.doRefreshValue = true;
             this._onDateValueChanged(newDateTime);
           }
-        }
-        else if( this.widget.formField.fieldUiParam.uiTypeId ==
-            VwFieldUiParam.uitDateField)
-
-        {
-
-
-        /*
+        } else if (this.widget.formField.fieldUiParam.uiTypeId ==
+            VwFieldUiParam.uitDateField) {
+          /*
 
           List<DateTime?>? newDates = await showCalendarDatePicker2Dialog(
             context: context,
@@ -498,21 +487,19 @@ if(newDates!=null && newDates.length>0)
 
           DateTime? newDate = await BirthdatePickerDialog.show(
             context,
-            initialDate: this.widget.field.valueDateTime!=null? this.widget.field.valueDateTime!.toLocal():null,
+            initialDate: this.widget.field.valueDateTime != null
+                ? this.widget.field.valueDateTime!.toLocal()
+                : null,
             title: 'Pilih Tanggal',
             dateOrder: DateOrder.dmy,
             enableDropdown: true,
             minDate: new DateTime.utc(1950, 1, 1, 0, 0, 0),
             maxDate: new DateTime.utc(2050, 12, 31, 23, 59, 0),
           );
-          if(newDate!=null)
-          {
-            this.doRefreshValue=true;
+          if (newDate != null) {
+            this.doRefreshValue = true;
             this._onDateValueChanged(newDate.toUtc());
           }
-
-
-
         }
       },
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -522,9 +509,9 @@ if(newDates!=null && newDates.length>0)
         if (this.widget.formField.fieldUiParam.minChar > 0 && value != null) {
           return value!.length < this.widget.formField.fieldUiParam.minChar
               ? this.widget.formField.fieldUiParam.caption.toString() +
-              ' minimal ' +
-              this.widget.formField.fieldUiParam.minChar.toString() +
-              " karakter"
+                  ' minimal ' +
+                  this.widget.formField.fieldUiParam.minChar.toString() +
+                  " karakter"
               : null;
         } else {
           return null;
@@ -548,19 +535,19 @@ if(newDates!=null && newDates.length>0)
         fillColor: Colors.grey[10],
         //contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
         suffixIcon: this.widget.formField.fieldUiParam.uiTypeId ==
-            VwFieldUiParam.uitTextpasswordField
+                VwFieldUiParam.uitTextpasswordField
             ? InkWell(
-            onTap: () {
-              this.isTextObscured = !this.isTextObscured;
+                onTap: () {
+                  this.isTextObscured = !this.isTextObscured;
 
-              setState(() {});
-            },
-            child: Icon(
-              Icons.remove_red_eye,
-              size: 20,
-              color:
-              this.isTextObscured == true ? Colors.grey : Colors.blue,
-            ))
+                  setState(() {});
+                },
+                child: Icon(
+                  Icons.remove_red_eye,
+                  size: 20,
+                  color:
+                      this.isTextObscured == true ? Colors.grey : Colors.blue,
+                ))
             : null,
         filled: true,
         border: const UnderlineInputBorder(),
@@ -580,12 +567,17 @@ if(newDates!=null && newDates.length>0)
           showTicketCode == true ? Container() : textFormFieldWidget,
           showTicketCode == true
               ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            VwTextFieldWidgetState.ticketCodeViewer(
-                baseUrl: this.widget.appInstanceParam.baseAppConfig.generalConfig.baseUrl,
-                ticketshowevent:
-                this.widget.getCurrentFormResponseFunction(),
-                context: context)
-          ])
+                  VwTextFieldWidgetState.ticketCodeViewer(
+                      baseUrl: this
+                          .widget
+                          .appInstanceParam
+                          .baseAppConfig
+                          .generalConfig
+                          .baseUrl,
+                      ticketshowevent:
+                          this.widget.getCurrentFormResponseFunction(),
+                      context: context)
+                ])
               : Container()
         ],
       );
@@ -600,8 +592,8 @@ if(newDates!=null && newDates.length>0)
           showQrCode == true ? Container() : textFormFieldWidget,
           showQrCode == true
               ? Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [this.qrCodeViewer()])
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [this.qrCodeViewer()])
               : Container()
         ],
       );
