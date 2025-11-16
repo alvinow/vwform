@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
 import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
 import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
+import 'package:vwform/modules/vwform/vwfieldwidget/vw_datetime_field_widget_gstyle/vw_datetime_field_widget_gstyle.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwcalculatudnumberfieldwidget/vwcalculatednumberfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwcaptionfieldwidget/vwcaptionfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwcheckboxfieldwidget/vwcheckboxfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwchecklistfieldwidget/vwchecklistfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwchecklistlinknodefieldwidget/vwchecklistlinknodefieldwidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwdatefieldwidget/vwdatefieldwidget.dart';
+import 'package:vwform/modules/vwform/vwfieldwidget/vwdatetimefieldwidget/vwdatetimefieldwidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwdropdownfieldwidget/vwdropdownfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwdropdownlinknodefieldwidget/vwdropdownlinknodewidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwfilefieldwidget/vwfilefieldwidget.dart';
@@ -19,6 +21,7 @@ import 'package:vwform/modules/vwform/vwfieldwidget/vwspineditfieldwidget/vwspin
 import 'package:vwform/modules/vwform/vwfieldwidget/vwtagchecklistfieldwidget/vwtagchecklistfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwtextfieldwidget/vwtextfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwfieldwidget/vwtextwidget/vwtextwidget.dart';
+import 'package:vwform/modules/vwform/vwfieldwidget/vwtimefieldwidget/vwtimefieldwidget.dart';
 import 'package:vwform/modules/vwform/vwform.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwfielduiparam/vwfielduiparam.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
@@ -327,7 +330,7 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
               VwFieldUiParam.uitTimeField ||
           this.widget.formField.fieldUiParam.uiTypeId ==
               VwFieldUiParam.uitDateTimeField) {
-        if(this.widget.formField.fieldUiParam.uiTypeId == VwFieldUiParam.uitDateTimeField)
+        if(this.widget.formField.fieldUiParam.uiTypeId == VwFieldUiParam.uitDateField)
           {
             fieldWidget = VwDateFieldWidget(
                 appInstanceParam: this.widget.appInstanceParam,
@@ -339,6 +342,30 @@ class _VwFieldWidgetState extends State<VwFieldWidget> {
                 this.widget.getCurrentFormResponseFunction,
                 onValueChanged: this._implementOnFieldvalueChanged);
           }
+        else if(this.widget.formField.fieldUiParam.uiTypeId == VwFieldUiParam.uitTimeField)
+        {
+          fieldWidget = VwTimeFieldWidget(
+              appInstanceParam: this.widget.appInstanceParam,
+              key: Key(this.widget.formField.fieldDefinition.fieldName),
+              fieldValue: this.widget.field,
+              readOnly: this.widget.readOnly,
+              formField: this.widget.formField,
+              getCurrentFormResponseFunction:
+              this.widget.getCurrentFormResponseFunction,
+              onValueChanged: this._implementOnFieldvalueChanged);
+        }
+        else if(this.widget.formField.fieldUiParam.uiTypeId == VwFieldUiParam.uitDateTimeField)
+        {
+          fieldWidget = VwDatetimeFieldWidgetGstyle(
+              appInstanceParam: this.widget.appInstanceParam,
+              key: Key(this.widget.formField.fieldDefinition.fieldName),
+              fieldValue: this.widget.field,
+              readOnly: this.widget.readOnly,
+              formField: this.widget.formField,
+              getCurrentFormResponseFunction:
+              this.widget.getCurrentFormResponseFunction,
+              onValueChanged: this._implementOnFieldvalueChanged);
+        }
 
 
       }

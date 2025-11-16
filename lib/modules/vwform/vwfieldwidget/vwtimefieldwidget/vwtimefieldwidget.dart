@@ -6,15 +6,15 @@ import 'package:vwform/modules/vwform/vwfieldwidget/vwfieldwidget.dart';
 import 'package:vwform/modules/vwform/vwform.dart';
 import 'package:vwform/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
 
-class VwDateFieldWidget extends StatefulWidget {
-  const VwDateFieldWidget(
+class VwTimeFieldWidget extends StatefulWidget {
+  const VwTimeFieldWidget(
       {Key? key,
-      required this.fieldValue,
-      this.readOnly = false,
-      required this.formField,
-      this.onValueChanged,
-      required this.appInstanceParam,
-      required this.getCurrentFormResponseFunction})
+        required this.fieldValue,
+        this.readOnly = false,
+        required this.formField,
+        this.onValueChanged,
+        required this.appInstanceParam,
+        required this.getCurrentFormResponseFunction})
       : super(key: key);
 
   final VwFieldValue fieldValue;
@@ -24,10 +24,10 @@ class VwDateFieldWidget extends StatefulWidget {
   final VwFieldWidgetChanged? onValueChanged;
   final GetCurrentFormResponseFunction getCurrentFormResponseFunction;
 
-  _VwDateFieldWidgetState createState() => _VwDateFieldWidgetState();
+  _VwTimeFieldWidgetState createState() => _VwTimeFieldWidgetState();
 }
 
-class _VwDateFieldWidgetState extends State<VwDateFieldWidget> {
+class _VwTimeFieldWidgetState extends State<VwTimeFieldWidget> {
   DateTime? currentDateTime;
 
   @override
@@ -61,13 +61,10 @@ class _VwDateFieldWidgetState extends State<VwDateFieldWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         this._buildFieldCaption(),
-        GoogleStyleDatePicker(
+        GoogleStyleTimePicker (
             readOnly:widget.readOnly,
-            locale: widget.appInstanceParam.baseAppConfig.generalConfig.locale,
-            initialDate: this.currentDateTime,
-            minDate: DateTime(1900),
-            maxDate: DateTime(2050),
-            onDateSelected: this._implementDateTimeChanged)
+            initialTime: this.currentDateTime,
+            onTimeSelected: this._implementDateTimeChanged)
       ],
     );
   }
