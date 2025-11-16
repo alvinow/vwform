@@ -5,17 +5,17 @@ import 'package:vwform/modules/vwwidget/birthdatepicker/birthdatepicker.dart';
 // Bottom Sheet Dialog
 class BirthdatePickerDialog {
   static Future<DateTime?> show(
-      BuildContext context, {
-        DateTime? initialDate,
-        String title = 'Select your birthdate',
-        String cancelText = 'Cancel',
-        String confirmText = 'Confirm',
-        DateOrder dateOrder = DateOrder.mdy,
-        bool enableDropdown = true,
-        DateTime? minDate,
-        DateTime? maxDate,
-        bool forceUtc = false,
-      }) async {
+    BuildContext context, {
+    DateTime? initialDate,
+    String title = 'Pilih Tanggal',
+    String cancelText = 'Cancel',
+    String confirmText = 'Ok',
+    DateOrder dateOrder = DateOrder.mdy,
+    bool enableDropdown = true,
+    DateTime? minDate,
+    DateTime? maxDate,
+    bool forceUtc = false,
+  }) async {
     DateTime? selectedDate = initialDate;
 
     return showModalBottomSheet<DateTime?>(
@@ -25,7 +25,8 @@ class BirthdatePickerDialog {
       builder: (BuildContext context) {
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setModalState) {
-            return Container(
+            return Expanded(
+                child: Container(
               width: 300,
               decoration: const BoxDecoration(
                 color: Colors.white,
@@ -99,8 +100,8 @@ class BirthdatePickerDialog {
                         ElevatedButton(
                           onPressed: selectedDate != null
                               ? () {
-                            Navigator.of(context).pop(selectedDate);
-                          }
+                                  Navigator.of(context).pop(selectedDate);
+                                }
                               : null,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
@@ -127,7 +128,7 @@ class BirthdatePickerDialog {
                   ],
                 ),
               ),
-            );
+            ));
           },
         );
       },
