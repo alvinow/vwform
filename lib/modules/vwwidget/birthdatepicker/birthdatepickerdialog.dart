@@ -25,9 +25,7 @@ class BirthdatePickerDialog {
       builder: (BuildContext context) {
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setModalState) {
-            return Expanded(
-                child: Container(
-              width: 300,
+            return Container(
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -66,19 +64,21 @@ class BirthdatePickerDialog {
                     ),
                     const SizedBox(height: 24),
                     // Birthdate Picker
-                    BirthdatePicker(
-                      initialDate: initialDate,
-                      dateOrder: dateOrder,
-                      enableDropdown: enableDropdown,
-                      minDate: minDate,
-                      maxDate: maxDate,
-                      forceUtc: forceUtc,
-                      onDateChanged: (date) {
-                        setModalState(() {
-                          selectedDate = date;
-                        });
-                      },
-                    ),
+                    SizedBox(
+                        width: 300,
+                        child: BirthdatePicker(
+                          initialDate: initialDate,
+                          dateOrder: dateOrder,
+                          enableDropdown: enableDropdown,
+                          minDate: minDate,
+                          maxDate: maxDate,
+                          forceUtc: forceUtc,
+                          onDateChanged: (date) {
+                            setModalState(() {
+                              selectedDate = date;
+                            });
+                          },
+                        )),
                     const SizedBox(height: 24),
                     // Action Buttons
                     Row(
@@ -128,7 +128,7 @@ class BirthdatePickerDialog {
                   ],
                 ),
               ),
-            ));
+            );
           },
         );
       },
