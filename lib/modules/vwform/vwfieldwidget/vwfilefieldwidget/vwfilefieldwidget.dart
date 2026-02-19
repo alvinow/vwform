@@ -125,7 +125,7 @@ class _VwFileFieldWidget extends State<VwFileFieldWidget> {
                           .length >
                           0
                       ? this.widget.formField.fieldUiParam.fieldFileExtension
-                      : ["jpg", "png", "pdf", "jpeg", "pdf", "mp4"]);
+                      : ["jpg", "png", "pdf", "jpeg", "mp4"]);
 
               // Close the dialog programmatically
               // We use "mounted" variable to get rid of the "Do not use BuildContexts across async gaps" warning
